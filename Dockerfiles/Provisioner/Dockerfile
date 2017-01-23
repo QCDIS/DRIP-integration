@@ -1,4 +1,4 @@
- Pull base image  
+# Pull base image  
 FROM ubuntu:14.04
 
 MAINTAINER Huan "h.zhou@uva.nl"
