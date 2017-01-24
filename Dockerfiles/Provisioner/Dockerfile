@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Huan "h.zhou@uva.nl"
 
-ARG release_version=0.0.2
+ARG release_version=0.0.3
 
 WORKDIR /root/
 
@@ -32,6 +32,7 @@ WORKDIR /root/SWITCH/bin
 RUN wget https://github.com/zh9314/EC2ProvisioningTool/releases/download/$release_version/EC2Provision.jar
 RUN wget https://github.com/zh9314/ExoGENIProvisioningTool/releases/download/$release_version/ExoGENIProvision.jar
 RUN wget https://github.com/zh9314/ProvisioningToolCore/releases/download/$release_version/ProvisioningCore.jar
+RUN wget https://github.com/zh9314/ShClean/releases/download/$release_version/ShFileClean.jar
 RUN git clone https://github.com/zh9314/SWITCH_lib.git ./lib
 WORKDIR /root/apache-tomcat-6.0.45/webapps/
 RUN wget https://github.com/zh9314/REST_Provisioner/releases/download/$release_version/REST_Provisioner.war
