@@ -1,0 +1,11 @@
+server {
+	listen   80;
+	server_name  deployer;
+
+	access_log  /var/log/nginx/deployer.access.log;
+
+	location /deployer {
+		proxy_pass http://172.17.0.4:8080/;
+		proxy_pass_header Server;
+	}
+}

@@ -1,0 +1,11 @@
+server {
+	listen   80;
+	server_name  provisioner;
+
+	access_log  /var/log/nginx/provisioner.access.log;
+
+	location /provisioner {
+		proxy_pass http://172.17.0.2:8080/;
+		proxy_pass_header Server;
+	}
+}

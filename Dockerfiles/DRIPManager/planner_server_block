@@ -1,0 +1,11 @@
+server {
+	listen   80;
+	server_name  planner;
+
+	access_log  /var/log/nginx/planner.access.log;
+
+	location /planner {
+		proxy_pass http://172.17.0.3:8080/;
+		proxy_pass_header Server;
+	}
+}

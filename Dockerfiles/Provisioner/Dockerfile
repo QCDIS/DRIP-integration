@@ -1,5 +1,5 @@
 # Pull base image  
-FROM ubuntu:14.04
+FROM ubuntu:latest
 
 MAINTAINER Huan "h.zhou@uva.nl"
 
@@ -8,17 +8,20 @@ ARG release_version=0.0.3
 WORKDIR /root/
 
 #install openssh and wget
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
+
 RUN apt-get install openssh-server -y
 RUN apt-get install wget -y
 RUN apt-get install git -y
+RUN apt-get install software-properties-common -y 
 
 ##install jdk 1.8
-RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie;" http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz
-RUN tar -xzf jdk-8u74-linux-x64.tar.gz
-ENV JAVA_HOME /root/jdk1.8.0_74
-ENV PATH $PATH:$JAVA_HOME/bin
-RUN rm jdk-8u74-linux-x64.tar.gz
+ENV DEBIAN_FRONTEND=noninteractive
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+RUN add-apt-repository -y ppa:webupd8team/java
+RUN apt-get update
+RUN apt-get install -y oracle-java8-set-default
 
 ##install apache
 RUN wget https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.45/bin/apache-tomcat-6.0.45.tar.gz
