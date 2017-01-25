@@ -32,7 +32,7 @@ RUN rm apache-tomcat-6.0.45.tar.gz
 #install SWITCH jar files
 RUN git clone https://github.com/zh9314/SWITCH.git
 WORKDIR /root/SWITCH/bin
-RUN wget https://github.com/zh9314/EC2ProvisioningTool/releases/download/$release_version/Planner.jar   
+RUN wget https://github.com/zh9314/SimplePlanner/releases/download/$release_version/Planner.jar   
 RUN wget https://github.com/zh9314/EC2ProvisioningTool/releases/download/$release_version/EC2Provision.jar
 RUN wget https://github.com/zh9314/ExoGENIProvisioningTool/releases/download/$release_version/ExoGENIProvision.jar
 RUN wget https://github.com/zh9314/ProvisioningToolCore/releases/download/$release_version/ProvisioningCore.jar
