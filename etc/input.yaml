@@ -1,0 +1,264 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+
+description: example file for infrastructure planner
+
+
+repositories:
+    MOG_docker_hub: 
+      description: MOG project’s code repository in GitHub
+      url: https://github.com/switch-project/mog
+      credential:
+        protocol: xauth
+        token_type: X-Auth-Token
+        # token encoded in Base64
+        token: 604bbe45ac7143a79e14f3158df67091
+
+
+artifact_types:
+  tosca.artifacts.Deployment.Image.Container.Docker:
+    derived_from: tosca.artifacts.Deployment.Image
+
+
+data_types:
+  Switch.datatypes.QoS.AppComponent:
+    derived_from: tosca.datatypes.Root
+    properties:
+      response_time:
+        type: string
+
+  Switch.datatypes.Application.Connection.EndPoint:
+    derived_from: tosca.datatypes.Root
+    properties:
+      address:
+        type: string
+      component_name:
+        type: string
+      netmask:
+        type: string
+      port_name:
+        type: string
+
+  Switch.datatypes.Application.Connection.Multicast:
+    derived_from: tosca.datatypes.Root
+    properties:
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+
+  Switch.datatypes.Network.EndPoint:
+    derived_from: tosca.datatypes.Root
+    properties:
+      address:
+        type: string
+      host_name:
+        type: string
+      netmask:
+        type: string
+      port_name:
+        type: string
+
+  Switch.datatypes.Network.Multicast:
+    derived_from: tosca.datatypes.Root
+    properties:
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+
+
+node_types:
+
+  Switch.nodes.Application.Container.Docker:
+    derived_from: tosca.nodes.Container.Application
+    properties:
+      QoS:
+        type: Switch.datatypes.QoS.AppComponent
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+    interfaces:
+      Standard:
+        create:
+          inputs:
+            command:
+              type: string
+            exported_ports:
+              type: list
+              entry_schema:
+                type: string
+            port_bindings:
+              type: list
+              entry_schema:
+                type: string
+
+  Switch.nodes.Application.Container.Docker.MOG.InputDistributor:
+    derived_from: Switch.nodes.Application.Container.Docker
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+        file: "mogswitch/InputDistributor:1.0"
+        repository: MOG_docker_hub
+    properties:
+      inPort: 
+        type: integer
+      waitingTime:
+        type: integer
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+      videoWidth:
+        type: integer
+      videoHeight:
+        type: integer
+
+  Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder:
+    derived_from: Switch.nodes.Application.Container.Docker 
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+        file: "mogswitch/ProxyTranscoder:1.0"
+        repository: MOG_docker_hub
+    properties:
+      multicastAddrIP: 
+        type: string
+      multicastAddrPort:
+        type: integer
+      videoWidth:
+        type: integer
+      videoHeight:
+        type: integer
+
+  Switch.nodes.Application.Connection:
+    derived_from: tosca.nodes.Root 
+    properties:
+      source:
+        type: Switch.datatypes.Application.Connection.EndPoint
+      target:
+        type: Switch.datatypes.Application.Connection.EndPoint
+      bandwidth:
+        type: string
+      latency: 
+        type: string
+      jitter:  
+        type: string
+      multicast:
+        type: Switch.datatypes.Application.Connection.Multicast
+
+  Switch.nodes.Compute:
+    derived_from: tosca.nodes.Compute
+    properties:
+      OStype:
+        type: string
+      nodetype:
+        type: string
+      domain:
+        type: string
+      public_address:
+        type: string
+      ethernet_port:
+        type: list
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+      script:
+        type: string
+      installation:
+        type: string
+      ssh_credential:
+        type: tosca.datatypes.Credential
+
+  Switch.nodes.Network:
+    derived_from: tosca.nodes.network.Network
+    properties:
+      bandwidth:
+        type: string
+      latency:
+        type: string
+      jitter:
+        type: string
+      source:
+        type: Switch.datatypes.Network.EndPoint
+      target:
+        type: Switch.datatypes.Network.EndPoint
+      multicast:
+        type: Switch.datatypes.Network.Multicast
+
+
+topology_template:
+  
+  node_templates:
+    2d13d708e3a9441ab8336ce874e08dd1:
+      type: Switch.nodes.Application.Container.Docker.MOG.InputDistributor
+      artifacts:
+        docker_image:
+          file: "mogswitch/InputDistributor:1.0"
+          type: tosca.artifacts.Deployment.Image.Container.Docker
+          repository: MOG_docker_hub
+      properties:
+        QoS:
+          response_time: 30ms
+        inPort: 2000
+        waitingTime: 5
+        multicastAddrIP: 255.2.2.0
+        multicastAddrPort: 3000
+        videoWidth: 176
+        videoHeight: 100
+      interfaces:
+        Standard:
+          create:
+            implementation: docker_image
+            inputs:
+              command: InputDistributor
+              exported_ports:
+                - 2000
+              port_bindings:
+                - "2000:2000"
+                - "3000:3000"
+
+    8fcc1788d9ee462c826572c79fdb2a6a:
+      type: Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder
+      artifacts:
+        docker_image:
+          file: "mogswitch/ProxyTranscoder:1.0"
+          type: tosca.artifacts.Deployment.Image.Container.Docker
+          repository: MOG_docker_hub
+      properties:
+        QoS:
+          response_time: 30ms
+        multicastAddrIP: 255.2.2.0
+        multicastAddrPort: 3000
+        videoWidth: 176
+        videoHeight: 100
+      interfaces:
+        Standard:
+          create:
+            implementation: docker_image
+            inputs:
+              command: ProxyTranscoder
+              exported_ports:
+                - 80
+              port_bindings:
+                - "8080:80"
+
+    5e0add703c8a43938a39301f572e46c0:
+      type: Switch.nodes.Application.Connection
+      properties:
+        source:
+          address: 192.168.21.11
+          component_name: 2d13d708e3a9441ab8336ce874e08dd1
+          netmask: 255.255.255.0
+          port_name: "inputDistributor_out"
+        target:
+          address: 192.168.21.12
+          component_name: 8fcc1788d9ee462c826572c79fdb2a6a
+          netmask: 255.255.255.0
+          port_name: "proxyTranscoder_in"
+        latency: 30ms
+        bandwidth: 130MB/s
+        jitter: 500ms
+        multicast:
+          multicastAddrIP: 255.2.2.0
+          multicastAddrPort: 3000
+
