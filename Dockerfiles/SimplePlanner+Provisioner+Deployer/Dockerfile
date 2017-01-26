@@ -29,6 +29,13 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.45/bin/apache-tomc
 RUN tar -xzf apache-tomcat-6.0.45.tar.gz
 RUN rm apache-tomcat-6.0.45.tar.gz
 
+##install paramiko
+RUN apt-get install build-essential libssl-dev libffi-dev python-dev -y
+WORKDIR /root/
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python get-pip.py
+RUN export LC_ALL="en_US.UTF-8"
+RUN pip2.7 install paramiko
 
 #install SWITCH jar files
 RUN git clone https://github.com/zh9314/SWITCH.git
