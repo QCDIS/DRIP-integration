@@ -13,6 +13,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install openssh-server -y
 RUN apt-get install wget -y
 RUN apt-get install git -y
+RUN apt-get install inetutils-ping -y
 RUN apt-get install software-properties-common -y 
 
 ##install jdk 1.8
