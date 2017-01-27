@@ -182,6 +182,7 @@ function deploy {
 
 function usage()
 {
+    
     echo "Usage:"
     echo ""
     echo "./drip_client.sh [OPTION]"
@@ -195,7 +196,7 @@ function usage()
     echo "-s , --ssh-key RSA_PUB                                    The user's rsa public key file (id_rsa.pub)"
     echo "-r , --script SCRIPT                                      The script to be executed by the VM's"
 #     echo "-a , --action ACTION_NUMBER_FILE                          The file containing the action number"
-    echo "-d , --cloud-certificates CLOUD_CERTIFICATES              The PEM certificates to use. The files must be seperated with commas and no spaces"
+    echo "-d , --cloud-certificates CLOUD_CERTIFICATES              The PEM certificates to use. The files must be separated with commas and no spaces"
      
     
     echo "Operations: "
@@ -208,8 +209,8 @@ function usage()
     echo
     echo "upload                                                    Upload the infrastructure description files (TOSCA). Must run plan before needs action number"
     echo "  Example:                                                 ./drip_client.sh -l 172.17.0.2 -o upload -u test -p 123"
-    echo 
-    echo "configureEC2                                              Configure the cloud infrastucture to set doman keys "
+    echo domain
+    echo "configureEC2                                              Configure the cloud infrastructure to set doman keys "
     echo "  Example:                                                ./drip_client.sh -l 172.17.0.2 -o configureEC2 -u test -p 123 -i AKAKAKAKAKAKAK -k o99ifo99ifo99ifo99ifo99ifo99if -d Virginia.pem,California.pem"
     echo
     echo "confUserKey                                               Upload the public key which the user want to use to access all his instances. (Optional)"
