@@ -10,21 +10,103 @@ The DRIP components are made available as open source under the Apache 2.0 licen
 
 The DRIP system contains a number of micro services (agents):
 
-![](https://staff.fnwi.uva.nl/z.zhao/software/drip/index_files/image002.png)
 
 DRIP has a number of key components:
 
-1. The DRIP manager will be implemented as a Web service that allows DRIP functions to be invoked individually or in tandem by outside clients via a RESTful interface.
-2. The infrastructure planner (planning agent) will use an adapted partial critical path algorithm to produce efficient infrastructure topologies based on application workflows specified in YAML in compliance with the TOSCA specification.
-3. The infrastructure provisioner (provisioning agent) takes the infrastructure plans produced by the planner using TOSCA as input, and directs the provisioning of virtual infrastructure onto underlying infrastructure services. It uses OCCI as default provisioning interface, and currently has been tested on ExoGENI, EC2 and EGI FedCloud.
-4. The deployment agent installs application components onto provisioned infrastructure.
-5. Discovery agents periodically update cloud provider information used for the planning and provisioning of infrastructure (including resource types), and helps acquire information regarding the performance of particular application components on specific resource types to put into the knowledge base.
-6. A knowledge base uses the semantic models developed in the SWITCH and ENVRIPLUS projects, and maintains the descriptions of the cloud providers, resource types, performance characteristics, and other relevant information. The knowledge base also provides an interface for these agents to look up providers, resources and runtime status data during the execution of an application.
-7. A number of control agents provide access to the underlying programmability provided by the virtual infrastructures, e.g., horizontal and vertical scaling of virtual machines, by providing interfaces by which the infrastructure hosting an application can be dynamically manipulated at runtime.
+1. The infrastructure planner (planning agent) will use an adapted partial critical path algorithm to produce efficient infrastructure topologies based on application workflows specified in YAML in compliance with the TOSCA specification.
+2. The infrastructure provisioner (provisioning agent) takes the infrastructure plans produced by the planner using TOSCA as input, and directs the provisioning of virtual infrastructure onto underlying infrastructure services. It uses OCCI as default provisioning interface, and currently has been tested on ExoGENI, EC2 and EGI FedCloud.
+3. The deployment agent installs application components onto provisioned infrastructure.
 
 # Support
 
 The DRIP system is developed using the Apache license version 2.0. It is open source, and there is no warrant on the software quality. We welcome any suggestions on software features, use-cases and joint research activities. Please contact us via email: z.zhao@uva.nl.
 
-![](https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/images/logo-sne-big-flat_100x75.png)
-![](https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/images/switch_100x100.png)
+
+# Deploy
+
+Download the Docker file from [here](https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/valpha/Dockerfile)
+
+***
+
+Build the container: 
+```
+sudo docker build -t drip .
+```
+
+***
+
+Run the container: 
+```
+sudo docker run --name drip-inst -d drip
+```
+More information on running Docker images can be found [here](https://docs.docker.com/engine/reference/run/) 
+***
+To get the IP of the drip-inst container you can run:
+```
+sudo docker inspect drip-inst
+``` 
+and look for the filed "IPAddress" 
+
+#Usage Example 
+
+Get the drip client from [here](https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/scripts/drip_client.sh) 
+
+***
+
+Register a new account:
+```
+./drip_client.sh -l 172.17.0.2 -o register -u test -p 123
+```
+The output should be something like: 
+```
+Success: User test is registered!MT
+```
+***
+
+Get a sample components description file from [here](https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/etc/input.yaml) and submit it to for planning: 
+```
+./drip_client.sh -l 172.17.0.2 -o plan -u test -p 123 -c input.yaml
+```
+The output should be something like: 
+```XML
+<?xml version="1.0" encoding="UTF-8"?>
+<result><status/><info/><file name="planner_output_all.yml" level="0">topologies:\n  - topology: 4d1eb4f6-fb17-48e8-8670-a753f0ffd8fd\n    cloudProvider: EC2\n</file><file name="4d1eb4f6-fb17-48e8-8670-a753f0ffd8fd.yml" level="1">publicKeyPath: /Users/zh9314/SWITCH/users/zh9314/files/1479928399024/id_dsa.pub\nuserName: zh9314\nsubnets:\n  - name: s1\n    subnet: 192.168.10.0\n    netmask: 255.255.255.0\ncomponents:\n  - name: 23852656-a19e-4e73-9a27-3a5f512a9242\n    type: Switch.nodes.Compute\n    nodetype: t2.medium\n    OStype: "Ubuntu 16.04"\n    domain: "ec2.us-east-1.amazonaws.com"\n    script: null\n    installation: null\n    role: master\n    dockers: "mogswitch/InputDistributor"\n    public_address: 23852656-a19e-4e73-9a27-3a5f512a9242\n    ethernet_port: \n      - name: p1\n        subnet_name: s1\n        address: 192.168.10.10 \n  - name: 4e64d56c-1d83-4c57-9471-e81b03fd5317\n    type: Switch.nodes.Compute\n    nodetype: t2.medium\n    OStype: "Ubuntu 16.04"\n    domain: "ec2.us-east-1.amazonaws.com"\n    script: null\n    installation: null\n    role: slave\n    dockers: "mogswitch/ProxyTranscoder"\n    public_address: 4e64d56c-1d83-4c57-9471-e81b03fd5317\n    ethernet_port: \n      - name: p1\n        subnet_name: s1\n        address: 192.168.10.11 \n</file></result>
+```
+At the same time files `plan.xml` and `planning_result.xml` should be generated
+***
+
+Upload the plan: 
+```
+./drip_client.sh -l 172.17.0.2 -o upload -u test -p 123
+```
+This should generate files `upload.xml` and `actionNumber`
+
+***
+Assuming you have an Amazon Cloud account and the corresponding key, key id and certificates set the configuration: 
+```
+./drip_client.sh -l 172.17.0.2 -o configureEC2 -u test -p 123 -i AKAKAKAKAKAKAK -k o99ifo99ifo99ifo99ifo99ifo99if -d Virginia.pem,California.pem
+```
+Note: The certificates Virginia.pem and California.pem must be separated by commas without spaces
+***
+
+Optional. If you wish to log in to the VMs generated you need to upload your public key (preferably rsa). Instructions on how to generate these keys can be found [here](https://help.ubuntu.com/community/SSH/OpenSSH/Keys)
+```
+./drip_client.sh -l 172.17.0.2 -o confUserKey -u test -p 123 -s ~/.ssh/id_rsa.pub 
+```
+***
+
+Optional. If you wish to run a predefined script on the VMs, you should upload it by using: 
+```
+./drip_client.sh -l 172.17.0.2 -o confscript -u test -p 123 -r sample.sh 
+```
+***
+Execute provisioning: 
+```
+./drip_client.sh -l 172.17.0.2 -o execute -u test -p 123 
+```
+
+***
+Finally deploy a kubernetes cluster: 
+```
+./drip_client.sh -l 172.17.0.2 -o deploy -u test -p 123 
+```
