@@ -178,3 +178,285 @@ Example:
 ```
 ./drip_client.sh -l 172.17.0.2 -o deploy -u test -p 123 
 ```
+
+# DRIP REST API
+# Planner REST API
+Operation: Execute planning for specified components description files.
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/plan/planning
+```
+Input parameter (XML String):
+
+```XML
+<plan>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <file>tosca_definitions\n</file>
+</plan>
+```
+The `<file>` node contains a YAML component description. In this element all new lines have to be represented with the '\n' character. This can be done with sed:
+```
+ sed ':a;N;$!ba;s/\n/\\n/g'
+```
+
+Example: 
+```XML
+<plan>
+    <user>test</user>
+    <pwd>123</pwd>
+    <file>tosca_definitions_version: tosca_simple_yaml_1_0\n\n\ndescription: example file for infrastructure planner\n\n\nrepositories:\n    MOG_docker_hub: \n      description: MOG project’s code repository in GitHub\n      url: https://github.com/switch-project/mog\n      credential:\n        protocol: xauth\n        token_type: X-Auth-Token\n        # token encoded in Base64\n        token: 604bbe45ac7143a79e14f3158df67091\n\n\nartifact_types:\n  tosca.artifacts.Deployment.Image.Container.Docker:\n    derived_from: tosca.artifacts.Deployment.Image\n\n\ndata_types:\n  Switch.datatypes.QoS.AppComponent:\n    derived_from: tosca.datatypes.Root\n    properties:\n      response_time:\n        type: string\n\n  Switch.datatypes.Application.Connection.EndPoint:\n    derived_from: tosca.datatypes.Root\n    properties:\n      address:\n        type: string\n      component_name:\n        type: string\n      netmask:\n        type: string\n      port_name:\n        type: string\n\n  Switch.datatypes.Application.Connection.Multicast:\n    derived_from: tosca.datatypes.Root\n    properties:\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n\n  Switch.datatypes.Network.EndPoint:\n    derived_from: tosca.datatypes.Root\n    properties:\n      address:\n        type: string\n      host_name:\n        type: string\n      netmask:\n        type: string\n      port_name:\n        type: string\n\n  Switch.datatypes.Network.Multicast:\n    derived_from: tosca.datatypes.Root\n    properties:\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n\n\nnode_types:\n\n  Switch.nodes.Application.Container.Docker:\n    derived_from: tosca.nodes.Container.Application\n    properties:\n      QoS:\n        type: Switch.datatypes.QoS.AppComponent\n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n    interfaces:\n      Standard:\n        create:\n          inputs:\n            command:\n              type: string\n            exported_ports:\n              type: list\n              entry_schema:\n                type: string\n            port_bindings:\n              type: list\n              entry_schema:\n                type: string\n\n  Switch.nodes.Application.Container.Docker.MOG.InputDistributor:\n    derived_from: Switch.nodes.Application.Container.Docker\n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n        file: "mogswitch/InputDistributor:1.0"\n        repository: MOG_docker_hub\n    properties:\n      inPort: \n        type: integer\n      waitingTime:\n        type: integer\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n      videoWidth:\n        type: integer\n      videoHeight:\n        type: integer\n\n  Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder:\n    derived_from: Switch.nodes.Application.Container.Docker \n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n        file: "mogswitch/ProxyTranscoder:1.0"\n        repository: MOG_docker_hub\n    properties:\n      multicastAddrIP: \n        type: string\n      multicastAddrPort:\n        type: integer\n      videoWidth:\n        type: integer\n      videoHeight:\n        type: integer\n\n  Switch.nodes.Application.Connection:\n    derived_from: tosca.nodes.Root \n    properties:\n      source:\n        type: Switch.datatypes.Application.Connection.EndPoint\n      target:\n        type: Switch.datatypes.Application.Connection.EndPoint\n      bandwidth:\n        type: string\n      latency: \n        type: string\n      jitter:  \n        type: string\n      multicast:\n        type: Switch.datatypes.Application.Connection.Multicast\n\n  Switch.nodes.Compute:\n    derived_from: tosca.nodes.Compute\n    properties:\n      OStype:\n        type: string\n      nodetype:\n        type: string\n      domain:\n        type: string\n      public_address:\n        type: string\n      
+        ethernet_port:\n        type: list\n        entry_schema:\n          type: tosca.datatypes.network.NetworkInfo\n      script:\n        type: string\n      installation:\n        type: string\n      ssh_credential:\n        type: tosca.datatypes.Credential\n\n  Switch.nodes.Network:\n    derived_from: tosca.nodes.network.Network\n    properties:\n      bandwidth:\n        type: string\n      latency:\n        type: string\n      jitter:\n        type: string\n      source:\n        type: Switch.datatypes.Network.EndPoint\n      target:\n        type: Switch.datatypes.Network.EndPoint\n      multicast:\n        type: Switch.datatypes.Network.Multicast\n\n\ntopology_template:\n  \n  node_templates:\n    2d13d708e3a9441ab8336ce874e08dd1:\n      type: Switch.nodes.Application.Container.Docker.MOG.InputDistributor\n      artifacts:\n        docker_image:\n          file: "mogswitch/InputDistributor:1.0"\n          type: tosca.artifacts.Deployment.Image.Container.Docker\n          repository: MOG_docker_hub\n      properties:\n        QoS:\n          response_time: 30ms\n        inPort: 2000\n        waitingTime: 5\n        multicastAddrIP: 255.2.2.0\n        multicastAddrPort: 3000\n        videoWidth: 176\n        videoHeight: 100\n      interfaces:\n        Standard:\n          create:\n            implementation: docker_image\n            inputs:\n              command: InputDistributor\n              exported_ports:\n                - 2000\n              port_bindings:\n                - "2000:2000"\n                - "3000:3000"\n\n    8fcc1788d9ee462c826572c79fdb2a6a:\n      type: Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder\n      artifacts:\n        docker_image:\n          file: "mogswitch/ProxyTranscoder:1.0"\n          type: tosca.artifacts.Deployment.Image.Container.Docker\n          repository: MOG_docker_hub\n      properties:\n        QoS:\n          response_time: 30ms\n        multicastAddrIP: 255.2.2.0\n        multicastAddrPort: 3000\n        videoWidth: 176\n        videoHeight: 100\n      interfaces:\n        Standard:\n          create:\n            implementation: docker_image\n            inputs:\n              command: ProxyTranscoder\n              exported_ports:\n                - 80\n              port_bindings:\n                - "8080:80"\n\n    5e0add703c8a43938a39301f572e46c0:\n      type: Switch.nodes.Application.Connection\n      properties:\n        source:\n          address: 192.168.21.11\n          component_name: 2d13d708e3a9441ab8336ce874e08dd1\n          netmask: 255.255.255.0\n          port_name: "inputDistributor_out"\n        target:\n          address: 192.168.21.12\n          component_name: 8fcc1788d9ee462c826572c79fdb2a6a\n          netmask: 255.255.255.0\n          port_name: "proxyTranscoder_in"\n        latency: 30ms\n        bandwidth: 130MB/s\n        jitter: 500ms\n        multicast:\n          multicastAddrIP: 255.2.2.0\n          multicastAddrPort: 3000\n</file>
+</plan>
+``` 
+
+Responses (XML String):
+
+```XML
+<result>
+ 	<status>Fail</status>
+ 	<info>$REASON</info>
+ </result>
+```
+
+```XML
+<result>
+ <status>Success</status>
+ <info>$INFO</info>
+ <file name="Planned_tosca_file_a.yaml" level="1">$Planned_tosca_file_a</file>
+ <file name="Planned_tosca_file_all.yaml" level="0">$Planned_tosca_file_all</file>
+</result>
+```
+# Provisioner REST API
+
+## Account registration API
+
+Operation: Register a user account.
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/account/register
+```
+Input parameter (XML String):
+```XML
+<register>
+    <user>test</user>
+    <pwd>1234</pwd>
+</register>
+```
+
+Responses (String):
+
+```
+"Fail: xxxx"
+```
+
+```
+"Success: xxxx"
+```
+Operation: Configure the user's EC2 account.
+
+URL:
+http://$REST_SERVER:8080/REST_Provisioner/switch/account/configure/ec2
+Input parameter (XML String):
+```XML
+<configure>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <keyid>AKISAKISAKIS</keyid>
+    <key>6J76J76J76J76J76J76J7</key>
+    <loginKey domain_name="Virginia" >sdds\nsdf</loginKey>
+    <loginKey domain_name="California" >sdds\nssdfdf\n</loginKey>
+</configure> 
+```
+
+The **<loginKey>** node has the contents of the PEM certificates with all new lines replaced with the '\n' character. 
+Example: 
+```XML
+<configure>
+    <user>test</user>
+    <pwd>123</pwd>
+    <keyid>AKISAKISAKIS</keyid>
+    <key>6J76J76J76J76J76J76J7</key>
+    <loginKey domain_name="Virginia"> -----BEGIN RSA PRIVATE KEY-----\nMIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDg\nMBQGCCqGSIb3DQMHBAgD1kGN4ZslJgSCBMi1xk9jhlPxPc\n9g73NQbtqZwI+9X5OhpSg/2ALxlCCjbqvzg=\n-----END RSA PRIVATE KEY----- </loginKey>
+    <loginKey domain_name="CaliforniaCopy"> -----BEGIN RSA PRIVATE KEY-----\nMIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDg\nMBQGCCqGSIb3DQMHBAgD1kGN4ZslJgSCBMi1xk9jhlPxPc\n9g73NQbtqZwI+9X5OhpSg/2ALxlCCjbqvzg=\n-----END RSA PRIVATE KEY-----  </loginKey>
+</configure>
+```
+Responses (String):
+```
+"Fail: xxxx"
+```
+
+```
+"Success: xxxx"
+```
+
+Operation: Configure the user's ExoGENI account.
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/account/configure/geni
+```
+Input parameter (XML String):
+
+```XML
+<configure>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <geniKey>1234\nfg\n</geniKey>
+    <geniKeyAlias>geni</geniKeyAlias>
+    <geniKeyPass>123456</geniKeyPass>
+    <loginPubKey>1234\nfg\nss\n</loginPubKey>
+    <loginPriKey>1234\nfg\nsdfs\n</loginPriKey>
+</configure> 
+```
+Nodes `<loginPubKey>` and `<loginPriKey>` must also replace all new lines with the '\n' character 
+
+Responses (String):
+```
+"Fail: xxxx"
+```
+
+```
+"Success: xxxx"
+```
+
+## Provisioning API
+
+Operation: Upload the infrastructure description files (TOSCA).
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/provision/upload
+```
+
+Input parameter (XML String):
+```XML
+<upload>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <file name='zh_a.yml' level='1'>tosca_a</file>
+    <file name='zh_b.yml' level='1'>tosca_b</file>
+    <file name='zh_all.yml' level='0'>tosca</file>
+</upload>
+```
+Responses (String):
+```
+"Fail: xxxx"
+```
+
+```
+"Success: Infrastructure files are uploaded! Action number: $AN"
+```
+
+There are two levels of description files for topologies designed by users. If the level attribute for the element file is 1, then this file is the top-level description, which defines how the sub-topologies are connected to each other. If the level attribute is 0, then the file is the low-level description, which describes the topology in one data center in detail. On the other hand, the name of low-level description file must be the sub-topology name appeared in the high-level description file. (For example, here should be zh_a and zh_b.)
+
+For the output, $AN represents the action number returned by the server. It is an indexed number for user to identify his topologies files. It will also be used to execute provisioning. 
+
+
+Operation: Upload the public key which the user want to use to access all his instances. (Optional)
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/provision/confuserkey
+```
+
+Input parameter (XML String):
+```XML
+<confUserKey>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <userKey name='id_dsa.pub'>tosca\nsdfsdf\n</userKey>
+    <action>1479928399024</action>
+</confUserKey>
+```
+Responses (String):
+
+```
+"Fail: $REASON"
+```
+
+```
+"Success: $INFO"
+```
+
+This is an optional operation. This operation must be invoked before executing provisioning, only when the field `publicKeyPath` or `userName` is not `null` in the TOSCA file. It means that if the user wants to access all the instances with his own private key and user name, he must upload his corresponding public key first.
+
+Upload the script that the user wants to use. (Optional)
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/provision/confscript
+```
+```XML
+<confScript>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <script> #!/bin/bash\ndir=$(dirname "$0")\ntouch test.txt\n</script>
+    <action>1479928399024</action>
+</confScript >
+```
+
+Responses (String):
+```
+Fail: $REASON
+```
+```
+Success: script for GUI is uploaded!
+```
+
+
+Operation: Execute provisioning for a specified action number.
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/provision/execute
+```
+
+Input parameter (XML String):
+```XML
+<execute>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <action>1481238226760</action>
+</execute>
+```
+
+Responses (XML String):
+```XML
+<result>
+    <status>Fail</status>
+    <info>$REASON</info>
+</result>
+```
+```XML
+<result>
+    <status>Success</status>
+    <info>$INFO</info>
+    <file>$Provisioned_tosca_file_a</file>
+    <file>$Provisioned_tosca_file_b</file>
+</result>
+```
+
+The returned file of $Provisioned_tosca_file_a is the provisioned TOSCA file. They contain the public address information of the instances. 
+The new line symbol in the text of element of file is still represented as "\n".
+
+
+# Deployment agent
+
+
+Operation: Deploy a kubernetes cluster.
+```
+http://$REST_SERVER:8080/REST_Provisioner/switch/deploy/kubernetes
+```
+
+Input parameter (XML String):
+```XML
+<deploy>
+    <user>test</user>
+    <pwd>1234</pwd>
+    <action>1481238226760</action>
+</deploy>
+```
+
+Responses  (XML String):
+```XML
+<result>
+    <status>Fail</status>
+    <info>$REASON</info>
+</result>
+```
+```XML
+<result>
+    <status>Success</status>
+    <info>$INFO</info>
+    <file>$ADMIN_CONF_FILE</file>
+</result>
+```
