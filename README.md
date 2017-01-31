@@ -314,7 +314,6 @@ Responses (String):
 "Success: xxxx"
 ```
 
-## Provisioning API
 
 Operation: Upload the infrastructure description files (TOSCA).
 ```
