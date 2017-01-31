@@ -457,3 +457,8 @@ Responses  (XML String):
     <file>$ADMIN_CONF_FILE</file>
 </result>
 ```
+
+
+# More
+
+More information can be found on the project's [wiki](https://github.com/QCAPI-DRIP/DRIP-integradation/wiki)
