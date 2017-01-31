@@ -47,7 +47,7 @@ sudo docker inspect drip-inst
 ``` 
 and look for the filed "IPAddress" 
 
-#Usage Example 
+# Usage Example 
 
 Get the drip client from [here](https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/scripts/drip_client.sh) 
 
@@ -129,7 +129,7 @@ The DRIP client is a script for building the right requests invoking the DRIP se
     -d , --cloud-certificates CLOUD_CERTIFICATES              The PEM certificates to use. The files must be separated with commas and no spaces
      
     
-##Operations (-o, --operation): 
+## Operations (-o, --operation): 
 
 `register`  Registers a user account. 
 Example:                                                
@@ -180,7 +180,7 @@ Example:
 ```
 
 # DRIP REST API
-# Planner REST API
+## Planner REST API
 Operation: Execute planning for specified components description files.
 ```
 http://$REST_SERVER:8080/REST_Provisioner/switch/plan/planning
@@ -226,9 +226,7 @@ Responses (XML String):
  <file name="Planned_tosca_file_all.yaml" level="0">$Planned_tosca_file_all</file>
 </result>
 ```
-# Provisioner REST API
-
-## Account registration API
+## Provisioner REST API
 
 Operation: Register a user account.
 ```
@@ -429,7 +427,7 @@ The returned file of $Provisioned_tosca_file_a is the provisioned TOSCA file. Th
 The new line symbol in the text of element of file is still represented as "\n".
 
 
-# Deployment agent
+## Deployment agent
 
 
 Operation: Deploy a kubernetes cluster.
