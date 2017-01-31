@@ -57,9 +57,10 @@ RUN wget https://github.com/zh9314/ProvisioningToolCore/releases/download/$relea
 RUN wget https://github.com/zh9314/ShClean/releases/download/$release_version/ShFileClean.jar
 RUN git clone https://github.com/zh9314/SWITCH_lib.git ./lib
 RUN git clone https://github.com/oceanshy/Deployment-Agent.git ./deploy
+RUN git clone https://github.com/WorkflowPlanning/RestfulAPI.git  ./Planner
+
 WORKDIR /root/apache-tomcat-6.0.45/webapps/
 RUN wget https://github.com/zh9314/REST_Provisioner/releases/download/$release_version/REST_Provisioner.war
-RUN git clone https://github.com/WorkflowPlanning/RestfulAPI.git
 WORKDIR /root/
       
 ENTRYPOINT sh /root/SWITCH/bin/start.sh
