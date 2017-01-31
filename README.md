@@ -110,3 +110,71 @@ Finally deploy a kubernetes cluster:
 ```
 ./drip_client.sh -l 172.17.0.2 -o deploy -u test -p 123 
 ```
+
+# DRIP Client
+The DRIP client is a script for building the right requests invoking the DRIP services. 
+
+## Usage:
+    
+    ./drip_client.sh [OPTION]
+    -l , --location HOST                                      The DRIP service IP or hostname
+    -o , --operation OPERATION                                The operation for the service to run.
+    -u , --username USERNAME                                  DRIP username
+    -p , --password USERNAME                                  DRIP password
+    -c , --component-description COMPONENT_DESCRIPTION_FILE   The component description yaml file
+    -k , --key EC2_KEY                                        The EC2 key
+    -i , --key-id EC2_KEY_ID                                  The EC2 key id
+    -s , --ssh-key RSA_PUB                                    The user's rsa public key file (id_rsa.pub)
+    -r , --script SCRIPT                                      The script to be executed by the VM's
+    -d , --cloud-certificates CLOUD_CERTIFICATES              The PEM certificates to use. The files must be separated with commas and no spaces
+     
+    
+##Operations (-o, --operation): 
+
+`register`  Registers a user account. 
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o register -u test -p 123
+```
+
+`plan`  Executes planning for specified components description files. Returns the plan in a file named: `planning_result.xml` 
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o plan -u test -p 123 -c input.yaml
+```
+
+`upload`  Uploads the infrastructure description files (TOSCA). Must run plan before needs action number
+Example:                                                 
+```
+./drip_client.sh -l 172.17.0.2 -o upload -u test -p 123
+```
+
+ `configureEC2`  Configure the cloud infrastructure to set domain keys 
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o configureEC2 -u test -p 123 -i AKAKAKAKAKAKAK -k o99ifo99ifo99ifo99ifo99ifo99if -d Virginia.pem,California.pem
+```
+   
+`confUserKey`  Uploads the public key which the user want to use to access all his instances. (Optional)
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o confUserKey -u test -p 123 -s ~/.ssh/id_rsa.pub 
+```
+   
+`confscript`  Uploads the script that the user wants to use. (Optional). Must run plan before needs action number.
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o confscript -u test -p 123 -r sample.sh 
+```
+   
+`execute`  Executes provisioning. Must run plan before needs action number.
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o execute -u test -p 123 
+```
+
+`deploy` Deploy a kubernetes cluster.
+Example:                                                
+```
+./drip_client.sh -l 172.17.0.2 -o deploy -u test -p 123 
+```
