@@ -39,7 +39,7 @@ RUN tar -xzvf drip-deployer.tar.gz
 RUN mkdir -p /data/db
 
 RUN echo "rabbitmq-server -detached" >> startAll.sh
-RUN echo "mongod --fork --syslog" >> startAll.sh
+RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
 RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
 
 #----------------Wait for rabbitmq----------------------------------
