@@ -1,17 +1,36 @@
-# Pull base image  
-FROM nginx:latest
+FROM ubuntu:latest
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-
-RUN apt-get update && apt-get upgrade -y
-
-WORKDIR /etc/nginx
-COPY nginx.conf /etc/nginx
-RUN mkdir /etc/nginx/sites-enabled/
-COPY *_server_block /etc/nginx/sites-enabled/
+##install java
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
+RUN apt-get upgrade -y
+RUN apt-get install -y wget git
 
 
-ENTRYPOINT nginx && tail -f /dev/null
 
-#CMD tail -f /dev/null 
+##install drip-manager
+WORKDIR /root
+RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+RUN tar -xzf apache-tomcat-7.0.75.tar.gz
+WORKDIR apache-tomcat-7.0.75
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-api-1.0-SNAPSHOT.tar.gz 
+RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
+RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+
+WORKDIR /root
+RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.shRUN echo "while true" >> startAll.sh
+RUN echo "while true" >> startAll.sh
+RUN echo "do" >> startAll.sh
+RUN echo "sleep 10s" >> startAll.sh
+RUN echo "done" >> startAll.sh
+
+
+EXPOSE 8080
+RUN chmod +x startAll.sh
+ENTRYPOINT ./startAll.sh
+
+# To build: docker build -t drip-manager .
+# To run: docker run --name drip-manager-inst -p 127.0.0.1:8080:8080 -d drip-manager
+

@@ -1,66 +1,63 @@
-# Pull base image  
 FROM ubuntu:latest
 
-MAINTAINER Huan "h.zhou@uva.nl"
+MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-ARG release_version=0.0.3
+##install java
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
+RUN apt-get upgrade -y
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-dev python-pip screen rabbitmq-server
 
-WORKDIR /root/
-
-#install openssh and wget
-RUN apt-get update && apt-get upgrade -y
-
-RUN apt-get install openssh-server -y
-RUN apt-get install wget -y
-RUN apt-get install git -y
-RUN apt-get install inetutils-ping -y
-RUN apt-get install software-properties-common -y 
-
-#install python & related libs
-RUN apt-get install graphviz graphviz-dev -y
-RUN apt-get install python-dev -y
-RUN apt-get install python-pip -y
+RUN pip install --upgrade pip
 RUN pip install pydot
 RUN pip install numpy
 RUN pip install networkx==1.10
 RUN pip install flask
 RUN pip install tosca-parser
-
-##install jdk 1.8
-ENV DEBIAN_FRONTEND=noninteractive
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
-RUN add-apt-repository -y ppa:webupd8team/java
-RUN apt-get update
-RUN apt-get install -y oracle-java8-set-default
-
-##install apache
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.45/bin/apache-tomcat-6.0.45.tar.gz
-RUN tar -xzf apache-tomcat-6.0.45.tar.gz
-RUN rm apache-tomcat-6.0.45.tar.gz
-
-##install paramiko
-RUN apt-get install build-essential libssl-dev libffi-dev python-dev -y
-WORKDIR /root/
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python get-pip.py
+RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
-RUN pip2.7 install paramiko
+RUN pip install paramiko
 
-#install SWITCH jar files
-RUN git clone https://github.com/zh9314/SWITCH.git
-WORKDIR /root/SWITCH/bin
-RUN wget https://github.com/zh9314/SimplePlanner/releases/download/$release_version/Planner.jar   
-RUN wget https://github.com/zh9314/EC2ProvisioningTool/releases/download/$release_version/EC2Provision.jar
-RUN wget https://github.com/zh9314/ExoGENIProvisioningTool/releases/download/$release_version/ExoGENIProvision.jar
-RUN wget https://github.com/zh9314/ProvisioningToolCore/releases/download/$release_version/ProvisioningCore.jar
-RUN wget https://github.com/zh9314/ShClean/releases/download/$release_version/ShFileClean.jar
-RUN git clone https://github.com/zh9314/SWITCH_lib.git ./lib
-RUN git clone https://github.com/oceanshy/Deployment-Agent.git ./deploy
-RUN git clone https://github.com/WorkflowPlanning/RestfulAPI.git  ./Planner
 
-WORKDIR /root/apache-tomcat-6.0.45/webapps/
-RUN wget https://github.com/zh9314/REST_Provisioner/releases/download/$release_version/REST_Provisioner.war
-WORKDIR /root/
-      
-ENTRYPOINT sh /root/SWITCH/bin/start.sh
+
+##install drip-manager
+WORKDIR /root
+RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+RUN tar -xzf apache-tomcat-7.0.75.tar.gz
+WORKDIR apache-tomcat-7.0.75
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-api-1.0-SNAPSHOT.tar.gz 
+RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
+RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+
+WORKDIR /root
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-planner.tar.gz
+RUN tar -xzvf drip-planner.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-deployer.tar.gz
+RUN tar -xzvf drip-deployer.tar.gz
+
+RUN mkdir -p /data/db
+
+RUN echo "rabbitmq-server -detached" >> startAll.sh
+RUN echo "mongod --fork --syslog" >> startAll.sh
+RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
+
+#----------------Wait for rabbitmq----------------------------------
+RUN echo "sleep 30"
+RUN echo "screen -d -m java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar" >> startAll.sh
+RUN echo "screen -d -m python drip-planner/rpc_server.py" >> startAll.sh
+RUN echo "screen -d -m python drip-deployer/rpc_server.py" >> startAll.sh
+# RUN echo exec mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
+RUN echo "while true" >> startAll.sh
+RUN echo "do" >> startAll.sh
+RUN echo "sleep 10s" >> startAll.sh
+RUN echo "done" >> startAll.sh
+RUN echo "tail -f apache-tomcat-7.0.75/logs/catalina.out"
+
+EXPOSE 8080
+RUN chmod +x startAll.sh
+ENTRYPOINT ./startAll.sh
+
+# To Build: docker build -t drip .
+# To Run: docker run --name drip-inst -p 127.0.0.1:8080:8080 -d drip
+# Add Admin account: docker exec -t drip-inst mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' localhost/drip
