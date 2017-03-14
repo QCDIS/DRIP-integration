@@ -19,6 +19,8 @@ RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
 
 
+ARG RABBITMQ_HOST=127.0.0.1
+ARG MONOG_HOST=127.0.0.1
 
 ##install drip-manager
 WORKDIR /root
@@ -27,37 +29,47 @@ RUN tar -xzf apache-tomcat-7.0.75.tar.gz
 WORKDIR apache-tomcat-7.0.75
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-api-1.0-SNAPSHOT.tar.gz 
 RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
+RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
+RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
+RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
-WORKDIR /root
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
+# # Install planner
+WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-planner.tar.gz
 RUN tar -xzvf drip-planner.tar.gz
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-deployer.tar.gz
-RUN tar -xzvf drip-deployer.tar.gz
 
+
+#Install provisioner
+WORKDIR /root/
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
+RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/database.tar.gz
+RUN tar -xzvf database.tar.gz
+
+
+
+# Build startAll 
 RUN mkdir -p /data/db
-
 RUN echo "rabbitmq-server -detached" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
 RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
 
 #----------------Wait for rabbitmq----------------------------------
 RUN echo "sleep 30"
-RUN echo "screen -d -m java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar" >> startAll.sh
-RUN echo "screen -d -m python drip-planner/rpc_server.py" >> startAll.sh
-RUN echo "screen -d -m python drip-deployer/rpc_server.py" >> startAll.sh
-# RUN echo exec mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
+RUN echo "screen -d -m java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/provisioner.properties &> drip-provisioner.out" >> startAll.sh
+RUN echo "screen -d -m python drip-planner/rpc_server.py 127.0.0.1 &> drip-provisioner.out" >> startAll.sh
+RUN echo "screen -d -m python drip-deployer/rpc_server.py 127.0.0.1 &> drip-provisioner.out" >> startAll.sh
+RUN echo mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
+RUN echo "tail -f /root/apache-tomcat-7.0.75/logs/catalina.out"
 RUN echo "while true" >> startAll.sh
 RUN echo "do" >> startAll.sh
 RUN echo "sleep 10s" >> startAll.sh
 RUN echo "done" >> startAll.sh
-RUN echo "tail -f apache-tomcat-7.0.75/logs/catalina.out"
 
 EXPOSE 8080
 RUN chmod +x startAll.sh
 ENTRYPOINT ./startAll.sh
 
-# To Build: docker build -t drip .
-# To Run: docker run --name drip-inst -p 127.0.0.1:8080:8080 -d drip
-# Add Admin account: docker exec -t drip-inst mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' localhost/drip
+# docker build -t drip .
+# docker run --name drip-inst -d drip -p 8080:8080

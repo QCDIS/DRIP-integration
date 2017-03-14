@@ -10,10 +10,7 @@ WORKDIR /root/
 #install openssh and wget
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install openssh-server -y
-RUN apt-get install wget -y
-RUN apt-get install git -y
-RUN apt-get install software-properties-common -y 
+RUN apt-get install openssh-server wget software-properties-common inetutils-ping -y
 
 ##install jdk 1.8
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,23 +20,16 @@ RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
 RUN apt-get install -y oracle-java8-set-default
 
-##install apache
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.45/bin/apache-tomcat-6.0.45.tar.gz
-RUN tar -xzf apache-tomcat-6.0.45.tar.gz
-RUN rm apache-tomcat-6.0.45.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
 
+ARG RABBITMQ_HOST=172.17.0.2
+WORKDIR /root
+RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
+RUN cat provisioner.properties
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/database.tar.gz
+RUN tar -xzvf database.tar.gz
 
-#install SWITCH jar files
-RUN git clone https://github.com/zh9314/SWITCH.git
-WORKDIR /root/SWITCH/bin
-RUN wget https://github.com/zh9314/EC2ProvisioningTool/releases/download/$release_version/EC2Provision.jar
-RUN wget https://github.com/zh9314/ExoGENIProvisioningTool/releases/download/$release_version/ExoGENIProvision.jar
-RUN wget https://github.com/zh9314/ProvisioningToolCore/releases/download/$release_version/ProvisioningCore.jar
-RUN wget https://github.com/zh9314/ShClean/releases/download/$release_version/ShFileClean.jar
-RUN git clone https://github.com/zh9314/SWITCH_lib.git ./lib
-WORKDIR /root/apache-tomcat-6.0.45/webapps/
-RUN wget https://github.com/zh9314/REST_Provisioner/releases/download/$release_version/REST_Provisioner.war
+ENTRYPOINT java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/provisioner.properties
 
-WORKDIR /root/
-      
-ENTRYPOINT sh /root/SWITCH/bin/start.sh
+#Build: docker build -t drip-pro .
+# Run: docker run --name drip-pro-inst -d drip-pro
