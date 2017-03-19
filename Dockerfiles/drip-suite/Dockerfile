@@ -33,6 +33,8 @@ RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip
 RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+RUN echo 
+
 
 # # Install planner
 WORKDIR /root/
@@ -51,12 +53,21 @@ RUN tar -xzvf database.tar.gz
 
 # Build startAll 
 RUN mkdir -p /data/db
+RUN echo "echo Strating Rabbitmq Server" >> startAll.sh
 RUN echo "rabbitmq-server -detached" >> startAll.sh
+RUN echo "echo Strating MongoDB" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
+RUN echo "echo Strating Provisioner" >> startAll.sh
 RUN echo "screen -d -m java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/provisioner.properties &> drip-provisioner.out" >> startAll.sh
-RUN echo "screen -d -m python drip-planner/rpc_server.py 127.0.0.1 &> drip-provisioner.out" >> startAll.sh
-RUN echo "screen -d -m python drip-deployer/rpc_server.py 127.0.0.1 &> drip-provisioner.out" >> startAll.sh
+RUN echo "cat drip-provisioner.out" >> startAll.sh
+RUN echo "echo Strating Planner" >> startAll.sh
+RUN echo "screen -d -m python drip-planner/rpc_server.py 127.0.0.1 &> drip-planner.out" >> startAll.sh
+RUN echo "cat drip-planner.out" >> startAll.sh
+RUN echo "echo Strating Deployer" >> startAll.sh
+RUN echo "screen -d -m python drip-deployer/rpc_server.py 127.0.0.1 &> drip-deployer.out" >> startAll.sh
+RUN echo "cat drip-deployer.out" >> startAll.sh
 RUN echo "sleep 10"
+RUN echo "echo Adding admin account" >> startAll.sh
 RUN echo mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
 RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
 RUN echo "sleep 5" >> startAll.sh

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>drip-api: UserScriptController0</title>
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!--custom css for these pages-->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#apinav">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">drip-api: UserScriptController0</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="data.html">Data Types</a></li>
+          <li><a href="downloads.html">Files and Libraries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" id="apinav">
+        <ul class="nav nav-sidebar">
+          <li><a href="#resource_UserScriptController0_uploadUserScript_POST"><abbr title="POST /user/v0.0/switch/provision/confscript">POST /user/v0.0/switch/provisi...</abbr></a></li>
+          <li class="divider"></li>
+          <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <ol class="breadcrumb" id="top">
+          <li class="active dropdown"><a href="index.html">Home</a></li>
+          <li class="active dropdown"><a href="resources.html">Resources</a></li>
+          <li class="dropdown"><a href="resource_UserScriptController0.html">UserScriptController0</a></li>
+        </ol>
+
+      <h1 class="page-header">UserScriptController0 <small>Resource</small></h1>
+
+      <p>This controller is responsible for handling user scripts. These user can be
+used by the provisoner to run on the created VMs.</p>
+
+      <div id="resource_UserScriptController0_uploadUserScript_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v0.0/switch/provision/confscript <a href="../user/v0.0/switch/provision/confscript" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: text/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">text/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_confScript.html">confScript</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+POST /user/v0.0/switch/provision/confscript
+Content-Type: text/xml
+Accept: application/json
+
+                <code class="prettyprint language-xml">
+&lt;confScript&gt;
+  &lt;script&gt;#!/bin/bash\n\nlogstashScript=/root/runLogstash.sh\nscreen -S logstash -dm /bin/bash &quot;$logstashScript&quot;\n\n\nlogLevelPath=/root/\nlogLevelFile=$logLevelPath/logstash_loglevel.csv\nremotePath=/media/lobcder/skoulouz/\nremoteLogPath=$remotePath/logs\nlocalLogPath=/root/logs\n\nmkdir $localLogPath\n\n\nfor logArchPath in $remoteLogPath/*.gz; do\n  echo &quot;File -&amp;gt; $logArchPath&quot;\n  if [ ! -f $logArchPath.lock ]; then\n    touch $logArchPath.lock\n    cp $logArchPath $localLogPath\n    logArchName=$(basename $logArchPath)\n    tar -xvf $localLogPath/$logArchName -C $localLogPath\n    sleep 120\n    modTime=-100\n    while [ ! -f $logLevelFile ]\n    do\n      sleep 5\n    done\n    while [ $modTime -lt 120 ]\n    do\n      moddate=$(stat -c %Y $logLevelFile)\n      moddate=${moddate%% *}\n      now=$(date +%s)\n      modTime=&quot;$(( $now - $moddate))&quot;\n      echo $modTime\n      sleep 5\n    done\n    rm $localLogPath/*.tar.gz\n    rm $localLogPath/*.log\n    modTime=-100\n  fi\ndone\n    \n\nscreen -X -S logstash quit\nsleep 5\n\nuid=`ifconfig | grep eth0 | awk &#39;{print $NF}&#39; | sed &#39;s/://g&#39;`\n\nfor csvFiles in $logLevelPath/*.csv; do\n  echo $csvFiles $csvFiles$uid.csv\n  mv $csvFiles $csvFiles$uid.csv\n  cp $csvFiles$uid.csv $remotePath\ndone\n\nkillall java \n&lt;/script&gt;
+  &lt;user&gt;user&lt;/user&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
+  &lt;action&gt;58c2c2f3a8d4b56889878d03&lt;/action&gt;
+&lt;/confScript&gt;
+
+                </code>
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 201 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">Generated by <a href="http://enunciate.webcohesion.com">Enunciate</a>.</p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript placed at the end of the document so the pages load faster. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <!-- prettify code blocks. see http://code.google.com/p/google-code-prettify/ -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js" type="text/javascript"></script>
+  <script>
+    $(function() {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
+
+</body>
+</html>

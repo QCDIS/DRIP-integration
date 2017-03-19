@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>drip-api: plan</title>
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!--custom css for these pages-->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#apinav">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">drip-api: plan</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="data.html">Data Types</a></li>
+          <li><a href="downloads.html">Files and Libraries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" id="apinav">
+        <ul class="nav nav-sidebar">
+          <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <ol class="breadcrumb" id="top">
+          <li class="active dropdown"><a href="index.html">Home</a></li>
+          <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
+          <li class="dropdown"><a href="xml_ns0_plan.html">plan</a></li>
+        </ol>
+
+      <h1 class="page-header">plan <small>Data Type</small></h1>
+
+      <p>This class represents a plan to be provided to the planner.</p>
+
+      <dl class="dl-horizontal">
+        <dt>Namespace</dt>
+        <dd>(Default)</dd>
+        <dt>Schema</dt>
+        <dd><a href="ns0.xsd">ns0.xsd</a></dd>
+      </dl>
+
+      <table class="table datatype-properties">
+        <caption>Properties</caption>
+        <thead>
+        <tr>
+          <th>name</th>
+          <th>data type</th>
+          <th>type</th>
+          <th>namespace</th>
+          <th>min/max occurs</th>
+          <th>description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>  <span class="property-name">file</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">The contents of the TOSCA description</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">pwd</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">Not used. It's only there for backwords compatibility</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">user</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">Not used. It's only there for backwords compatibility</span>
+</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <p class="lead">Example</p>
+      
+      <pre class="prettyprint language-xml example">&lt;plan&gt;
+  &lt;user&gt;user&lt;/user&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
+  &lt;file&gt;tosca_definitions_version: tosca_simple_yaml_1_0\n\n\ndescription: example file for infrastructure planner\n\n\nrepositories:\n    MOG_docker_hub: \n      description: MOG project’s code repository in GitHub\n      url: https://github.com/switch-project/mog\n      credential:\n        protocol: xauth\n        token_type: X-Auth-Token\n        # token encoded in Base64\n        token: 604bbe45ac7143a79e14f3158df67091\n\n\nartifact_types:\n  tosca.artifacts.Deployment.Image.Container.Docker:\n    derived_from: tosca.artifacts.Deployment.Image\n\n\ndata_types:\n  Switch.datatypes.QoS.AppComponent:\n    derived_from: tosca.datatypes.Root\n    properties:\n      response_time:\n        type: string\n\n  Switch.datatypes.Application.Connection.EndPoint:\n    derived_from: tosca.datatypes.Root\n    properties:\n      address:\n        type: string\n      component_name:\n        type: string\n      netmask:\n        type: string\n      port_name:\n        type: string\n\n  Switch.datatypes.Application.Connection.Multicast:\n    derived_from: tosca.datatypes.Root\n    properties:\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n\n  Switch.datatypes.Network.EndPoint:\n    derived_from: tosca.datatypes.Root\n    properties:\n      address:\n        type: string\n      host_name:\n        type: string\n      netmask:\n        type: string\n      port_name:\n        type: string\n\n  Switch.datatypes.Network.Multicast:\n    derived_from: tosca.datatypes.Root\n    properties:\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n\n\nnode_types:\n\n  Switch.nodes.Application.Container.Docker:\n    derived_from: tosca.nodes.Container.Application\n    properties:\n      QoS:\n        type: Switch.datatypes.QoS.AppComponent\n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n    interfaces:\n      Standard:\n        create:\n          inputs:\n            command:\n              type: string\n            exported_ports:\n              type: list\n              entry_schema:\n                type: string\n            port_bindings:\n              type: list\n              entry_schema:\n                type: string\n\n  Switch.nodes.Application.Container.Docker.MOG.InputDistributor:\n    derived_from: Switch.nodes.Application.Container.Docker\n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n        file: &quot;mogswitch/InputDistributor:1.0&quot;\n        repository: MOG_docker_hub\n    properties:\n      inPort: \n        type: integer\n      waitingTime:\n        type: integer\n      multicastAddrIP:\n        type: string\n      multicastAddrPort:\n        type: integer\n      videoWidth:\n        type: integer\n      videoHeight:\n        type: integer\n\n  Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder:\n    derived_from: Switch.nodes.Application.Container.Docker \n    artifacts:\n      docker_image:\n        type: tosca.artifacts.Deployment.Image.Container.Docker\n        file: &quot;mogswitch/ProxyTranscoder:1.0&quot;\n        repository: MOG_docker_hub\n    properties:\n      multicastAddrIP: \n        type: string\n      multicastAddrPort:\n        type: integer\n      videoWidth:\n        type: integer\n      videoHeight:\n        type: integer\n\n  Switch.nodes.Application.Connection:\n    derived_from: tosca.nodes.Root \n    properties:\n      source:\n        type: Switch.datatypes.Application.Connection.EndPoint\n      target:\n        type: Switch.datatypes.Application.Connection.EndPoint\n      bandwidth:\n        type: string\n      latency: \n        type: string\n      jitter:  \n        type: string\n      multicast:\n        type: Switch.datatypes.Application.Connection.Multicast\n\n  Switch.nodes.Compute:\n    derived_from: tosca.nodes.Compute\n    properties:\n      OStype:\n        type: string\n      nodetype:\n        type: string\n      domain:\n        type: string\n      public_address:\n        type: string\n      
+        ethernet_port:\n        type: list\n        entry_schema:\n          type: tosca.datatypes.network.NetworkInfo\n      script:\n        type: string\n      installation:\n        type: string\n      ssh_credential:\n        type: tosca.datatypes.Credential\n\n  Switch.nodes.Network:\n    derived_from: tosca.nodes.network.Network\n    properties:\n      bandwidth:\n        type: string\n      latency:\n        type: string\n      jitter:\n        type: string\n      source:\n        type: Switch.datatypes.Network.EndPoint\n      target:\n        type: Switch.datatypes.Network.EndPoint\n      multicast:\n        type: Switch.datatypes.Network.Multicast\n\n\ntopology_template:\n  \n  node_templates:\n    2d13d708e3a9441ab8336ce874e08dd1:\n      type: Switch.nodes.Application.Container.Docker.MOG.InputDistributor\n      artifacts:\n        docker_image:\n          file: &quot;mogswitch/InputDistributor:1.0&quot;\n          type: tosca.artifacts.Deployment.Image.Container.Docker\n          repository: MOG_docker_hub\n      properties:\n        QoS:\n          response_time: 30ms\n        inPort: 2000\n        waitingTime: 5\n        multicastAddrIP: 255.2.2.0\n        multicastAddrPort: 3000\n        videoWidth: 176\n        videoHeight: 100\n      interfaces:\n        Standard:\n          create:\n            implementation: docker_image\n            inputs:\n              command: InputDistributor\n              exported_ports:\n                - 2000\n              port_bindings:\n                - &quot;2000:2000&quot;\n                - &quot;3000:3000&quot;\n\n    8fcc1788d9ee462c826572c79fdb2a6a:\n      type: Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder\n      artifacts:\n        docker_image:\n          file: &quot;mogswitch/ProxyTranscoder:1.0&quot;\n          type: tosca.artifacts.Deployment.Image.Container.Docker\n          repository: MOG_docker_hub\n      properties:\n        QoS:\n          response_time: 30ms\n        multicastAddrIP: 255.2.2.0\n        multicastAddrPort: 3000\n        videoWidth: 176\n        videoHeight: 100\n      interfaces:\n        Standard:\n          create:\n            implementation: docker_image\n            inputs:\n              command: ProxyTranscoder\n              exported_ports:\n                - 80\n              port_bindings:\n                - &quot;8080:80&quot;\n\n    5e0add703c8a43938a39301f572e46c0:\n      type: Switch.nodes.Application.Connection\n      properties:\n        source:\n          address: 192.168.21.11\n          component_name: 2d13d708e3a9441ab8336ce874e08dd1\n          netmask: 255.255.255.0\n          port_name: &quot;inputDistributor_out&quot;\n        target:\n          address: 192.168.21.12\n          component_name: 8fcc1788d9ee462c826572c79fdb2a6a\n          netmask: 255.255.255.0\n          port_name: &quot;proxyTranscoder_in&quot;\n        latency: 30ms\n        bandwidth: 130MB/s\n        jitter: 500ms\n        multicast:\n          multicastAddrIP: 255.2.2.0\n          multicastAddrPort: 3000\n&lt;/file&gt;
+&lt;/plan&gt;
+</pre>
+
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">Generated by <a href="http://enunciate.webcohesion.com">Enunciate</a>.</p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript placed at the end of the document so the pages load faster. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <!-- prettify code blocks. see http://code.google.com/p/google-code-prettify/ -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js" type="text/javascript"></script>
+  <script>
+    $(function() {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
+
+</body>
+</html>

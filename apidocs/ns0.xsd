@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0"
+  
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="confScript" type="confScript"/>
+  <xs:element name="confUserKey" type="confUserKey"/>
+  <xs:element name="configure" type="configure"/>
+  <xs:element name="deploy" type="deploy"/>
+  <xs:element name="execute" type="execute"/>
+  <xs:element name="plan" type="plan"/>
+  <xs:element name="register" type="register"/>
+  <xs:element name="result" type="result"/>
+  <xs:element name="upload" type="upload"/>
+<xs:complexType name="attribute">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[Name of the file/public key.]]>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="level" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[There are two levels of description files for topologies designed by users.
+If the level attribute for the element file is 1, then this file is the top-level description,
+which defines how the sub-topologies are connected to each other.
+If the level attribute is 0, then the file is the low-level description,
+which describes the topology in one data center in detail.
+On the other hand, the name of low-level description file must be the
+sub-topology name appeared in the high-level description file. (For example, here should be zh_a and zh_b.)]]>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="confScript">
+   <xs:complexContent>
+    <xs:extension base="execute">
+      <xs:sequence>
+              <xs:element name="script" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The script contents with new lines replace by '\n']]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="confUserKey">
+   <xs:complexContent>
+    <xs:extension base="execute">
+      <xs:sequence>
+              <xs:element name="userKey" type="attribute" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="configure">
+       <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="keyid" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key id for the cloud provider.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key for the cloud provider.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="loginKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+              <xs:element name="geniKey" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The binary keystore (user.jks) for the cloud provider encoded in base64]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="geniKeyAlias" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Key alias in key store]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="loginPubKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+              <xs:element name="geniKeyPass" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="loginPriKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deploy">
+   <xs:complexContent>
+    <xs:extension base="execute">
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="execute">
+       <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="action" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[A referance id used from the servcie to do the provisioning]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginKey0">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="domain_name" type="xs:string">
+      </xs:attribute>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="plan">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a plan to be provided to the planner.]]>
+    </xs:documentation>
+  </xs:annotation>
+       <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's only there for backwords compatibility]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's only there for backwords compatibility]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="file" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The contents of the TOSCA description]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="register">
+       <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The user name]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The user password]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="result">
+       <xs:sequence>
+              <xs:element name="status" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The status of the response]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="info" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="file" type="attribute" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="upload">
+       <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="file" type="attribute" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cloudCredentials">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents the cloud credentials for a cloud. They are used by the
+provisoner to request for resources.]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key for the cloud provider.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="keyIdAlias" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key id for the cloud provider or the key alias.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="cloudProviderName" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The name of the cloud provider]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="clusterCredentials">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents the cluster credentials for a cloud. They can used to
+login to the cluster created by the deployer]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key of the login key.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="deployParameter">
+       <xs:sequence>
+              <xs:element name="cloudCertificateName" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="IP" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="role" type="xs:string" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="keyValueHolder">
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="loginKey">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a login key. This key can be used to either login to a
+VM created by the provisiner or by the VM to allow the user to login to the
+VMs from the machine the keys correspond to.]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="name" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The name of the key.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="type" type="type" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The type of key]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="attributes" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[A general use key,value. In the case of the cloud credentials it's used
+to specify the domain name for ec2]]>
+                </xs:documentation>
+              </xs:annotation>
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="key" minOccurs="1" type="xs:string"/>
+            <xs:element name="value" minOccurs="1" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+              </xs:element>
+              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The contents of the key.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:simpleType name="type">
+  <xs:restriction base="xs:string">
+     
+    <xs:enumeration value="PRIVATE"/>
+ 
+    <xs:enumeration value="PUBLIC"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="ownedObject">
+       <xs:sequence>
+              <xs:element name="owner" type="xs:string" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="provisionInfo">
+   <xs:complexContent>
+    <xs:extension base="keyValueHolder">
+      <xs:sequence>
+              <xs:element name="cloudCredentialsID" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="planID" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="scriptID" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="userKeyID" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="deployParameters" type="deployParameter" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="script">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a simple script that can run on a provisioned VM.]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="name" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The name of the script]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="contents" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The contents of the script]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="toscaRepresentation">
+   <xs:complexContent>
+    <xs:extension base="keyValueHolder">
+      <xs:sequence>
+              <xs:element name="name" type="xs:string" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="user">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a user.]]>
+    </xs:documentation>
+  </xs:annotation>
+       <xs:sequence>
+              <xs:element name="id" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="password" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="username" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The username]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="accountNonExpired" type="xs:boolean" minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[If the account is not expired]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="accountNonLocked" type="xs:boolean" minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[If the account is not locked]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="credentialsNonExpired" type="xs:boolean" minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[If the credentials are not expired]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="enabled" type="xs:boolean" minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[If the account is enabled]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="roles" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The roles assigned to this user.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+      </xs:sequence>
+</xs:complexType>
+
+</xs:schema>
