@@ -55,7 +55,7 @@
           <li><a href="#resource_UserController_getIds_GET">GET /manager/v1.0/user/ids</a></li>
           <li><a href="#resource_UserController_modify_POST">POST /manager/v1.0/user/modify</a></li>
           <li><a href="#resource_UserController_register_POST"><abbr title="POST /manager/v1.0/user/register">POST /manager/v1.0/user/regist...</abbr></a></li>
-          <li><a href="#resource_UserController_remove_DELETE">DELETE /manager/v1.0/user/{id}</a></li>
+          <li><a href="#resource_UserController_delete_DELETE">DELETE /manager/v1.0/user/{id}</a></li>
           <li><a href="#resource_UserController_get_GET">GET /manager/v1.0/user/{id}</a></li>
           <li class="divider"></li>
           <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
@@ -82,6 +82,22 @@
           <dt>Security Roles Allowed</dt>
           <dd>ADMIN</dd>
         </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
 
         <table class="table resource-response-body">
           <caption>Response Body</caption>
@@ -125,7 +141,7 @@ Content-Type: application/json
                 <code class="prettyprint language-js">
 [ {
   &quot;password&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
@@ -149,6 +165,22 @@ Content-Type: application/json
           <dt>Security Roles Allowed</dt>
           <dd>ADMIN</dd>
         </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
 
         <table class="table resource-response-body">
           <caption>Response Body</caption>
@@ -232,6 +264,22 @@ Content-Type: application/json
           </tbody>
         </table>
 
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-body">
           <caption>Response Body</caption>
           <thead>
@@ -267,7 +315,7 @@ Accept: application/json
                 <code class="prettyprint language-js">
 {
   &quot;password&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
@@ -326,6 +374,22 @@ with the 'ADMIN' role can do that.</p>
           </tbody>
         </table>
 
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-body">
           <caption>Response Body</caption>
           <thead>
@@ -365,7 +429,7 @@ Accept: application/json
                 <code class="prettyprint language-js">
 {
   &quot;password&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
@@ -391,7 +455,7 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_UserController_remove_DELETE">
+      <div id="resource_UserController_delete_DELETE">
         <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/manager/v1.0/user/{id} <a href="../manager/v1.0/user/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Deletes a user</p>
@@ -415,6 +479,22 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
           </tr>
           </tbody>
         </table>
@@ -497,6 +577,22 @@ Content-Type: application/json
           </tbody>
         </table>
 
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-body">
           <caption>Response Body</caption>
           <thead>
@@ -541,7 +637,7 @@ Content-Type: application/json
                 <code class="prettyprint language-js">
 {
   &quot;password&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,

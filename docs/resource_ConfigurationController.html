@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: ToscaController</title>
+  <title>drip-api: ConfigurationController</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: ToscaController</a>
+        <a class="navbar-brand" href="index.html">drip-api: ConfigurationController</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -51,12 +51,12 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
-          <li><a href="#resource_ToscaController_deleteAll_DELETE">DELETE /user/v1.0/tosca/all</a></li>
-          <li><a href="#resource_ToscaController_getIds_GET">GET /user/v1.0/tosca/ids</a></li>
-          <li><a href="#resource_ToscaController_post_POST">POST /user/v1.0/tosca/post</a></li>
-          <li><a href="#resource_ToscaController_toscaUpload_POST">POST /user/v1.0/tosca/upload</a></li>
-          <li><a href="#resource_ToscaController_delete_DELETE">DELETE /user/v1.0/tosca/{id}</a></li>
-          <li><a href="#resource_ToscaController_get_GET">GET /user/v1.0/tosca/{id}</a></li>
+          <li><a href="#resource_ConfigurationController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/deployer/configuration/all">DELETE /user/v1.0/deployer/con...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_getIds_GET"><abbr title="GET /user/v1.0/deployer/configuration/ids">GET /user/v1.0/deployer/config...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_post_POST"><abbr title="POST /user/v1.0/deployer/configuration/post">POST /user/v1.0/deployer/confi...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_toscaUpload_POST"><abbr title="POST /user/v1.0/deployer/configuration/upload">POST /user/v1.0/deployer/confi...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_delete_DELETE"><abbr title="DELETE /user/v1.0/deployer/configuration/{id}">DELETE /user/v1.0/deployer/con...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_get_GET"><abbr title="GET /user/v1.0/deployer/configuration/{id}">GET /user/v1.0/deployer/config...</abbr></a></li>
           <li class="divider"></li>
           <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
         </ul>
@@ -66,18 +66,18 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="resources.html">Resources</a></li>
-          <li class="dropdown"><a href="resource_ToscaController.html">ToscaController</a></li>
+          <li class="dropdown"><a href="resource_ConfigurationController.html">ConfigurationController</a></li>
         </ol>
 
-      <h1 class="page-header">ToscaController <small>Resource</small></h1>
+      <h1 class="page-header">ConfigurationController <small>Resource</small></h1>
 
-      <p>This controller is responsible for storing TOSCA descriptions that can be
+      <p>This controller is responsible for storing PlayBook descriptions that can be
 used by the planner.</p>
 
-      <div id="resource_ToscaController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/tosca/all <a href="../user/v1.0/tosca/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_deleteAll_DELETE">
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/all <a href="../user/v1.0/deployer/configuration/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the IDs of all the stored TOSCA descriptionss.</p>
+        <p>Gets the IDs of all the stored PlayBook descriptions.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -130,7 +130,7 @@ used by the planner.</p>
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-DELETE /user/v1.0/tosca/all
+DELETE /user/v1.0/deployer/configuration/all
 Accept: application/json
 
               </pre>
@@ -150,10 +150,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ToscaController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/tosca/ids <a href="../user/v1.0/tosca/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_getIds_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/ids <a href="../user/v1.0/deployer/configuration/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the IDs of all the stored TOSCA descriptionss.</p>
+        <p>Gets the IDs of all the stored PlayBook descriptions.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -206,7 +206,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-GET /user/v1.0/tosca/ids
+GET /user/v1.0/deployer/configuration/ids
 Accept: application/json
 
               </pre>
@@ -226,8 +226,8 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ToscaController_post_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/tosca/post <a href="../user/v1.0/tosca/post" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_post_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/post <a href="../user/v1.0/deployer/configuration/post" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -302,7 +302,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-POST /user/v1.0/tosca/post
+POST /user/v1.0/deployer/configuration/post
 Content-Type: application/json
 Accept: application/json
 
@@ -326,10 +326,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ToscaController_toscaUpload_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/tosca/upload <a href="../user/v1.0/tosca/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_toscaUpload_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/upload <a href="../user/v1.0/deployer/configuration/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Uploads and stores a TOSCA description file</p>
+        <p>Uploads and stores a PlayBook description file</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -384,7 +384,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the ID of the TOSCA description</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">the ID of the PlayBook description</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -400,7 +400,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-POST /user/v1.0/tosca/upload
+POST /user/v1.0/deployer/configuration/upload
 Accept: application/json
 
               </pre>
@@ -420,10 +420,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ToscaController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/tosca/{id} <a href="../user/v1.0/tosca/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_delete_DELETE">
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Deletes the TOSCA description.</p>
+        <p>Deletes the PlayBook description.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -478,7 +478,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">The ID of the deleted TOSCA description.</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">The ID of the deleted PlayBook description.</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -494,7 +494,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-DELETE /user/v1.0/tosca/{id}
+DELETE /user/v1.0/deployer/configuration/{id}
 Accept: application/json
 
               </pre>
@@ -514,10 +514,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ToscaController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/tosca/{id} <a href="../user/v1.0/tosca/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_ConfigurationController_get_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the TOSCA description.</p>
+        <p>Gets the PlayBook description.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -537,7 +537,7 @@ Content-Type: application/json
           <tr>
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
-            <td><span class="parameter-description">the ID TOSCA description.</span></td>
+            <td><span class="parameter-description">the ID PlayBook description.</span></td>
           </tr>
           <tr>
             <td><span class="parameter-name">format</span></td>
@@ -577,7 +577,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the TOSCA description.</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">the PlayBook description.</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -593,7 +593,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-GET /user/v1.0/tosca/{id}
+GET /user/v1.0/deployer/configuration/{id}
 Accept: application/json
 
               </pre>

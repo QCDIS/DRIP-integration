@@ -52,10 +52,11 @@
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
           <li><a href="#resource_DeployController_deleteAll_DELETE">DELETE /user/v1.0/deployer/all</a></li>
+          <li><a href="#resource_DeployController_deploy_POST"><abbr title="POST /user/v1.0/deployer/deploy">POST /user/v1.0/deployer/deplo...</abbr></a></li>
           <li><a href="#resource_DeployController_getIds_GET">GET /user/v1.0/deployer/ids</a></li>
+          <li><a href="#resource_DeployController_sample_GET">GET /user/v1.0/deployer/sample</a></li>
           <li><a href="#resource_DeployController_delete_DELETE"><abbr title="DELETE /user/v1.0/deployer/{id}">DELETE /user/v1.0/deployer/{id...</abbr></a></li>
           <li><a href="#resource_DeployController_get_GET">GET /user/v1.0/deployer/{id}</a></li>
-          <li><a href="#resource_DeployController_deploy_GET"><abbr title="GET /user/v1.0/deployer/deploy/{id}/">GET /user/v1.0/deployer/deploy...</abbr></a></li>
           <li class="divider"></li>
           <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
         </ul>
@@ -82,6 +83,22 @@ resources.</p>
           <dt>Security Roles Allowed</dt>
           <dd>ADMIN</dd>
         </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
 
         <table class="table resource-response-body">
           <caption>Response Body</caption>
@@ -131,15 +148,53 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_DeployController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ids <a href="../user/v1.0/deployer/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_DeployController_deploy_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/deploy <a href="../user/v1.0/deployer/deploy" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the IDs of all the stored cluster credentials</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
           <dd>ADMIN, USER</dd>
         </dl>
+
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_DeployRequest.html">DeployRequest</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_deployRequest.html">deployRequest</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
 
         <table class="table resource-response-body">
           <caption>Response Body</caption>
@@ -147,7 +202,90 @@ Content-Type: application/json
           <tr>
             <th>media type</th>
             <th>data type</th>
-            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+POST /user/v1.0/deployer/deploy
+Content-Type: application/json
+Accept: application/json
+
+                <code class="prettyprint language-js">
+{
+  &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;managerType&quot; : &quot;ansible&quot;,
+  &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+}
+                </code>
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 201 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resource_DeployController_getIds_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ids <a href="../user/v1.0/deployer/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
           </tr>
           </thead>
           <tbody>
@@ -155,7 +293,6 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">array of string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">a list of all the IDs</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -191,10 +328,90 @@ Content-Type: application/json
         </div>
       </div>
 
+      <div id="resource_DeployController_sample_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/sample <a href="../user/v1.0/deployer/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_DeployRequest.html">DeployRequest</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_deployRequest.html">deployRequest</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+GET /user/v1.0/deployer/sample
+Accept: application/json
+
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 200 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-js">
+{
+  &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;managerType&quot; : &quot;ansible&quot;,
+  &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+}
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="resource_DeployController_delete_DELETE">
         <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="../user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Deletes a cluster credential</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -219,13 +436,28 @@ Content-Type: application/json
           </tbody>
         </table>
 
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-body">
           <caption>Response Body</caption>
           <thead>
           <tr>
             <th>media type</th>
             <th>data type</th>
-            <th>description</th>
           </tr>
           </thead>
           <tbody>
@@ -233,7 +465,6 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the id f the deleted cluster credential</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -272,7 +503,7 @@ Content-Type: application/json
       <div id="resource_DeployController_get_GET">
         <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="../user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the cluster credentials.</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -297,25 +528,39 @@ Content-Type: application/json
           </tbody>
         </table>
 
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-body">
           <caption>Response Body</caption>
           <thead>
           <tr>
             <th>media type</th>
             <th>data type</th>
-            <th>description</th>
           </tr>
           </thead>
           <tbody>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference"><a href="json_ClusterCredentials.html">ClusterCredentials</a>
+            <td><span class="datatype-reference"><a href="json_DeployResponse.html">DeployResponse</a>
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the cluster credentials</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference"><a href="xml_ns0_clusterCredentials.html">clusterCredentials</a>
+            <td><span class="datatype-reference"><a href="xml_ns0_deployResponse.html">deployResponse</a>
  (XML)</span></td>
           </tr>
           </tbody>
@@ -340,93 +585,34 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;id&quot; : &quot;...&quot;,
-  &quot;key&quot; : &quot;BEGINRSAPRIVATEKEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3fVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLz0RBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mPJxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48howjUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----ENDRSAPRIVATEKEY-----\\n&quot;,
-  &quot;owner&quot; : &quot;...&quot;
+  &quot;keyPair&quot; : {
+    &quot;privateKey&quot; : {
+      &quot;name&quot; : &quot;id_dsa.pub&quot;,
+      &quot;type&quot; : &quot;PRIVATE&quot;,
+      &quot;attributes&quot; : {
+        &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
+        &quot;property2&quot; : &quot;domain_name:Virginia&quot;
+      },
+      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;
+    },
+    &quot;publicKey&quot; : {
+      &quot;name&quot; : &quot;id_dsa.pub&quot;,
+      &quot;type&quot; : &quot;PRIVATE&quot;,
+      &quot;attributes&quot; : {
+        &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
+        &quot;property2&quot; : &quot;domain_name:Virginia&quot;
+      },
+      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;
+    },
+    &quot;owner&quot; : &quot;user1&quot;,
+    &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  },
+  &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;managerType&quot; : &quot;ansible&quot;,
+  &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
 }
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="resource_DeployController_deploy_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/deploy/{id}/ <a href="../user/v1.0/deployer/deploy/{id}/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
-
-        <p>Deploys a cluster on a provisioned resources.</p>
-
-        <dl class="dl-horizontal">
-          <dt>Security Roles Allowed</dt>
-          <dd>ADMIN, USER</dd>
-        </dl>
-
-        <table class="table resource-parameters">
-          <caption>Request Parameters</caption>
-          <thead>
-          <tr>
-            <th>name</th>
-            <th>type</th>
-            <th>description</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="parameter-name">id</span></td>
-            <td>path</td>
-            <td><span class="parameter-description">&nbsp;</span></td>
-          </tr>
-          <tr>
-            <td><span class="parameter-name">cluster</span></td>
-            <td>query</td>
-            <td><span class="parameter-description">&nbsp;</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-body">
-          <caption>Response Body</caption>
-          <thead>
-          <tr>
-            <th>media type</th>
-            <th>data type</th>
-            <th>description</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference">string
- (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the id of the cluster credentials</span></td>
-          </tr>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference">string
- (XML)</span></td>
-          </tr>
-          </tbody>
-        </table>
-        <h4>Example</h4>
-
-        <div class="container-fluid example panel">
-          <div class="row panel-body">
-            <div class="col-md-6">
-              <h5>Request</h5>
-              <pre>
-GET /user/v1.0/deployer/deploy/{id}/
-Accept: application/json
-
-              </pre>
-            </div>
-            <div class="col-md-6">
-              <h5>Response</h5>
-              <pre>
-HTTP/1.1 200 Looks Good
-Content-Type: application/json
-
-                <code class="prettyprint language-txt">
-...
                 </code>
               </pre>
             </div>

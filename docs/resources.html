@@ -96,11 +96,13 @@ provisoner to request for resources (VMs).</span>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/{id}</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/upload/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
@@ -110,18 +112,39 @@ CloudCredentials are a represntation of the credentials that are used by the
 provisoner to request for resources (VMs)</span>
 </td>
     </tr>
+    <tr class="clickable-row" data-href="resource_ConfigurationController.html">
+      <td>  <span class="resource-name">ConfigurationController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/post</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/upload</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for storing PlayBook descriptions that can be
+used by the planner.</span>
+</td>
+    </tr>
     <tr class="clickable-row" data-href="resource_DeployController.html">
       <td>  <span class="resource-name">DeployController</span>
 </td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/deployer/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/deploy</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/{id}</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/deploy/{id}/</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for deploying a cluster on provisoned
 resources.</span>
@@ -138,6 +161,26 @@ resources.</span>
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for deploying a cluster on provisoned
 resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="resource_KeyPairController.html">
+      <td>  <span class="resource-name">KeyPairController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/keys</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/sample</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
+be used by the provisoner to allow the user to login to the VMs from the
+machine the keys correspond to.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_PlannerController.html">
@@ -200,16 +243,39 @@ based the plan generated by the planner</span>
 based the plan generated by the planner and uploaded by the user</span>
 </td>
     </tr>
+    <tr class="clickable-row" data-href="resource_ScriptController.html">
+      <td>  <span class="resource-name">ScriptController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/script</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/sample</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/upload</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for handling user scripts. These user can be
+used by the provisoner to run on the created VMs.</span>
+</td>
+    </tr>
     <tr class="clickable-row" data-href="resource_ToscaController.html">
       <td>  <span class="resource-name">ToscaController</span>
 </td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/tosca/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/post</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/upload</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
@@ -245,24 +311,6 @@ used by the planner.</span>
       <td>  <span class="resource-description">This controller is responsible for handling user accounts</span>
 </td>
     </tr>
-    <tr class="clickable-row" data-href="resource_UserPublicKeysController.html">
-      <td>  <span class="resource-name">UserPublicKeysController</span>
-</td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/user_key</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/ids</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/upload</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/{id}</span>
-</samp></li></ul></td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li></ul></td>
-      <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
-be used by the provisoner to allow the user to login to the VMs from the
-machine the keys correspond to.</span>
-</td>
-    </tr>
     <tr class="clickable-row" data-href="resource_UserPublicKeysController0.html">
       <td>  <span class="resource-name">UserPublicKeysController0</span>
 </td>
@@ -273,23 +321,6 @@ machine the keys correspond to.</span>
       <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
 be used by the provisoner to allow the user to login to the VMs from the
 machine the keys correspond to.</span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="resource_UserScriptController.html">
-      <td>  <span class="resource-name">UserScriptController</span>
-</td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/user_script/all</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/ids</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/upload</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/{id}</span>
-</samp></li></ul></td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li></ul></td>
-      <td>  <span class="resource-description">This controller is responsible for handling user scripts. These user can be
-used by the provisoner to run on the created VMs.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_UserScriptController0.html">

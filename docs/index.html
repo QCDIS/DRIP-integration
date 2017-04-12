@@ -104,11 +104,13 @@ provisoner to request for resources (VMs).</span>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/{id}</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/credentials/cloud/upload/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
@@ -118,18 +120,39 @@ CloudCredentials are a represntation of the credentials that are used by the
 provisoner to request for resources (VMs)</span>
 </td>
     </tr>
+    <tr class="clickable-row" data-href="resource_ConfigurationController.html">
+      <td>  <span class="resource-name">ConfigurationController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/post</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/upload</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/configuration/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for storing PlayBook descriptions that can be
+used by the planner.</span>
+</td>
+    </tr>
     <tr class="clickable-row" data-href="resource_DeployController.html">
       <td>  <span class="resource-name">DeployController</span>
 </td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/deployer/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/deploy</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/{id}</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/deploy/{id}/</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for deploying a cluster on provisoned
 resources.</span>
@@ -146,6 +169,26 @@ resources.</span>
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for deploying a cluster on provisoned
 resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="resource_KeyPairController.html">
+      <td>  <span class="resource-name">KeyPairController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/keys</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/sample</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/keys/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
+be used by the provisoner to allow the user to login to the VMs from the
+machine the keys correspond to.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_PlannerController.html">
@@ -208,16 +251,39 @@ based the plan generated by the planner</span>
 based the plan generated by the planner and uploaded by the user</span>
 </td>
     </tr>
+    <tr class="clickable-row" data-href="resource_ScriptController.html">
+      <td>  <span class="resource-name">ScriptController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/script</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/sample</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/upload</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/script/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for handling user scripts. These user can be
+used by the provisoner to run on the created VMs.</span>
+</td>
+    </tr>
     <tr class="clickable-row" data-href="resource_ToscaController.html">
       <td>  <span class="resource-name">ToscaController</span>
 </td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/tosca/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/post</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/upload</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/tosca/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
@@ -253,24 +319,6 @@ used by the planner.</span>
       <td>  <span class="resource-description">This controller is responsible for handling user accounts</span>
 </td>
     </tr>
-    <tr class="clickable-row" data-href="resource_UserPublicKeysController.html">
-      <td>  <span class="resource-name">UserPublicKeysController</span>
-</td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/user_key</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/ids</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/upload</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_key/{id}</span>
-</samp></li></ul></td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li></ul></td>
-      <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
-be used by the provisoner to allow the user to login to the VMs from the
-machine the keys correspond to.</span>
-</td>
-    </tr>
     <tr class="clickable-row" data-href="resource_UserPublicKeysController0.html">
       <td>  <span class="resource-name">UserPublicKeysController0</span>
 </td>
@@ -281,23 +329,6 @@ machine the keys correspond to.</span>
       <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
 be used by the provisoner to allow the user to login to the VMs from the
 machine the keys correspond to.</span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="resource_UserScriptController.html">
-      <td>  <span class="resource-name">UserScriptController</span>
-</td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/user_script/all</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/ids</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/upload</span>
-</samp></li><li><samp>  <span class="resource-path">/user/v1.0/user_script/{id}</span>
-</samp></li></ul></td>
-      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
-</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
-</samp></li></ul></td>
-      <td>  <span class="resource-description">This controller is responsible for handling user scripts. These user can be
-used by the provisoner to run on the created VMs.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_UserScriptController0.html">
@@ -329,53 +360,91 @@ used by the provisoner to run on the created VMs.</span>
     <tr class="clickable-row" data-href="json_CloudCredentials.html">
       <td>  <span class="datatype-name">CloudCredentials</span>
 </td>
-      <td>  <span class="datatype-description">This class represents the cloud credentials for a cloud. They are used by the
-provisoner to request for resources.</span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="json_ClusterCredentials.html">
-      <td>  <span class="datatype-name">ClusterCredentials</span>
-</td>
-      <td>  <span class="datatype-description">This class represents the cluster credentials for a cloud. They can used to
-login to the cluster created by the deployer</span>
+      <td>  <span class="datatype-description">This class represents the cloud credentials. They are used by the provisoner
+to request for resources.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_DeployParameter.html">
       <td>  <span class="datatype-name">DeployParameter</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class is used by the deployer to deploy software
+(swarm,kubernetes,ansible). It is generated by the provisioner to contain VM
+information.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_DeployRequest.html">
+      <td>  <span class="datatype-name">DeployRequest</span>
+</td>
+      <td>  <span class="datatype-description">This class holds the necessary POJO IDs to request the deployment of a
+software</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_DeployResponse.html">
+      <td>  <span class="datatype-name">DeployResponse</span>
+</td>
+      <td>  <span class="datatype-description">This class represents the response of a deploy request. It may hold a key
+pair used for logging in and managing a docker cluster. Currently they key
+pair is only used by kubernetes</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_Key.html">
+      <td>  <span class="datatype-name">Key</span>
+</td>
+      <td>  <span class="datatype-description">This class represents a key. This key can be used to either login to a VM
+created by the provisiner or by the VM to allow the user to login to the VMs
+from the machine the keys correspond to.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_KeyPair.html">
+      <td>  <span class="datatype-name">KeyPair</span>
+</td>
+      <td>  <span class="datatype-description">This class hold the pair of public private keys. The kyes may be used for
+logging in VMs.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_KeyType.html">
+      <td>  <span class="datatype-name">KeyType</span>
+</td>
+      <td>  <span class="datatype-description">This enu specifies if a key is private or public</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_KeyValueHolder.html">
       <td>  <span class="datatype-name">KeyValueHolder</span>
 </td>
-      <td>  <span class="datatype-description"></span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="json_LoginKey.html">
-      <td>  <span class="datatype-name">LoginKey</span>
-</td>
-      <td>  <span class="datatype-description">This class represents a login key. This key can be used to either login to a
-VM created by the provisiner or by the VM to allow the user to login to the
-VMs from the machine the keys correspond to.</span>
+      <td>  <span class="datatype-description">This is a generic class that hold key-value pairs. It's main usage is to hold
+abstract types such as TOSCA.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_OwnedObject.html">
       <td>  <span class="datatype-name">OwnedObject</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This is the base class for users to own resources. Many classes extend this
+class</span>
 </td>
     </tr>
-    <tr class="clickable-row" data-href="json_Plan.html">
-      <td>  <span class="datatype-name">Plan</span>
+    <tr class="clickable-row" data-href="json_PlanResponse.html">
+      <td>  <span class="datatype-name">PlanResponse</span>
 </td>
       <td>  <span class="datatype-description">This class represents a plan generated by the planner.</span>
 </td>
     </tr>
-    <tr class="clickable-row" data-href="json_ProvisionInfo.html">
-      <td>  <span class="datatype-name">ProvisionInfo</span>
+    <tr class="clickable-row" data-href="json_PlaybookRepresentation.html">
+      <td>  <span class="datatype-name">PlaybookRepresentation</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class represents a playbook used by ansible manager to deploy software.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_ProvisionRequest.html">
+      <td>  <span class="datatype-name">ProvisionRequest</span>
+</td>
+      <td>  <span class="datatype-description">This class is a holder for the the object IDs that are required by the
+provisioner to request for cloud resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_ProvisionResponse.html">
+      <td>  <span class="datatype-name">ProvisionResponse</span>
+</td>
+      <td>  <span class="datatype-description">This class represents a description of provisioned resources</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_Script.html">
@@ -387,13 +456,7 @@ VMs from the machine the keys correspond to.</span>
     <tr class="clickable-row" data-href="json_ToscaRepresentation.html">
       <td>  <span class="datatype-name">ToscaRepresentation</span>
 </td>
-      <td>  <span class="datatype-description"></span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="json_Type.html">
-      <td>  <span class="datatype-name">Type</span>
-</td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class is a representation of a TOSCA description.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_User.html">
@@ -485,53 +548,91 @@ VMs from the machine the keys correspond to.</span>
     <tr class="clickable-row" data-href="xml_ns0_cloudCredentials.html">
       <td>  <span class="datatype-name">cloudCredentials</span>
 </td>
-      <td>  <span class="datatype-description">This class represents the cloud credentials for a cloud. They are used by the
-provisoner to request for resources.</span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="xml_ns0_clusterCredentials.html">
-      <td>  <span class="datatype-name">clusterCredentials</span>
-</td>
-      <td>  <span class="datatype-description">This class represents the cluster credentials for a cloud. They can used to
-login to the cluster created by the deployer</span>
+      <td>  <span class="datatype-description">This class represents the cloud credentials. They are used by the provisoner
+to request for resources.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_deployParameter.html">
       <td>  <span class="datatype-name">deployParameter</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class is used by the deployer to deploy software
+(swarm,kubernetes,ansible). It is generated by the provisioner to contain VM
+information.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_deployRequest.html">
+      <td>  <span class="datatype-name">deployRequest</span>
+</td>
+      <td>  <span class="datatype-description">This class holds the necessary POJO IDs to request the deployment of a
+software</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_deployResponse.html">
+      <td>  <span class="datatype-name">deployResponse</span>
+</td>
+      <td>  <span class="datatype-description">This class represents the response of a deploy request. It may hold a key
+pair used for logging in and managing a docker cluster. Currently they key
+pair is only used by kubernetes</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_key.html">
+      <td>  <span class="datatype-name">key</span>
+</td>
+      <td>  <span class="datatype-description">This class represents a key. This key can be used to either login to a VM
+created by the provisiner or by the VM to allow the user to login to the VMs
+from the machine the keys correspond to.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_keyType.html">
+      <td>  <span class="datatype-name">keyType</span>
+</td>
+      <td>  <span class="datatype-description">This enu specifies if a key is private or public</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_keyPair.html">
+      <td>  <span class="datatype-name">keyPair</span>
+</td>
+      <td>  <span class="datatype-description">This class hold the pair of public private keys. The kyes may be used for
+logging in VMs.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_keyValueHolder.html">
       <td>  <span class="datatype-name">keyValueHolder</span>
 </td>
-      <td>  <span class="datatype-description"></span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="xml_ns0_loginKey.html">
-      <td>  <span class="datatype-name">loginKey</span>
-</td>
-      <td>  <span class="datatype-description">This class represents a login key. This key can be used to either login to a
-VM created by the provisiner or by the VM to allow the user to login to the
-VMs from the machine the keys correspond to.</span>
-</td>
-    </tr>
-    <tr class="clickable-row" data-href="xml_ns0_type.html">
-      <td>  <span class="datatype-name">type</span>
-</td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This is a generic class that hold key-value pairs. It's main usage is to hold
+abstract types such as TOSCA.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_ownedObject.html">
       <td>  <span class="datatype-name">ownedObject</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This is the base class for users to own resources. Many classes extend this
+class</span>
 </td>
     </tr>
-    <tr class="clickable-row" data-href="xml_ns0_provisionInfo.html">
-      <td>  <span class="datatype-name">provisionInfo</span>
+    <tr class="clickable-row" data-href="xml_ns0_planResponse.html">
+      <td>  <span class="datatype-name">planResponse</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class represents a plan generated by the planner.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_playbookRepresentation.html">
+      <td>  <span class="datatype-name">playbookRepresentation</span>
+</td>
+      <td>  <span class="datatype-description">This class represents a playbook used by ansible manager to deploy software.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_provisionRequest.html">
+      <td>  <span class="datatype-name">provisionRequest</span>
+</td>
+      <td>  <span class="datatype-description">This class is a holder for the the object IDs that are required by the
+provisioner to request for cloud resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_provisionResponse.html">
+      <td>  <span class="datatype-name">provisionResponse</span>
+</td>
+      <td>  <span class="datatype-description">This class represents a description of provisioned resources</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_script.html">
@@ -543,7 +644,7 @@ VMs from the machine the keys correspond to.</span>
     <tr class="clickable-row" data-href="xml_ns0_toscaRepresentation.html">
       <td>  <span class="datatype-name">toscaRepresentation</span>
 </td>
-      <td>  <span class="datatype-description"></span>
+      <td>  <span class="datatype-description">This class is a representation of a TOSCA description.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_user.html">

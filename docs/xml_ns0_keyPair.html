@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: script</title>
+  <title>drip-api: keyPair</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: script</a>
+        <a class="navbar-brand" href="index.html">drip-api: keyPair</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -59,12 +59,13 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
-          <li class="dropdown"><a href="xml_ns0_script.html">script</a></li>
+          <li class="dropdown"><a href="xml_ns0_keyPair.html">keyPair</a></li>
         </ol>
 
-      <h1 class="page-header">script <small>Data Type</small></h1>
+      <h1 class="page-header">keyPair <small>Data Type</small></h1>
 
-      <p>This class represents a simple script that can run on a provisioned VM.</p>
+      <p>This class hold the pair of public private keys. The kyes may be used for
+logging in VMs.</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -87,9 +88,9 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">contents</span>
+          <td>  <span class="property-name">privateKey</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference"><a href="xml_ns0_key.html">key</a>
 </span>
 </td>
           <td>  <span class="property-type">element
@@ -101,13 +102,13 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The contents of the script</span>
+          <td>  <span class="property-description">the privateKey</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">name</span>
+          <td>  <span class="property-name">publicKey</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference"><a href="xml_ns0_key.html">key</a>
 </span>
 </td>
           <td>  <span class="property-type">element
@@ -119,7 +120,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The name of the script</span>
+          <td>  <span class="property-description">the publicKey</span>
 </td>
         </tr>
         </tbody>
@@ -145,14 +146,21 @@ the DAO saves the object based on the principal how made the call</span></td>
 
       <p class="lead">Example</p>
       
-      <pre class="prettyprint language-xml example">&lt;s-----&gt;
-  &lt;name&gt;config.sh&lt;/name&gt;
-  &lt;contents&gt;    #!/bin/bash
-echo &quot;Reading system-wide config....&quot; &amp;gt;&amp;amp;2\n. /etc/cool.cfg
-if [ -r ~/.coolrc ]; then
-  echo &quot;Reading user config....&quot; &amp;gt;&amp;amp;2\n  . ~/.coolrc\nfi&lt;/contents&gt;
+      <pre class="prettyprint language-xml example">&lt;k-----&gt;
+  &lt;privateKey&gt;
+    &lt;name&gt;id_dsa.pub&lt;/name&gt;
+    &lt;type&gt;PRIVATE&lt;/type&gt;
+    &lt;attributes&gt;domain_name:Virginia&lt;/attributes&gt;
+    &lt;key&gt;-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\n-----END RSA PRIVATE KEY-----\n&lt;/key&gt;
+  &lt;/privateKey&gt;
+  &lt;publicKey&gt;
+    &lt;name&gt;id_dsa.pub&lt;/name&gt;
+    &lt;type&gt;PRIVATE&lt;/type&gt;
+    &lt;attributes&gt;domain_name:Virginia&lt;/attributes&gt;
+    &lt;key&gt;-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\n-----END RSA PRIVATE KEY-----\n&lt;/key&gt;
+  &lt;/publicKey&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
-&lt;/s-----&gt;
+&lt;/k-----&gt;
 </pre>
 
         <footer class="footer">

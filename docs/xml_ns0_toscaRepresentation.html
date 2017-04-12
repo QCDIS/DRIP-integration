@@ -64,7 +64,7 @@
 
       <h1 class="page-header">toscaRepresentation <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class is a representation of a TOSCA description.</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -101,25 +101,8 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">the name</span>
+          <td>  <span class="property-description">The name of the TOSCA description</span>
 </td>
-        </tr>
-        </tbody>
-        <tr>
-          <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_keyValueHolder.html">keyValueHolder</a></h5></td>
-        </tr>
-        <tbody>
-        <tr>
-          <td><span class="property-name">id</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-type">element
-</span></td>
-          <td><span class="property-namespaceInfo">
-</span></td>
-          <td><span class="property-minMaxOccurs">0/1
-</span></td>
-          <td><span class="property-description">the id</span></td>
         </tr>
         </tbody>
         <tr>
@@ -136,7 +119,8 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">the owner</span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         </tbody>
       </table>
@@ -144,9 +128,8 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;t-----&gt;
-  &lt;name&gt;...&lt;/name&gt;
-  &lt;id&gt;...&lt;/id&gt;
-  &lt;owner&gt;...&lt;/owner&gt;
+  &lt;name&gt;input.yml&lt;/name&gt;
+  &lt;owner&gt;user1&lt;/owner&gt;
 &lt;/t-----&gt;
 </pre>
 

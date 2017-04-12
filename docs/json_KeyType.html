@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: script</title>
+  <title>drip-api: KeyType</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: script</a>
+        <a class="navbar-brand" href="index.html">drip-api: KeyType</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -58,102 +58,36 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
-          <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
-          <li class="dropdown"><a href="xml_ns0_script.html">script</a></li>
+          <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
+          <li class="dropdown"><a href="json_KeyType.html">KeyType</a></li>
         </ol>
 
-      <h1 class="page-header">script <small>Data Type</small></h1>
+      <h1 class="page-header">KeyType <small>Data Type</small></h1>
 
-      <p>This class represents a simple script that can run on a provisioned VM.</p>
+      <p>This enu specifies if a key is private or public</p>
 
       <dl class="dl-horizontal">
-        <dt>Namespace</dt>
-        <dd>(Default)</dd>
-        <dt>Schema</dt>
-        <dd><a href="ns0.xsd">ns0.xsd</a></dd>
       </dl>
 
-      <table class="table datatype-properties">
-        <caption>Properties</caption>
+      <table class="table datatype-values">
+        <caption>Values</caption>
         <thead>
         <tr>
-          <th>name</th>
-          <th>data type</th>
-          <th>type</th>
-          <th>namespace</th>
-          <th>min/max occurs</th>
+          <th>value</th>
           <th>description</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">contents</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">The contents of the script</span>
-</td>
+          <td><span class="value-value">PRIVATE</span></td>
+          <td><span class="value-description">For private keys</span></td>
         </tr>
         <tr>
-          <td>  <span class="property-name">name</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">The name of the script</span>
-</td>
-        </tr>
-        </tbody>
-        <tr>
-          <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_ownedObject.html">ownedObject</a></h5></td>
-        </tr>
-        <tbody>
-        <tr>
-          <td><span class="property-name">owner</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-type">element
-</span></td>
-          <td><span class="property-namespaceInfo">
-</span></td>
-          <td><span class="property-minMaxOccurs">0/1
-</span></td>
-          <td><span class="property-description">The owner (username) for the particular object. This value is set when
-the DAO saves the object based on the principal how made the call</span></td>
+          <td><span class="value-value">PUBLIC</span></td>
+          <td><span class="value-description">For public keys</span></td>
         </tr>
         </tbody>
       </table>
-
-      <p class="lead">Example</p>
-      
-      <pre class="prettyprint language-xml example">&lt;s-----&gt;
-  &lt;name&gt;config.sh&lt;/name&gt;
-  &lt;contents&gt;    #!/bin/bash
-echo &quot;Reading system-wide config....&quot; &amp;gt;&amp;amp;2\n. /etc/cool.cfg
-if [ -r ~/.coolrc ]; then
-  echo &quot;Reading user config....&quot; &amp;gt;&amp;amp;2\n  . ~/.coolrc\nfi&lt;/contents&gt;
-  &lt;owner&gt;user1&lt;/owner&gt;
-&lt;/s-----&gt;
-</pre>
 
         <footer class="footer">
           <div class="container">

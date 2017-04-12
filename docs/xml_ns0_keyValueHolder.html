@@ -64,7 +64,8 @@
 
       <h1 class="page-header">keyValueHolder <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This is a generic class that hold key-value pairs. It's main usage is to hold
+abstract types such as TOSCA.</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -72,7 +73,7 @@
         <dt>Schema</dt>
         <dd><a href="ns0.xsd">ns0.xsd</a></dd>
         <dt>Subtypes</dt>
-        <dd><a href="xml_ns0_provisionInfo.html">provisionInfo</a>, <a href="xml_ns0_toscaRepresentation.html">toscaRepresentation</a></dd>
+        <dd><a href="xml_ns0_planResponse.html">planResponse</a>, <a href="xml_ns0_playbookRepresentation.html">playbookRepresentation</a>, <a href="xml_ns0_provisionRequest.html">provisionRequest</a>, <a href="xml_ns0_provisionResponse.html">provisionResponse</a>, <a href="xml_ns0_toscaRepresentation.html">toscaRepresentation</a></dd>
       </dl>
 
       <table class="table datatype-properties">
@@ -88,24 +89,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>  <span class="property-name">id</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">the id</span>
-</td>
-        </tr>
         </tbody>
         <tr>
           <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_ownedObject.html">ownedObject</a></h5></td>
@@ -121,7 +104,8 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">the owner</span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         </tbody>
       </table>
@@ -129,8 +113,7 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;k-----&gt;
-  &lt;id&gt;...&lt;/id&gt;
-  &lt;owner&gt;...&lt;/owner&gt;
+  &lt;owner&gt;user1&lt;/owner&gt;
 &lt;/k-----&gt;
 </pre>
 

@@ -22,7 +22,7 @@ RUN apt-get install -y oracle-java8-set-default
 
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
 
-ARG RABBITMQ_HOST=172.17.0.2
+ARG RABBITMQ_HOST=172.17.0.1
 WORKDIR /root
 RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
 RUN cat provisioner.properties
