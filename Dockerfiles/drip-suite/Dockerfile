@@ -6,7 +6,7 @@ MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
 RUN apt-get upgrade -y
-RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-dev python-pip screen rabbitmq-server
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-dev python-pip screen rabbitmq-server myproxy 
 
 RUN pip install --upgrade pip
 RUN pip install pydot
@@ -21,13 +21,19 @@ RUN pip install paramiko
 
 ARG RABBITMQ_HOST=127.0.0.1
 ARG MONOG_HOST=127.0.0.1
+ARG RELESE_VERSION=0.1
+ARG CERTS=/etc/grid-security/certificates
+
+
+RUN ls
 
 ##install drip-manager
 WORKDIR /root
-RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+# RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/0.1/apache-tomcat-7.0.75.tar.gz
 RUN tar -xzf apache-tomcat-7.0.75.tar.gz
 WORKDIR apache-tomcat-7.0.75
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-api-1.0-SNAPSHOT.tar.gz 
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
 RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
 RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
@@ -36,7 +42,7 @@ RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 # # Install planner
 WORKDIR /root/
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-planner.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
 RUN tar -xzvf drip-planner.tar.gz
 
 
@@ -45,12 +51,12 @@ WORKDIR /root/
 RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
 RUN chmod +x fedcloud-ui.sh
 RUN ./fedcloud-ui.sh
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
 RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/database.tar.gz
+RUN echo trusted.certificates.folder=$CERTS > provisioner.properties
+RUN echo domain.info.path=/root/drip-provisioner/ > provisioner.properties
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/database.tar.gz
 RUN tar -xzvf database.tar.gz
-
-
 
 # Build startAll 
 RUN mkdir -p /data/db
