@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: ProvisionResponse</title>
+  <title>drip-api: SysbenchCPUBenchmark</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: ProvisionResponse</a>
+        <a class="navbar-brand" href="index.html">drip-api: SysbenchCPUBenchmark</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -59,10 +59,10 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
-          <li class="dropdown"><a href="json_ProvisionResponse.html">ProvisionResponse</a></li>
+          <li class="dropdown"><a href="json_SysbenchCPUBenchmark.html">SysbenchCPUBenchmark</a></li>
         </ol>
 
-      <h1 class="page-header">ProvisionResponse <small>Data Type</small></h1>
+      <h1 class="page-header">SysbenchCPUBenchmark <small>Data Type</small></h1>
 
       <p></p>
 
@@ -80,18 +80,117 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">cloudKeyPairIDs</span>
+          <td>  <span class="property-name">executionTime</span>
 </td>
-          <td>  <span class="datatype-reference">array of string
+          <td>  <span class="datatype-reference">number
 </span>
 </td>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">deployParameters</span>
+          <td>  <span class="property-name">avgEventsPerThread</span>
 </td>
-          <td>  <span class="datatype-reference">array of <a href="json_DeployParameter.html">DeployParameter</a>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">maxExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">totalNumberOfEvents</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">minExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">ansibleOutputID</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stddevEventsPerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">avgExecTimePerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">approx95Percentile</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">sysbenchVersion</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">avgExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stddevExecTimePerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">numberOfThreads</span>
+</td>
+          <td>  <span class="datatype-reference">number
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -99,41 +198,42 @@
         </tr>
         </tbody>
         <tr>
-          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_ProvisionRequest.html">ProvisionRequest</a></h5></td>
+          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_BenchmarkResult.html">BenchmarkResult</a></h5></td>
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">cloudCredentialsIDs</span></td>
-          <td><span class="datatype-reference">array of string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">userKeyPairIDs</span></td>
-          <td><span class="datatype-reference">array of string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">deployerKeyPairIDs</span></td>
-          <td><span class="datatype-reference">array of string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">planID</span></td>
+          <td><span class="property-name">cloudDeploymentDomain</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
-        </tbody>
         <tr>
-          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_KeyValueHolder.html">KeyValueHolder</a></h5></td>
+          <td><span class="property-name">end</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
         </tr>
-        <tbody>
         <tr>
-          <td><span class="property-name">keyValue</span></td>
-          <td><span class="datatype-reference">map of object
+          <td><span class="property-name">start</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">vmType</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">host</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">delta</span></td>
+          <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
@@ -166,24 +266,25 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;cloudKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
-  &quot;deployParameters&quot; : [ {
-    &quot;role&quot; : &quot;slave&quot;,
-    &quot;user&quot; : &quot;vm_user&quot;,
-    &quot;IP&quot; : &quot;52.73.245.157&quot;
-  }, {
-    &quot;role&quot; : &quot;...&quot;,
-    &quot;user&quot; : &quot;...&quot;,
-    &quot;IP&quot; : &quot;...&quot;
-  } ],
-  &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
-  &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
-  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
-  &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
-  &quot;keyValue&quot; : {
-    &quot;property1&quot; : { },
-    &quot;property2&quot; : { }
-  },
+  &quot;executionTime&quot; : 12345.0,
+  &quot;avgEventsPerThread&quot; : 12345.0,
+  &quot;maxExecutionTimePerRequest&quot; : 12345.0,
+  &quot;totalNumberOfEvents&quot; : 12345,
+  &quot;minExecutionTimePerRequest&quot; : 12345.0,
+  &quot;ansibleOutputID&quot; : &quot;...&quot;,
+  &quot;stddevEventsPerThread&quot; : 12345.0,
+  &quot;avgExecTimePerThread&quot; : 12345.0,
+  &quot;approx95Percentile&quot; : 12345.0,
+  &quot;sysbenchVersion&quot; : &quot;...&quot;,
+  &quot;avgExecutionTimePerRequest&quot; : 12345.0,
+  &quot;stddevExecTimePerThread&quot; : 12345.0,
+  &quot;numberOfThreads&quot; : 12345,
+  &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
+  &quot;end&quot; : &quot;...&quot;,
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;vmType&quot; : &quot;...&quot;,
+  &quot;host&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345,
   &quot;owner&quot; : &quot;user1&quot;

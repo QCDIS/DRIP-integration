@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: ProvisionInfo</title>
+  <title>drip-api: AnsibleResult</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: ProvisionInfo</a>
+        <a class="navbar-brand" href="index.html">drip-api: AnsibleResult</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -59,10 +59,10 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
-          <li class="dropdown"><a href="json_ProvisionInfo.html">ProvisionInfo</a></li>
+          <li class="dropdown"><a href="json_AnsibleResult.html">AnsibleResult</a></li>
         </ol>
 
-      <h1 class="page-header">ProvisionInfo <small>Data Type</small></h1>
+      <h1 class="page-header">AnsibleResult <small>Data Type</small></h1>
 
       <p></p>
 
@@ -80,7 +80,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">cloudCredentialsID</span>
+          <td>  <span class="property-name">msg</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -89,7 +89,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">planID</span>
+          <td>  <span class="property-name">stderr</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -98,7 +98,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">scriptID</span>
+          <td>  <span class="property-name">stdout</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -107,7 +107,16 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">userKeyID</span>
+          <td>  <span class="property-name">cmd</span>
+</td>
+          <td>  <span class="datatype-reference">array of string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">start</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -116,41 +125,31 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">deployParameters</span>
+          <td>  <span class="property-name">delta</span>
 </td>
-          <td>  <span class="datatype-reference">array of <a href="json_DeployParameter.html">DeployParameter</a>
+          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
-        </tbody>
         <tr>
-          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_KeyValueHolder.html">KeyValueHolder</a></h5></td>
-        </tr>
-        <tbody>
-        <tr>
-          <td><span class="property-name">keyValue</span></td>
-          <td><span class="datatype-reference">map of object
-</span></td>
-          <td><span class="property-description"></span></td>
+          <td>  <span class="property-name">changed</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
         </tr>
         <tr>
-          <td><span class="property-name">id</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        </tbody>
-        <tr>
-          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_OwnedObject.html">OwnedObject</a></h5></td>
-        </tr>
-        <tbody>
-        <tr>
-          <td><span class="property-name">owner</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
+          <td>  <span class="property-name">end</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
         </tr>
         </tbody>
       </table>
@@ -158,27 +157,14 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;cloudCredentialsID&quot; : &quot;...&quot;,
-  &quot;planID&quot; : &quot;...&quot;,
-  &quot;scriptID&quot; : &quot;...&quot;,
-  &quot;userKeyID&quot; : &quot;...&quot;,
-  &quot;deployParameters&quot; : [ {
-    &quot;cloudCertificateName&quot; : &quot;...&quot;,
-    &quot;IP&quot; : &quot;...&quot;,
-    &quot;user&quot; : &quot;...&quot;,
-    &quot;role&quot; : &quot;...&quot;
-  }, {
-    &quot;cloudCertificateName&quot; : &quot;...&quot;,
-    &quot;IP&quot; : &quot;...&quot;,
-    &quot;user&quot; : &quot;...&quot;,
-    &quot;role&quot; : &quot;...&quot;
-  } ],
-  &quot;keyValue&quot; : {
-    &quot;property1&quot; : { },
-    &quot;property2&quot; : { }
-  },
-  &quot;id&quot; : &quot;...&quot;,
-  &quot;owner&quot; : &quot;...&quot;
+  &quot;msg&quot; : &quot;...&quot;,
+  &quot;stderr&quot; : &quot;...&quot;,
+  &quot;stdout&quot; : &quot;...&quot;,
+  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
+  &quot;changed&quot; : true,
+  &quot;end&quot; : &quot;...&quot;
 }</pre>
 
         <footer class="footer">

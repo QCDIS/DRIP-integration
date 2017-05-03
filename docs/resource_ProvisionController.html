@@ -54,6 +54,7 @@
           <li><a href="#resource_ProvisionController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/provisioner/all">DELETE /user/v1.0/provisioner/...</abbr></a></li>
           <li><a href="#resource_ProvisionController_getIds_GET">GET /user/v1.0/provisioner/ids</a></li>
           <li><a href="#resource_ProvisionController_provision_POST"><abbr title="POST /user/v1.0/provisioner/provision">POST /user/v1.0/provisioner/pr...</abbr></a></li>
+          <li><a href="#resource_ProvisionController_sample_GET"><abbr title="GET /user/v1.0/provisioner/sample">GET /user/v1.0/provisioner/sam...</abbr></a></li>
           <li><a href="#resource_ProvisionController_delete_DELETE"><abbr title="DELETE /user/v1.0/provisioner/{id}">DELETE /user/v1.0/provisioner/...</abbr></a></li>
           <li><a href="#resource_ProvisionController_get_GET"><abbr title="GET /user/v1.0/provisioner/{id}">GET /user/v1.0/provisioner/{id...</abbr></a></li>
           <li class="divider"></li>
@@ -226,7 +227,7 @@ Content-Type: application/json
       <div id="resource_ProvisionController_provision_POST">
         <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/provisioner/provision <a href="../user/v1.0/provisioner/provision" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Provison the resources specified by a plan.</p>
+        <p>Provision the resources specified by a plan.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -308,14 +309,16 @@ Accept: application/json
                 <code class="prettyprint language-js">
 {
   &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
+  &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
-  &quot;keyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
   &quot;keyValue&quot; : {
     &quot;property1&quot; : { },
     &quot;property2&quot; : { }
   },
-  &quot;owner&quot; : &quot;user1&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 12345,
+  &quot;owner&quot; : &quot;user1&quot;
 }
                 </code>
               </pre>
@@ -328,6 +331,92 @@ Content-Type: application/json
 
                 <code class="prettyprint language-txt">
 ...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resource_ProvisionController_sample_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/provisioner/sample <a href="../user/v1.0/provisioner/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_ProvisionRequest.html">ProvisionRequest</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_provisionRequest.html">provisionRequest</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+GET /user/v1.0/provisioner/sample
+Accept: application/json
+
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 200 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-js">
+{
+  &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
+  &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
+  &quot;keyValue&quot; : {
+    &quot;property1&quot; : { },
+    &quot;property2&quot; : { }
+  },
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 12345,
+  &quot;owner&quot; : &quot;user1&quot;
+}
                 </code>
               </pre>
             </div>
@@ -516,26 +605,27 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
+  &quot;cloudKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;deployParameters&quot; : [ {
-    &quot;cloudCertificateName&quot; : &quot;Virginia&quot;,
-    &quot;IP&quot; : &quot;52.73.245.157&quot;,
+    &quot;role&quot; : &quot;slave&quot;,
     &quot;user&quot; : &quot;vm_user&quot;,
-    &quot;role&quot; : &quot;slave&quot;
+    &quot;IP&quot; : &quot;52.73.245.157&quot;
   }, {
-    &quot;cloudCertificateName&quot; : &quot;...&quot;,
-    &quot;IP&quot; : &quot;...&quot;,
+    &quot;role&quot; : &quot;...&quot;,
     &quot;user&quot; : &quot;...&quot;,
-    &quot;role&quot; : &quot;...&quot;
+    &quot;IP&quot; : &quot;...&quot;
   } ],
   &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
+  &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
-  &quot;keyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
   &quot;keyValue&quot; : {
     &quot;property1&quot; : { },
     &quot;property2&quot; : { }
   },
-  &quot;owner&quot; : &quot;user1&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 12345,
+  &quot;owner&quot; : &quot;user1&quot;
 }
                 </code>
               </pre>

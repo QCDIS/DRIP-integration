@@ -77,6 +77,40 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
+    <tr class="clickable-row" data-href="resource_AnsibleOutputController.html">
+      <td>  <span class="resource-name">AnsibleOutputController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/deployer/ansible</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ansible/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ansible/commands</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ansible/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/ansible/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description"></span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="resource_BenchmarkController.html">
+      <td>  <span class="resource-name">BenchmarkController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/benchmark</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/benchmark/all</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/benchmark/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/benchmark/{id}</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description"></span>
+</td>
+    </tr>
     <tr class="clickable-row" data-href="resource_CloudConfigurationController0.html">
       <td>  <span class="resource-name">CloudConfigurationController0</span>
 </td>
@@ -190,13 +224,17 @@ machine the keys correspond to.</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/ids</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/{id}</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/plan/{tosca_id}</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/post/{name}</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/tosca/{id}</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/planner/post/{level}/{name}/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for planing the type of resources to be
 provisopned based on a TOSCA description.</span>
@@ -219,11 +257,13 @@ provisopned based on a TOSCA description.</span>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/provisioner/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/ids</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/provision</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/{id}</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for obtaining resources from cloud providers

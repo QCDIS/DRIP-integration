@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: Type</title>
+  <title>drip-api: BenchmarkResult</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: Type</a>
+        <a class="navbar-brand" href="index.html">drip-api: BenchmarkResult</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -59,35 +59,121 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
-          <li class="dropdown"><a href="json_Type.html">Type</a></li>
+          <li class="dropdown"><a href="json_BenchmarkResult.html">BenchmarkResult</a></li>
         </ol>
 
-      <h1 class="page-header">Type <small>Data Type</small></h1>
+      <h1 class="page-header">BenchmarkResult <small>Data Type</small></h1>
 
       <p></p>
 
       <dl class="dl-horizontal">
+        <dt>Subtypes</dt>
+        <dd><a href="json_SysbenchCPUBenchmark.html">SysbenchCPUBenchmark</a></dd>
       </dl>
 
-      <table class="table datatype-values">
-        <caption>Values</caption>
+      <table class="table datatype-properties">
+        <caption>Properties</caption>
         <thead>
         <tr>
-          <th>value</th>
+          <th>name</th>
+          <th>data type</th>
           <th>description</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td><span class="value-value">PRIVATE</span></td>
-          <td><span class="value-description"></span></td>
+          <td>  <span class="property-name">cloudDeploymentDomain</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
         </tr>
         <tr>
-          <td><span class="value-value">PUBLIC</span></td>
-          <td><span class="value-description"></span></td>
+          <td>  <span class="property-name">end</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">start</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">vmType</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">host</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">delta</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        </tbody>
+        <tr>
+          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_OwnedObject.html">OwnedObject</a></h5></td>
+        </tr>
+        <tbody>
+        <tr>
+          <td><span class="property-name">id</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">timestamp</span></td>
+          <td><span class="datatype-reference">number
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">owner</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
         </tr>
         </tbody>
       </table>
+
+      <p class="lead">Example</p>
+      
+      <pre class="prettyprint language-js example">{
+  &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
+  &quot;end&quot; : &quot;...&quot;,
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;vmType&quot; : &quot;...&quot;,
+  &quot;host&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 12345,
+  &quot;owner&quot; : &quot;user1&quot;
+}</pre>
 
         <footer class="footer">
           <div class="container">

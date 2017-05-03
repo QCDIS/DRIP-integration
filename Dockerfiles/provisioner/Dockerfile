@@ -20,6 +20,9 @@ RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
 RUN apt-get install -y oracle-java8-set-default
 
+
+RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
+
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 ARG RABBITMQ_HOST=172.17.0.1

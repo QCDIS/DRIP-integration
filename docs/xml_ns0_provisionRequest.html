@@ -64,8 +64,7 @@
 
       <h1 class="page-header">provisionRequest <small>Data Type</small></h1>
 
-      <p>This class is a holder for the the object IDs that are required by the
-provisioner to request for cloud resources.</p>
+      <p></p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -104,11 +103,11 @@ provisioner to request for cloud resources.</p>
           <td>  <span class="property-minMaxOccurs">0/unbounded
 </span>
 </td>
-          <td>  <span class="property-description">The cloud credentials ids required to provision the cloud resources.</span>
+          <td>  <span class="property-description">&nbsp;</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">keyPairIDs</span>
+          <td>  <span class="property-name">deployerKeyPairIDs</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -122,7 +121,7 @@ provisioner to request for cloud resources.</p>
           <td>  <span class="property-minMaxOccurs">0/unbounded
 </span>
 </td>
-          <td>  <span class="property-description">The key pair id for the keys to use to log in the provisioned VMs.</span>
+          <td>  <span class="property-description">&nbsp;</span>
 </td>
         </tr>
         <tr>
@@ -140,7 +139,25 @@ provisioner to request for cloud resources.</p>
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The ID of the plan <code>PlanResponse</code> to provision for.</span>
+          <td>  <span class="property-description">&nbsp;</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">userKeyPairIDs</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/unbounded
+</span>
+</td>
+          <td>  <span class="property-description">&nbsp;</span>
 </td>
         </tr>
         </tbody>
@@ -158,8 +175,19 @@ provisioner to request for cloud resources.</p>
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">The owner (username) for the particular object. This value is set when
-the DAO saves the object based on the principal how made the call</span></td>
+          <td><span class="property-description">&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">timestamp</span></td>
+          <td><span class="datatype-reference">long
+</span></td>
+          <td><span class="property-type">element
+</span></td>
+          <td><span class="property-namespaceInfo">
+</span></td>
+          <td><span class="property-minMaxOccurs">0/1
+</span></td>
+          <td><span class="property-description">&nbsp;</span></td>
         </tr>
         </tbody>
       </table>
@@ -167,10 +195,12 @@ the DAO saves the object based on the principal how made the call</span></td>
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;p-----&gt;
-  &lt;cloudCredentialsIDs&gt;58e3946e0fb4f562d84ba1ad&lt;/cloudCredentialsIDs&gt;
   &lt;planID&gt;ASedsfd46b4fDFd83ba1q&lt;/planID&gt;
-  &lt;keyPairIDs&gt;ASedsfd46b4fFd344a1A&lt;/keyPairIDs&gt;
+  &lt;deployerKeyPairIDs&gt;...&lt;/deployerKeyPairIDs&gt;
+  &lt;userKeyPairIDs&gt;ASedsfd46b4fFd344a1A&lt;/userKeyPairIDs&gt;
+  &lt;cloudCredentialsIDs&gt;58e3946e0fb4f562d84ba1ad&lt;/cloudCredentialsIDs&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
+  &lt;timestamp&gt;...&lt;/timestamp&gt;
 &lt;/p-----&gt;
 </pre>
 

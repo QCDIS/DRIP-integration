@@ -64,7 +64,7 @@
 
       <h1 class="page-header">script <small>Data Type</small></h1>
 
-      <p>This class represents a simple script that can run on a provisioned VM.</p>
+      <p></p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -101,7 +101,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The contents of the script</span>
+          <td>  <span class="property-description">&nbsp;</span>
 </td>
         </tr>
         <tr>
@@ -119,7 +119,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The name of the script</span>
+          <td>  <span class="property-description">&nbsp;</span>
 </td>
         </tr>
         </tbody>
@@ -137,8 +137,19 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">The owner (username) for the particular object. This value is set when
-the DAO saves the object based on the principal how made the call</span></td>
+          <td><span class="property-description">&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">timestamp</span></td>
+          <td><span class="datatype-reference">long
+</span></td>
+          <td><span class="property-type">element
+</span></td>
+          <td><span class="property-namespaceInfo">
+</span></td>
+          <td><span class="property-minMaxOccurs">0/1
+</span></td>
+          <td><span class="property-description">&nbsp;</span></td>
         </tr>
         </tbody>
       </table>
@@ -152,6 +163,7 @@ echo &quot;Reading system-wide config....&quot; &amp;gt;&amp;amp;2\n. /etc/cool.
 if [ -r ~/.coolrc ]; then
   echo &quot;Reading user config....&quot; &amp;gt;&amp;amp;2\n  . ~/.coolrc\nfi&lt;/contents&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
+  &lt;timestamp&gt;...&lt;/timestamp&gt;
 &lt;/s-----&gt;
 </pre>
 

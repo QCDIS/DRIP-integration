@@ -33,8 +33,6 @@ RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip
 RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
-RUN echo 
-
 
 # # Install planner
 WORKDIR /root/
@@ -44,6 +42,9 @@ RUN tar -xzvf drip-planner.tar.gz
 
 #Install provisioner
 WORKDIR /root/
+RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
+RUN chmod +x fedcloud-ui.sh
+RUN ./fedcloud-ui.sh
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
 RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/database.tar.gz
