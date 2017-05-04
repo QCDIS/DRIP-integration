@@ -27,7 +27,7 @@ ARG CERTS=/etc/grid-security/certificates
 #Install provisioner
 WORKDIR /root/
 RUN mkdir /root/drip-provisioner/
-WORKDIR/root/drip-provisioner/
+WORKDIR /root/drip-provisioner/
 RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
 RUN chmod +x fedcloud-ui.sh
 RUN ./fedcloud-ui.sh
