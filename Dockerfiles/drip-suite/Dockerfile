@@ -24,9 +24,6 @@ ARG MONOG_HOST=127.0.0.1
 ARG RELESE_VERSION=0.1
 ARG CERTS=/etc/grid-security/certificates
 
-
-RUN ls
-
 ##install drip-manager
 WORKDIR /root
 # RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
