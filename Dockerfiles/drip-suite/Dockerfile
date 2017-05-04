@@ -24,25 +24,6 @@ ARG MONOG_HOST=127.0.0.1
 ARG RELESE_VERSION=0.1
 ARG CERTS=/etc/grid-security/certificates
 
-##install drip-manager
-WORKDIR /root
-# RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/0.1/apache-tomcat-7.0.75.tar.gz
-RUN tar -xzf apache-tomcat-7.0.75.tar.gz
-WORKDIR apache-tomcat-7.0.75
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
-RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
-RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
-RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
-RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
-RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
-
-# # Install planner
-WORKDIR /root/
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
-RUN tar -xzvf drip-planner.tar.gz
-
-
 #Install provisioner
 WORKDIR /root/
 RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
@@ -54,6 +35,34 @@ RUN echo trusted.certificates.folder=$CERTS > provisioner.properties
 RUN echo domain.info.path=/root/drip-provisioner/ > provisioner.properties
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/database.tar.gz
 RUN tar -xzvf database.tar.gz
+
+# Install planner
+WORKDIR /root/
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
+RUN tar -xzvf drip-planner.tar.gz
+
+# Install deployer
+WORKDIR /root/
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-deployer.tar.gz
+RUN tar -xzvf drip-deployer.tar.gz
+
+
+##install drip-manager
+WORKDIR /root
+# RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/0.1/apache-tomcat-7.0.75.tar.gz
+RUN tar -xzf apache-tomcat-7.0.75.tar.gz
+WORKDIR apache-tomcat-7.0.75
+RUN ls bin 
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
+RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
+RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
+RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
+RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
+RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+
+
+
 
 # Build startAll 
 RUN mkdir -p /data/db
@@ -73,8 +82,8 @@ RUN echo "cat drip-deployer.out" >> startAll.sh
 RUN echo "sleep 10"
 RUN echo "echo Adding admin account" >> startAll.sh
 RUN echo mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
-RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
-RUN echo "sleep 5" >> startAll.sh
+RUN echo "/root/apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh
+RUN echo "sleep 10" >> startAll.sh
 RUN echo "tail -f /root/apache-tomcat-7.0.75/logs/catalina.out" >> startAll.sh
 
 EXPOSE 8080
