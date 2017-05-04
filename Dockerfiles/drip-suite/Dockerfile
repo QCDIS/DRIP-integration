@@ -26,6 +26,8 @@ ARG CERTS=/etc/grid-security/certificates
 
 #Install provisioner
 WORKDIR /root/
+RUN mkdir /root/drip-provisioner/
+WORKDIR/root/drip-provisioner/
 RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
 RUN chmod +x fedcloud-ui.sh
 RUN ./fedcloud-ui.sh
@@ -53,7 +55,6 @@ WORKDIR /root
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/0.1/apache-tomcat-7.0.75.tar.gz
 RUN tar -xzf apache-tomcat-7.0.75.tar.gz
 WORKDIR apache-tomcat-7.0.75
-RUN ls bin 
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
 RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
 RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
@@ -71,7 +72,7 @@ RUN echo "rabbitmq-server -detached" >> startAll.sh
 RUN echo "echo Strating MongoDB" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
 RUN echo "echo Strating Provisioner" >> startAll.sh
-RUN echo "screen -d -m java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/provisioner.properties &> drip-provisioner.out" >> startAll.sh
+RUN echo "screen -d -m java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties &> drip-provisioner.out" >> startAll.sh
 RUN echo "cat drip-provisioner.out" >> startAll.sh
 RUN echo "echo Strating Planner" >> startAll.sh
 RUN echo "screen -d -m python drip-planner/rpc_server.py 127.0.0.1 &> drip-planner.out" >> startAll.sh
@@ -92,3 +93,4 @@ ENTRYPOINT ./startAll.sh
 
 # docker build -t drip .
 # docker run --name drip-inst -d drip -p 127.0.0.1:8080:8080
+# docker run -it --rm -p 8080:8080 drip
