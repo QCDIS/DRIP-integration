@@ -66,6 +66,7 @@ RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 
 # Build startAll 
+WORKDIR /root
 RUN mkdir -p /data/db
 RUN echo "echo Strating Rabbitmq Server" >> startAll.sh
 RUN echo "rabbitmq-server -detached" >> startAll.sh
