@@ -73,6 +73,7 @@ RUN echo "echo Strating Rabbitmq Server" >> startAll.sh
 RUN echo "rabbitmq-server -detached" >> startAll.sh
 RUN echo "echo Strating MongoDB" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
+RUN echo "sleep 10" >> startAll.sh
 RUN echo "echo Strating Provisioner" >> startAll.sh
 RUN echo "screen -L -d -m -t provisioner java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties" >> startAll.sh
 RUN echo "cat drip-provisioner.out" >> startAll.sh
