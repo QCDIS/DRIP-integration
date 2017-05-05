@@ -2,6 +2,13 @@ FROM ubuntu:latest
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
+
+ARG RABBITMQ_HOST=127.0.0.1
+ARG MONOG_HOST=127.0.0.1
+ARG RELESE_VERSION=0.1
+ARG CERTS=/etc/grid-security/certificates
+
+
 ##install java
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
@@ -11,19 +18,17 @@ RUN apt-get install -y wget git
 
 ##install drip-manager
 WORKDIR /root
-RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+# RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-7/v7.0.75/bin/apache-tomcat-7.0.75.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/0.1/apache-tomcat-7.0.75.tar.gz
 RUN tar -xzf apache-tomcat-7.0.75.tar.gz
 WORKDIR apache-tomcat-7.0.75
-RUN echo
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-api-1.0-SNAPSHOT.tar.gz 
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
 RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
-
-ARG RABBITMQ_HOST=172.17.0.2
-ARG MONOG_HOST=172.17.0.3
 RUN sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
-RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+# RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
+
 
 WORKDIR /root
 RUN echo "./apache-tomcat-7.0.75/bin/startup.sh" >> startAll.sh

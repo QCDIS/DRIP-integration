@@ -73,13 +73,13 @@ RUN echo "rabbitmq-server -detached" >> startAll.sh
 RUN echo "echo Strating MongoDB" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
 RUN echo "echo Strating Provisioner" >> startAll.sh
-RUN echo "screen -d -m java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties &> drip-provisioner.out" >> startAll.sh
+RUN echo "screen -L -d -m -t provisioner java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties" >> startAll.sh
 RUN echo "cat drip-provisioner.out" >> startAll.sh
 RUN echo "echo Strating Planner" >> startAll.sh
-RUN echo "screen -d -m python drip-planner/rpc_server.py 127.0.0.1 &> drip-planner.out" >> startAll.sh
+RUN echo "screen -L -d -m -t planner python drip-planner/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "cat drip-planner.out" >> startAll.sh
 RUN echo "echo Strating Deployer" >> startAll.sh
-RUN echo "screen -d -m python drip-deployer/rpc_server.py 127.0.0.1 &> drip-deployer.out" >> startAll.sh
+RUN echo "screen -L -d -m -t deployer python drip-deployer/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "cat drip-deployer.out" >> startAll.sh
 RUN echo "sleep 10"
 RUN echo "echo Adding admin account" >> startAll.sh
