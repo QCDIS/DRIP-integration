@@ -5,7 +5,7 @@ MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y
-RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy python-software-properties debconf-utils
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy python-software-properties debconf-utils apt-utils
 
 ##install java
 RUN add-apt-repository -y ppa:webupd8team/java
