@@ -2,12 +2,18 @@ FROM ubuntu:latest
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-##install java
 ENV DEBIAN_FRONTEND=noninteractive 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y
-RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy 
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy python-software-properties debconf-utils
 
+##install java
+RUN add-apt-repository -y ppa:webupd8team/java
+RUN apt-get update
+RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN apt-get install -y oracle-java8-installer
+
+# Install python stuff
 RUN pip install --upgrade pip
 RUN pip install pydot
 RUN pip install numpy
@@ -73,15 +79,15 @@ RUN echo "echo Strating Rabbitmq Server" >> startAll.sh
 RUN echo "rabbitmq-server -detached" >> startAll.sh
 RUN echo "echo Strating MongoDB" >> startAll.sh
 RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
-RUN echo "sleep 10" >> startAll.sh
+RUN echo "sleep 1" >> startAll.sh
 RUN echo "echo Strating Provisioner" >> startAll.sh
-RUN echo "screen -L -d -m -t provisioner java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties" >> startAll.sh
+RUN echo "screen -L -dmS provisioner java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties" >> startAll.sh
 RUN echo "cat drip-provisioner.out" >> startAll.sh
 RUN echo "echo Strating Planner" >> startAll.sh
-RUN echo "screen -L -d -m -t planner python drip-planner/rpc_server.py 127.0.0.1" >> startAll.sh
+RUN echo "screen -L -dmS planner python drip-planner/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "cat drip-planner.out" >> startAll.sh
 RUN echo "echo Strating Deployer" >> startAll.sh
-RUN echo "screen -L -d -m -t deployer python drip-deployer/rpc_server.py 127.0.0.1" >> startAll.sh
+RUN echo "screen -L -dmS deployer python drip-deployer/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "cat drip-deployer.out" >> startAll.sh
 RUN echo "sleep 10"
 RUN echo "echo Adding admin account" >> startAll.sh
