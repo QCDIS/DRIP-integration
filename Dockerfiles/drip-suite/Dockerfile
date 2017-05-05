@@ -7,13 +7,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
 RUN apt-get upgrade -y
 RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy 
 
-##install java
-RUN apt-get install -y python-software-properties debconf-utils apt-utils
-RUN add-apt-repository -y ppa:webupd8team/java
-RUN apt-get update
-RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-RUN apt-get install -y oracle-java8-installer
-
 # Install python stuff
 RUN pip install --upgrade pip
 RUN pip install pydot
@@ -25,6 +18,17 @@ RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
 RUN pip install ansible
+
+
+##install java
+RUN apt-get install -y python-software-properties debconf-utils apt-utils
+RUN add-apt-repository -y ppa:webupd8team/java
+RUN apt-get update
+RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+RUN apt-get install -y oracle-java8-installer
+
 
 
 ARG RABBITMQ_HOST=127.0.0.1
