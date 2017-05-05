@@ -5,9 +5,10 @@ MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y
-RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy python-software-properties debconf-utils apt-utils
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy 
 
 ##install java
+RUN apt-get install -y python-software-properties debconf-utils apt-utils
 RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
 RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
