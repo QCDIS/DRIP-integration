@@ -6,7 +6,7 @@ MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-8-jdk
 RUN apt-get upgrade -y
-RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-dev python-pip screen rabbitmq-server myproxy 
+RUN apt-get install -y mongodb mongodb-server openssh-server wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip screen rabbitmq-server myproxy 
 
 RUN pip install --upgrade pip
 RUN pip install pydot
@@ -17,6 +17,7 @@ RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
+RUN pip install ansible
 
 
 ARG RABBITMQ_HOST=127.0.0.1
@@ -94,4 +95,4 @@ ENTRYPOINT ./startAll.sh
 
 # docker build -t drip .
 # docker run --name drip-inst -d drip -p 127.0.0.1:8080:8080
-# docker run -it --rm -p 8080:8080 drip
+# docker run -it --rm -p 127.0.0.1:8080:8080 drip
