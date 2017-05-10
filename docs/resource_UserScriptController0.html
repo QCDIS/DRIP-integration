@@ -131,9 +131,9 @@ Accept: application/json
                 <code class="prettyprint language-xml">
 &lt;confScript&gt;
   &lt;script&gt;#!/bin/bash\n\nlogstashScript=/root/runLogstash.sh\nscreen -S logstash -dm /bin/bash &quot;$logstashScript&quot;\n\n\nlogLevelPath=/root/\nlogLevelFile=$logLevelPath/logstash_loglevel.csv\nremotePath=/media/lobcder/skoulouz/\nremoteLogPath=$remotePath/logs\nlocalLogPath=/root/logs\n\nmkdir $localLogPath\n\n\nfor logArchPath in $remoteLogPath/*.gz; do\n  echo &quot;File -&amp;gt; $logArchPath&quot;\n  if [ ! -f $logArchPath.lock ]; then\n    touch $logArchPath.lock\n    cp $logArchPath $localLogPath\n    logArchName=$(basename $logArchPath)\n    tar -xvf $localLogPath/$logArchName -C $localLogPath\n    sleep 120\n    modTime=-100\n    while [ ! -f $logLevelFile ]\n    do\n      sleep 5\n    done\n    while [ $modTime -lt 120 ]\n    do\n      moddate=$(stat -c %Y $logLevelFile)\n      moddate=${moddate%% *}\n      now=$(date +%s)\n      modTime=&quot;$(( $now - $moddate))&quot;\n      echo $modTime\n      sleep 5\n    done\n    rm $localLogPath/*.tar.gz\n    rm $localLogPath/*.log\n    modTime=-100\n  fi\ndone\n    \n\nscreen -X -S logstash quit\nsleep 5\n\nuid=`ifconfig | grep eth0 | awk &#39;{print $NF}&#39; | sed &#39;s/://g&#39;`\n\nfor csvFiles in $logLevelPath/*.csv; do\n  echo $csvFiles $csvFiles$uid.csv\n  mv $csvFiles $csvFiles$uid.csv\n  cp $csvFiles$uid.csv $remotePath\ndone\n\nkillall java \n&lt;/script&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
   &lt;action&gt;58c2c2f3a8d4b56889878d03&lt;/action&gt;
   &lt;user&gt;user&lt;/user&gt;
-  &lt;pwd&gt;123&lt;/pwd&gt;
 &lt;/confScript&gt;
 
                 </code>
