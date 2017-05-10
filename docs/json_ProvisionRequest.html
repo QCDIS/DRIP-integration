@@ -100,18 +100,18 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">deployerKeyPairIDs</span>
+          <td>  <span class="property-name">planID</span>
 </td>
-          <td>  <span class="datatype-reference">array of string
+          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">planID</span>
+          <td>  <span class="property-name">deployerKeyPairIDs</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">array of string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -134,6 +134,12 @@
         </tr>
         <tbody>
         <tr>
+          <td><span class="property-name">owner</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
           <td><span class="property-name">id</span></td>
           <td><span class="datatype-reference">string
 </span></td>
@@ -145,12 +151,6 @@
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
-        <tr>
-          <td><span class="property-name">owner</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
         </tbody>
       </table>
 
@@ -159,15 +159,15 @@
       <pre class="prettyprint language-js example">{
   &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
   &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
-  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;keyValue&quot; : {
     &quot;property1&quot; : { },
     &quot;property2&quot; : { }
   },
+  &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345,
-  &quot;owner&quot; : &quot;user1&quot;
+  &quot;timestamp&quot; : 12345
 }</pre>
 
         <footer class="footer">
