@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+  - name: install pre-req
+    apt: name="{{ item }}" update_cache=yes state=latest
+    with_items: [python, tcsh, expect]
+    become: true
+  - {name: download irods, get_url: 'url=ftp://ftp.renci.org/pub/irods/releases/4.1.10/ubuntu14/irods-icommands-4.1.10-ubuntu14-x86_64.deb
+      dest=/tmp/'}
+  - {name: Install irods, apt: deb=/tmp/irods-icommands-4.1.10-ubuntu14-x86_64.deb,
+    become: true}
+  - {name: Copy scripts, copy: src=/tmp/scripts/ArgoDiffusion/scripts dest=/tmp/scripts owner=vm_user group=vm_user mode=755}
+  - {name: create dir, file: path=/home/vm_user/.irods/ state=directory owner=vm_user group=vm_user}
+  - {name: Copy irods_environment, copy: src=/tmp/conf/irods_environment.json dest=/home/vm_user/.irods/ owner=vm_user group=vm_user mode=755}
+  - {name: Copy iint, copy: src=/tmp/conf/iint_euroargo.exp dest=/tmp/iint_euroargo.exp owner=vm_user group=vm_user mode=755}  
+  - {name: Run iinit, command: expect /tmp/iint_euroargo.exp, register: streamoutput, become: yes,  become_user: vm_user}
+  - debug: msg="{{ streamoutput.stdout }}"
+  - debug: msg="{{ streamoutput.stderr }}"
+  - {name: create dir, file: path=/mnt/data/ state=directory owner=vm_user group=vm_user}
+  - {name: create dir, file: path=/mnt/data/source/ state=directory owner=vm_user group=vm_user}
+  - {name: create dir, file: path=/mnt/data/source/output state=directory owner=vm_user group=vm_user}
+  - {name: create dir, file: path=/mnt/data/irods/ state=directory owner=vm_user group=vm_user}
+  - {name: Run irodsFs, command: irodsFs /mnt/data/irods/, register: streamoutput, become: yes,  become_user: vm_user}
+  - debug: msg="{{ streamoutput.stdout }}"
+  - debug: msg="{{ streamoutput.stderr }}"  
+  - {name: Copy from tmp, command: cp /tmp/scripts/scripts/ar_bigmetadata.json /mnt/data/source/, become: yes,  become_user: vm_user}  
+  - {name: Copy from irods, command: ln -s /mnt/data/irods/monthly /mnt/data/source/input, become: yes,  become_user: vm_user}
+  - {name: Copy from irods, command: cp /mnt/data/irods/action/argo_model.py /mnt/data/source/, become: yes,  become_user: vm_user}
+  - {name: Copy from irods, command: cp /mnt/data/irods/action/configuration.json /mnt/data/source/, become: yes,  become_user: vm_user}    
+  - {name: Copy from irods, command: cp /mnt/data/irods/action/generation_argo_big_data.py /mnt/data/source/, become: yes,  become_user: vm_user}
+  - {name: Copy from irods, command: cp /mnt/data/irods/action/generation_argo_big_data.sh /mnt/data/source/, become: yes,  become_user: vm_user} 
