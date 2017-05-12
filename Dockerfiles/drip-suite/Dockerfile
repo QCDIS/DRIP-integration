@@ -44,11 +44,12 @@ RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/maste
 RUN chmod +x fedcloud-ui.sh
 RUN ./fedcloud-ui.sh
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
-RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
-RUN echo trusted.certificates.folder=$CERTS > provisioner.properties
-RUN echo domain.info.path=/root/drip-provisioner/ > provisioner.properties
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/database.tar.gz
 RUN tar -xzvf database.tar.gz
+RUN echo rabbitmq.host=$RABBITMQ_HOST >> provisioner.properties
+RUN echo trusted.certificates.folder=$CERTS >> provisioner.properties
+RUN echo domain.info.path=/root/drip-provisioner >> provisioner.properties
+RUN cat provisioner.properties
 
 # Install planner
 WORKDIR /root/
@@ -87,13 +88,10 @@ RUN echo "mongod --smallfiles --fork --syslog" >> startAll.sh
 RUN echo "sleep 1" >> startAll.sh
 RUN echo "echo Strating Provisioner" >> startAll.sh
 RUN echo "screen -L -dmS provisioner java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties" >> startAll.sh
-RUN echo "cat drip-provisioner.out" >> startAll.sh
 RUN echo "echo Strating Planner" >> startAll.sh
-RUN echo "screen -L -dmS planner python drip-planner/rpc_server.py 127.0.0.1" >> startAll.sh
-RUN echo "cat drip-planner.out" >> startAll.sh
+RUN echo "screen -L -dmS planner python /root/drip-planner/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "echo Strating Deployer" >> startAll.sh
-RUN echo "screen -L -dmS deployer python drip-deployer/rpc_server.py 127.0.0.1" >> startAll.sh
-RUN echo "cat drip-deployer.out" >> startAll.sh
+RUN echo "screen -L -dmS deployer python /root/drip-deployer/rpc_server.py 127.0.0.1" >> startAll.sh
 RUN echo "sleep 10"
 RUN echo "echo Adding admin account" >> startAll.sh
 RUN echo mongo -eval "'"'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})'"'" localhost/drip >> startAll.sh
@@ -106,5 +104,5 @@ RUN chmod +x startAll.sh
 ENTRYPOINT ./startAll.sh
 
 # docker build -t drip .
-# docker run --name drip-inst -d drip -p 127.0.0.1:8080:8080
-# docker run -it --rm -p 127.0.0.1:8080:8080 drip
+# docker run --name drip-inst -d drip -p 8080:8080
+# docker run -it --rm -p 8080:8080 drip
