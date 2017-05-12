@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  - {name: Run generation_argo_big_data, command: /usr/bin/python /mnt/data/source/generation_argo_big_data.py /mnt/data/source/configuration.json, register: streamoutput, become: yes,  become_user: vm_user}
+  - debug: msg="{{ streamoutput.stdout }}"
+  - {name: Copy output to irods, command: cp /mnt/data/source/output/data_argo.txt /mnt/data/irods/result, become: yes,  become_user: vm_user}
+  
