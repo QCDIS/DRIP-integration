@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+  - name: install pre-req
+    apt: name="{{ item }}" update_cache=yes state=latest
+    with_items: [python, tcsh]
+    become: true
+  - {name: Copy scripts, copy: src=/tmp/scripts/ArgoDiffusion/scripts dest=/tmp/scripts owner=vm_user group=vm_user mode=755}
+  - {name: mkdir, command: mkfs.ext4 /dev/vdc, become: true}
+  - {name: create dir, file: path=/mnt/data/ state=directory owner=vm_user group=vm_user}
+  - {name: create dir, file: path=/mnt/data/source/ state=directory owner=vm_user group=vm_user}
+  - {name: create dir, file: path=/mnt/data/source/output state=directory owner=vm_user group=vm_user}
+  - {name: mount, command: mount /dev/vdc /mnt/data, become: true}
+  - {name: download irods, get_url: 'url=ftp://ftp.ifremer.fr/ifremer/coriolis/co0547-bigdata-archive/envriplus_euroargo_bigdata.tar.gz
+      dest=/mnt/data'}
