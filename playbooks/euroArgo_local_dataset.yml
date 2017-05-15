@@ -13,3 +13,4 @@
   - {name: mount, command: mount /dev/vdc /mnt/data, become: true}
   - {name: download irods, get_url: 'url=ftp://ftp.ifremer.fr/ifremer/coriolis/co0547-bigdata-archive/envriplus_euroargo_bigdata.tar.gz
       dest=/mnt/data'}
+  - {name: chown, file: path=/mnt/data/ owner=vm_user}
