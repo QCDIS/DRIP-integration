@@ -80,7 +80,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">stderr</span>
+          <td>  <span class="property-name">delta</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -89,7 +89,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">stdout</span>
+          <td>  <span class="property-name">stderr</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -107,7 +107,16 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">end</span>
+          <td>  <span class="property-name">start</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stdout</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -125,27 +134,18 @@
 </td>
         </tr>
         <tr>
+          <td>  <span class="property-name">end</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
           <td>  <span class="property-name">cmd</span>
 </td>
           <td>  <span class="datatype-reference">array of string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">delta</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">start</span>
-</td>
-          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -157,14 +157,14 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;stderr&quot; : &quot;...&quot;,
-  &quot;stdout&quot; : &quot;...&quot;,
-  &quot;msg&quot; : &quot;...&quot;,
-  &quot;end&quot; : &quot;...&quot;,
-  &quot;changed&quot; : true,
-  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;delta&quot; : &quot;...&quot;,
-  &quot;start&quot; : &quot;...&quot;
+  &quot;stderr&quot; : &quot;...&quot;,
+  &quot;msg&quot; : &quot;...&quot;,
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;stdout&quot; : &quot;...&quot;,
+  &quot;changed&quot; : true,
+  &quot;end&quot; : &quot;...&quot;,
+  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ]
 }</pre>
 
         <footer class="footer">

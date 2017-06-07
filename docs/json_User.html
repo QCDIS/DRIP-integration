@@ -80,7 +80,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">username</span>
+          <td>  <span class="property-name">password</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -89,18 +89,9 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">accountNonExpired</span>
+          <td>  <span class="property-name">username</span>
 </td>
-          <td>  <span class="datatype-reference">boolean
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">enabled</span>
-</td>
-          <td>  <span class="datatype-reference">boolean
+          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -116,15 +107,6 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">roles</span>
-</td>
-          <td>  <span class="datatype-reference">array of string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">id</span>
 </td>
           <td>  <span class="datatype-reference">string
@@ -134,9 +116,27 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">password</span>
+          <td>  <span class="property-name">enabled</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">accountNonExpired</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">roles</span>
+</td>
+          <td>  <span class="datatype-reference">array of string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -157,13 +157,13 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;username&quot; : &quot;user&quot;,
-  &quot;accountNonExpired&quot; : true,
-  &quot;enabled&quot; : true,
-  &quot;accountNonLocked&quot; : true,
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;username&quot; : &quot;user&quot;,
+  &quot;accountNonLocked&quot; : true,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;enabled&quot; : true,
+  &quot;accountNonExpired&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
   &quot;credentialsNonExpired&quot; : true
 }</pre>
 

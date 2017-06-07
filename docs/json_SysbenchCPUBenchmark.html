@@ -80,24 +80,6 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">minExecutionTimePerRequest</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">totalNumberOfEvents</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">numberOfThreads</span>
 </td>
           <td>  <span class="datatype-reference">number
@@ -116,15 +98,6 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">avgExecTimePerThread</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">sysbenchVersion</span>
 </td>
           <td>  <span class="datatype-reference">string
@@ -134,7 +107,25 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">maxExecutionTimePerRequest</span>
+          <td>  <span class="property-name">stddevEventsPerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stddevExecTimePerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">minExecutionTimePerRequest</span>
 </td>
           <td>  <span class="datatype-reference">number
 </span>
@@ -152,7 +143,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">stddevExecTimePerThread</span>
+          <td>  <span class="property-name">avgEventsPerThread</span>
 </td>
           <td>  <span class="datatype-reference">number
 </span>
@@ -179,7 +170,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">stddevEventsPerThread</span>
+          <td>  <span class="property-name">totalNumberOfEvents</span>
 </td>
           <td>  <span class="datatype-reference">number
 </span>
@@ -188,7 +179,16 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">avgEventsPerThread</span>
+          <td>  <span class="property-name">maxExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">avgExecTimePerThread</span>
 </td>
           <td>  <span class="datatype-reference">number
 </span>
@@ -208,7 +208,13 @@
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">delta</span></td>
+          <td><span class="property-name">vmType</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">cloudDeploymentDomain</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -220,13 +226,7 @@
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">vmType</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">cloudDeploymentDomain</span></td>
+          <td><span class="property-name">delta</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -243,13 +243,13 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">owner</span></td>
+          <td><span class="property-name">id</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">id</span></td>
+          <td><span class="property-name">owner</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -266,27 +266,27 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;minExecutionTimePerRequest&quot; : 12345.0,
-  &quot;totalNumberOfEvents&quot; : 12345,
   &quot;numberOfThreads&quot; : 12345,
   &quot;approx95Percentile&quot; : 12345.0,
-  &quot;avgExecTimePerThread&quot; : 12345.0,
   &quot;sysbenchVersion&quot; : &quot;...&quot;,
-  &quot;maxExecutionTimePerRequest&quot; : 12345.0,
-  &quot;avgExecutionTimePerRequest&quot; : 12345.0,
+  &quot;stddevEventsPerThread&quot; : 12345.0,
   &quot;stddevExecTimePerThread&quot; : 12345.0,
+  &quot;minExecutionTimePerRequest&quot; : 12345.0,
+  &quot;avgExecutionTimePerRequest&quot; : 12345.0,
+  &quot;avgEventsPerThread&quot; : 12345.0,
   &quot;executionTime&quot; : 12345.0,
   &quot;ansibleOutputID&quot; : &quot;...&quot;,
-  &quot;stddevEventsPerThread&quot; : 12345.0,
-  &quot;avgEventsPerThread&quot; : 12345.0,
+  &quot;totalNumberOfEvents&quot; : 12345,
+  &quot;maxExecutionTimePerRequest&quot; : 12345.0,
+  &quot;avgExecTimePerThread&quot; : 12345.0,
   &quot;host&quot; : &quot;...&quot;,
-  &quot;delta&quot; : &quot;...&quot;,
-  &quot;end&quot; : &quot;...&quot;,
   &quot;vmType&quot; : &quot;...&quot;,
   &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
+  &quot;end&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
   &quot;start&quot; : &quot;...&quot;,
-  &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;owner&quot; : &quot;user1&quot;,
   &quot;timestamp&quot; : 12345
 }</pre>
 

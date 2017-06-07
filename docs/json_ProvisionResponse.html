@@ -80,18 +80,18 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">cloudKeyPairIDs</span>
+          <td>  <span class="property-name">deployParameters</span>
 </td>
-          <td>  <span class="datatype-reference">array of string
+          <td>  <span class="datatype-reference">array of <a href="json_DeployParameter.html">DeployParameter</a>
 </span>
 </td>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">deployParameters</span>
+          <td>  <span class="property-name">cloudKeyPairIDs</span>
 </td>
-          <td>  <span class="datatype-reference">array of <a href="json_DeployParameter.html">DeployParameter</a>
+          <td>  <span class="datatype-reference">array of string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -103,7 +103,13 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">cloudCredentialsIDs</span></td>
+          <td><span class="property-name">userKeyPairIDs</span></td>
+          <td><span class="datatype-reference">array of string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">deployerKeyPairIDs</span></td>
           <td><span class="datatype-reference">array of string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -115,13 +121,7 @@
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">deployerKeyPairIDs</span></td>
-          <td><span class="datatype-reference">array of string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">userKeyPairIDs</span></td>
+          <td><span class="property-name">cloudCredentialsIDs</span></td>
           <td><span class="datatype-reference">array of string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -143,13 +143,13 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">owner</span></td>
+          <td><span class="property-name">id</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">id</span></td>
+          <td><span class="property-name">owner</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -166,26 +166,26 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;cloudKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;deployParameters&quot; : [ {
-    &quot;user&quot; : &quot;vm_user&quot;,
     &quot;IP&quot; : &quot;52.73.245.157&quot;,
+    &quot;user&quot; : &quot;vm_user&quot;,
     &quot;role&quot; : &quot;slave&quot;
   }, {
-    &quot;user&quot; : &quot;...&quot;,
     &quot;IP&quot; : &quot;...&quot;,
+    &quot;user&quot; : &quot;...&quot;,
     &quot;role&quot; : &quot;...&quot;
   } ],
-  &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
-  &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
-  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;cloudKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
+  &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
   &quot;keyValue&quot; : {
     &quot;property1&quot; : { },
     &quot;property2&quot; : { }
   },
-  &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;owner&quot; : &quot;user1&quot;,
   &quot;timestamp&quot; : 12345
 }</pre>
 
