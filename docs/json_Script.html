@@ -80,7 +80,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">name</span>
+          <td>  <span class="property-name">contents</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -89,7 +89,7 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">contents</span>
+          <td>  <span class="property-name">name</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -103,14 +103,14 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">id</span></td>
-          <td><span class="datatype-reference">string
+          <td><span class="property-name">timestamp</span></td>
+          <td><span class="datatype-reference">number
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">timestamp</span></td>
-          <td><span class="datatype-reference">number
+          <td><span class="property-name">id</span></td>
+          <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
@@ -126,10 +126,10 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;name&quot; : &quot;config.sh&quot;,
   &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;name&quot; : &quot;config.sh&quot;,
   &quot;timestamp&quot; : 12345,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;
 }</pre>
 

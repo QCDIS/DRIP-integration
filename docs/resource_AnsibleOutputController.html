@@ -71,7 +71,7 @@
 
       <h1 class="page-header">AnsibleOutputController <small>Resource</small></h1>
 
-      <p></p>
+      <p>This controller is responsible for showing the output from ansible executions</p>
 
       <div id="resource_AnsibleOutputController_getByCommand_GET">
         <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible <a href="../user/v1.0/deployer/ansible" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
@@ -160,21 +160,21 @@ Content-Type: application/json
 [ {
   &quot;host&quot; : &quot;...&quot;,
   &quot;result&quot; : {
-    &quot;changed&quot; : true,
-    &quot;stdout&quot; : &quot;...&quot;,
     &quot;stderr&quot; : &quot;...&quot;,
-    &quot;start&quot; : &quot;...&quot;,
     &quot;delta&quot; : &quot;...&quot;,
     &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
-    &quot;msg&quot; : &quot;...&quot;,
-    &quot;end&quot; : &quot;...&quot;
+    &quot;stdout&quot; : &quot;...&quot;,
+    &quot;changed&quot; : true,
+    &quot;start&quot; : &quot;...&quot;,
+    &quot;end&quot; : &quot;...&quot;,
+    &quot;msg&quot; : &quot;...&quot;
   },
   &quot;vmType&quot; : &quot;...&quot;,
   &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
   &quot;cloudProvider&quot; : &quot;...&quot;,
   &quot;provisionID&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;
 } ]
                 </code>
@@ -585,21 +585,21 @@ Content-Type: application/json
 {
   &quot;host&quot; : &quot;...&quot;,
   &quot;result&quot; : {
-    &quot;changed&quot; : true,
-    &quot;stdout&quot; : &quot;...&quot;,
     &quot;stderr&quot; : &quot;...&quot;,
-    &quot;start&quot; : &quot;...&quot;,
     &quot;delta&quot; : &quot;...&quot;,
     &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
-    &quot;msg&quot; : &quot;...&quot;,
-    &quot;end&quot; : &quot;...&quot;
+    &quot;stdout&quot; : &quot;...&quot;,
+    &quot;changed&quot; : true,
+    &quot;start&quot; : &quot;...&quot;,
+    &quot;end&quot; : &quot;...&quot;,
+    &quot;msg&quot; : &quot;...&quot;
   },
   &quot;vmType&quot; : &quot;...&quot;,
   &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
   &quot;cloudProvider&quot; : &quot;...&quot;,
   &quot;provisionID&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;
 }
                 </code>
