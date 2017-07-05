@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: execute</title>
+  <title>drip-commons: execute</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: execute</a>
+        <a class="navbar-brand" href="index.html">drip-commons: execute</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -103,7 +102,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">A referance id used from the servcie to do the provisioning</span>
 </td>
         </tr>
         <tr>
@@ -121,7 +120,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">Not used. It's there for backwards compatibility.</span>
 </td>
         </tr>
         <tr>
@@ -139,7 +138,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">Not used. It's there for backwards compatibility.</span>
 </td>
         </tr>
         </tbody>
@@ -148,9 +147,9 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;execute&gt;
-  &lt;action&gt;58c2c2f3a8d4b56889878d03&lt;/action&gt;
-  &lt;pwd&gt;123&lt;/pwd&gt;
   &lt;user&gt;user&lt;/user&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
+  &lt;action&gt;58c2c2f3a8d4b56889878d03&lt;/action&gt;
 &lt;/execute&gt;
 </pre>
 

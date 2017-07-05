@@ -16,8 +16,24 @@
   <xs:simpleContent>
     <xs:extension base="xs:string">
       <xs:attribute name="name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[Name of the file/public key.]]>
+          </xs:documentation>
+        </xs:annotation>
       </xs:attribute>
       <xs:attribute name="level" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[There are two levels of description files for topologies designed by users.
+If the level attribute for the element file is 1, then this file is the top-level description,
+which defines how the sub-topologies are connected to each other.
+If the level attribute is 0, then the file is the low-level description,
+which describes the topology in one data center in detail.
+On the other hand, the name of low-level description file must be the
+sub-topology name appeared in the high-level description file. (For example, here should be zh_a and zh_b.)]]>
+          </xs:documentation>
+        </xs:annotation>
       </xs:attribute>
     </xs:extension>
   </xs:simpleContent>
@@ -28,6 +44,11 @@
     <xs:extension base="execute">
       <xs:sequence>
               <xs:element name="script" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The script contents with new lines replace by '\n']]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
     </xs:extension>
@@ -47,25 +68,55 @@
 
 <xs:complexType name="configure">
        <xs:sequence>
-              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
               <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
-              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:element name="keyid" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key id for the cloud provider.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
-              <xs:element name="loginPubKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="key" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The key for the cloud provider.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
               <xs:element name="loginKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
               </xs:element>
               <xs:element name="geniKey" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The binary keystore (user.jks) for the cloud provider encoded in base64]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="geniKeyAlias" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Key alias in key store]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="loginPubKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
               </xs:element>
               <xs:element name="geniKeyPass" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="keyid" type="xs:string" minOccurs="0">
-              </xs:element>
               <xs:element name="loginPriKey" type="loginKey0" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="geniKeyAlias" type="xs:string" minOccurs="0">
               </xs:element>
       </xs:sequence>
 </xs:complexType>
@@ -79,11 +130,26 @@
 
 <xs:complexType name="execute">
        <xs:sequence>
-              <xs:element name="action" type="xs:string" minOccurs="0">
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
               <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
-              <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:element name="action" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[A referance id used from the servcie to do the provisioning]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
 </xs:complexType>
@@ -98,365 +164,85 @@
 </xs:complexType>
 
 <xs:complexType name="plan">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a plan to be provided to the planner.]]>
+    </xs:documentation>
+  </xs:annotation>
        <xs:sequence>
-              <xs:element name="pwd" type="xs:string" minOccurs="0">
-              </xs:element>
               <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's only there for backwords compatibility]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. It's only there for backwords compatibility]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
               <xs:element name="file" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The contents of the TOSCA description]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="register">
        <xs:sequence>
-              <xs:element name="pwd" type="xs:string" minOccurs="0">
-              </xs:element>
               <xs:element name="user" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The user name]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="pwd" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The user password]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="result">
        <xs:sequence>
+              <xs:element name="status" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The status of the response]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
               <xs:element name="info" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Not used. Not used. It's there for backwards compatibility.]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
               <xs:element name="file" type="attribute" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="status" type="xs:string" minOccurs="0">
               </xs:element>
       </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="upload">
        <xs:sequence>
+              <xs:element name="user" type="xs:string" minOccurs="0">
+              </xs:element>
               <xs:element name="pwd" type="xs:string" minOccurs="0">
               </xs:element>
               <xs:element name="file" type="attribute" minOccurs="0" maxOccurs="unbounded">
               </xs:element>
-              <xs:element name="user" type="xs:string" minOccurs="0">
-              </xs:element>
       </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="cloudCredentials">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="cloudProviderName" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="accessKeyId" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="secretKey" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="attributes" minOccurs="0">
-  <xs:complexType>
-    <xs:sequence>
-      <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="key" minOccurs="1" type="xs:string"/>
-            <xs:element name="value" minOccurs="1" type="xs:anyType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="deployParameter">
-       <xs:sequence>
-              <xs:element name="user" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="role" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="IP" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="deployRequest">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="provisionID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="managerType" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="configurationID" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="deployResponse">
-   <xs:complexContent>
-    <xs:extension base="deployRequest">
-      <xs:sequence>
-              <xs:element name="ansibleOutputList" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="key">
-       <xs:sequence>
-              <xs:element name="attributes" minOccurs="0">
-  <xs:complexType>
-    <xs:sequence>
-      <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="key" minOccurs="1" type="xs:string"/>
-            <xs:element name="value" minOccurs="1" type="xs:string"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-              </xs:element>
-              <xs:element name="type" type="keyType" minOccurs="0">
-              </xs:element>
-              <xs:element name="name" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="key" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:simpleType name="keyType">
-  <xs:restriction base="xs:string">
-     
-    <xs:enumeration value="PRIVATE"/>
- 
-    <xs:enumeration value="PUBLIC"/>
-  </xs:restriction>
-</xs:simpleType>
-
-<xs:complexType name="keyPair">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="privateKey" type="key" minOccurs="0">
-              </xs:element>
-              <xs:element name="keyPairId" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="publicKey" type="key" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="keyValueHolder">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="ownedObject">
-       <xs:sequence>
-              <xs:element name="owner" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="timestamp" type="xs:long" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="planRequest">
-       <xs:sequence>
-              <xs:element name="domain" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="toscaID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="osType" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="vmUserName" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="cloudProvider" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="managerType" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="planResponse">
-   <xs:complexContent>
-    <xs:extension base="keyValueHolder">
-      <xs:sequence>
-              <xs:element name="level" type="xs:int" minOccurs="0">
-              </xs:element>
-              <xs:element name="toscaID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="name" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="playbookRepresentation">
-   <xs:complexContent>
-    <xs:extension base="keyValueHolder">
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="provisionRequest">
-   <xs:complexContent>
-    <xs:extension base="keyValueHolder">
-      <xs:sequence>
-              <xs:element name="deployerKeyPairIDs" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="planID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="cloudCredentialsIDs" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="userKeyPairIDs" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="provisionResponse">
-   <xs:complexContent>
-    <xs:extension base="provisionRequest">
-      <xs:sequence>
-              <xs:element name="deployParameters" type="deployParameter" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="cloudKeyPairIDs" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="script">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="contents" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="name" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="toscaRepresentation">
-   <xs:complexContent>
-    <xs:extension base="keyValueHolder">
-      <xs:sequence>
-              <xs:element name="name" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="user">
-       <xs:sequence>
-              <xs:element name="roles" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-              </xs:element>
-              <xs:element name="password" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="username" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="accountNonExpired" type="xs:boolean" minOccurs="1">
-              </xs:element>
-              <xs:element name="accountNonLocked" type="xs:boolean" minOccurs="1">
-              </xs:element>
-              <xs:element name="enabled" type="xs:boolean" minOccurs="1">
-              </xs:element>
-              <xs:element name="credentialsNonExpired" type="xs:boolean" minOccurs="1">
-              </xs:element>
-              <xs:element name="id" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="ansibleOutput">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="cloudProvider" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="provisionID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="host" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="benchmarkResult">
-   <xs:complexContent>
-    <xs:extension base="ownedObject">
-      <xs:sequence>
-              <xs:element name="host" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="delta" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-              <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="start" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="sysbenchCPUBenchmark">
-   <xs:complexContent>
-    <xs:extension base="benchmarkResult">
-      <xs:sequence>
-              <xs:element name="sysbenchVersion" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="stddevExecTimePerThread" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="stddevEventsPerThread" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="maxExecutionTimePerRequest" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="numberOfThreads" type="xs:int" minOccurs="1">
-              </xs:element>
-              <xs:element name="avgExecTimePerThread" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="executionTime" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="minExecutionTimePerRequest" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="ansibleOutputID" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="totalNumberOfEvents" type="xs:int" minOccurs="1">
-              </xs:element>
-              <xs:element name="avgExecutionTimePerRequest" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="avgEventsPerThread" type="xs:double" minOccurs="1">
-              </xs:element>
-              <xs:element name="approx95Percentile" type="xs:double" minOccurs="1">
-              </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
 </xs:complexType>
 
 </xs:schema>

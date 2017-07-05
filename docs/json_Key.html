@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: Key</title>
+  <title>drip-commons: Key</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: Key</a>
+        <a class="navbar-brand" href="index.html">drip-commons: Key</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -64,7 +63,9 @@
 
       <h1 class="page-header">Key <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a key. This key can be used to either login to a VM
+created by the provisiner or by the VM to allow the user to login to the VMs
+from the machine the keys correspond to.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -80,21 +81,21 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">type</span>
-</td>
-          <td>  <span class="datatype-reference"><a href="json_KeyType.html">KeyType</a>
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">name</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The name of the key.</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">type</span>
+</td>
+          <td>  <span class="datatype-reference"><a href="json_KeyType.html">KeyType</a>
+</span>
+</td>
+          <td>  <span class="property-description">The type of key</span>
 </td>
         </tr>
         <tr>
@@ -103,7 +104,8 @@
           <td>  <span class="datatype-reference">map of string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">A general use key,value. In the case of the cloud credentials it's used
+to specify the domain name for ec2</span>
 </td>
         </tr>
         <tr>
@@ -112,7 +114,7 @@
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The contents of the key.</span>
 </td>
         </tr>
         </tbody>
@@ -121,8 +123,8 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;type&quot; : &quot;PRIVATE&quot;,
   &quot;name&quot; : &quot;id_dsa.pub&quot;,
+  &quot;type&quot; : &quot;PRIVATE&quot;,
   &quot;attributes&quot; : {
     &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
     &quot;property2&quot; : &quot;domain_name:Virginia&quot;

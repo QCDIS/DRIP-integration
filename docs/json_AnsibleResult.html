@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: AnsibleResult</title>
+  <title>drip-commons: AnsibleResult</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: AnsibleResult</a>
+        <a class="navbar-brand" href="index.html">drip-commons: AnsibleResult</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -64,7 +63,8 @@
 
       <h1 class="page-header">AnsibleResult <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents an ansible execution result.  This can be
+used as a archive / log of ansible executions for example how much time it took for execution, errors etc.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -80,34 +80,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">stderr</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">delta</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">cmd</span>
-</td>
-          <td>  <span class="datatype-reference">array of string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">stdout</span>
+          <td>  <span class="property-name">msg</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -125,15 +98,6 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">start</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">end</span>
 </td>
           <td>  <span class="datatype-reference">string
@@ -143,9 +107,45 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">msg</span>
+          <td>  <span class="property-name">start</span>
 </td>
           <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">delta</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stdout</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stderr</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">cmd</span>
+</td>
+          <td>  <span class="datatype-reference">array of string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -157,14 +157,14 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;stderr&quot; : &quot;...&quot;,
-  &quot;delta&quot; : &quot;...&quot;,
-  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
-  &quot;stdout&quot; : &quot;...&quot;,
+  &quot;msg&quot; : &quot;...&quot;,
   &quot;changed&quot; : true,
-  &quot;start&quot; : &quot;...&quot;,
   &quot;end&quot; : &quot;...&quot;,
-  &quot;msg&quot; : &quot;...&quot;
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
+  &quot;stdout&quot; : &quot;...&quot;,
+  &quot;stderr&quot; : &quot;...&quot;,
+  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ]
 }</pre>
 
         <footer class="footer">

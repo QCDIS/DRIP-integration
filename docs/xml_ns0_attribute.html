@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: attribute</title>
+  <title>drip-commons: attribute</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: attribute</a>
+        <a class="navbar-brand" href="index.html">drip-commons: attribute</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -101,7 +100,13 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">There are two levels of description files for topologies designed by users.
+If the level attribute for the element file is 1, then this file is the top-level description,
+which defines how the sub-topologies are connected to each other.
+If the level attribute is 0, then the file is the low-level description,
+which describes the topology in one data center in detail.
+On the other hand, the name of low-level description file must be the
+sub-topology name appeared in the high-level description file. (For example, here should be zh_a and zh_b.)</span>
 </td>
         </tr>
         <tr>
@@ -119,7 +124,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">Name of the file/public key.</span>
 </td>
         </tr>
         <tr>

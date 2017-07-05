@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: Files and Libraries</title>
+  <title>drip-commons: Files and Libraries</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: Files and Libraries</a>
+        <a class="navbar-brand" href="index.html">drip-commons: Files and Libraries</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -51,10 +50,13 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
+          <li><a href="#artifact_c_client_library">C Client Library</a></li>
+          <li><a href="#artifact_csharp_client_library">C# Client Library</a></li>
           <li><a href="#artifact_gwt_json_overlay">GWT JSON Overlay</a></li>
           <li><a href="#artifact_java_json_client_library">Java JSON Client Library</a></li>
           <li><a href="#artifact_java_xml_client_library">Java XML Client Library</a></li>
           <li><a href="#artifact_js_client_library">JavaScript Client Library</a></li>
+          <li><a href="#artifact_objc_client_library">Objective C Client Library</a></li>
           <li><a href="#artifact_php_json_client_library">PHP JSON Client Library</a></li>
           <li><a href="#artifact_php_xml_client_library">PHP XML Client Library</a></li>
           <li><a href="#artifact_ruby_json_client_library">Ruby JSON Client Library</a></li>
@@ -71,6 +73,63 @@
 
   <h1 class="page-header">Files and Libraries</h1>
 
+  <h3 id="artifact_c_client_library">C Client Library</h3>
+  <p class="lead">Created July 5, 2017</p>
+  <p><p>
+  The C module generates the source code for the ANSI-C-compatible data structures and (de)serialization
+  functions that can be used in conjunction with <a href="http://xmlsoft.org/">libxml2</a> to (de)serialize
+  the REST resources as they are represented as XML data.
+</p>
+
+<p>
+  The generated C source code depends on the <a href="http://xmlsoft.org/html/libxml-xmlreader.html">XML Reader API</a>
+  and the <a href="http://xmlsoft.org/html/libxml-xmlwriter.html">XML Writer API</a> as well as the <code>&lt;time.h&gt;</code>,
+  <code>&lt;string.h&gt;</code>, and <code>&lt;stdlib.h&gt;</code> C standard libraries.
+</p>
+
+</p>
+  <table class="table table-hover downloadfiles">
+    <caption>Files</caption>
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>size</th>
+      <th>description</th>
+    </tr>
+    </thead>
+    <tbody data-link="row" class="rowlink">
+    <tr class="clickable-row" data-href="drip-commons.c">
+      <td><span class="downloadfile-name">drip-commons.c</span></td>
+      <td><span class="downloadfile-size">175.25K</span></td>
+      <td><span class="downloadfile-description">&nbsp;</span></td>
+    </tr>
+    <tr class="clickable-row" data-href="enunciate-common.c">
+      <td><span class="downloadfile-name">enunciate-common.c</span></td>
+      <td><span class="downloadfile-size">39.68K</span></td>
+      <td><span class="downloadfile-description">Common code needed for all projects.</span></td>
+    </tr>
+    </tbody>
+  </table>
+  <h3 id="artifact_csharp_client_library">C# Client Library</h3>
+  <p class="lead">Created July 5, 2017</p>
+  <p></p>
+  <table class="table table-hover downloadfiles">
+    <caption>Files</caption>
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>size</th>
+      <th>description</th>
+    </tr>
+    </thead>
+    <tbody data-link="row" class="rowlink">
+    <tr class="clickable-row" data-href="drip-commons-dotnet.zip">
+      <td><span class="downloadfile-name">drip-commons-dotnet.zip</span></td>
+      <td><span class="downloadfile-size">1.96K</span></td>
+      <td><span class="downloadfile-description">The C# source code for the C# client library.</span></td>
+    </tr>
+    </tbody>
+  </table>
   <h3 id="artifact_gwt_json_overlay">GWT JSON Overlay</h3>
   <p class="lead">Created July 5, 2017</p>
   <p>  <p>
@@ -89,9 +148,9 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-gwt-json-overlay.jar">
-      <td><span class="downloadfile-name">drip-api-gwt-json-overlay.jar</span></td>
-      <td><span class="downloadfile-size">14.41K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-gwt-json-overlay.jar">
+      <td><span class="downloadfile-name">drip-commons-gwt-json-overlay.jar</span></td>
+      <td><span class="downloadfile-size">15.79K</span></td>
       <td><span class="downloadfile-description">The sources for the GWT JSON overlay.</span></td>
     </tr>
     </tbody>
@@ -114,14 +173,14 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-json-client.jar">
-      <td><span class="downloadfile-name">drip-api-json-client.jar</span></td>
-      <td><span class="downloadfile-size">19.69K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-json-client.jar">
+      <td><span class="downloadfile-name">drip-commons-json-client.jar</span></td>
+      <td><span class="downloadfile-size">19.67K</span></td>
       <td><span class="downloadfile-description">The binaries for the Java JSON client library.</span></td>
     </tr>
-    <tr class="clickable-row" data-href="drip-api-json-client-json-sources.jar">
-      <td><span class="downloadfile-name">drip-api-json-client-json-sources.jar</span></td>
-      <td><span class="downloadfile-size">15.07K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-json-client-json-sources.jar">
+      <td><span class="downloadfile-name">drip-commons-json-client-json-sources.jar</span></td>
+      <td><span class="downloadfile-size">16.39K</span></td>
       <td><span class="downloadfile-description">The sources for the Java JSON client library.</span></td>
     </tr>
     </tbody>
@@ -142,14 +201,14 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-xml-client.jar">
-      <td><span class="downloadfile-name">drip-api-xml-client.jar</span></td>
-      <td><span class="downloadfile-size">25.35K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-xml-client.jar">
+      <td><span class="downloadfile-name">drip-commons-xml-client.jar</span></td>
+      <td><span class="downloadfile-size">9.33K</span></td>
       <td><span class="downloadfile-description">The binaries for the Java XML client library.</span></td>
     </tr>
-    <tr class="clickable-row" data-href="drip-api-xml-client-xml-sources.jar">
-      <td><span class="downloadfile-name">drip-api-xml-client-xml-sources.jar</span></td>
-      <td><span class="downloadfile-size">21.28K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-xml-client-xml-sources.jar">
+      <td><span class="downloadfile-name">drip-commons-xml-client-xml-sources.jar</span></td>
+      <td><span class="downloadfile-size">8.70K</span></td>
       <td><span class="downloadfile-description">The sources for the Java XML client library.</span></td>
     </tr>
     </tbody>
@@ -182,10 +241,56 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-js.zip">
-      <td><span class="downloadfile-name">drip-api-js.zip</span></td>
-      <td><span class="downloadfile-size">5.81K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-js.zip">
+      <td><span class="downloadfile-name">drip-commons-js.zip</span></td>
+      <td><span class="downloadfile-size">6.15K</span></td>
       <td><span class="downloadfile-description">&nbsp;</span></td>
+    </tr>
+    </tbody>
+  </table>
+  <h3 id="artifact_objc_client_library">Objective C Client Library</h3>
+  <p class="lead">Created July 5, 2017</p>
+  <p><p>
+  The Objective C module generates the source code for the Objective C classes and (de)serialization
+  functions that can be used in conjunction with <a href="http://xmlsoft.org/">libxml2</a> to (de)serialize
+  the REST resources as they are represented as XML data.
+</p>
+
+<p>
+  The generated Objective C source code depends on the <a href="http://xmlsoft.org/html/libxml-xmlreader.html">XML Reader API</a>
+  and the <a href="http://xmlsoft.org/html/libxml-xmlwriter.html">XML Writer API</a> as well as the base OpenStep foundation classes.
+</p>
+
+</p>
+  <table class="table table-hover downloadfiles">
+    <caption>Files</caption>
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>size</th>
+      <th>description</th>
+    </tr>
+    </thead>
+    <tbody data-link="row" class="rowlink">
+    <tr class="clickable-row" data-href="drip-commons.h">
+      <td><span class="downloadfile-name">drip-commons.h</span></td>
+      <td><span class="downloadfile-size">10.08K</span></td>
+      <td><span class="downloadfile-description">&nbsp;</span></td>
+    </tr>
+    <tr class="clickable-row" data-href="drip-commons.m">
+      <td><span class="downloadfile-name">drip-commons.m</span></td>
+      <td><span class="downloadfile-size">121.37K</span></td>
+      <td><span class="downloadfile-description">&nbsp;</span></td>
+    </tr>
+    <tr class="clickable-row" data-href="enunciate-common.h">
+      <td><span class="downloadfile-name">enunciate-common.h</span></td>
+      <td><span class="downloadfile-size">12.83K</span></td>
+      <td><span class="downloadfile-description">Common header needed for all projects.</span></td>
+    </tr>
+    <tr class="clickable-row" data-href="enunciate-common.m">
+      <td><span class="downloadfile-name">enunciate-common.m</span></td>
+      <td><span class="downloadfile-size">42.34K</span></td>
+      <td><span class="downloadfile-description">Common implementation code needed for all projects.</span></td>
     </tr>
     </tbody>
   </table>
@@ -211,9 +316,9 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-php.zip">
-      <td><span class="downloadfile-name">drip-api-php.zip</span></td>
-      <td><span class="downloadfile-size">6.47K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-php.zip">
+      <td><span class="downloadfile-name">drip-commons-php.zip</span></td>
+      <td><span class="downloadfile-size">6.94K</span></td>
       <td><span class="downloadfile-description">&nbsp;</span></td>
     </tr>
     </tbody>
@@ -243,9 +348,9 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api-php.zip">
-      <td><span class="downloadfile-name">drip-api-php.zip</span></td>
-      <td><span class="downloadfile-size">9.19K</span></td>
+    <tr class="clickable-row" data-href="drip-commons-php.zip">
+      <td><span class="downloadfile-name">drip-commons-php.zip</span></td>
+      <td><span class="downloadfile-size">4.12K</span></td>
       <td><span class="downloadfile-description">&nbsp;</span></td>
     </tr>
     </tbody>
@@ -274,9 +379,9 @@
     </tr>
     </thead>
     <tbody data-link="row" class="rowlink">
-    <tr class="clickable-row" data-href="drip-api.rb">
-      <td><span class="downloadfile-name">drip-api.rb</span></td>
-      <td><span class="downloadfile-size">92.53K</span></td>
+    <tr class="clickable-row" data-href="drip-commons.rb">
+      <td><span class="downloadfile-name">drip-commons.rb</span></td>
+      <td><span class="downloadfile-size">91.74K</span></td>
       <td><span class="downloadfile-description">&nbsp;</span></td>
     </tr>
     </tbody>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: SysbenchCPUBenchmark</title>
+  <title>drip-commons: SysbenchCPUBenchmark</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: SysbenchCPUBenchmark</a>
+        <a class="navbar-brand" href="index.html">drip-commons: SysbenchCPUBenchmark</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -64,7 +63,7 @@
 
       <h1 class="page-header">SysbenchCPUBenchmark <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a sysbench CPU Benchmark for a specific VM.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -80,27 +79,9 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">avgExecutionTimePerRequest</span>
+          <td>  <span class="property-name">sysbenchVersion</span>
 </td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">minExecutionTimePerRequest</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">approx95Percentile</span>
-</td>
-          <td>  <span class="datatype-reference">number
+          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -119,42 +100,6 @@
           <td>  <span class="property-name">totalNumberOfEvents</span>
 </td>
           <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">stddevExecTimePerThread</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">avgExecTimePerThread</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">maxExecutionTimePerRequest</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">ansibleOutputID</span>
-</td>
-          <td>  <span class="datatype-reference">string
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -188,7 +133,61 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">sysbenchVersion</span>
+          <td>  <span class="property-name">avgExecTimePerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stddevExecTimePerThread</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">minExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">avgExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">maxExecutionTimePerRequest</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">approx95Percentile</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">ansibleOutputID</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -202,19 +201,19 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">start</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
-          <td><span class="property-name">host</span></td>
-          <td><span class="datatype-reference">string
-</span></td>
-          <td><span class="property-description"></span></td>
-        </tr>
-        <tr>
           <td><span class="property-name">vmType</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">end</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description"></span></td>
+        </tr>
+        <tr>
+          <td><span class="property-name">start</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -226,7 +225,7 @@
           <td><span class="property-description"></span></td>
         </tr>
         <tr>
-          <td><span class="property-name">end</span></td>
+          <td><span class="property-name">host</span></td>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description"></span></td>
@@ -243,20 +242,22 @@
         </tr>
         <tbody>
         <tr>
-          <td><span class="property-name">timestamp</span></td>
-          <td><span class="datatype-reference">number
+          <td><span class="property-name">owner</span></td>
+          <td><span class="datatype-reference">string
 </span></td>
-          <td><span class="property-description"></span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         <tr>
           <td><span class="property-name">id</span></td>
           <td><span class="datatype-reference">string
 </span></td>
-          <td><span class="property-description"></span></td>
+          <td><span class="property-description">The UID of this object. This value is auto generated by the DAO when the
+object is saved.</span></td>
         </tr>
         <tr>
-          <td><span class="property-name">owner</span></td>
-          <td><span class="datatype-reference">string
+          <td><span class="property-name">timestamp</span></td>
+          <td><span class="datatype-reference">number
 </span></td>
           <td><span class="property-description"></span></td>
         </tr>
@@ -266,28 +267,28 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;avgExecutionTimePerRequest&quot; : 12345.0,
-  &quot;minExecutionTimePerRequest&quot; : 12345.0,
-  &quot;approx95Percentile&quot; : 12345.0,
+  &quot;sysbenchVersion&quot; : &quot;...&quot;,
   &quot;numberOfThreads&quot; : 12345,
   &quot;totalNumberOfEvents&quot; : 12345,
-  &quot;stddevExecTimePerThread&quot; : 12345.0,
-  &quot;avgExecTimePerThread&quot; : 12345.0,
-  &quot;maxExecutionTimePerRequest&quot; : 12345.0,
-  &quot;ansibleOutputID&quot; : &quot;...&quot;,
   &quot;executionTime&quot; : 12345.0,
   &quot;avgEventsPerThread&quot; : 12345.0,
   &quot;stddevEventsPerThread&quot; : 12345.0,
-  &quot;sysbenchVersion&quot; : &quot;...&quot;,
-  &quot;start&quot; : &quot;...&quot;,
-  &quot;host&quot; : &quot;...&quot;,
+  &quot;avgExecTimePerThread&quot; : 12345.0,
+  &quot;stddevExecTimePerThread&quot; : 12345.0,
+  &quot;minExecutionTimePerRequest&quot; : 12345.0,
+  &quot;avgExecutionTimePerRequest&quot; : 12345.0,
+  &quot;maxExecutionTimePerRequest&quot; : 12345.0,
+  &quot;approx95Percentile&quot; : 12345.0,
+  &quot;ansibleOutputID&quot; : &quot;...&quot;,
   &quot;vmType&quot; : &quot;...&quot;,
-  &quot;delta&quot; : &quot;...&quot;,
   &quot;end&quot; : &quot;...&quot;,
+  &quot;start&quot; : &quot;...&quot;,
+  &quot;delta&quot; : &quot;...&quot;,
+  &quot;host&quot; : &quot;...&quot;,
   &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
-  &quot;timestamp&quot; : 12345,
+  &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;owner&quot; : &quot;user1&quot;
+  &quot;timestamp&quot; : 12345
 }</pre>
 
         <footer class="footer">

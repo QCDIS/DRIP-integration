@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: PlanRequest</title>
+  <title>drip-commons: PlanRequest</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +35,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: PlanRequest</a>
+        <a class="navbar-brand" href="index.html">drip-commons: PlanRequest</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="resources.html">Resources</a></li>
           <li><a href="data.html">Data Types</a></li>
           <li><a href="downloads.html">Files and Libraries</a></li>
         </ul>
@@ -64,7 +63,7 @@
 
       <h1 class="page-header">PlanRequest <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a plan request sent to the planner.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -80,21 +79,12 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">osType</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">toscaID</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The ID of the tosca file the generated this plan</span>
 </td>
         </tr>
         <tr>
@@ -103,16 +93,7 @@
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">cloudProvider</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The type of cluster manager</span>
 </td>
         </tr>
         <tr>
@@ -121,7 +102,25 @@
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The default username to be set to all VMs</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">cloudProvider</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description">The cloud provider</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">osType</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description">The type of OS for the VMs</span>
 </td>
         </tr>
         <tr>
@@ -130,7 +129,7 @@
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The domain to request the VMs</span>
 </td>
         </tr>
         </tbody>
@@ -139,12 +138,12 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;osType&quot; : &quot;...&quot;,
-  &quot;toscaID&quot; : &quot;...&quot;,
-  &quot;managerType&quot; : &quot;...&quot;,
-  &quot;cloudProvider&quot; : &quot;...&quot;,
-  &quot;vmUserName&quot; : &quot;...&quot;,
-  &quot;domain&quot; : &quot;...&quot;
+  &quot;toscaID&quot; : &quot;592d5884e452f1b9b666a657&quot;,
+  &quot;managerType&quot; : &quot;swarm&quot;,
+  &quot;vmUserName&quot; : &quot;vm_user&quot;,
+  &quot;cloudProvider&quot; : &quot;egi&quot;,
+  &quot;osType&quot; : &quot;Ubuntu16.04&quot;,
+  &quot;domain&quot; : &quot;us-east-1&quot;
 }</pre>
 
         <footer class="footer">
