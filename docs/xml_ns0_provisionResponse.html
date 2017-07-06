@@ -64,7 +64,7 @@
 
       <h1 class="page-header">provisionResponse <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a description of provisioned resources</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -101,7 +101,7 @@
           <td>  <span class="property-minMaxOccurs">0/unbounded
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">the cloudKeyPairIDs</span>
 </td>
         </tr>
         <tr>
@@ -119,7 +119,7 @@
           <td>  <span class="property-minMaxOccurs">0/unbounded
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The deploy parameters.</span>
 </td>
         </tr>
         </tbody>
@@ -137,7 +137,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/unbounded
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">The cloud credentials ids required to provision the cloud resources.</span></td>
         </tr>
         <tr>
           <td><span class="property-name">deployerKeyPairIDs</span></td>
@@ -149,7 +149,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/unbounded
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">the deployerKeyPairIDs</span></td>
         </tr>
         <tr>
           <td><span class="property-name">planID</span></td>
@@ -161,7 +161,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">The ID of the plan <code>PlanResponse</code> to provision for.</span></td>
         </tr>
         <tr>
           <td><span class="property-name">userKeyPairIDs</span></td>
@@ -173,7 +173,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/unbounded
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">The key pair id for the keys to use to log in the provisioned VMs.</span></td>
         </tr>
         </tbody>
         <tr>
@@ -190,7 +190,8 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         <tr>
           <td><span class="property-name">timestamp</span></td>
@@ -202,7 +203,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">the timestamp</span></td>
         </tr>
         </tbody>
       </table>
@@ -212,13 +213,13 @@
       <pre class="prettyprint language-xml example">&lt;p-----&gt;
   &lt;deployParameters&gt;
     &lt;IP&gt;52.73.245.157&lt;/IP&gt;
-    &lt;role&gt;slave&lt;/role&gt;
     &lt;user&gt;vm_user&lt;/user&gt;
+    &lt;role&gt;slave&lt;/role&gt;
   &lt;/deployParameters&gt;
   &lt;cloudKeyPairIDs&gt;...&lt;/cloudKeyPairIDs&gt;
   &lt;cloudCredentialsIDs&gt;58e3946e0fb4f562d84ba1ad&lt;/cloudCredentialsIDs&gt;
-  &lt;userKeyPairIDs&gt;ASedsfd46b4fFd344a1A&lt;/userKeyPairIDs&gt;
   &lt;planID&gt;ASedsfd46b4fDFd83ba1q&lt;/planID&gt;
+  &lt;userKeyPairIDs&gt;ASedsfd46b4fFd344a1A&lt;/userKeyPairIDs&gt;
   &lt;deployerKeyPairIDs&gt;...&lt;/deployerKeyPairIDs&gt;
 &lt;/p-----&gt;
 </pre>

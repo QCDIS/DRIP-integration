@@ -64,7 +64,7 @@
 
       <h1 class="page-header">planRequest <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a plan request sent to the planner.</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -101,7 +101,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The cloud provider</span>
 </td>
         </tr>
         <tr>
@@ -119,7 +119,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The domain to request the VMs</span>
 </td>
         </tr>
         <tr>
@@ -137,7 +137,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The type of cluster manager</span>
 </td>
         </tr>
         <tr>
@@ -155,7 +155,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The type of OS for the VMs</span>
 </td>
         </tr>
         <tr>
@@ -173,7 +173,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The ID of the tosca file the generated this plan</span>
 </td>
         </tr>
         <tr>
@@ -191,7 +191,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The default username to be set to all VMs</span>
 </td>
         </tr>
         </tbody>
@@ -200,12 +200,12 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;p-----&gt;
-  &lt;osType&gt;Ubuntu16.04&lt;/osType&gt;
-  &lt;cloudProvider&gt;egi&lt;/cloudProvider&gt;
-  &lt;domain&gt;us-east-1&lt;/domain&gt;
+  &lt;toscaID&gt;592d5884e452f1b9b666a657&lt;/toscaID&gt;
   &lt;managerType&gt;swarm&lt;/managerType&gt;
   &lt;vmUserName&gt;vm_user&lt;/vmUserName&gt;
-  &lt;toscaID&gt;592d5884e452f1b9b666a657&lt;/toscaID&gt;
+  &lt;cloudProvider&gt;egi&lt;/cloudProvider&gt;
+  &lt;osType&gt;Ubuntu16.04&lt;/osType&gt;
+  &lt;domain&gt;us-east-1&lt;/domain&gt;
 &lt;/p-----&gt;
 </pre>
 

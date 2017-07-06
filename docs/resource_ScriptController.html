@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
-          <li><a href="#resource_ScriptController_uploadUserScript_POST">POST /user/v1.0/script</a></li>
+          <li><a href="#resource_ScriptController_uploadUserScript_POST">POST /user/v1.0/script/</a></li>
           <li><a href="#resource_ScriptController_deleteAll_DELETE">DELETE /user/v1.0/script/all</a></li>
           <li><a href="#resource_ScriptController_getIds_GET">GET /user/v1.0/script/ids</a></li>
           <li><a href="#resource_ScriptController_get_GET">GET /user/v1.0/script/sample</a></li>
@@ -76,7 +76,7 @@
 used by the provisoner to run on the created VMs.</p>
 
       <div id="resource_ScriptController_uploadUserScript_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/script <a href="../user/v1.0/script" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/script/ <a href="./user/v1.0/script/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -151,16 +151,16 @@ used by the provisoner to run on the created VMs.</p>
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-POST /user/v1.0/script
+POST /user/v1.0/script/
 Content-Type: application/json
 Accept: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;name&quot; : &quot;config.sh&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>
@@ -182,7 +182,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/script/all <a href="../user/v1.0/script/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/script/all <a href="./user/v1.0/script/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -256,7 +256,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/ids <a href="../user/v1.0/script/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/ids <a href="./user/v1.0/script/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets the IDs of all the stored scripts</p>
 
@@ -327,7 +327,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/sample <a href="../user/v1.0/script/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/sample <a href="./user/v1.0/script/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -393,10 +393,10 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;name&quot; : &quot;config.sh&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>
@@ -407,7 +407,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_uploadUserScript_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/script/upload <a href="../user/v1.0/script/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/script/upload <a href="./user/v1.0/script/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Uploads a script</p>
 
@@ -423,6 +423,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -430,6 +431,7 @@ Content-Type: application/json
             <td><span class="parameter-name">file</span></td>
             <td>query</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -501,7 +503,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/script/{id} <a href="../user/v1.0/script/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/script/{id} <a href="./user/v1.0/script/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -517,6 +519,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -524,6 +527,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -593,7 +597,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ScriptController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/{id} <a href="../user/v1.0/script/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/script/{id} <a href="./user/v1.0/script/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets a script</p>
 
@@ -609,6 +613,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -616,6 +621,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -679,10 +685,10 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;name&quot; : &quot;config.sh&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;contents&quot; : &quot;    #!/bin/bash\necho \&quot;Reading system-wide config....\&quot; &gt;&amp;2\\n. /etc/cool.cfg\nif [ -r ~/.coolrc ]; then\n  echo \&quot;Reading user config....\&quot; &gt;&amp;2\\n  . ~/.coolrc\\nfi&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>

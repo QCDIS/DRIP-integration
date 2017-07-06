@@ -75,9 +75,9 @@
 used by the planner.</p>
 
       <div id="resource_ConfigurationController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/all <a href="../user/v1.0/deployer/configuration/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/all <a href="./user/v1.0/deployer/configuration/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the IDs of all the stored PlayBook descriptions.</p>
+        <p>Deletes all entries. Use with caution !</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -94,6 +94,10 @@ used by the planner.</p>
           </thead>
           <tbody>
           <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
+          <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
           </tr>
@@ -106,7 +110,6 @@ used by the planner.</p>
           <tr>
             <th>media type</th>
             <th>data type</th>
-            <th>description</th>
           </tr>
           </thead>
           <tbody>
@@ -114,7 +117,6 @@ used by the planner.</p>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">a list of all the IDs</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -138,7 +140,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -151,7 +153,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ConfigurationController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/ids <a href="../user/v1.0/deployer/configuration/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/ids <a href="./user/v1.0/deployer/configuration/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets the IDs of all the stored PlayBook descriptions.</p>
 
@@ -169,6 +171,10 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful query</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -227,9 +233,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ConfigurationController_post_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/post <a href="../user/v1.0/deployer/configuration/post" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/post <a href="./user/v1.0/deployer/configuration/post" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Post a deployment configuration.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -267,6 +273,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful post</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">contents are not valid (e.g. not a yaml format)</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -314,7 +328,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 201 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -327,7 +341,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ConfigurationController_toscaUpload_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/upload <a href="../user/v1.0/deployer/configuration/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/upload <a href="./user/v1.0/deployer/configuration/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Uploads and stores a PlayBook description file</p>
 
@@ -343,6 +357,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -350,6 +365,7 @@ Content-Type: application/json
             <td><span class="parameter-name">file</span></td>
             <td>query</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -363,6 +379,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful upload</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">Didn't upload (multipart) file or contents are not valid (e.g. not a yaml format)</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -408,7 +432,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 201 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -421,7 +445,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ConfigurationController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="./user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Deletes the PlayBook description.</p>
 
@@ -437,6 +461,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -444,6 +469,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -457,6 +483,10 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -502,7 +532,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -515,7 +545,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_ConfigurationController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="./user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets the PlayBook description.</p>
 
@@ -531,6 +561,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -538,11 +569,13 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">the ID PlayBook description.</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           <tr>
             <td><span class="parameter-name">format</span></td>
             <td>query</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -556,6 +589,18 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Object found</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">contents are not valid (e.g. not a yaml format)</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">Object not found</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>

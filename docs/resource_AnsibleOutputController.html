@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
-          <li><a href="#resource_AnsibleOutputController_getByCommand_GET"><abbr title="GET /user/v1.0/deployer/ansible">GET /user/v1.0/deployer/ansibl...</abbr></a></li>
+          <li><a href="#resource_AnsibleOutputController_getByCommand_GET"><abbr title="GET /user/v1.0/deployer/ansible/">GET /user/v1.0/deployer/ansibl...</abbr></a></li>
           <li><a href="#resource_AnsibleOutputController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/deployer/ansible/all">DELETE /user/v1.0/deployer/ans...</abbr></a></li>
           <li><a href="#resource_AnsibleOutputController_getCommands_GET"><abbr title="GET /user/v1.0/deployer/ansible/commands">GET /user/v1.0/deployer/ansibl...</abbr></a></li>
           <li><a href="#resource_AnsibleOutputController_getIds_GET"><abbr title="GET /user/v1.0/deployer/ansible/ids">GET /user/v1.0/deployer/ansibl...</abbr></a></li>
@@ -74,9 +74,9 @@
       <p>This controller is responsible for showing the output from ansible executions</p>
 
       <div id="resource_AnsibleOutputController_getByCommand_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible <a href="../user/v1.0/deployer/ansible" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/ <a href="./user/v1.0/deployer/ansible/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Query AnsibleOutput by executing command.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -90,6 +90,7 @@
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -97,6 +98,7 @@
             <td><span class="parameter-name">command</span></td>
             <td>query</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -110,6 +112,10 @@
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful query</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -145,7 +151,7 @@
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-GET /user/v1.0/deployer/ansible
+GET /user/v1.0/deployer/ansible/
 Accept: application/json
 
               </pre>
@@ -158,23 +164,23 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 [ {
-  &quot;host&quot; : &quot;...&quot;,
+  &quot;host&quot; : &quot;147.228.242.58&quot;,
   &quot;result&quot; : {
-    &quot;stderr&quot; : &quot;...&quot;,
-    &quot;start&quot; : &quot;...&quot;,
-    &quot;end&quot; : &quot;...&quot;,
     &quot;msg&quot; : &quot;...&quot;,
     &quot;changed&quot; : true,
+    &quot;end&quot; : 12345,
     &quot;stdout&quot; : &quot;...&quot;,
-    &quot;delta&quot; : &quot;...&quot;,
-    &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ]
+    &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+    &quot;start&quot; : 12345,
+    &quot;stderr&quot; : &quot;...&quot;,
+    &quot;delta&quot; : 12345
   },
-  &quot;vmType&quot; : &quot;...&quot;,
-  &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
-  &quot;cloudProvider&quot; : &quot;...&quot;,
-  &quot;provisionID&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;cloudDeploymentDomain&quot; : &quot;https://carach5.ics.muni.cz:11443&quot;,
+  &quot;vmType&quot; : &quot;medium&quot;,
+  &quot;provisionID&quot; : &quot;59172db6e452f1b9b666a621&quot;,
+  &quot;cloudProvider&quot; : &quot;ec2&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 } ]
                 </code>
@@ -185,9 +191,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_AnsibleOutputController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/ansible/all <a href="../user/v1.0/deployer/ansible/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/ansible/all <a href="./user/v1.0/deployer/ansible/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Deletes all entries. Use with caution !</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -203,6 +209,10 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -246,7 +256,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -259,9 +269,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_AnsibleOutputController_getCommands_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/commands <a href="../user/v1.0/deployer/ansible/commands" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/commands <a href="./user/v1.0/deployer/ansible/commands" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Query for used (unique) commands</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -277,6 +287,10 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful query</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -333,9 +347,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_AnsibleOutputController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/ids <a href="../user/v1.0/deployer/ansible/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/ids <a href="./user/v1.0/deployer/ansible/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Returns the ids of stored objects. Empty list if non stored</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -351,6 +365,10 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful query</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -407,9 +425,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_AnsibleOutputController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/ansible/{id} <a href="../user/v1.0/deployer/ansible/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/ansible/{id} <a href="./user/v1.0/deployer/ansible/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Deletes object</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -423,6 +441,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -430,6 +449,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -443,6 +463,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">Non existing id</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -486,7 +514,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -499,9 +527,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_AnsibleOutputController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/{id} <a href="../user/v1.0/deployer/ansible/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ansible/{id} <a href="./user/v1.0/deployer/ansible/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Returns an AnsibleOutput.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -515,6 +543,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -522,6 +551,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -535,6 +565,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">AnsibleOutput not found</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">AnsibleOutput exists</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -583,23 +621,23 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;host&quot; : &quot;...&quot;,
+  &quot;host&quot; : &quot;147.228.242.58&quot;,
   &quot;result&quot; : {
-    &quot;stderr&quot; : &quot;...&quot;,
-    &quot;start&quot; : &quot;...&quot;,
-    &quot;end&quot; : &quot;...&quot;,
     &quot;msg&quot; : &quot;...&quot;,
     &quot;changed&quot; : true,
+    &quot;end&quot; : 12345,
     &quot;stdout&quot; : &quot;...&quot;,
-    &quot;delta&quot; : &quot;...&quot;,
-    &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ]
+    &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+    &quot;start&quot; : 12345,
+    &quot;stderr&quot; : &quot;...&quot;,
+    &quot;delta&quot; : 12345
   },
-  &quot;vmType&quot; : &quot;...&quot;,
-  &quot;cloudDeploymentDomain&quot; : &quot;...&quot;,
-  &quot;cloudProvider&quot; : &quot;...&quot;,
-  &quot;provisionID&quot; : &quot;...&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;cloudDeploymentDomain&quot; : &quot;https://carach5.ics.muni.cz:11443&quot;,
+  &quot;vmType&quot; : &quot;medium&quot;,
+  &quot;provisionID&quot; : &quot;59172db6e452f1b9b666a621&quot;,
+  &quot;cloudProvider&quot; : &quot;ec2&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>

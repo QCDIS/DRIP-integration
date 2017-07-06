@@ -75,9 +75,9 @@
 resources.</p>
 
       <div id="resource_DeployController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/all <a href="../user/v1.0/deployer/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/all <a href="./user/v1.0/deployer/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Deletes all entries. Use with caution !</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -93,6 +93,10 @@ resources.</p>
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -136,7 +140,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -149,9 +153,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_DeployController_deploy_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/deploy <a href="../user/v1.0/deployer/deploy" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/deploy <a href="./user/v1.0/deployer/deploy" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Deploys software (inc. swarm ,kubernetes) to provisioned VMs.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -189,6 +193,22 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">Empty manager type. Aveliable: ansible, swarm ,kubernetes</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">Empty provision ID</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-danger response-code">500</span></td>
+            <td><span class="response-condition">Deploymet failed</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful deploymet</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -233,8 +253,8 @@ Accept: application/json
   &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;managerType&quot; : &quot;ansible&quot;,
   &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>
@@ -243,7 +263,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 201 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -256,9 +276,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_DeployController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ids <a href="../user/v1.0/deployer/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/ids <a href="./user/v1.0/deployer/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Gets the IDs of all the stored deployment descriptions.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -275,6 +295,10 @@ Content-Type: application/json
           </thead>
           <tbody>
           <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful query</span></td>
+          </tr>
+          <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
           </tr>
@@ -287,6 +311,7 @@ Content-Type: application/json
           <tr>
             <th>media type</th>
             <th>data type</th>
+            <th>description</th>
           </tr>
           </thead>
           <tbody>
@@ -294,6 +319,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">array of string
  (JSON)</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">a list of all the IDs</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -330,7 +356,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_DeployController_sample_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/sample <a href="../user/v1.0/deployer/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/sample <a href="./user/v1.0/deployer/sample" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -399,8 +425,8 @@ Content-Type: application/json
   &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;managerType&quot; : &quot;ansible&quot;,
   &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>
@@ -411,9 +437,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_DeployController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="../user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="./user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Deletes entry</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -427,6 +453,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -434,6 +461,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -447,6 +475,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Successful delete</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">Object not found</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -490,7 +526,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 204 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -503,9 +539,9 @@ Content-Type: application/json
       </div>
 
       <div id="resource_DeployController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="../user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/{id} <a href="./user/v1.0/deployer/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p></p>
+        <p>Returns a deployment description</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -519,6 +555,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -526,6 +563,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -539,6 +577,14 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">Object not found</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">Object not found</span></td>
+          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -587,36 +633,36 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
+  &quot;ansibleOutputList&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;keyPair&quot; : {
-    &quot;publicKey&quot; : {
-      &quot;type&quot; : &quot;PRIVATE&quot;,
-      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;,
-      &quot;attributes&quot; : {
-        &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
-        &quot;property2&quot; : &quot;domain_name:Virginia&quot;
-      },
-      &quot;name&quot; : &quot;id_dsa.pub&quot;
-    },
     &quot;privateKey&quot; : {
+      &quot;name&quot; : &quot;id_dsa.pub&quot;,
       &quot;type&quot; : &quot;PRIVATE&quot;,
-      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;,
       &quot;attributes&quot; : {
         &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
         &quot;property2&quot; : &quot;domain_name:Virginia&quot;
       },
-      &quot;name&quot; : &quot;id_dsa.pub&quot;
+      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;
+    },
+    &quot;publicKey&quot; : {
+      &quot;name&quot; : &quot;id_dsa.pub&quot;,
+      &quot;type&quot; : &quot;PRIVATE&quot;,
+      &quot;attributes&quot; : {
+        &quot;property1&quot; : &quot;domain_name:Virginia&quot;,
+        &quot;property2&quot; : &quot;domain_name:Virginia&quot;
+      },
+      &quot;key&quot; : &quot;-----BEGIN RSA PRIVATE KEY-----\\nMIIEogIBAAKCAQEAm6AALYxkJFNzD3bfVJ4+hMY5j0/kqM9CURLKXMlYuAysnvoG8wZKx9Bedefm\\neNSse4zTg798ZA2kDMZFIrwp1AseTwtj8DDu5fhG5DjyI3g6iJltS5zFQdMXneDlHXBX8cncSzNY\\nRx0NdjEMAe7YttvI8FNlxL0VnMFli/HB/ftzYMe5+AmkSROncVGHiwoiUpj+vtobCFOYtXsCf6ri\\nd4lgWA5wv6DZT/JKCYymiBqgSXu3ueFcEzw5SAukARWVjn1xccjZkokFfBbO/FpYY00TrUTBw9S6\\nD3iM+gj8RT6EKILOmhrt71D21S95WAWIT7h2YBsy1KAvMixhNf9VaQIDAQABAoIBAHhVYK3Xl3tr\\nN1Xm0ctJTQg3ijxhR2qsUBgGUokqezpdOoD2zbbOz7XvTYsX1GLr967U9pwxzUpELexexwiTvDgk\\nnLv8D7ui6qbRsmc4DSsWBRSophVIVFKQmftO8Xow6x+fuYJAYmsicM1KIYHBILtL+PSzV8anenWq\\nKQ3r0tfCiQhEzKEk4b1uT3SJWQyHE++JAhVkO7lIeb6S9Dg1jAaAeMnJ/NiMxTarpPRnxe6hsTsH\\ngG1iKWo+Skcl4SknOc+CMEfyDjG4FL7MGhKduahsO8vMUrgGsDD7EH3NiX/FweB8La6qpDYAwFpC\\nycrooyhiyzw8Wb5gGaYnmvr9l70CgYEAx74O8JleXaHpxEAmh4h7VbLmJ3mOylfBmOdzcHeedJQw\\nack2SAv65WBI9S9MEQ7J/vFuyw5HNk3C/mcWgzDQXSNIhHLvl/Z9sux/Qpm3SQWLzBxKV3dJ4r\\nwcAxzVA93+/L1Nee+VOKnlyRumvVa6+XLsLagpap2AVcTqlerMcCgYEAx3T2pXtqkCE9eU/ov22r\\npdaKjgHoGOUg1CMEfWi/Ch6sYIIRyrHz6dhy+yR1pXNgPbLWdrn8l88F3+IsmbaMupMgRmqwEC3G\\n9Y2FglGIVvRdZaagvRxLzRCcvcN4v6OYs9ST4o1xlv7Qxphld+0XDKv7VSCv/rASuK8BqlFL3E8C\\ngYArMXJRnRjG7qh6g9TRIjZphdI3XxX9s5Rt2D8iZvuhAhqmBZjzY4PR7kxYmO2+EpCjzNnEl0XW\\n/GHaWbiIjhnAykx4N9KP7gGom3O5lzwHUme1XnFKcO2wDjQwJbufRmba8iQF1srN577mF+Z7ha4V\\nJ1duCTzvWF1KFX6sk/uhKQKBgAcDFai7rgNjJ8YcCRKxyFcMM9LKPl6hr4XFtWKzTAQPEABUkkuN\\n9gVClsg9f+VRKRECOIf0Ae1UWeCFEwxUXp4wjfHrzkTDVztKvmbWdvSXorDwKrZ7SC7tZpVFSfly\\nxuuLjadpUZT9YFmbAfY1X5oSccOMYqORjRbxEB3svb4BAoGAGTgFuq9Zojh/KIqY8b4HpEfmh6CQ\\nhLVfD98Nqd6GDbxgvIM0v4mFXE92x2jn35Ia0JdFyh3B8Vkl7sqQZfxDFXI9O9pte2mxY9ICaY\\n55+X/SN1pd53BH+gaPZJy/R+Vpvs5MN48hoUKy5UKpoFeUWrS5QArjtvNCm4SGlXw=\\n-----END RSA PRIVATE KEY-----\\n&quot;
     },
     &quot;keyPairId&quot; : &quot;...&quot;,
-    &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
     &quot;owner&quot; : &quot;user1&quot;,
+    &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
     &quot;timestamp&quot; : 12345
   },
-  &quot;ansibleOutputList&quot; : [ &quot;...&quot;, &quot;...&quot; ],
   &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;managerType&quot; : &quot;ansible&quot;,
   &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 12345
 }
                 </code>

@@ -64,7 +64,7 @@
 
       <h1 class="page-header">User <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents a user.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -80,63 +80,9 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">roles</span>
-</td>
-          <td>  <span class="datatype-reference">array of string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">enabled</span>
-</td>
-          <td>  <span class="datatype-reference">boolean
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">password</span>
 </td>
           <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">accountNonExpired</span>
-</td>
-          <td>  <span class="datatype-reference">boolean
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">accountNonLocked</span>
-</td>
-          <td>  <span class="datatype-reference">boolean
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">username</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">credentialsNonExpired</span>
-</td>
-          <td>  <span class="datatype-reference">boolean
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -148,7 +94,62 @@
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description"></span>
+          <td>  <span class="property-description">The unique id of this object. This value is auto-generated when the DAO
+saves this object</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">username</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description">The username</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">accountNonExpired</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description">If the account is not expired</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">accountNonLocked</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description">If the account is not locked</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">credentialsNonExpired</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description">If the credentials are not expired</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">enabled</span>
+</td>
+          <td>  <span class="datatype-reference">boolean
+</span>
+</td>
+          <td>  <span class="property-description">If the account is enabled</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">roles</span>
+</td>
+          <td>  <span class="datatype-reference">array of string
+</span>
+</td>
+          <td>  <span class="property-description">The roles assigned to this user.</span>
 </td>
         </tr>
         </tbody>
@@ -157,14 +158,14 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;enabled&quot; : true,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
-  &quot;username&quot; : &quot;user&quot;,
   &quot;credentialsNonExpired&quot; : true,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;enabled&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ]
 }</pre>
 
         <footer class="footer">

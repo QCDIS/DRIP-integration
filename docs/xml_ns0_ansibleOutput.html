@@ -64,7 +64,8 @@
 
       <h1 class="page-header">ansibleOutput <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents the the ansible out put for a specific VM. This can be
+used as a archive / log of ansible executions</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -101,7 +102,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The cloud domain where the VM that run the playbook</span>
 </td>
         </tr>
         <tr>
@@ -119,7 +120,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The cloud provider</span>
 </td>
         </tr>
         <tr>
@@ -137,7 +138,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The host (IP) of the VM that executed the playbook</span>
 </td>
         </tr>
         <tr>
@@ -155,7 +156,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The provision used to spawn the VM for this playbook execution</span>
 </td>
         </tr>
         <tr>
@@ -173,7 +174,7 @@
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">&nbsp;</span>
+          <td>  <span class="property-description">The type of VM that run the playbook</span>
 </td>
         </tr>
         </tbody>
@@ -191,7 +192,8 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         <tr>
           <td><span class="property-name">timestamp</span></td>
@@ -203,7 +205,7 @@
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">&nbsp;</span></td>
+          <td><span class="property-description">the timestamp</span></td>
         </tr>
         </tbody>
       </table>
@@ -211,11 +213,11 @@
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-xml example">&lt;a-----&gt;
-  &lt;cloudProvider&gt;ec2&lt;/cloudProvider&gt;
-  &lt;cloudDeploymentDomain&gt;https://carach5.ics.muni.cz:11443&lt;/cloudDeploymentDomain&gt;
-  &lt;provisionID&gt;59172db6e452f1b9b666a621&lt;/provisionID&gt;
   &lt;host&gt;147.228.242.58&lt;/host&gt;
+  &lt;cloudDeploymentDomain&gt;https://carach5.ics.muni.cz:11443&lt;/cloudDeploymentDomain&gt;
   &lt;vmType&gt;medium&lt;/vmType&gt;
+  &lt;provisionID&gt;59172db6e452f1b9b666a621&lt;/provisionID&gt;
+  &lt;cloudProvider&gt;ec2&lt;/cloudProvider&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
   &lt;timestamp&gt;...&lt;/timestamp&gt;
 &lt;/a-----&gt;

@@ -64,7 +64,9 @@
 
       <h1 class="page-header">AnsibleResult <small>Data Type</small></h1>
 
-      <p></p>
+      <p>This class represents an ansible execution result. This can be used as a
+archive / log of ansible executions for example how much time it took for
+execution, errors etc.</p>
 
       <dl class="dl-horizontal">
       </dl>
@@ -79,33 +81,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>  <span class="property-name">stderr</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">start</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">end</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
         <tr>
           <td>  <span class="property-name">msg</span>
 </td>
@@ -125,16 +100,16 @@
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">stdout</span>
+          <td>  <span class="property-name">end</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">number
 </span>
 </td>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">delta</span>
+          <td>  <span class="property-name">stdout</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -151,20 +126,47 @@
           <td>  <span class="property-description"></span>
 </td>
         </tr>
+        <tr>
+          <td>  <span class="property-name">start</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">stderr</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">delta</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
         </tbody>
       </table>
 
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;stderr&quot; : &quot;...&quot;,
-  &quot;start&quot; : &quot;...&quot;,
-  &quot;end&quot; : &quot;...&quot;,
   &quot;msg&quot; : &quot;...&quot;,
   &quot;changed&quot; : true,
+  &quot;end&quot; : 12345,
   &quot;stdout&quot; : &quot;...&quot;,
-  &quot;delta&quot; : &quot;...&quot;,
-  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ]
+  &quot;cmd&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;start&quot; : 12345,
+  &quot;stderr&quot; : &quot;...&quot;,
+  &quot;delta&quot; : 12345
 }</pre>
 
         <footer class="footer">

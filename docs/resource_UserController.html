@@ -74,7 +74,7 @@
       <p>This controller is responsible for handling user accounts</p>
 
       <div id="resource_UserController_getAll_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/all <a href="../manager/v1.0/user/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/all <a href="./manager/v1.0/user/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -140,14 +140,14 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 [ {
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;enabled&quot; : true,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
-  &quot;username&quot; : &quot;user&quot;,
   &quot;credentialsNonExpired&quot; : true,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;enabled&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ]
 } ]
                 </code>
               </pre>
@@ -157,7 +157,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_UserController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/ids <a href="../manager/v1.0/user/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/ids <a href="./manager/v1.0/user/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets the IDs of all the stored users</p>
 
@@ -233,7 +233,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_UserController_modify_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/manager/v1.0/user/modify <a href="../manager/v1.0/user/modify" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/manager/v1.0/user/modify <a href="./manager/v1.0/user/modify" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p></p>
 
@@ -314,14 +314,14 @@ Accept: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;enabled&quot; : true,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
-  &quot;username&quot; : &quot;user&quot;,
   &quot;credentialsNonExpired&quot; : true,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;enabled&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ]
 }
                 </code>
               </pre>
@@ -342,7 +342,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_UserController_register_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/manager/v1.0/user/register <a href="../manager/v1.0/user/register" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/manager/v1.0/user/register <a href="./manager/v1.0/user/register" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Register new user. A normal user cannot create accounts, only the user
 with the 'ADMIN' role can do that.</p>
@@ -428,14 +428,14 @@ Accept: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;enabled&quot; : true,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
-  &quot;username&quot; : &quot;user&quot;,
   &quot;credentialsNonExpired&quot; : true,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;enabled&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ]
 }
                 </code>
               </pre>
@@ -456,7 +456,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_UserController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/manager/v1.0/user/{id} <a href="../manager/v1.0/user/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/manager/v1.0/user/{id} <a href="./manager/v1.0/user/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Deletes a user</p>
 
@@ -472,6 +472,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -479,6 +480,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -550,7 +552,7 @@ Content-Type: application/json
       </div>
 
       <div id="resource_UserController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/{id} <a href="../manager/v1.0/user/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/manager/v1.0/user/{id} <a href="./manager/v1.0/user/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
         <p>Gets the user.</p>
 
@@ -566,6 +568,7 @@ Content-Type: application/json
             <th>name</th>
             <th>type</th>
             <th>description</th>
+            <th>constraints</th>
           </tr>
           </thead>
           <tbody>
@@ -573,6 +576,7 @@ Content-Type: application/json
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
             <td><span class="parameter-description">&nbsp;</span></td>
+            <td><span class="parameter-constraints">required</span></td>
           </tr>
           </tbody>
         </table>
@@ -636,14 +640,14 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ],
-  &quot;enabled&quot; : true,
   &quot;password&quot; : &quot;...&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
-  &quot;username&quot; : &quot;user&quot;,
   &quot;credentialsNonExpired&quot; : true,
-  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;
+  &quot;enabled&quot; : true,
+  &quot;roles&quot; : [ &quot;[\&quot;ADMIN\&quot;,\&quot;USER\&quot;]&quot;, &quot;...&quot; ]
 }
                 </code>
               </pre>
