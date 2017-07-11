@@ -1,836 +1,240 @@
-topology_template: 
-  node_templates: 
-    "6be727ce-5fa1-4e6d-9a37-438d0ec94ff0": 
-      artifacts: 
-        "inputdistributor.cardiff_image": 
-          type: "tosca.artifacts.Deployment.Image.Container.Docker"
-          file: "mogswitch/ProxyTranscoder:1.0"
-          repository: SWITCH_docker_hub
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 1GHz
-                  mem_size: 1GB
-                  num_cpus: 1
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor.Cardiff"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "24ba657c-8a18-4c7f-aed9-9498d88a85d2": 
-            type: out
-            port: " 1 "
-        multicastAddrPort: 3000
-        inPort: 2000
-        in_ports: 
-          "92aa59bd-2c48-4f25-a27f-1412dd2cc849": 
-            type: in
-            port: " inPort "
-        waitingTime: 5
-        multicastAddrIP: "225.2.2.0"
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: "${inPort}"
-            container_port: "${inPort}"
-    "573924ff-c075-4dfc-95c4-489e0a189040": 
-      artifacts: 
-        "inputdistributor.cardiff_image": 
-          type: "tosca.artifacts.Deployment.Image.Container.Docker"
-          file: "mogswitch/ProxyTranscoder:1.0"
-          repository: SWITCH_docker_hub
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 1GHz
-                  mem_size: 1GB
-                  num_cpus: 1
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor.Cardiff"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "030029d5-63ef-472f-9697-df1380505281": 
-            type: out
-            port: " 1 "
-        multicastAddrPort: 3000
-        inPort: 2000
-        in_ports: 
-          "40974a48-8bcb-48ba-80a6-4d3c5f26f502": 
-            type: in
-            port: " inPort "
-        waitingTime: 5
-        multicastAddrIP: "225.2.2.2"
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: "${multicastAddrPort}"
-            container_port: "${multicastAddrPort}"
-    "8bc5abcb-ae55-4f82-adc6-21d4a2475381": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "8b5621b5-fbe9-4f4a-b68a-57b00cb07b6a"
-          port_name: "52d0aa2c-0775-44b1-857e-006817a3d637"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "573924ff-c075-4dfc-95c4-489e0a189040"
-          port_name: "030029d5-63ef-472f-9697-df1380505281"
-          address: ""
-    "f9a17d09-d8bd-4f95-962a-3d86d71d1332": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "8bffa661-cfa4-49df-ad83-7eba8498b405"
-          port_name: "2e50ce74-9396-4058-8402-997d196c9fd7"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "573924ff-c075-4dfc-95c4-489e0a189040"
-          port_name: "030029d5-63ef-472f-9697-df1380505281"
-          address: ""
-    "a52c6766-6805-4c62-ab71-e2353388d4d5": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "432dc3f6-4d1c-4092-a365-7837ef92279c"
-          port_name: "7c36b4c1-58e1-4011-b00f-7641e09b2e5a"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "8b5621b5-fbe9-4f4a-b68a-57b00cb07b6a"
-          port_name: "88d8db9a-7621-440c-8c80-370a2020b810"
-          address: ""
-    "bce936d3-fee5-4217-9c44-710e78c94a70": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "8b5621b5-fbe9-4f4a-b68a-57b00cb07b6a"
-          port_name: "a75bc9ef-b485-4db7-8226-9c3d76ae8a9e"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "6be727ce-5fa1-4e6d-9a37-438d0ec94ff0"
-          port_name: "24ba657c-8a18-4c7f-aed9-9498d88a85d2"
-          address: ""
-    "8b5621b5-fbe9-4f4a-b68a-57b00cb07b6a": 
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 3Ghz
-                  mem_size: 1GB
-                  num_cpus: 1
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_Switcher.Cardiff"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        switcherOutAddrIP: "226.2.2.2"
-        multicastAddrPort: 3000
-        multicastAddrPort2: 3002
-        in_ports: 
-          "a75bc9ef-b485-4db7-8226-9c3d76ae8a9e": 
-            type: in
-            port: " switcherREST "
-          "62bdc6c5-b179-4661-bda7-a5f94ee17247": 
-            type: in
-            port: " 3 "
-          "52d0aa2c-0775-44b1-857e-006817a3d637": 
-            type: in
-            port: " 2 "
-        waitingTime: 5
-        multicastAddrIP: "225.2.2.0"
-        switcherOutAddrPort: 6000
-        multicastAddrIP2: "225.2.2.2"
-        switcherREST: 8008
-        out_ports: 
-          "88d8db9a-7621-440c-8c80-370a2020b810": 
-            type: out
-            port: " 1 "
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: "${switcherREST}"
-            container_port: "${switcherREST}"
-        videoWidth: 176
-        videoHeight: 100
-    "5a7c790f-e0cd-4eae-9145-85d2d9aadc66": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "7855f235-7cd8-4091-8acc-f1df70bae6e2"
-          port_name: "4e52e9f4-19d2-4b32-96ee-67bd5775ab93"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "8b5621b5-fbe9-4f4a-b68a-57b00cb07b6a"
-          port_name: "88d8db9a-7621-440c-8c80-370a2020b810"
-          address: ""
-    "7855f235-7cd8-4091-8acc-f1df70bae6e2": 
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 3GHz
-                  mem_size: 1GB
-                  num_cpus: 2
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_ProxyTranscoder"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "60eea86c-64ed-48da-b991-6bf7c49c861c": 
-            type: out
-            port: " outPort "
-        multicastAddrPort: 3000
-        in_ports: 
-          "4e52e9f4-19d2-4b32-96ee-67bd5775ab93": 
-            type: in
-            port: " 1 "
-        multicastAddrIP: "225.2.2.0"
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: 8085
-            container_port: 80
-    "849ea5ba-9938-46aa-8d3d-d525f5d87102": 
-      type: "Switch.nodes.Application.Connection"
-      properties: 
-        latency: 20ms
-        bandwidth: 1Gb
-        target: 
-          netmask: ""
-          component_name: "58ed77c3-8397-4e27-a4ab-0be0fee0569c"
-          port_name: "6f14898d-007d-419c-a41b-02099611f77f"
-          address: ""
-        source: 
-          netmask: ""
-          component_name: "6be727ce-5fa1-4e6d-9a37-438d0ec94ff0"
-          port_name: "24ba657c-8a18-4c7f-aed9-9498d88a85d2"
-          address: ""
-    "8bffa661-cfa4-49df-ad83-7eba8498b405": 
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 3GHz
-                  mem_size: 1GB
-                  num_cpus: 2
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_ProxyTranscoder"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "4bd7ba2b-6f49-4648-9c9c-cdd118e011f3": 
-            type: out
-            port: " outPort "
-        multicastAddrPort: 3000
-        in_ports: 
-          "2e50ce74-9396-4058-8402-997d196c9fd7": 
-            type: in
-            port: " 1 "
-        multicastAddrIP: "225.2.2.0"
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: 8081
-            container_port: 80
-    "58ed77c3-8397-4e27-a4ab-0be0fee0569c": 
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 3GHz
-                  mem_size: 1GB
-                  num_cpus: 2
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_ProxyTranscoder"
-      properties: 
-        scaling_mode: single
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "1e8c4827-5dcc-40c6-840b-f14f09f9ae28": 
-            type: out
-            port: " outPort "
-        multicastAddrPort: 3000
-        in_ports: 
-          "6f14898d-007d-419c-a41b-02099611f77f": 
-            type: in
-            port: " 1 "
-        multicastAddrIP: "225.2.2.2"
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: 8082
-            container_port: 80
-    "432dc3f6-4d1c-4092-a365-7837ef92279c": 
-      requirements: 
-        - host: 
-            node_filter: 
-              capabilities: 
-                host: 
-                  cpu_frequency: 3GHz
-                  mem_size: 1GB
-                  num_cpus: 2
-                  disk_size: 1GB
-                os: 
-                  os_version: 16.04
-                  distribution: ubuntu
-                  type: linux
-                  architecture: x86_64
-      type: "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_OutputTranscoder.Cardiff"
-      properties: 
-        OutIP: "192.168.1.194"
-        QoS: 
-          packet_loss: 0
-          response_time: 30ms
-        out_ports: 
-          "78fec7a2-e803-4e4a-b5e2-b0afcdb7d3f1": 
-            type: out
-            port: " outPort "
-        scaling_mode: single
-        OutPort: 4000
-        in_ports: 
-          "7c36b4c1-58e1-4011-b00f-7641e09b2e5a": 
-            type: in
-            port: " 1 "
-        ports_mapping: 
-          port_mapping_0: 
-            host_port: "${OutPort}"
-            container_port: "${OutPort}"
-        videoWidth: 176
-        videoHeight: 100
-artifact_types: 
-  "tosca.artifacts.Deployment.Image.Container.Docker": 
-    derived_from: "tosca.artifacts.Deployment.Image"
-description: "MOG use case"
-node_types: 
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS.MOG_Input_Distributor": 
-    artifacts: 
-      switcher_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      Input_RTP_TS_Port: 
-        default: 2000
-        type: string
-      Waiting_Time: 
-        default: 5
-        type: string
-      Output_Uncompressed_Video_Multicast_Address: 
-        default: "225.2.2.0"
-        type: string
-      Output_Uncompressed_Video_Multicast_Port: 
-        default: "3000 waiting time Waiting time (in seconds) for Input Distributor to receive TS stream 5 switcherOutAddrIP Multicast IP address where Video Switcher"
-        type: string
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_ProxyTranscoder": 
-    properties: 
-      multicastAddrPort: 
-        default: 3000
-        type: "Switch.datatypes.port"
-      multicastAddrIP: 
-        default: "225.2.2.0"
-        type: "Switch.datatypes.Network.Multicast"
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Constraint": 
-    properties: 
-      QoS: 
-        type: "Switch.datatypes.QoS.AppComponent"
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Compute": 
-    derived_from: "tosca.nodes.Compute"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor": 
-    properties: 
-      inPort: 
-        default: 2000
-        type: "Switch.datatypes.port"
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "tosca.groups.Root": 
-  "Switch.nodes.Application.Container.Docker.MOG_ProxyTranscoder": 
-    artifacts: 
-      proxytranscoder_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      multicastAddrPort: 
-        default: 3000
-        type: integer
-      multicastAddrIP: 
-        default: "255.2.2.0"
-        type: string
-      videoWidth: 
-        default: 170
-        type: integer
-      videoHeight: 
-        default: 100
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Requirement": 
-    properties: 
-      host: 
-        type: "Switch.datatypes.hw.host"
-      os: 
-        type: "Switch.datatypes.hw.os"
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker.MOG_InputDistributor": 
-    artifacts: 
-      inputdistributor_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/InputDistributor:1.0"
-    properties: 
-      waitingTime: 
-        default: 5
-        type: integer
-      multicastAddrIP: 
-        default: "255.2.2.0"
-        type: string
-      multicastAddrPort: 
-        default: 3000
-        type: integer
-      videoWidth: 
-        default: 170
-        type: integer
-      inPort: 
-        default: 2000
-        type: integer
-      videoHeight: 
-        default: 100
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Application.Connection": 
-    properties: 
-      source: 
-        type: "Switch.datatypes.Application.Connection.EndPoint"
-      bandwidth: 
-        type: integer
-      multicast: 
-        type: "Switch.datatypes.Network.Multicast"
-      jitter: 
-        required: false
-        type: integer
-      target: 
-        type: "Switch.datatypes.Application.Connection.EndPoint"
-      latency: 
-        required: false
-        type: integer
-      QoS: 
-        type: "Switch.datatypes.QoS.AppComponent"
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker": 
-    requirements: 
-      - monitored_by: 
-          node: "Switch.nodes.MonitoringAgent"
-          capability: "tosca.capabilities.Node"
-          relationship: "tosca.relationships.DependsOn"
-    properties: 
-      in_ports: 
-        entry_schema: 
-          type: "Switch.datatypes.port"
-        required: false
-        type: map
-      dockers: 
-        required: false
-        type: string
-      QoS: 
-        required: false
-        type: "Switch.datatypes.QoS.AppComponent"
-      name: 
-        required: false
-        type: string
-      out_ports: 
-        entry_schema: 
-          type: "Switch.datatypes.port"
-        required: false
-        type: map
-      ports_mapping: 
-        entry_schema: 
-          type: "Switch.datatypes.port_mapping"
-        type: map
-      scaling_mode: 
-        required: false
-        type: string
-      ethernet_port: 
-        entry_schema: 
-          type: "Switch.datatypes.ethernet_port"
-        required: false
-        type: list
-    derived_from: "tosca.nodes.Container.Application"
-  "Switch.nodes.ExternalComponent": 
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS.MOG_Switcher": 
-    properties: 
-      Output_Uncompressed_Video_Multicast_Address: 
-        default: "226.2.2.2"
-        type: string
-      Output_REST_PORT: 
-        default: 8008
-        type: string
-      Input_A_Uncompressed_Video_Multicast_Address: 
-        default: "225.2.2.0"
-        type: string
-      Input_Video_Height: 
-        default: 100
-        type: string
-      Input_B_Uncompressed_Video_Multicast_Port: 
-        default: 3002
-        type: string
-      Output_Uncompressed_Video_Multicast_Port: 
-        default: 6000
-        type: string
-      Input_Video_Width: 
-        default: 176
-        type: string
-      Input_A_Uncompressed_Video_Multicast_Port: 
-        default: 3000
-        type: string
-      Input_B_Uncompressed_Video_Multicast_Address: 
-        default: "225.2.2.1"
-        type: string
-      Waiting_Time: 
-        default: 5
-        type: string
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Application.Container.Docker.LOKSORR_Bb": 
-    artifacts: 
-      bb_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      bb: 
-        type: string
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Component": 
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Network": 
-    derived_from: "tosca.nodes.network.Network"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_Input": 
-    artifacts: 
-      input_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      port2: 
-        default: 24
-        type: integer
-      port: 
-        default: 23
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Application.Container.Docker.UL_JitsiMeet_docker": 
-    artifacts: 
-      jitsimeet_docker_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      ips: 
-        type: string
-      deploy: 
-        type: string
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.VirtualNetwork": 
-    properties: 
-      subnet: 
-        default: "192.168.10.0"
-        type: string
-      netmask: 
-        default: "255.255.255.0"
-        type: string
-      name: 
-        type: string
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_Switcher.Cardiff": 
-    properties: 
-      waitingTime: 
-        default: 5
-        type: integer
-      multicastAddrIP: 
-        default: "225.2.2.0"
-        type: "Switch.datatypes.Network.Multicast"
-      switcherREST: 
-        default: switcherREST
-        type: "Switch.datatypes.port"
-      switcherOutAddrPort: 
-        default: 6000
-        type: "Switch.datatypes.port"
-      multicastAddrIP2: 
-        default: "225.2.2.2"
-        type: "Switch.datatypes.Network.Multicast"
-      switcherOutAddrIP: 
-        default: "226.2.2.2"
-        type: "Switch.datatypes.Network.Multicast"
-      multicastAddrPort: 
-        default: 3000
-        type: "Switch.datatypes.port"
-      videoWidth: 
-        default: 176
-        type: integer
-      multicastAddrPort2: 
-        default: 3002
-        type: "Switch.datatypes.port"
-      videoHeight: 
-        default: 100
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.EventListener": 
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.MonitoringAgent": 
-    requirements: 
-      - monitor_server_endpoint: 
-          node: "Switch.nodes.Application.Container.Docker.MonitoringServer"
-          capability: "tosca.capabilities.Node"
-          relationship: "tosca.relationships.DependsOn"
-    properties: 
-      agent_id: 
-        default: null
-        type: string
-      probes: 
-        entry_schema: 
-          type: "Switch.datatypes.monitoring.probe"
-        type: map
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.AdaptationPolicy": 
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor.Cardiff": 
-    artifacts: 
-      "switcher.cardiff_image": 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "mogswitch/ProxyTranscoder:1.0"
-    properties: 
-      multicastAddrPort: 
-        default: 3000
-        type: "Switch.datatypes.port"
-      multicastAddrIP: 
-        default: "225.2.2.0"
-        type: "Switch.datatypes.Network.Multicast"
-      inPort: 
-        default: 2000
-        type: "Switch.datatypes.port"
-      waitingTime: 
-        default: 5
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.Application.Container.Docker.MonitoringServer": 
-    artifacts: 
-      monitoring_server_image: 
-        type: "tosca.artifacts.Deployment.Image.Container.Docker"
-        repository: SWITCH_docker_hub
-        file: "salmant/salman_monitoring_server_container_image"
-    properties: 
-      ports_mapping: 
-        entry_schema: 
-          type: "Switch.datatypes.port_mapping"
-        type: map
-    derived_from: "Switch.nodes.Application.Container.Docker"
-  "Switch.nodes.MessagePasser": 
-    derived_from: "tosca.nodes.Root"
-  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_OutputTranscoder.Cardiff": 
-    properties: 
-      OutIP: 
-        default: "192.168.1.194"
-        type: "Switch.datatypes.Network.Multicast"
-      videoWidth: 
-        default: 176
-        type: integer
-      OutPort: 
-        default: 4000
-        type: "Switch.datatypes.port"
-      videoHeight: 
-        default: 100
-        type: integer
-    derived_from: "Switch.nodes.Application.Container.Docker"
-repositories: 
-  SWITCH_docker_hub: 
-    url: "https://github.com/switch-project"
-    credential: 
-      token_type: "X-Auth-Token"
-      token: 604bbe45ac7143a79e14f3158df67091
-      protocol: xauth
-    description: "switch repository in GitHub"
-data_types: 
-  "Switch.datatypes.monitoring.metric.threshold": 
-    properties: 
-      operator: 
-        type: string
-      value: 
-        type: integer
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.port": 
-    properties: 
-      type: 
-        type: string
-      port: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.Application.Connection.EndPoint": 
-    properties: 
-      netmask: 
-        type: string
-      component_name: 
-        type: string
-      port_name: 
-        type: string
-      address: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.monitoring.probe": 
-    properties: 
-      active: 
-        type: boolean
-      path: 
-        required: false
-        type: string
-      static: 
-        type: boolean
-      name: 
-        type: string
-      metrics: 
-        entry_schema: 
-          type: "Switch.datatypes.monitoring.metric"
-        type: map
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.hw.host": 
-    properties: 
-      cpu_frequency: 
-        type: float
-      mem_size: 
-        type: integer
-      num_cpus: 
-        type: integer
-      disk_size: 
-        type: integer
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.ethernet_port": 
-    properties: 
-      subnet_name: 
-        type: string
-      name: 
-        type: string
-      address: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.hw.os": 
-    properties: 
-      os_version: 
-        type: string
-      distribution: 
-        type: string
-      type: 
-        type: string
-      architecture: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.QoS.AppComponent": 
-    properties: 
-      response_time: 
-        type: integer
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.Application.Connection.Multicast": 
-    properties: 
-      multicastAddrPort: 
-        type: string
-      multicastAddrIP: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.Network.Multicast": 
-    properties: 
-      multicastAddrPort: 
-        type: string
-      multicastAddrIP: 
-        type: string
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.port_mapping": 
-    properties: 
-      host_port: 
-        type: integer
-      container_port: 
-        type: integer
-    derived_from: "tosca.datatypes.Root"
-  "Switch.datatypes.monitoring.metric": 
-    properties: 
-      thresholds: 
-        entry_schema: 
-          type: "Switch.datatypes.monitoring.metric.threshold"
-        required: false
-        type: map
-      type: 
-        type: string
-      name: 
-        type: string
-      unit: 
-        required: false
-        type: string
-    derived_from: "tosca.datatypes.Root"
 tosca_definitions_version: tosca_simple_yaml_1_0
+description: example file for infrastructure planner
+repositories:
+    MOG_docker_hub: 
+      description: MOG project’s code repository in GitHub
+      url: https://github.com/switch-project/mog
+      credential:
+        protocol: xauth
+        token_type: X-Auth-Token
+        # token encoded in Base64
+        token: 604bbe45ac7143a79e14f3158df67091
+artifact_types:
+  tosca.artifacts.Deployment.Image.Container.Docker:
+    derived_from: tosca.artifacts.Deployment.Image
+data_types:
+  Switch.datatypes.QoS.AppComponent:
+    derived_from: tosca.datatypes.Root
+    properties:
+      response_time:
+        type: string
+  Switch.datatypes.Application.Connection.EndPoint:
+    derived_from: tosca.datatypes.Root
+    properties:
+      address:
+        type: string
+      component_name:
+        type: string
+      netmask:
+        type: string
+      port_name:
+        type: string
+  Switch.datatypes.Application.Connection.Multicast:
+    derived_from: tosca.datatypes.Root
+    properties:
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+  Switch.datatypes.Network.EndPoint:
+    derived_from: tosca.datatypes.Root
+    properties:
+      address:
+        type: string
+      host_name:
+        type: string
+      netmask:
+        type: string
+      port_name:
+        type: string
+  Switch.datatypes.Network.Multicast:
+    derived_from: tosca.datatypes.Root
+    properties:
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+node_types:
+  Switch.nodes.Application.Container.Docker:
+    derived_from: tosca.nodes.Container.Application
+    properties:
+      QoS:
+        type: Switch.datatypes.QoS.AppComponent
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+    interfaces:
+      Standard:
+        create:
+          inputs:
+            command:
+              type: string
+            exported_ports:
+              type: list
+              entry_schema:
+                type: string
+            port_bindings:
+              type: list
+              entry_schema:
+                type: string
+  Switch.nodes.Application.Container.Docker.MOG.InputDistributor:
+    derived_from: Switch.nodes.Application.Container.Docker
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+        file: "mogswitch/InputDistributor:1.0"
+        repository: MOG_docker_hub
+    properties:
+      inPort: 
+        type: integer
+      waitingTime:
+        type: integer
+      multicastAddrIP:
+        type: string
+      multicastAddrPort:
+        type: integer
+      videoWidth:
+        type: integer
+      videoHeight:
+        type: integer
+  Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder:
+    derived_from: Switch.nodes.Application.Container.Docker 
+    artifacts:
+      docker_image:
+        type: tosca.artifacts.Deployment.Image.Container.Docker
+        file: "mogswitch/ProxyTranscoder:1.0"
+        repository: MOG_docker_hub
+    properties:
+      multicastAddrIP: 
+        type: string
+      multicastAddrPort:
+        type: integer
+      videoWidth:
+        type: integer
+      videoHeight:
+        type: integer
+  Switch.nodes.Application.Connection:
+    derived_from: tosca.nodes.Root 
+    properties:
+      source:
+        type: Switch.datatypes.Application.Connection.EndPoint
+      target:
+        type: Switch.datatypes.Application.Connection.EndPoint
+      bandwidth:
+        type: string
+      latency: 
+        type: string
+      jitter:  
+        type: string
+      multicast:
+        type: Switch.datatypes.Application.Connection.Multicast
+  Switch.nodes.Compute:
+    derived_from: tosca.nodes.Compute
+    properties:
+      OStype:
+        type: string
+      nodetype:
+        type: string
+      domain:
+        type: string
+      public_address:
+        type: string
+      ethernet_port:
+        type: list
+        entry_schema:
+          type: tosca.datatypes.network.NetworkInfo
+      script:
+        type: string
+      installation:
+        type: string
+      ssh_credential:
+        type: tosca.datatypes.Credential
+  Switch.nodes.Network:
+    derived_from: tosca.nodes.network.Network
+    properties:
+      bandwidth:
+        type: string
+      latency:
+        type: string
+      jitter:
+        type: string
+      source:
+        type: Switch.datatypes.Network.EndPoint
+      target:
+        type: Switch.datatypes.Network.EndPoint
+      multicast:
+        type: Switch.datatypes.Network.Multicast
+topology_template:
+  node_templates:
+    2d13d708e3a9441ab8336ce874e08dd1:
+      type: Switch.nodes.Application.Container.Docker.MOG.InputDistributor
+      artifacts:
+        docker_image:
+          file: "mogswitch/InputDistributor:1.0"
+          type: tosca.artifacts.Deployment.Image.Container.Docker
+          repository: MOG_docker_hub
+      properties:
+        QoS:
+          response_time: 30ms
+        inPort: 2000
+        waitingTime: 5
+        multicastAddrIP: 255.2.2.0
+        multicastAddrPort: 3000
+        videoWidth: 176
+        videoHeight: 100
+      interfaces:
+        Standard:
+          create:
+            implementation: docker_image
+            inputs:
+              command: InputDistributor
+              exported_ports:
+                - 2000
+              port_bindings:
+                - "2000:2000"
+                - "3000:3000"
+
+    8fcc1788d9ee462c826572c79fdb2a6a:
+      type: Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder
+      artifacts:
+        docker_image:
+          file: "mogswitch/ProxyTranscoder:1.0"
+          type: tosca.artifacts.Deployment.Image.Container.Docker
+          repository: MOG_docker_hub
+      properties:
+        QoS:
+          response_time: 30ms
+        multicastAddrIP: 255.2.2.0
+        multicastAddrPort: 3000
+        videoWidth: 176
+        videoHeight: 100
+      interfaces:
+        Standard:
+          create:
+            implementation: docker_image
+            inputs:
+              command: ProxyTranscoder
+              exported_ports:
+                - 80
+              port_bindings:
+                - "8080:80"
+
+    5e0add703c8a43938a39301f572e46c0:
+      type: Switch.nodes.Application.Connection
+      properties:
+        source:
+          address: 192.168.21.11
+          component_name: 2d13d708e3a9441ab8336ce874e08dd1
+          netmask: 255.255.255.0
+          port_name: "inputDistributor_out"
+        target:
+          address: 192.168.21.12
+          component_name: 8fcc1788d9ee462c826572c79fdb2a6a
+          netmask: 255.255.255.0
+          port_name: "proxyTranscoder_in"
+        latency: 30ms
+        bandwidth: 130MB/s
+        jitter: 500ms
+        multicast:
+          multicastAddrIP: 255.2.2.0
+          multicastAddrPort: 3000
