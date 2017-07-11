@@ -16,7 +16,7 @@ components:
   nodeType: "medium"
   OStype: "Ubuntu 14.04"
   script: null
-  role: null
+  role: slave
   dockers: null
   publicAddress: null
   ethernetPort: null
