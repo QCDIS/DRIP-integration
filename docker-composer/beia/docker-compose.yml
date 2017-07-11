@@ -1,0 +1,85 @@
+version: '3'
+
+services:
+    telegreen:
+        build:
+            context: ../software/telegreen
+        image: beia/telegreen
+        ports:
+         - "8080:80"
+        environment:
+         - MYSQL_ROOT_PASSWORD=doesntmatter
+         - MYSQL_DATABASE=telegreen
+         - MYSQL_USER=telegreen
+         - MYSQL_PASSWORD=password
+         - MYSQL_HOST=telegreen_db
+        depends_on:
+         - telegreen_db
+        networks:
+         - db
+         - monitoring
+         - external
+    telegreen_db:
+        build:
+            context: ../software/database
+        image: beia/telegreen_db
+        environment:
+         - MYSQL_ROOT_PASSWORD=doesntmatter
+         - MYSQL_DATABASE=telegreen
+         - MYSQL_USER=telegreen
+         - MYSQL_PASSWORD=password
+         - MYSQL_HOST=telegreen_db
+        networks:
+         - db
+         - monitoring
+    alerter:
+        build:
+            context: ../software/samplegen
+        image: beia/alerter
+        command:
+         - "/srv/beia/scripts/run-node.sh /srv/beia/samplegen app/AlerterApp.class.js"
+        image: beia/alerter
+        environment:
+         - MYSQL_ROOT_PASSWORD=doesntmatter
+         - MYSQL_DATABASE=telegreen
+         - MYSQL_USER=telegreen
+         - MYSQL_PASSWORD=password
+         - MYSQL_HOST=telegreen_db
+        depends_on:
+         - telegreen_db
+        networks:
+         - db
+         - external
+    samplegen:
+        build:
+            context: ../software/samplegen
+        image: beia/samplegen
+        command:
+         - "/srv/beia/scripts/run-node.sh /srv/beia/samplegen app/SampleGeneratorApp.class.js"
+        ports:
+         - "8128:8000"
+        environment:
+         - MYSQL_ROOT_PASSWORD=doesntmatter
+         - MYSQL_DATABASE=telegreen
+         - MYSQL_USER=telegreen
+         - MYSQL_PASSWORD=password
+         - MYSQL_HOST=telegreen_db
+        depends_on:
+         - telegreen_db
+        networks:
+         - db
+         - external
+    beia_mon:
+        build:
+            context: ../software/monitoring
+        image: beia/monitoring
+        depends_on:
+         - telegreen
+         - telegreen_db
+        networks:
+         - monitoring
+         - external
+networks:
+    db:
+    external:
+    monitoring:
