@@ -363,6 +363,13 @@ pair is only used by kubernetes]]>
       <xs:sequence>
               <xs:element name="ansibleOutputList" type="xs:string" minOccurs="0" maxOccurs="unbounded">
               </xs:element>
+              <xs:element name="scale" type="scaleDeploymetRequest" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The scale information if any for this deployment]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
@@ -486,6 +493,11 @@ the DAO saves the object based on the principal how made the call]]>
               </xs:annotation>
               </xs:element>
               <xs:element name="timestamp" type="xs:long" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The object's creation date in unix time stamp]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
 </xs:complexType>
@@ -597,6 +609,44 @@ provisioner to request for cloud resources.]]>
               </xs:annotation>
               </xs:element>
               <xs:element name="cloudKeyPairIDs" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="scaleDeploymetRequest">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This class represents a scale request for a deployment. At the moment we only
+support swarm.]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="deployID" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The deployment ID. At the moment only swarm deployments are supported.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="serviceName" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The name of the service to scale.]]>
+                </xs:documentation>
+              </xs:annotation>
+              </xs:element>
+              <xs:element name="numOfInstances" type="xs:int" minOccurs="1">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[The number of services to start. This number is absolute not cumulative.
+If we have 2 service numbers running and we request for 3 we'll have 3 if
+we request 1 we'll have 1]]>
+                </xs:documentation>
+              </xs:annotation>
               </xs:element>
       </xs:sequence>
     </xs:extension>
@@ -753,17 +803,17 @@ class]]>
    <xs:complexContent>
     <xs:extension base="ownedObject">
       <xs:sequence>
-              <xs:element name="host" type="xs:string" minOccurs="0">
-              </xs:element>
               <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-              <xs:element name="delta" type="xs:dateTime" minOccurs="0">
+              <xs:element name="start" type="xs:dateTime" minOccurs="0">
               </xs:element>
               <xs:element name="vmType" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="start" type="xs:dateTime" minOccurs="0">
+              <xs:element name="host" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="delta" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+              <xs:element name="end" type="xs:dateTime" minOccurs="0">
               </xs:element>
       </xs:sequence>
     </xs:extension>

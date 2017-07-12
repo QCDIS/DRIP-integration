@@ -106,6 +106,24 @@ pair is only used by kubernetes</p>
           <td>  <span class="property-description">the ansibleOutputList</span>
 </td>
         </tr>
+        <tr>
+          <td>  <span class="property-name">scale</span>
+</td>
+          <td>  <span class="datatype-reference"><a href="xml_ns0_scaleDeploymetRequest.html">scaleDeploymetRequest</a>
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">The scale information if any for this deployment</span>
+</td>
+        </tr>
         </tbody>
         <tr>
           <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_deployRequest.html">deployRequest</a></h5></td>
@@ -177,7 +195,7 @@ the DAO saves the object based on the principal how made the call</span></td>
 </span></td>
           <td><span class="property-minMaxOccurs">0/1
 </span></td>
-          <td><span class="property-description">the timestamp</span></td>
+          <td><span class="property-description">The object's creation date in unix time stamp</span></td>
         </tr>
         </tbody>
       </table>
@@ -186,11 +204,18 @@ the DAO saves the object based on the principal how made the call</span></td>
       
       <pre class="prettyprint language-xml example">&lt;d-----&gt;
   &lt;ansibleOutputList&gt;...&lt;/ansibleOutputList&gt;
+  &lt;scale&gt;
+    &lt;deployID&gt;58e3946e0fb4f562d84ba1ad&lt;/deployID&gt;
+    &lt;serviceName&gt;telegreen_db&lt;/serviceName&gt;
+    &lt;numOfInstances&gt;5&lt;/numOfInstances&gt;
+    &lt;owner&gt;user1&lt;/owner&gt;
+    &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
+  &lt;/scale&gt;
   &lt;provisionID&gt;58e3946e0fb4f562d84ba1ad&lt;/provisionID&gt;
   &lt;managerType&gt;ansible&lt;/managerType&gt;
   &lt;configurationID&gt;58e3946e0fb4f562d84ba1ad&lt;/configurationID&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
-  &lt;timestamp&gt;...&lt;/timestamp&gt;
+  &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
 &lt;/d-----&gt;
 </pre>
 

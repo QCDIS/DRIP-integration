@@ -57,6 +57,7 @@
           <li><a href="#resource_ProvisionController_sample_GET"><abbr title="GET /user/v1.0/provisioner/sample">GET /user/v1.0/provisioner/sam...</abbr></a></li>
           <li><a href="#resource_ProvisionController_delete_DELETE"><abbr title="DELETE /user/v1.0/provisioner/{id}">DELETE /user/v1.0/provisioner/...</abbr></a></li>
           <li><a href="#resource_ProvisionController_get_GET"><abbr title="GET /user/v1.0/provisioner/{id}">GET /user/v1.0/provisioner/{id...</abbr></a></li>
+          <li><a href="#resource_ProvisionController_postProvisionResponse_POST"><abbr title="POST /user/v1.0/provisioner/post/provision">POST /user/v1.0/provisioner/po...</abbr></a></li>
           <li class="divider"></li>
           <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
         </ul>
@@ -266,6 +267,14 @@ Content-Type: application/json
           </thead>
           <tbody>
           <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">Plan not found or credentials not found</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">provision success</span></td>
+          </tr>
+          <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
           </tr>
@@ -318,7 +327,7 @@ Accept: application/json
   },
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345
+  &quot;timestamp&quot; : 1499793079011
 }
                 </code>
               </pre>
@@ -326,7 +335,7 @@ Accept: application/json
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 201 Looks Good
+HTTP/1.1 200 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -415,7 +424,7 @@ Content-Type: application/json
   },
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345
+  &quot;timestamp&quot; : 1499793079011
 }
                 </code>
               </pre>
@@ -629,8 +638,138 @@ Content-Type: application/json
   },
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345
+  &quot;timestamp&quot; : 1499793079011
 }
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resource_ProvisionController_postProvisionResponse_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/provisioner/post/provision <a href="./user/v1.0/provisioner/post/provision" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p>Updates or creates a new ProvisionResponse.</p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_ProvisionResponse.html">ProvisionResponse</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_provisionResponse.html">provisionResponse</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">400</span></td>
+            <td><span class="response-condition">Plan not found or credentials not found or something important</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">provision success</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+POST /user/v1.0/provisioner/post/provision
+Content-Type: application/json
+Accept: application/json
+
+                <code class="prettyprint language-js">
+{
+  &quot;deployParameters&quot; : [ {
+    &quot;IP&quot; : &quot;52.73.245.157&quot;,
+    &quot;user&quot; : &quot;vm_user&quot;,
+    &quot;role&quot; : &quot;slave&quot;
+  }, {
+    &quot;IP&quot; : &quot;...&quot;,
+    &quot;user&quot; : &quot;...&quot;,
+    &quot;role&quot; : &quot;...&quot;
+  } ],
+  &quot;cloudKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;cloudCredentialsIDs&quot; : [ &quot;58e3946e0fb4f562d84ba1ad&quot;, &quot;...&quot; ],
+  &quot;planID&quot; : &quot;ASedsfd46b4fDFd83ba1q&quot;,
+  &quot;userKeyPairIDs&quot; : [ &quot;ASedsfd46b4fFd344a1A&quot;, &quot;...&quot; ],
+  &quot;deployerKeyPairIDs&quot; : [ &quot;...&quot;, &quot;...&quot; ],
+  &quot;keyValue&quot; : {
+    &quot;property1&quot; : { },
+    &quot;property2&quot; : { }
+  },
+  &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 1499793079011
+}
+                </code>
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 200 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
                 </code>
               </pre>
             </div>

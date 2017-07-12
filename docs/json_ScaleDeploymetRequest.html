@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: cloudCredentials</title>
+  <title>drip-api: ScaleDeploymetRequest</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: cloudCredentials</a>
+        <a class="navbar-brand" href="index.html">drip-api: ScaleDeploymetRequest</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -58,20 +58,16 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
-          <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
-          <li class="dropdown"><a href="xml_ns0_cloudCredentials.html">cloudCredentials</a></li>
+          <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
+          <li class="dropdown"><a href="json_ScaleDeploymetRequest.html">ScaleDeploymetRequest</a></li>
         </ol>
 
-      <h1 class="page-header">cloudCredentials <small>Data Type</small></h1>
+      <h1 class="page-header">ScaleDeploymetRequest <small>Data Type</small></h1>
 
-      <p>This class represents the cloud credentials. They are used by the provisoner
-to request for resources.</p>
+      <p>This class represents a scale request for a deployment. At the moment we only
+support swarm.</p>
 
       <dl class="dl-horizontal">
-        <dt>Namespace</dt>
-        <dd>(Default)</dd>
-        <dt>Schema</dt>
-        <dd><a href="ns0.xsd">ns0.xsd</a></dd>
       </dl>
 
       <table class="table datatype-properties">
@@ -80,112 +76,61 @@ to request for resources.</p>
         <tr>
           <th>name</th>
           <th>data type</th>
-          <th>type</th>
-          <th>namespace</th>
-          <th>min/max occurs</th>
           <th>description</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">accessKeyId</span>
+          <td>  <span class="property-name">deployID</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">The access key ID / user name for a cloud provider.</span>
+          <td>  <span class="property-description">The deployment ID. At the moment only swarm deployments are supported.</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">attributes</span>
-</td>
-          <td>  <span class="datatype-reference">(custom)
-</span>
-</td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">the attributes</span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">cloudProviderName</span>
+          <td>  <span class="property-name">serviceName</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">The name of the cloud provider</span>
+          <td>  <span class="property-description">The name of the service to scale.</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">secretKey</span>
+          <td>  <span class="property-name">numOfInstances</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">number
 </span>
 </td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">It is the secret key / password for accessing a cloud provider.</span>
+          <td>  <span class="property-description">The number of services to start. This number is absolute not cumulative.
+If we have 2 service numbers running and we request for 3 we'll have 3 if
+we request 1 we'll have 1</span>
 </td>
         </tr>
         </tbody>
         <tr>
-          <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_ownedObject.html">ownedObject</a></h5></td>
+          <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_OwnedObject.html">OwnedObject</a></h5></td>
         </tr>
         <tbody>
         <tr>
           <td><span class="property-name">owner</span></td>
           <td><span class="datatype-reference">string
 </span></td>
-          <td><span class="property-type">element
-</span></td>
-          <td><span class="property-namespaceInfo">
-</span></td>
-          <td><span class="property-minMaxOccurs">0/1
-</span></td>
           <td><span class="property-description">The owner (username) for the particular object. This value is set when
 the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         <tr>
+          <td><span class="property-name">id</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-description">The UID of this object. This value is auto generated by the DAO when the
+object is saved.</span></td>
+        </tr>
+        <tr>
           <td><span class="property-name">timestamp</span></td>
-          <td><span class="datatype-reference">long
-</span></td>
-          <td><span class="property-type">element
-</span></td>
-          <td><span class="property-namespaceInfo">
-</span></td>
-          <td><span class="property-minMaxOccurs">0/1
+          <td><span class="datatype-reference">number
 </span></td>
           <td><span class="property-description">The object's creation date in unix time stamp</span></td>
         </tr>
@@ -194,15 +139,14 @@ the DAO saves the object based on the principal how made the call</span></td>
 
       <p class="lead">Example</p>
       
-      <pre class="prettyprint language-xml example">&lt;c-----&gt;
-  &lt;secretKey&gt;7A7vo19ffdfa4SAsA6gsF5Fgbfb5rtwY6hBxtYt12&lt;/secretKey&gt;
-  &lt;cloudProviderName&gt;ec2&lt;/cloudProviderName&gt;
-  &lt;accessKeyId&gt;AKIKIQY9K1ZUQ6M7YBSQ&lt;/accessKeyId&gt;
-  &lt;attributes&gt;...&lt;/attributes&gt;
-  &lt;owner&gt;user1&lt;/owner&gt;
-  &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
-&lt;/c-----&gt;
-</pre>
+      <pre class="prettyprint language-js example">{
+  &quot;deployID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;serviceName&quot; : &quot;telegreen_db&quot;,
+  &quot;numOfInstances&quot; : 5,
+  &quot;owner&quot; : &quot;user1&quot;,
+  &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;timestamp&quot; : 1499793079011
+}</pre>
 
         <footer class="footer">
           <div class="container">

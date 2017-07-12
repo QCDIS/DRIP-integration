@@ -81,36 +81,9 @@ class</p>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">delta</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">host</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">cloudDeploymentDomain</span>
 </td>
           <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">end</span>
-</td>
-          <td>  <span class="datatype-reference">number
 </span>
 </td>
           <td>  <span class="property-description"></span>
@@ -127,6 +100,33 @@ class</p>
         </tr>
         <tr>
           <td>  <span class="property-name">vmType</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">delta</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">end</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">host</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -157,7 +157,7 @@ object is saved.</span></td>
           <td><span class="property-name">timestamp</span></td>
           <td><span class="datatype-reference">number
 </span></td>
-          <td><span class="property-description"></span></td>
+          <td><span class="property-description">The object's creation date in unix time stamp</span></td>
         </tr>
         </tbody>
       </table>
@@ -165,15 +165,15 @@ object is saved.</span></td>
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;delta&quot; : 12345,
-  &quot;host&quot; : &quot;147.228.242.58&quot;,
   &quot;cloudDeploymentDomain&quot; : &quot;us-east-1&quot;,
-  &quot;end&quot; : 12345,
   &quot;start&quot; : 12345,
   &quot;vmType&quot; : &quot;...&quot;,
+  &quot;delta&quot; : 12345,
+  &quot;end&quot; : 12345,
+  &quot;host&quot; : &quot;147.228.242.58&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345
+  &quot;timestamp&quot; : 1499793079011
 }</pre>
 
         <footer class="footer">

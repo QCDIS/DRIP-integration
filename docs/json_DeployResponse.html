@@ -99,6 +99,15 @@ pair is only used by kubernetes</p>
           <td>  <span class="property-description">The key pair to log in and manage a docker cluster</span>
 </td>
         </tr>
+        <tr>
+          <td>  <span class="property-name">scale</span>
+</td>
+          <td>  <span class="datatype-reference"><a href="json_ScaleDeploymetRequest.html">ScaleDeploymetRequest</a>
+</span>
+</td>
+          <td>  <span class="property-description">The scale information if any for this deployment</span>
+</td>
+        </tr>
         </tbody>
         <tr>
           <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_DeployRequest.html">DeployRequest</a></h5></td>
@@ -147,7 +156,7 @@ object is saved.</span></td>
           <td><span class="property-name">timestamp</span></td>
           <td><span class="datatype-reference">number
 </span></td>
-          <td><span class="property-description"></span></td>
+          <td><span class="property-description">The object's creation date in unix time stamp</span></td>
         </tr>
         </tbody>
       </table>
@@ -178,14 +187,22 @@ object is saved.</span></td>
     &quot;keyPairId&quot; : &quot;...&quot;,
     &quot;owner&quot; : &quot;user1&quot;,
     &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-    &quot;timestamp&quot; : 12345
+    &quot;timestamp&quot; : 1499793079011
+  },
+  &quot;scale&quot; : {
+    &quot;deployID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+    &quot;serviceName&quot; : &quot;telegreen_db&quot;,
+    &quot;numOfInstances&quot; : 5,
+    &quot;owner&quot; : &quot;user1&quot;,
+    &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+    &quot;timestamp&quot; : 1499793079011
   },
   &quot;provisionID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;managerType&quot; : &quot;ansible&quot;,
   &quot;configurationID&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
-  &quot;timestamp&quot; : 12345
+  &quot;timestamp&quot; : 1499793079011
 }</pre>
 
         <footer class="footer">

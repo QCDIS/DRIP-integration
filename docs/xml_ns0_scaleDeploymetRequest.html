@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: cloudCredentials</title>
+  <title>drip-api: scaleDeploymetRequest</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: cloudCredentials</a>
+        <a class="navbar-brand" href="index.html">drip-api: scaleDeploymetRequest</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -59,13 +59,13 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
-          <li class="dropdown"><a href="xml_ns0_cloudCredentials.html">cloudCredentials</a></li>
+          <li class="dropdown"><a href="xml_ns0_scaleDeploymetRequest.html">scaleDeploymetRequest</a></li>
         </ol>
 
-      <h1 class="page-header">cloudCredentials <small>Data Type</small></h1>
+      <h1 class="page-header">scaleDeploymetRequest <small>Data Type</small></h1>
 
-      <p>This class represents the cloud credentials. They are used by the provisoner
-to request for resources.</p>
+      <p>This class represents a scale request for a deployment. At the moment we only
+support swarm.</p>
 
       <dl class="dl-horizontal">
         <dt>Namespace</dt>
@@ -88,7 +88,7 @@ to request for resources.</p>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">accessKeyId</span>
+          <td>  <span class="property-name">deployID</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -102,13 +102,13 @@ to request for resources.</p>
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The access key ID / user name for a cloud provider.</span>
+          <td>  <span class="property-description">The deployment ID. At the moment only swarm deployments are supported.</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">attributes</span>
+          <td>  <span class="property-name">numOfInstances</span>
 </td>
-          <td>  <span class="datatype-reference">(custom)
+          <td>  <span class="datatype-reference">int
 </span>
 </td>
           <td>  <span class="property-type">element
@@ -117,14 +117,16 @@ to request for resources.</p>
           <td>  <span class="property-namespaceInfo">
 </span>
 </td>
-          <td>  <span class="property-minMaxOccurs">0/1
+          <td>  <span class="property-minMaxOccurs">1/1
 </span>
 </td>
-          <td>  <span class="property-description">the attributes</span>
+          <td>  <span class="property-description">The number of services to start. This number is absolute not cumulative.
+If we have 2 service numbers running and we request for 3 we'll have 3 if
+we request 1 we'll have 1</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">cloudProviderName</span>
+          <td>  <span class="property-name">serviceName</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
@@ -138,25 +140,7 @@ to request for resources.</p>
           <td>  <span class="property-minMaxOccurs">0/1
 </span>
 </td>
-          <td>  <span class="property-description">The name of the cloud provider</span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">secretKey</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-type">element
-</span>
-</td>
-          <td>  <span class="property-namespaceInfo">
-</span>
-</td>
-          <td>  <span class="property-minMaxOccurs">0/1
-</span>
-</td>
-          <td>  <span class="property-description">It is the secret key / password for accessing a cloud provider.</span>
+          <td>  <span class="property-description">The name of the service to scale.</span>
 </td>
         </tr>
         </tbody>
@@ -194,14 +178,13 @@ the DAO saves the object based on the principal how made the call</span></td>
 
       <p class="lead">Example</p>
       
-      <pre class="prettyprint language-xml example">&lt;c-----&gt;
-  &lt;secretKey&gt;7A7vo19ffdfa4SAsA6gsF5Fgbfb5rtwY6hBxtYt12&lt;/secretKey&gt;
-  &lt;cloudProviderName&gt;ec2&lt;/cloudProviderName&gt;
-  &lt;accessKeyId&gt;AKIKIQY9K1ZUQ6M7YBSQ&lt;/accessKeyId&gt;
-  &lt;attributes&gt;...&lt;/attributes&gt;
+      <pre class="prettyprint language-xml example">&lt;s-----&gt;
+  &lt;deployID&gt;58e3946e0fb4f562d84ba1ad&lt;/deployID&gt;
+  &lt;serviceName&gt;telegreen_db&lt;/serviceName&gt;
+  &lt;numOfInstances&gt;5&lt;/numOfInstances&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
   &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
-&lt;/c-----&gt;
+&lt;/s-----&gt;
 </pre>
 
         <footer class="footer">
