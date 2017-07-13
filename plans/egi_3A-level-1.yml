@@ -1,0 +1,65 @@
+---
+subnets:
+- name: "s1"
+  subnet: "192.168.10.0"
+  netmask: "24"
+connections:
+- name: "c1"
+  source:
+    componentName: "nodeA"
+    portName: "p1"
+    netmask: "24"
+    address: "192.168.3.11"
+  target:
+    componentName: "nodeB"
+    portName: "p1"
+    netmask: "24"
+    address: "192.168.3.10"
+  bandwidth: "10000000"
+  latency: "200"
+components:
+- name: "nodeA"
+  type: "switch/compute"
+  nodeType: "t2.medium"
+  OStype: "Ubuntu 14.04"
+  script: null
+  role: null
+  dockers: null
+  publicAddress: null
+  ethernetPort:
+  - name: "p1"
+    connectionName: "c1.source"
+  diskSize: "8"
+  IOPS: "0"
+  vpcId: null
+  subnetId: null
+  securityGroupId: null
+  instanceId: null
+  volumeId: null
+  routeTableId: null
+  internetGatewayId: null
+  actualPrivateAddress: null
+- name: "nodeB"
+  type: "switch/compute"
+  nodeType: "t2.medium"
+  OStype: "Ubuntu 14.04"
+  script: null
+  role: null
+  dockers: null
+  publicAddress: null
+  ethernetPort:
+  - name: "p1"
+    connectionName: "c1.target"
+  - name: "p2"
+    subnetName: "s1"
+    address: "192.168.10.10"
+  diskSize: "8"
+  IOPS: "0"
+  vpcId: null
+  subnetId: null
+  securityGroupId: null
+  instanceId: null
+  volumeId: null
+  routeTableId: null
+  internetGatewayId: null
+  actualPrivateAddress: null
