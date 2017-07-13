@@ -16,7 +16,7 @@ topologies:
   domain: "CESNET"
   status: "fresh"
   tag: "scaling"
-  statusInfo: ""
+  statusInfo: null
   copyOf: null
   sshKeyPairId: null
 
