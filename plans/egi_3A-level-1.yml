@@ -29,7 +29,6 @@ components:
   ethernetPort:
   - name: "p1"
     connectionName: "c1.source"
-  diskSize: "8"
   IOPS: "0"
   vpcId: null
   subnetId: null
@@ -53,7 +52,6 @@ components:
   - name: "p2"
     subnetName: "s1"
     address: "192.168.10.10"
-  diskSize: "8"
   IOPS: "0"
   vpcId: null
   subnetId: null
