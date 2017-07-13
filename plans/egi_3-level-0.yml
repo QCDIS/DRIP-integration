@@ -23,7 +23,7 @@ topologies:
 connections:
 - name: "linkX"
   source:
-    componentName: "egi_3-level-1.nodeA"
+    componentName: "egi_3A-level-1.nodeA"
     portName: "p1"
     netmask: "24"
     address: "192.168.3.11"
