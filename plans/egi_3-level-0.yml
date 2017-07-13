@@ -20,7 +20,7 @@ topologies:
   copyOf: null
   sshKeyPairId: null
 
-  connections:
+ connections:
 - name: "linkX"
   source:
     componentName: "egi_3-level-1.nodeA"
