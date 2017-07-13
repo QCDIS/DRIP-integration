@@ -1,0 +1,40 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "egi_3A-level-1"
+  cloudProvider: "EGI"
+  domain: "CESNET"
+  status: "fresh"
+  tag: "fixed"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
+  
+- topology: "egi_3B-level-1"
+  cloudProvider: "EGI"
+  domain: "CESNET"
+  status: "fresh"
+  tag: "scaling"
+  statusInfo: ""
+  copyOf: null
+  sshKeyPairId: null
+
+  connections:
+- name: "linkX"
+  source:
+    componentName: "egi_3-level-1.nodeA"
+    portName: "p1"
+    netmask: "24"
+    address: "192.168.3.11"
+    ethName: null
+    scalingPool: null
+  target:
+    componentName: "egi_3B-level-1.nodeB"
+    portName: "p2"
+    netmask: "24"
+    address: "192.168.3.12"
+    ethName: null
+    scalingPool: "192.168.3.12-192.168.3.20"
+  bandwidth: "10000000"
+  latency: "200"
