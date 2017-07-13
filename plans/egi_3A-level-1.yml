@@ -1,8 +1,4 @@
 ---
-subnets:
-- name: "s1"
-  subnet: "192.168.10.0"
-  netmask: "24"
 connections:
 - name: "c1"
   source:
@@ -29,15 +25,6 @@ components:
   ethernetPort:
   - name: "p1"
     connectionName: "c1.source"
-  IOPS: "0"
-  vpcId: null
-  subnetId: null
-  securityGroupId: null
-  instanceId: null
-  volumeId: null
-  routeTableId: null
-  internetGatewayId: null
-  actualPrivateAddress: null
 - name: "nodeB"
   type: "switch/compute"
   nodeType: "t2.medium"
@@ -49,15 +36,3 @@ components:
   ethernetPort:
   - name: "p1"
     connectionName: "c1.target"
-  - name: "p2"
-    subnetName: "s1"
-    address: "192.168.10.10"
-  IOPS: "0"
-  vpcId: null
-  subnetId: null
-  securityGroupId: null
-  instanceId: null
-  volumeId: null
-  routeTableId: null
-  internetGatewayId: null
-  actualPrivateAddress: null
