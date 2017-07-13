@@ -1,0 +1,29 @@
+---
+subnets:
+- name: "s1"
+  subnet: "192.168.10.0"
+  netmask: "24"
+connections: null
+components:
+- name: "nodeB"
+  type: "switch/compute"
+  nodeType: "t2.medium"
+  OStype: "Ubuntu 14.04"
+  script: null
+  role: null
+  dockers: null
+  publicAddress: null
+  ethernetPort:
+  - name: "p1"
+    subnetName: "s1"
+    address: "192.168.10.10"
+  diskSize: "8"
+  IOPS: "0"
+  vpcId: null
+  subnetId: null
+  securityGroupId: null
+  instanceId: null
+  volumeId: null
+  routeTableId: null
+  internetGatewayId: null
+  actualPrivateAddress: null
