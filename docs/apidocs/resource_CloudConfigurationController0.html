@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>drip-api: CloudConfigurationController0</title>
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!--custom css for these pages-->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#apinav">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">drip-api: CloudConfigurationController0</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="data.html">Data Types</a></li>
+          <li><a href="downloads.html">Files and Libraries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" id="apinav">
+        <ul class="nav nav-sidebar">
+          <li><a href="#resource_CloudConfigurationController0_postEC2Conf_POST"><abbr title="POST /user/v0.0/switch/account/configure/ec2">POST /user/v0.0/switch/account...</abbr></a></li>
+          <li><a href="#resource_CloudConfigurationController0_postGeniConf_POST"><abbr title="POST /user/v0.0/switch/account/configure/geni">POST /user/v0.0/switch/account...</abbr></a></li>
+          <li class="divider"></li>
+          <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <ol class="breadcrumb" id="top">
+          <li class="active dropdown"><a href="index.html">Home</a></li>
+          <li class="active dropdown"><a href="resources.html">Resources</a></li>
+          <li class="dropdown"><a href="resource_CloudConfigurationController0.html">CloudConfigurationController0</a></li>
+        </ol>
+
+      <h1 class="page-header">CloudConfigurationController0 <small>Resource</small></h1>
+
+      <p>This controller is responsible for handling cloud credentials used by the
+provisoner to request for resources (VMs).</p>
+
+      <div id="resource_CloudConfigurationController0_postEC2Conf_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v0.0/switch/account/configure/ec2 <a href="../user/v0.0/switch/account/configure/ec2" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: text/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">text/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_configure.html">configure</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+POST /user/v0.0/switch/account/configure/ec2
+Content-Type: text/xml
+Accept: application/json
+
+                <code class="prettyprint language-xml">
+&lt;configure&gt;
+  &lt;user&gt;user&lt;/user&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
+  &lt;keyid&gt;AKIAITY3K5ZUQ6M7YBSQ&lt;/keyid&gt;
+  &lt;key&gt;6J7uo99ifrff45126Gsy5vgb3bmrtwY6hBxtYt9y&lt;/key&gt;
+  &lt;loginKey domain_name=&quot;...&quot;&gt;...&lt;/loginKey&gt;
+  &lt;geniKey&gt;/u3+7QAAAAIAAAABAWuf2AAACvDCCArgwDgYKKwYBBEBAQUABIIC\npKlNUfpKLNCy0h8P4L5XeECwwIN/tezeaOVsjvzLsXeiBsB/luYv9gttoeKFbcJb/IDpZr\nfpL1tjF8Sed6g38kNoWwnVVoNZ1ILpITjESL6FkZW+gGAPS+XHp8l52/2DjeECQlx+38GlFUftWP\nn3QH9bDYD+7sRtm4P0YWnekX67ltQHMV+Cyrg0HAFm+GUzJJoxu64MccURLBMw0If9gCmTOuVoRj\nprPukU+cMY8torQ3+WmzC0S6U10HjQ2AkJ80HwM6CcS82qflHIBfQ/o7ep76rCDN22widcLGOihU\nbJiNQtNdF6KRCJk0emVIvRHDHctsmmt2ao2Qx6ub2mA/eUZtlphHMVN5VQtSxdd87tKrH9FvaOe3\nGX/irmBBopS2mfFee4LPn3FT/F5bl9YunygX3sWLGNsCl8G15hzgSSVn4As37czUulj8hks/Qpvu\nqoVpegs2+m5mXbSMmif+cUPqyJZ8UL5slIGZMKQ7MJG1XVG6vFIHk3cS+L+NpDd2j8DZqBP5FXIO\nCt/IxZxR2ZfPHHmIbOhwdnaznOoyAEGDzFTXnyTClGTDTW/6zxOe/ynNPlnBQaNqVJYqPtFG4AVs\nhrSNuvYjm1xsVDROQI5LYF/nryU4VvqMTo2sjVP2g6Qw7E5ENWiYUAl2W+bk4H6WGDTdQgLm2J65\ngdZpQTQtubzWi8Fxrptqul5eq96l0xH15XQ9lBKV0J8PEMa1jKOW/9s2U++hAtKTixssVntaNyUY\n9dnXNYHnQRKXDrQr/izerNEhvlVcz6foWDurtjAIjxafyEBbXJ5TAyT4rxmkPxDg88LPXKCzpf1x\n3WwD8MBUNBC9nfB37rHxEl7StvnK3IXBHmEksg7X6xhmUsrsQo8mfP05XDmqt+lsiYoAAAACAAVY\nLjUwOQAAAz8wggM7MIICpKADAgECAgJFBDANBgkqhkiG9w0BAQUFADCBiTEUMBIGA1UEChMLY2gu\nZ2VuaS5uZXQxEjAQBgNVBAsTCWF1dGhvcml0eTELMAkGA1UECxMCbWExLTArBgNVBAMTJDMxYzBm\nMDlmLTk1ZjctNDUxMC1hMzBiLWQ5M2RmMmJkMDJjOTEhMB8GCSqGSIb3DQEJARYSY2gtYWRtaW5z\nQGdlbmkubmV0MB4XDTE3MDEyNTE0NTY0OVoXDTE4MDEyNTE0NTY0OVowUjEtMCsGA1UEAxMkYmY4\nYThhNTQtN2FjOS00NTEzLWIyZTItYjJjN2U2YWUwMDVkMSEwHwYJKoZIhvcNAQkBFhJzLmtvdWxv\ndXppc0B1dmEubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANmwnBJETSZSQm67FxQHL0s6\n84SYlYh6ltgi8DfwRu/wMA8sL5PsuupNvgKJCVHHZzPVwIrUy8JxpFrX3BItaDX+VPR+6sBJqUan\nBeb3vojU6CyEZzwCAOhn9OxB8ZFyoMD6SwsykPBOeXhGKpWsOoBwQDx8i6xpto1AP3KY8DpxAgMB\nAAGjgecwgeQwHQYDVR0OBBYEFNTBvaP5OnG0h8exiS8Ob0ZvfF8FMD4GA1UdIwQ3MDWAFHGlguYe\n8bTQK4umhY/oGl1ifTGuoRqkGDAWMRQwEgYDVQQDEwtjaC5nZW5pLm5ldIIBAzAJBgNVHRMEAjAA\nMHgGA1UdEQRxMG+BEnMua291bG91emlzQHV2YS5ubIYqdXJuOnB1YmxpY2lkOklETitjaC5nZW5p\nLm5ldCt1c2VyK3Nrb3Vsb3V6hi11cm46dXVpZDpiZjhhOGE1NC03YWM5LTQ1MTMtYjJlMi1iMmM3\nZTZhZTAwNWQwDQYJKoZIhvcNAQEFBQADgYEAP/9ihMCaalsPRBMDozgX2Wd6eFCNYuDIMFTeNkKa\nkWJp156oQ4iAmbtP2R9r4W02gjEQRtUxvBhYI2Rp32wl1ZLdpSwnuZAE1H89dIHTct48VkiI1Zp9\n5BtV4olBUAf2K2hd46pH3ObUAYZvWQGoT+oOlfcacAaEUNp01afC8voABVguNTA5AAADUzCCA08w\nggK4oAMCAQICAQMwDQYJKoZIhvcNAQEFBQAwFjEUMBIGA1UEAxMLY2guZ2VuaS5uZXQwHhcNMTMw\nNTIwMTMxODI3WhcNMTgwNTE5MTMxODI3WjCBiTEUMBIGA1UEChMLY2guZ2VuaS5uZXQxEjAQBgNV\nBAsTCWF1dGhvcml0eTELMAkGA1UECxMCbWExLTArBgNVBAMTJDMxYzBmMDlmLTk1ZjctNDUxMC1h\nMzBiLWQ5M2RmMmJkMDJjOTEhMB8GCSqGSIb3DQEJARYSY2gtYWRtaW5zQGdlbmkubmV0MIGfMA0G\nCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4LG9Xl2veo5+Zy1fDi47ajinYu+mv8QYDya2Hf8lPolQy\nlnGFFQRMx/JsbG1BBQ86FqSeUWtvANhY1nRlrozutOBeg9EEfhX+JXvVdhEKQ4/ANliC0V1UR3GO\nJHtQaj/6qoG/q01bWP7EJgf+ZPfTdCgCkJ89v8oth1m3UjCxcQIDAQABo4IBNzCCATMwHQYDVR0O\nBBYEFHGlguYe8bTQK4umhY/oGl1ifTGuMEYGA1UdIwQ/MD2AFEU22V1Y/0L1KwlqbnkdPIMEy5hR\noRqkGDAWMRQwEgYDVQQDEwtjaC5nZW5pLm5ldIIJAJvH3dZoB97bMEcGCCsGAQUFBwEBBDswOTA3\nBhRpg8yTgKiYzKjHvbGngICqrteKG4YfaHR0cHM6Ly9jaC5nZW5pLm5ldC9jYWluZm8uaHRtbDBz\nBgNVHREEbDBqgRJjaC1hZG1pbnNAZ2VuaS5uZXSGKXVybjpwdWJsaWNpZDpJRE4rY2guZ2VuaS5u\nZXQrYXV0aG9yaXR5K21hhil1dWlkOjMxYzBmMDlmLTk1ZjctNDUxMC1hMzBiLWQ5M2RmMmJkMDJj\nOTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAHgrtROjbfUT6HQCZCl1XuAEZQPse3/x\nT2smC3LzAH4UUj3gEBq27VvxbqzazdBQCSeBEl2RUd+KoDzmhG5vBbAyHt8UE6s3P7Yx\ngoNYTld0JHB5wq3XFRaaGbeVgo2AuK9S/Q3whzMTRW21a58tLP5zwKGzX3oyQQUT5J\ncwv0z5NmJdAfk8Y=&lt;/geniKey&gt;
+  &lt;geniKeyAlias&gt;exogeni&lt;/geniKeyAlias&gt;
+  &lt;loginPubKey domain_name=&quot;...&quot;&gt;...&lt;/loginPubKey&gt;
+  &lt;geniKeyPass&gt;...&lt;/geniKeyPass&gt;
+  &lt;loginPriKey domain_name=&quot;...&quot;&gt;...&lt;/loginPriKey&gt;
+&lt;/configure&gt;
+
+                </code>
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 201 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resource_CloudConfigurationController0_postGeniConf_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v0.0/switch/account/configure/geni <a href="../user/v0.0/switch/account/configure/geni" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p></p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: text/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">text/xml</span></abbr></td>
+            <td><span class="datatype-reference"><a href="xml_ns0_configure.html">configure</a>
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+POST /user/v0.0/switch/account/configure/geni
+Content-Type: text/xml
+Accept: application/json
+
+                <code class="prettyprint language-xml">
+&lt;configure&gt;
+  &lt;user&gt;user&lt;/user&gt;
+  &lt;pwd&gt;123&lt;/pwd&gt;
+  &lt;keyid&gt;AKIAITY3K5ZUQ6M7YBSQ&lt;/keyid&gt;
+  &lt;key&gt;6J7uo99ifrff45126Gsy5vgb3bmrtwY6hBxtYt9y&lt;/key&gt;
+  &lt;loginKey domain_name=&quot;...&quot;&gt;...&lt;/loginKey&gt;
+  &lt;geniKey&gt;/u3+7QAAAAIAAAABAWuf2AAACvDCCArgwDgYKKwYBBEBAQUABIIC\npKlNUfpKLNCy0h8P4L5XeECwwIN/tezeaOVsjvzLsXeiBsB/luYv9gttoeKFbcJb/IDpZr\nfpL1tjF8Sed6g38kNoWwnVVoNZ1ILpITjESL6FkZW+gGAPS+XHp8l52/2DjeECQlx+38GlFUftWP\nn3QH9bDYD+7sRtm4P0YWnekX67ltQHMV+Cyrg0HAFm+GUzJJoxu64MccURLBMw0If9gCmTOuVoRj\nprPukU+cMY8torQ3+WmzC0S6U10HjQ2AkJ80HwM6CcS82qflHIBfQ/o7ep76rCDN22widcLGOihU\nbJiNQtNdF6KRCJk0emVIvRHDHctsmmt2ao2Qx6ub2mA/eUZtlphHMVN5VQtSxdd87tKrH9FvaOe3\nGX/irmBBopS2mfFee4LPn3FT/F5bl9YunygX3sWLGNsCl8G15hzgSSVn4As37czUulj8hks/Qpvu\nqoVpegs2+m5mXbSMmif+cUPqyJZ8UL5slIGZMKQ7MJG1XVG6vFIHk3cS+L+NpDd2j8DZqBP5FXIO\nCt/IxZxR2ZfPHHmIbOhwdnaznOoyAEGDzFTXnyTClGTDTW/6zxOe/ynNPlnBQaNqVJYqPtFG4AVs\nhrSNuvYjm1xsVDROQI5LYF/nryU4VvqMTo2sjVP2g6Qw7E5ENWiYUAl2W+bk4H6WGDTdQgLm2J65\ngdZpQTQtubzWi8Fxrptqul5eq96l0xH15XQ9lBKV0J8PEMa1jKOW/9s2U++hAtKTixssVntaNyUY\n9dnXNYHnQRKXDrQr/izerNEhvlVcz6foWDurtjAIjxafyEBbXJ5TAyT4rxmkPxDg88LPXKCzpf1x\n3WwD8MBUNBC9nfB37rHxEl7StvnK3IXBHmEksg7X6xhmUsrsQo8mfP05XDmqt+lsiYoAAAACAAVY\nLjUwOQAAAz8wggM7MIICpKADAgECAgJFBDANBgkqhkiG9w0BAQUFADCBiTEUMBIGA1UEChMLY2gu\nZ2VuaS5uZXQxEjAQBgNVBAsTCWF1dGhvcml0eTELMAkGA1UECxMCbWExLTArBgNVBAMTJDMxYzBm\nMDlmLTk1ZjctNDUxMC1hMzBiLWQ5M2RmMmJkMDJjOTEhMB8GCSqGSIb3DQEJARYSY2gtYWRtaW5z\nQGdlbmkubmV0MB4XDTE3MDEyNTE0NTY0OVoXDTE4MDEyNTE0NTY0OVowUjEtMCsGA1UEAxMkYmY4\nYThhNTQtN2FjOS00NTEzLWIyZTItYjJjN2U2YWUwMDVkMSEwHwYJKoZIhvcNAQkBFhJzLmtvdWxv\ndXppc0B1dmEubmwwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANmwnBJETSZSQm67FxQHL0s6\n84SYlYh6ltgi8DfwRu/wMA8sL5PsuupNvgKJCVHHZzPVwIrUy8JxpFrX3BItaDX+VPR+6sBJqUan\nBeb3vojU6CyEZzwCAOhn9OxB8ZFyoMD6SwsykPBOeXhGKpWsOoBwQDx8i6xpto1AP3KY8DpxAgMB\nAAGjgecwgeQwHQYDVR0OBBYEFNTBvaP5OnG0h8exiS8Ob0ZvfF8FMD4GA1UdIwQ3MDWAFHGlguYe\n8bTQK4umhY/oGl1ifTGuoRqkGDAWMRQwEgYDVQQDEwtjaC5nZW5pLm5ldIIBAzAJBgNVHRMEAjAA\nMHgGA1UdEQRxMG+BEnMua291bG91emlzQHV2YS5ubIYqdXJuOnB1YmxpY2lkOklETitjaC5nZW5p\nLm5ldCt1c2VyK3Nrb3Vsb3V6hi11cm46dXVpZDpiZjhhOGE1NC03YWM5LTQ1MTMtYjJlMi1iMmM3\nZTZhZTAwNWQwDQYJKoZIhvcNAQEFBQADgYEAP/9ihMCaalsPRBMDozgX2Wd6eFCNYuDIMFTeNkKa\nkWJp156oQ4iAmbtP2R9r4W02gjEQRtUxvBhYI2Rp32wl1ZLdpSwnuZAE1H89dIHTct48VkiI1Zp9\n5BtV4olBUAf2K2hd46pH3ObUAYZvWQGoT+oOlfcacAaEUNp01afC8voABVguNTA5AAADUzCCA08w\nggK4oAMCAQICAQMwDQYJKoZIhvcNAQEFBQAwFjEUMBIGA1UEAxMLY2guZ2VuaS5uZXQwHhcNMTMw\nNTIwMTMxODI3WhcNMTgwNTE5MTMxODI3WjCBiTEUMBIGA1UEChMLY2guZ2VuaS5uZXQxEjAQBgNV\nBAsTCWF1dGhvcml0eTELMAkGA1UECxMCbWExLTArBgNVBAMTJDMxYzBmMDlmLTk1ZjctNDUxMC1h\nMzBiLWQ5M2RmMmJkMDJjOTEhMB8GCSqGSIb3DQEJARYSY2gtYWRtaW5zQGdlbmkubmV0MIGfMA0G\nCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4LG9Xl2veo5+Zy1fDi47ajinYu+mv8QYDya2Hf8lPolQy\nlnGFFQRMx/JsbG1BBQ86FqSeUWtvANhY1nRlrozutOBeg9EEfhX+JXvVdhEKQ4/ANliC0V1UR3GO\nJHtQaj/6qoG/q01bWP7EJgf+ZPfTdCgCkJ89v8oth1m3UjCxcQIDAQABo4IBNzCCATMwHQYDVR0O\nBBYEFHGlguYe8bTQK4umhY/oGl1ifTGuMEYGA1UdIwQ/MD2AFEU22V1Y/0L1KwlqbnkdPIMEy5hR\noRqkGDAWMRQwEgYDVQQDEwtjaC5nZW5pLm5ldIIJAJvH3dZoB97bMEcGCCsGAQUFBwEBBDswOTA3\nBhRpg8yTgKiYzKjHvbGngICqrteKG4YfaHR0cHM6Ly9jaC5nZW5pLm5ldC9jYWluZm8uaHRtbDBz\nBgNVHREEbDBqgRJjaC1hZG1pbnNAZ2VuaS5uZXSGKXVybjpwdWJsaWNpZDpJRE4rY2guZ2VuaS5u\nZXQrYXV0aG9yaXR5K21hhil1dWlkOjMxYzBmMDlmLTk1ZjctNDUxMC1hMzBiLWQ5M2RmMmJkMDJj\nOTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAHgrtROjbfUT6HQCZCl1XuAEZQPse3/x\nT2smC3LzAH4UUj3gEBq27VvxbqzazdBQCSeBEl2RUd+KoDzmhG5vBbAyHt8UE6s3P7Yx\ngoNYTld0JHB5wq3XFRaaGbeVgo2AuK9S/Q3whzMTRW21a58tLP5zwKGzX3oyQQUT5J\ncwv0z5NmJdAfk8Y=&lt;/geniKey&gt;
+  &lt;geniKeyAlias&gt;exogeni&lt;/geniKeyAlias&gt;
+  &lt;loginPubKey domain_name=&quot;...&quot;&gt;...&lt;/loginPubKey&gt;
+  &lt;geniKeyPass&gt;...&lt;/geniKeyPass&gt;
+  &lt;loginPriKey domain_name=&quot;...&quot;&gt;...&lt;/loginPriKey&gt;
+&lt;/configure&gt;
+
+                </code>
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 201 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">Generated by <a href="http://enunciate.webcohesion.com">Enunciate</a>.</p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript placed at the end of the document so the pages load faster. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <!-- prettify code blocks. see http://code.google.com/p/google-code-prettify/ -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js" type="text/javascript"></script>
+  <script>
+    $(function() {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });
+
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
+
+</body>
+</html>
