@@ -60,7 +60,7 @@ services:
         environment:
             RABBITMQ_HOST: rabbit
             MONOG_HOST: mongo
-            keystorePass: password
+            keystorePass=password
         env_file:
             - ./env_file
         ports:
