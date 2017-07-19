@@ -34,7 +34,7 @@ RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 #Conf ssl 
 WORKDIR /root
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true -o keystore.tar.gz
 RUN tar -xzf keystore.tar.gz
 
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
@@ -52,6 +52,6 @@ EXPOSE 8080
 ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && /root/apache-tomcat-7.0.75/bin/shutdown.sh && sleep 20 && mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && /root/apache-tomcat-7.0.75/bin/startup.sh && tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 
-# To build: docker build -t drip-manager .
+# To build: docker build -t drip-manager --build-arg keystorePass=<password> .
 # To run: docker run --name drip-manager-inst -p 127.0.0.1:8080:8080 -d drip-manager
 
