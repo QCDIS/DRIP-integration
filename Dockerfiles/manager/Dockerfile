@@ -33,7 +33,7 @@ RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 WORKDIR apache-tomcat-7.0.75/conf
-RUN rm server.xml
+RUN rm server.xml;exit 0
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
 ARG keystorePass
 
