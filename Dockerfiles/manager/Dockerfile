@@ -42,8 +42,8 @@ RUN rm server.xml
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
 ARG keystorePass
 RUN sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" server.xml
-RUN cat server.xml
-RUN ls
+WORKDIR apache-tomcat-7.0.75/logs/
+RUN rm *
 
 
 WORKDIR /root
@@ -56,5 +56,5 @@ ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST
 
 
 # To build: docker build -t drip-manager --build-arg keystorePass=<password> .
-# To run: docker run --name drip-manager-inst -p 127.0.0.1:8080:8080 -d drip-manager
+# To run: docker run -p 127.0.0.1:8443:8443   drip-manager
 
