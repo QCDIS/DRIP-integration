@@ -62,11 +62,11 @@ services:
             MONOG_HOST: mongo
             keystorePass: password
         env_file:
-            - env_file
+            - ./env_file
         ports:
             - "8443:8443"
 #docker-compose build
-#docker-compose up -
+#docker-compose up
 
 
 
