@@ -32,11 +32,6 @@ RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
 RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
-#Conf ssl 
-WORKDIR /root
-RUN wget $KEYSTORE_URL -O keystore.tar.gz
-RUN tar -xzf keystore.tar.gz
-
 WORKDIR apache-tomcat-7.0.75/conf
 RUN rm server.xml
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
@@ -48,6 +43,8 @@ EXPOSE 8443
 ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \ 
 sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \
 mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && \
+wget $KEYSTORE_URL -O keystore.tar.gz && \
+tar -xzf keystore.tar.gz && \
 sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" /root/apache-tomcat-7.0.75/conf/server.xml &&\
 sleep 10 && \
 /root/apache-tomcat-7.0.75/bin/startup.sh && \
