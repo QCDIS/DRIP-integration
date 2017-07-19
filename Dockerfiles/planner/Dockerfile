@@ -32,4 +32,4 @@ RUN tar -xzvf drip-planner.tar.gz
 ENTRYPOINT sleep 10 && python /root/drip-planner/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-planner .
-# docker run --name drip-planner-inst -d drip-planner
+# docker run -e RABBITMQ_HOST=172.17.0.2 drip-planner

@@ -35,13 +35,13 @@ RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/maste
 RUN chmod +x fedcloud-ui.sh
 RUN ./fedcloud-ui.sh
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/database.tar.gz
-RUN tar -xzvf database.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/etc.tar.gz
+RUN tar -xzvf etc.tar.gz
 RUN echo trusted.certificates.folder=$CERTS >> provisioner.properties
 RUN echo domain.info.path=/root/drip-provisioner >> provisioner.properties
 RUN cat provisioner.properties
 
-ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.propertie && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.propertie
+ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.properties && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties
 
 #Build: docker build -t drip-pro .
-# Run: docker run --name drip-pro-inst -d drip-pro
+#Run: docker run -e RABBITMQ_HOST=172.17.0.2 drip-pro
