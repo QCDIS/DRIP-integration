@@ -63,6 +63,9 @@ services:
             keystorePass: keystorePass
         ports:
             - "8080:8080"    
-            
-#docker-compose up -e keystorePass=<password>
+
+#docker-compose build --build-arg key=<password>
+#docker-compose up -
+
+
 
