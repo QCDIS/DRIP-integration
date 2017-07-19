@@ -34,7 +34,7 @@ RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 #Conf ssl 
 WORKDIR /root
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true -o keystore.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true -O keystore.tar.gz
 RUN tar -xzf keystore.tar.gz
 
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
