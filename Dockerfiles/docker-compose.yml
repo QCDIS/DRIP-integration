@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+    mongo:
+        image: mongo:3
+        ports:
+            - "27017:27017"
+        command: "mongod --port 27017"
+        restart: always
+    
+    rabbit:
+        image: rabbitmq:3-management
+        ports:
+            - "5671-5672:5671-5672"
+            - "15671:15671"
+        restart: always
+    
+    drip-planner:
+        depends_on:
+            - rabbit
+        build:
+            context: ./planner
+            dockerfile: Dockerfile
+        image: drip-planner:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit
+            
+    drip-provisioner:
+        depends_on:
+            - rabbit
+        build:
+            context: ./provisioner
+            dockerfile: Dockerfile
+        image: drip-provisioner:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit      
+            
+    drip-deployer:
+        depends_on:
+            - rabbit
+        build:
+            context: ./deployer
+            dockerfile: Dockerfile
+        image: drip-deployer:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit 
+            
+    drip-manager:
+        depends_on:
+            - rabbit
+            - mongo
+        build:
+            context: ./manager
+            dockerfile: Dockerfile
+        image: drip-manager:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit
+            MONOG_HOST: mongo
+            keystorePass: keystorePass
+        ports:
+            - "8080:8080"    
+            
+#docker-compose up -e keystorePass=<password>
+

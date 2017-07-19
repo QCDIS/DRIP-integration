@@ -1,11 +1,16 @@
 # Pull base image  
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
-##install java
+
+# ARG RABBITMQ_HOST=127.0.0.1
+ARG RELESE_VERSION=0.2
+ARG CERTS=/etc/grid-security/certificates
+
+
 ENV DEBIAN_FRONTEND=noninteractive 
-RUN apt-get update
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y
-RUN apt-get install -y wget software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-dev python-pip
+RUN apt-get install -y wget software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip 
 
 RUN pip install --upgrade pip
 RUN pip install pydot
@@ -16,16 +21,17 @@ RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
+RUN pip install ansible
 
 
 
 
 WORKDIR /root/
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-deployer.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-deployer.tar.gz
 RUN tar -xzvf drip-deployer.tar.gz
 
-WORKDIR drip-deployer
-ENTRYPOINT python rpc_server.py 172.17.0.2
+
+ENTRYPOINT sleep 10 && python /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-deployer .
 # docker run --name drip-deployer-inst -d drip-deployer

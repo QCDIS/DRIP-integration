@@ -1,38 +1,47 @@
 # Pull base image  
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
 MAINTAINER Huan "h.zhou@uva.nl"
 
-ARG release_version=0.0.3
+
+# ARG RABBITMQ_HOST=127.0.0.1
+# ARG MONOG_HOST=127.0.0.1
+ARG RELESE_VERSION=0.2
+ARG CERTS=/etc/grid-security/certificates
 
 WORKDIR /root/
 
 #install openssh and wget
-RUN apt-get update && apt-get upgrade -y
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
+RUN apt-get upgrade -y
+RUN apt-get install -y openssh-server wget git inetutils-ping software-properties-common
 
-RUN apt-get install openssh-server wget software-properties-common inetutils-ping -y
-
-##install jdk 1.8
-ENV DEBIAN_FRONTEND=noninteractive
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+##install java
+RUN apt-get install -y python-software-properties debconf-utils apt-utils
 RUN add-apt-repository -y ppa:webupd8team/java
 RUN apt-get update
-RUN apt-get install -y oracle-java8-set-default
+RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+RUN apt-get install -y oracle-java8-installer
 
 
+#Install provisioner
+WORKDIR /root/
+RUN mkdir /root/drip-provisioner/
+WORKDIR /root/drip-provisioner/
 RUN wget https://raw.githubusercontent.com/EGI-FCTF/fedcloud-userinterface/master/fedcloud-ui.sh
-
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
-
-ARG RABBITMQ_HOST=172.17.0.1
-WORKDIR /root
-RUN echo rabbitmq.host=$RABBITMQ_HOST > provisioner.properties
-RUN cat provisioner.properties
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/beta/database.tar.gz
+RUN chmod +x fedcloud-ui.sh
+RUN ./fedcloud-ui.sh
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/database.tar.gz
 RUN tar -xzvf database.tar.gz
+RUN echo trusted.certificates.folder=$CERTS >> provisioner.properties
+RUN echo domain.info.path=/root/drip-provisioner >> provisioner.properties
+RUN cat provisioner.properties
 
-ENTRYPOINT java -jar drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/provisioner.properties
+ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.propertie && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.propertie
 
 #Build: docker build -t drip-pro .
 # Run: docker run --name drip-pro-inst -d drip-pro
