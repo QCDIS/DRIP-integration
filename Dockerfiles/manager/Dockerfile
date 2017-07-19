@@ -47,10 +47,7 @@ RUN sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\
 WORKDIR /root
 EXPOSE 8080
 
-# ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sleep 10 && /root/apache-tomcat-7.0.75/bin/shutdown.sh && /root/apache-tomcat-7.0.75/bin/startup.sh && tail -f ./apache-tomcat-7.0.75/logs/catalina.out
-
-
-ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && /root/apache-tomcat-7.0.75/bin/shutdown.sh && sleep 20 && mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && /root/apache-tomcat-7.0.75/bin/startup.sh && tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
+ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && /root/apache-tomcat-7.0.75/bin/shutdown.sh && sleep 20 && /root/apache-tomcat-7.0.75/bin/startup.sh && tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 
 # To build: docker build -t drip-manager --build-arg keystorePass=<password> .
