@@ -62,8 +62,7 @@ services:
             MONOG_HOST: mongo
             keystorePass: keystorePass
         ports:
-            - "8080:8080"    
-
+            - "8443:8443"
 #docker-compose build --build-arg key=<password>
 #docker-compose up -
 
