@@ -29,10 +29,9 @@ WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-deployer.tar.gz
 RUN tar -xzvf drip-deployer.tar.gz
 
-ENTRYPOINT tail -f /dev/null
-
-# ENTRYPOINT sleep 10 && \
-# python /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
+ENTRYPOINT sleep 10 && \
+ python /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-deployer .
-# docker run drip-deployer -e RABBITMQ_HOST=127.0.0.1
+# docker run -e RABBITMQ_HOST=172.17.0.2 drip-deployer 
+
