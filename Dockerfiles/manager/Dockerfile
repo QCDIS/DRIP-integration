@@ -34,7 +34,7 @@ RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 #Conf ssl 
 WORKDIR /root
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true -O keystore.tar.gz
+RUN wget $KEYSTORE_URL -O keystore.tar.gz
 RUN tar -xzf keystore.tar.gz
 
 WORKDIR apache-tomcat-7.0.75/conf
