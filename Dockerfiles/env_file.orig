@@ -1,0 +1,6 @@
+keystorePass=password2
+<<<<<<< HEAD
+KEYSTORE_URL=https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true
+=======
+KEYSTORE_URL=https://github.com/QCAPI-DRIP/DRIP-integradation/blob/master/conf/keystore.tar.gz?raw=true
+>>>>>>> ea140b55587455afefa3935e0771c1eb1c880eb1
