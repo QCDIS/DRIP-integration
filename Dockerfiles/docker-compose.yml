@@ -15,27 +15,27 @@ services:
             - "15671:15671"
         restart: always
     
-    #drip-planner:
-        #depends_on:
-            #- rabbit
-        #build:
-            #context: ./planner
-            #dockerfile: Dockerfile
-        #image: drip-planner:latest
-        #restart: always
-        #environment:
-            #RABBITMQ_HOST: rabbit
+    drip-planner:
+        depends_on:
+            - rabbit
+        build:
+            context: ./planner
+            dockerfile: Dockerfile
+        image: drip-planner:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit
             
-    #drip-provisioner:
-        #depends_on:
-            #- rabbit
-        #build:
-            #context: ./provisioner
-            #dockerfile: Dockerfile
-        #image: drip-provisioner:latest
-        #restart: always
-        #environment:
-            #RABBITMQ_HOST: rabbit      
+    drip-provisioner:
+        depends_on:
+            - rabbit
+        build:
+            context: ./provisioner
+            dockerfile: Dockerfile
+        image: drip-provisioner:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit      
             
     drip-deployer:
         depends_on:
