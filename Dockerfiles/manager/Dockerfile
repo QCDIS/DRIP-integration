@@ -42,8 +42,6 @@ RUN rm server.xml
 RUN wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml
 ARG keystorePass
 RUN sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" server.xml
-WORKDIR apache-tomcat-7.0.75/logs/
-RUN rm *
 
 
 WORKDIR /root
