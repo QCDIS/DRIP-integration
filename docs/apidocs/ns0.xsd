@@ -804,17 +804,17 @@ class]]>
    <xs:complexContent>
     <xs:extension base="ownedObject">
       <xs:sequence>
-              <xs:element name="host" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
+              <xs:element name="start" type="xs:dateTime" minOccurs="0">
               </xs:element>
               <xs:element name="delta" type="xs:dateTime" minOccurs="0">
               </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
-              </xs:element>
               <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="start" type="xs:dateTime" minOccurs="0">
+              <xs:element name="end" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+              <xs:element name="host" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="vmType" type="xs:string" minOccurs="0">
               </xs:element>
       </xs:sequence>
     </xs:extension>

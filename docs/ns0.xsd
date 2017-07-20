@@ -808,13 +808,13 @@ class]]>
               </xs:element>
               <xs:element name="host" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
+              <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
               </xs:element>
               <xs:element name="start" type="xs:dateTime" minOccurs="0">
               </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
+              <xs:element name="vmType" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
+              <xs:element name="end" type="xs:dateTime" minOccurs="0">
               </xs:element>
       </xs:sequence>
     </xs:extension>
