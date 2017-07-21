@@ -4,15 +4,15 @@ services:
     mongo:
         image: mongo:3
         ports:
-            - "27017:27017"
+            - "127.0.0.1:27017:27017"
         command: "mongod --port 27017"
         restart: always
     
     rabbit:
         image: rabbitmq:3-management
         ports:
-            - "5671-5672:5671-5672"
-            - "15671:15671"
+            - "127.0.0.1:5671-5672:5671-5672"
+            - "127.0.0.1:15671:15671"
         restart: always
     
     drip-planner:
@@ -65,7 +65,7 @@ services:
         ports:
             - "8443:8443"
 #docker-compose build
-#docker-compose up
+#docker-compose up -d
 
 
 
