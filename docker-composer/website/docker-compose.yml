@@ -60,16 +60,6 @@ services:
       mode: replicated
       replicas: 2
       labels: [APP=VOTING]
-      # service resource management
-      resources:
-        # Hard limit - Docker does not allow to allocate more
-        limits:
-          cpus: '0.25'
-          memory: 512M
-        # Soft limit - Docker makes best effort to return to it
-        reservations:
-          cpus: '0.25'
-          memory: 256M
       # service restart policy
       restart_policy:
         condition: on-failure
