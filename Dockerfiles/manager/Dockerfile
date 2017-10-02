@@ -45,8 +45,8 @@ tar -xzf keystore.tar.gz && \
 wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml && \
 mv /root/server.xml /root/apache-tomcat-7.0.75/conf/server.xml && \
 sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" /root/apache-tomcat-7.0.75/conf/server.xml &&\
-sleep 10 && \
 /root/apache-tomcat-7.0.75/bin/startup.sh && \
+sleep 10 && \
 tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 
