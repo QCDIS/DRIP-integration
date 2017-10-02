@@ -24,6 +24,6 @@ docker exec -it dockerfiles_drip-manager_1 sh -c "rm $catalina_home/logs/*.$year
 docker exec -it dockerfiles_mongo_1 sh -c "mongodump -v --host localhost:27017 --out=/tmp"
 docker cp dockerfiles_mongo_1:/tmp/drip $backup_folder
 cd $backup_folder/drip
-tar -zcvf $backup_folder/DRIP_DB-$month-$year.tar.gz *.*
+tar -zcvf $backup_folder/DRIP_DB-$year-$month-$day.tar.gz *.*
 rm  $backup_folder/drip/*
 docker exec -it dockerfiles_mongo_1 sh -c "rm -r /tmp/drip"
