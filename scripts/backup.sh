@@ -13,8 +13,8 @@ year=`date '+%Y'`
 # Manager logs 
 docker cp dockerfiles_drip-manager_1:$catalina_home/logs $backup_folder
 cd $backup_folder/logs
-tar -zcvf DRIP_logs-$month-$year.tar.gz *.$year-$month-*.*
-mv DRIP_logs-10-2017.tar.gz $backup_folder
+tar -zcvf $backup_folder/DRIP_logs-$month-$year.tar.gz *.$year-$month-*.*
+# mv DRIP_logs-10-2017.tar.gz $backup_folder
 rm $backup_folder/logs/*.$year-$month-*.*
 docker exec -it dockerfiles_drip-manager_1 sh -c "rm $catalina_home/logs/*.$year-$month-*.*"
 
