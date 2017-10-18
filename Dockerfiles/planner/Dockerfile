@@ -8,7 +8,7 @@ ARG RELESE_VERSION=0.2.1
 
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
-RUN apt-get upgrade -y
+RUN apt-get upgrade -y  --fix-missing
 RUN apt-get install -y wget git inetutils-ping software-properties-common build-essential libssl-dev libffi-dev python-dev graphviz graphviz-dev python-pip
 
 # Install python stuff
