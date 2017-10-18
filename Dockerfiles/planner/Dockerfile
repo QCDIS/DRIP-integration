@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-ARG RELESE_VERSION=0.2
+ARG RELESE_VERSION=0.2.1
 
 
 ENV DEBIAN_FRONTEND=noninteractive 
@@ -26,10 +26,10 @@ RUN pip install paramiko
 
 # Install planner
 WORKDIR /root/
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
-RUN tar -xzvf drip-planner.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip_planner2
+RUN tar -xzvf drip_planner2
 
-ENTRYPOINT sleep 10 && python /root/drip-planner/rpc_server.py $RABBITMQ_HOST
+ENTRYPOINT sleep 10 && python /root/drip_planner2/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-planner .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-planner
