@@ -107,6 +107,24 @@ pair is only used by kubernetes</p>
 </td>
         </tr>
         <tr>
+          <td>  <span class="property-name">managerInfo</span>
+</td>
+          <td>  <span class="datatype-reference">(custom)
+</span>
+</td>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">Returns manager info e.g. service status etc.</span>
+</td>
+        </tr>
+        <tr>
           <td>  <span class="property-name">scale</span>
 </td>
           <td>  <span class="datatype-reference"><a href="xml_ns0_scaleRequest.html">scaleRequest</a>
@@ -185,18 +203,6 @@ chosen deployment manager (for now only ansible)
           <td><span class="property-description">The owner (username) for the particular object. This value is set when
 the DAO saves the object based on the principal how made the call</span></td>
         </tr>
-        <tr>
-          <td><span class="property-name">timestamp</span></td>
-          <td><span class="datatype-reference">long
-</span></td>
-          <td><span class="property-type">element
-</span></td>
-          <td><span class="property-namespaceInfo">
-</span></td>
-          <td><span class="property-minMaxOccurs">0/1
-</span></td>
-          <td><span class="property-description">The object's creation date in unix time stamp</span></td>
-        </tr>
         </tbody>
       </table>
 
@@ -209,13 +215,12 @@ the DAO saves the object based on the principal how made the call</span></td>
     &lt;scaleTargetName&gt;telegreen_db&lt;/scaleTargetName&gt;
     &lt;numOfInstances&gt;5&lt;/numOfInstances&gt;
     &lt;owner&gt;user1&lt;/owner&gt;
-    &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
   &lt;/scale&gt;
+  &lt;managerInfo&gt;{&quot;services_info&quot;: {&quot;status&quot;: &quot;Ready&quot;, &quot;hostname&quot;: &quot;stoor74&quot;, &quot;ID&quot;: &quot;v5y8cs7zd5atej53buq86g8j7&quot;, &quot;availability&quot;: &quot;Active&quot;}, .&quot;cluster_node_info&quot;: {&quot;status&quot;: &quot;Ready&quot;, &quot;hostname&quot;: &quot;stoor74&quot;, &quot;ID&quot;: &quot;v5y8cs7zd5atej53buq86g8j7&quot;, &quot;availability&quot;: &quot;Active&quot;}}&lt;/managerInfo&gt;
   &lt;provisionID&gt;58e3946e0fb4f562d84ba1ad&lt;/provisionID&gt;
   &lt;managerType&gt;ansible&lt;/managerType&gt;
   &lt;configurationID&gt;58e3946e0fb4f562d84ba1ad&lt;/configurationID&gt;
   &lt;owner&gt;user1&lt;/owner&gt;
-  &lt;timestamp&gt;1499793079011&lt;/timestamp&gt;
 &lt;/d-----&gt;
 </pre>
 

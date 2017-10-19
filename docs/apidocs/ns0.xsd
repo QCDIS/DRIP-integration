@@ -370,6 +370,25 @@ pair is only used by kubernetes]]>
                 </xs:documentation>
               </xs:annotation>
               </xs:element>
+              <xs:element name="managerInfo" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[Returns manager info e.g. service status etc.]]>
+                </xs:documentation>
+              </xs:annotation>
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="key" minOccurs="1" type="xs:string"/>
+            <xs:element name="value" minOccurs="1" type="xs:anyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+              </xs:element>
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
@@ -476,6 +495,33 @@ abstract types such as TOSCA.]]>
   </xs:complexContent>
 </xs:complexType>
 
+<xs:complexType name="monitorringMessage">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This is the base class for users to own resources. Many classes extend this
+class]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="metricMame" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="subid" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="value" type="xs:double" minOccurs="1">
+              </xs:element>
+              <xs:element name="messageType" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="date" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+              <xs:element name="time" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
 <xs:complexType name="ownedObject">
   <xs:annotation>
     <xs:documentation>
@@ -489,65 +535,6 @@ class]]>
                 <xs:documentation>
                   <![CDATA[The owner (username) for the particular object. This value is set when
 the DAO saves the object based on the principal how made the call]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="timestamp" type="xs:long" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The object's creation date in unix time stamp]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-      </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="planRequest">
-  <xs:annotation>
-    <xs:documentation>
-      <![CDATA[This class represents a plan request sent to the planner.]]>
-    </xs:documentation>
-  </xs:annotation>
-       <xs:sequence>
-              <xs:element name="toscaID" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The ID of the tosca file the generated this plan]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="managerType" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The type of cluster manager]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="vmUserName" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The default username to be set to all VMs]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="cloudProvider" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The cloud provider]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="osType" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The type of OS for the VMs]]>
-                </xs:documentation>
-              </xs:annotation>
-              </xs:element>
-              <xs:element name="domain" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:documentation>
-                  <![CDATA[The domain to request the VMs]]>
                 </xs:documentation>
               </xs:annotation>
               </xs:element>
@@ -804,17 +791,17 @@ class]]>
    <xs:complexContent>
     <xs:extension base="ownedObject">
       <xs:sequence>
-              <xs:element name="start" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-              <xs:element name="delta" type="xs:dateTime" minOccurs="0">
+              <xs:element name="vmType" type="xs:string" minOccurs="0">
               </xs:element>
               <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
+              <xs:element name="delta" type="xs:dateTime" minOccurs="0">
               </xs:element>
               <xs:element name="host" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
+              <xs:element name="end" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+              <xs:element name="start" type="xs:dateTime" minOccurs="0">
               </xs:element>
       </xs:sequence>
     </xs:extension>

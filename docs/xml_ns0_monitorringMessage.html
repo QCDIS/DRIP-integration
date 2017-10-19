@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: PlanRequest</title>
+  <title>drip-api: monitorringMessage</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: PlanRequest</a>
+        <a class="navbar-brand" href="index.html">drip-api: monitorringMessage</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -58,15 +58,20 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
-          <li class="active dropdown"><a href="syntax_json.html">JSON</a></li>
-          <li class="dropdown"><a href="json_PlanRequest.html">PlanRequest</a></li>
+          <li class="active dropdown"><a href="syntax_xml.html">XML</a></li>
+          <li class="dropdown"><a href="xml_ns0_monitorringMessage.html">monitorringMessage</a></li>
         </ol>
 
-      <h1 class="page-header">PlanRequest <small>Data Type</small></h1>
+      <h1 class="page-header">monitorringMessage <small>Data Type</small></h1>
 
-      <p>This class represents a plan request sent to the planner.</p>
+      <p>This is the base class for users to own resources. Many classes extend this
+class</p>
 
       <dl class="dl-horizontal">
+        <dt>Namespace</dt>
+        <dd>(Default)</dd>
+        <dt>Schema</dt>
+        <dd><a href="ns0.xsd">ns0.xsd</a></dd>
       </dl>
 
       <table class="table datatype-properties">
@@ -75,77 +80,154 @@
         <tr>
           <th>name</th>
           <th>data type</th>
+          <th>type</th>
+          <th>namespace</th>
+          <th>min/max occurs</th>
           <th>description</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">toscaID</span>
+          <td>  <span class="property-name">date</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">dateTime
 </span>
 </td>
-          <td>  <span class="property-description">The ID of the tosca file the generated this plan</span>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">the date</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">managerType</span>
+          <td>  <span class="property-name">messageType</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description">The type of cluster manager</span>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">the messageType</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">vmUserName</span>
+          <td>  <span class="property-name">metricMame</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description">The default username to be set to all VMs</span>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">the metricMame</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">cloudProvider</span>
+          <td>  <span class="property-name">subid</span>
 </td>
           <td>  <span class="datatype-reference">string
 </span>
 </td>
-          <td>  <span class="property-description">The cloud provider</span>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">the subid</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">osType</span>
+          <td>  <span class="property-name">time</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">dateTime
 </span>
 </td>
-          <td>  <span class="property-description">The type of OS for the VMs</span>
+          <td>  <span class="property-type">element
+</span>
+</td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">0/1
+</span>
+</td>
+          <td>  <span class="property-description">the time</span>
 </td>
         </tr>
         <tr>
-          <td>  <span class="property-name">domain</span>
+          <td>  <span class="property-name">value</span>
 </td>
-          <td>  <span class="datatype-reference">string
+          <td>  <span class="datatype-reference">double
 </span>
 </td>
-          <td>  <span class="property-description">The domain to request the VMs</span>
+          <td>  <span class="property-type">element
+</span>
 </td>
+          <td>  <span class="property-namespaceInfo">
+</span>
+</td>
+          <td>  <span class="property-minMaxOccurs">1/1
+</span>
+</td>
+          <td>  <span class="property-description">the value</span>
+</td>
+        </tr>
+        </tbody>
+        <tr>
+          <td colspan="6"><h5 class="text-muted">Properties inherited from <a href="xml_ns0_ownedObject.html">ownedObject</a></h5></td>
+        </tr>
+        <tbody>
+        <tr>
+          <td><span class="property-name">owner</span></td>
+          <td><span class="datatype-reference">string
+</span></td>
+          <td><span class="property-type">element
+</span></td>
+          <td><span class="property-namespaceInfo">
+</span></td>
+          <td><span class="property-minMaxOccurs">0/1
+</span></td>
+          <td><span class="property-description">The owner (username) for the particular object. This value is set when
+the DAO saves the object based on the principal how made the call</span></td>
         </tr>
         </tbody>
       </table>
 
       <p class="lead">Example</p>
       
-      <pre class="prettyprint language-js example">{
-  &quot;toscaID&quot; : &quot;592d5884e452f1b9b666a657&quot;,
-  &quot;managerType&quot; : &quot;swarm&quot;,
-  &quot;vmUserName&quot; : &quot;vm_user&quot;,
-  &quot;cloudProvider&quot; : &quot;egi&quot;,
-  &quot;osType&quot; : &quot;Ubuntu16.04&quot;,
-  &quot;domain&quot; : &quot;us-east-1&quot;
-}</pre>
+      <pre class="prettyprint language-xml example">&lt;m-----&gt;
+  &lt;metricMame&gt;cpuTotal&lt;/metricMame&gt;
+  &lt;subid&gt;1ccba0cc92174ce788695cfc0a027b57&lt;/subid&gt;
+  &lt;value&gt;91.0500021021063106&lt;/value&gt;
+  &lt;messageType&gt;critical&lt;/messageType&gt;
+  &lt;date&gt;2017-08-25&lt;/date&gt;
+  &lt;time&gt;11:30:00&lt;/time&gt;
+  &lt;owner&gt;user1&lt;/owner&gt;
+&lt;/m-----&gt;
+</pre>
 
         <footer class="footer">
           <div class="container">

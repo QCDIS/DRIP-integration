@@ -53,7 +53,6 @@
         <ul class="nav nav-sidebar">
           <li><a href="#resource_PlannerController_deleteAll_DELETE">DELETE /user/v1.0/planner/all</a></li>
           <li><a href="#resource_PlannerController_getIds_GET">GET /user/v1.0/planner/ids</a></li>
-          <li><a href="#resource_PlannerController_plan_POST">POST /user/v1.0/planner/plan/</a></li>
           <li><a href="#resource_PlannerController_verifyPlan_POST"><abbr title="POST /user/v1.0/planner/vereify_plan">POST /user/v1.0/planner/vereif...</abbr></a></li>
           <li><a href="#resource_PlannerController_delete_DELETE">DELETE /user/v1.0/planner/{id}</a></li>
           <li><a href="#resource_PlannerController_get_GET">GET /user/v1.0/planner/{id}</a></li>
@@ -217,113 +216,6 @@ Accept: application/json
               <h5>Response</h5>
               <pre>
 HTTP/1.1 200 Looks Good
-Content-Type: application/json
-
-                <code class="prettyprint language-txt">
-...
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="resource_PlannerController_plan_POST">
-        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/planner/plan/ <a href="./user/v1.0/planner/plan/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
-
-        <p></p>
-
-        <dl class="dl-horizontal">
-          <dt>Security Roles Allowed</dt>
-          <dd>ADMIN, USER</dd>
-        </dl>
-
-        <table class="table resource-request-body">
-          <caption>Request Body</caption>
-          <thead>
-          <tr>
-            <th>media type</th>
-            <th>data type</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference"><a href="json_PlanRequest.html">PlanRequest</a>
- (JSON)</span></td>
-          </tr>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference"><a href="xml_ns0_planRequest.html">planRequest</a>
- (XML)</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-codes">
-          <caption>Response Codes</caption>
-          <thead>
-          <tr>
-            <th>code</th>
-            <th>condition</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="label label-warning response-code">401</span></td>
-            <td><span class="response-condition">Bad credentials</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-body">
-          <caption>Response Body</caption>
-          <thead>
-          <tr>
-            <th>media type</th>
-            <th>data type</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference">string
- (JSON)</span></td>
-          </tr>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference">string
- (XML)</span></td>
-          </tr>
-          </tbody>
-        </table>
-        <h4>Example</h4>
-
-        <div class="container-fluid example panel">
-          <div class="row panel-body">
-            <div class="col-md-6">
-              <h5>Request</h5>
-              <pre>
-POST /user/v1.0/planner/plan/
-Content-Type: application/json
-Accept: application/json
-
-                <code class="prettyprint language-js">
-{
-  &quot;toscaID&quot; : &quot;592d5884e452f1b9b666a657&quot;,
-  &quot;managerType&quot; : &quot;swarm&quot;,
-  &quot;vmUserName&quot; : &quot;vm_user&quot;,
-  &quot;cloudProvider&quot; : &quot;egi&quot;,
-  &quot;osType&quot; : &quot;Ubuntu16.04&quot;,
-  &quot;domain&quot; : &quot;us-east-1&quot;
-}
-                </code>
-              </pre>
-            </div>
-            <div class="col-md-6">
-              <h5>Response</h5>
-              <pre>
-HTTP/1.1 201 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">

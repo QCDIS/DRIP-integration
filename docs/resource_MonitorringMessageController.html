@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-  <title>drip-api: BenchmarkController</title>
+  <title>drip-api: MonitorringMessageController</title>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">drip-api: BenchmarkController</a>
+        <a class="navbar-brand" href="index.html">drip-api: MonitorringMessageController</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -51,11 +51,9 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar" id="apinav">
         <ul class="nav nav-sidebar">
-          <li><a href="#resource_BenchmarkController_getBySysbench_GET">GET /user/v1.0/benchmark/</a></li>
-          <li><a href="#resource_BenchmarkController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/benchmark/all">DELETE /user/v1.0/benchmark/al...</abbr></a></li>
-          <li><a href="#resource_BenchmarkController_getIds_GET">GET /user/v1.0/benchmark/ids</a></li>
-          <li><a href="#resource_BenchmarkController_delete_DELETE"><abbr title="DELETE /user/v1.0/benchmark/{id}">DELETE /user/v1.0/benchmark/{i...</abbr></a></li>
-          <li><a href="#resource_BenchmarkController_get_GET">GET /user/v1.0/benchmark/{id}</a></li>
+          <li><a href="#resource_MonitorringMessageController_post_POST"><abbr title="POST /user/v1.0/monitoring_message/">POST /user/v1.0/monitoring_mes...</abbr></a></li>
+          <li><a href="#resource_MonitorringMessageController_getIds_GET"><abbr title="GET /user/v1.0/monitoring_message/ids">GET /user/v1.0/monitoring_mess...</abbr></a></li>
+          <li><a href="#resource_MonitorringMessageController_get_GET"><abbr title="GET /user/v1.0/monitoring_message/{id}">GET /user/v1.0/monitoring_mess...</abbr></a></li>
           <li class="divider"></li>
           <li class="text-right"><a href="#top"><small>Back to Top</small></a></li>
         </ul>
@@ -65,24 +63,40 @@
         <ol class="breadcrumb" id="top">
           <li class="active dropdown"><a href="index.html">Home</a></li>
           <li class="active dropdown"><a href="resources.html">Resources</a></li>
-          <li class="dropdown"><a href="resource_BenchmarkController.html">BenchmarkController</a></li>
+          <li class="dropdown"><a href="resource_MonitorringMessageController.html">MonitorringMessageController</a></li>
         </ol>
 
-      <h1 class="page-header">BenchmarkController <small>Resource</small></h1>
+      <h1 class="page-header">MonitorringMessageController <small>Resource</small></h1>
 
-      <p>This controller is responsible for handling cloud benchmark tests like
-sysbench</p>
+      <p></p>
 
-      <div id="resource_BenchmarkController_getBySysbench_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/benchmark/ <a href="./user/v1.0/benchmark/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_MonitorringMessageController_post_POST">
+        <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/monitoring_message/ <a href="./user/v1.0/monitoring_message/" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Returns sysbench results only. Not Not supported yet</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
           <dd>ADMIN, USER</dd>
         </dl>
 
+        <table class="table resource-request-body">
+          <caption>Request Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_MonitorringMessage.html">MonitorringMessage</a>
+ (JSON)</span></td>
+          </tr>
+          </tbody>
+        </table>
+
         <table class="table resource-response-codes">
           <caption>Response Codes</caption>
           <thead>
@@ -92,10 +106,6 @@ sysbench</p>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td><span class="label label-success response-code">200</span></td>
-            <td><span class="response-condition">Successful query</span></td>
-          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -114,12 +124,12 @@ sysbench</p>
           <tbody>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference">array of <a href="json_BenchmarkResult.html">BenchmarkResult</a>
+            <td><span class="datatype-reference">string
  (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference">list of <a href="xml_ns0_benchmarkResult.html">benchmarkResult</a>
+            <td><span class="datatype-reference">string
  (XML)</span></td>
           </tr>
           </tbody>
@@ -131,103 +141,29 @@ sysbench</p>
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-GET /user/v1.0/benchmark/
+POST /user/v1.0/monitoring_message/
+Content-Type: application/json
 Accept: application/json
 
-              </pre>
-            </div>
-            <div class="col-md-6">
-              <h5>Response</h5>
-              <pre>
-HTTP/1.1 200 Looks Good
-Content-Type: application/json
-
                 <code class="prettyprint language-js">
-[ {
-  &quot;cloudDeploymentDomain&quot; : &quot;us-east-1&quot;,
-  &quot;vmType&quot; : &quot;...&quot;,
-  &quot;start&quot; : 12345,
-  &quot;end&quot; : 12345,
-  &quot;delta&quot; : 12345,
-  &quot;host&quot; : &quot;147.228.242.58&quot;,
+{
+  &quot;metricMame&quot; : &quot;cpuTotal&quot;,
+  &quot;subid&quot; : &quot;1ccba0cc92174ce788695cfc0a027b57&quot;,
+  &quot;value&quot; : 91.0500021021063,
+  &quot;messageType&quot; : &quot;critical&quot;,
+  &quot;date&quot; : &quot;2017-08-25&quot;,
+  &quot;time&quot; : &quot;11:30:00&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 1499793079011
-} ]
+}
                 </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="resource_BenchmarkController_deleteAll_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/benchmark/all <a href="./user/v1.0/benchmark/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
-
-        <p>Deletes all entries. Use with caution !</p>
-
-        <dl class="dl-horizontal">
-          <dt>Security Roles Allowed</dt>
-          <dd>ADMIN</dd>
-        </dl>
-
-        <table class="table resource-response-codes">
-          <caption>Response Codes</caption>
-          <thead>
-          <tr>
-            <th>code</th>
-            <th>condition</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="label label-success response-code">200</span></td>
-            <td><span class="response-condition">Successful delete</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label-warning response-code">401</span></td>
-            <td><span class="response-condition">Bad credentials</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-body">
-          <caption>Response Body</caption>
-          <thead>
-          <tr>
-            <th>media type</th>
-            <th>data type</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference">string
- (JSON)</span></td>
-          </tr>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference">string
- (XML)</span></td>
-          </tr>
-          </tbody>
-        </table>
-        <h4>Example</h4>
-
-        <div class="container-fluid example panel">
-          <div class="row panel-body">
-            <div class="col-md-6">
-              <h5>Request</h5>
-              <pre>
-DELETE /user/v1.0/benchmark/all
-Accept: application/json
-
               </pre>
             </div>
             <div class="col-md-6">
               <h5>Response</h5>
               <pre>
-HTTP/1.1 200 Looks Good
+HTTP/1.1 201 Looks Good
 Content-Type: application/json
 
                 <code class="prettyprint language-txt">
@@ -239,10 +175,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_BenchmarkController_getIds_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/benchmark/ids <a href="./user/v1.0/benchmark/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_MonitorringMessageController_getIds_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/monitoring_message/ids <a href="./user/v1.0/monitoring_message/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Returns the ids of stored objects. Empty list if non stored</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -258,10 +194,6 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td><span class="label label-success response-code">200</span></td>
-            <td><span class="response-condition">Successful query</span></td>
-          </tr>
           <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
@@ -297,7 +229,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-GET /user/v1.0/benchmark/ids
+GET /user/v1.0/monitoring_message/ids
 Accept: application/json
 
               </pre>
@@ -317,10 +249,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_BenchmarkController_delete_DELETE">
-        <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/benchmark/{id} <a href="./user/v1.0/benchmark/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+      <div id="resource_MonitorringMessageController_get_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/monitoring_message/{id} <a href="./user/v1.0/monitoring_message/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Deletes object</p>
+        <p></p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -357,14 +289,6 @@ Content-Type: application/json
           </thead>
           <tbody>
           <tr>
-            <td><span class="label label-success response-code">200</span></td>
-            <td><span class="response-condition">Successful delete</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label-warning response-code">404</span></td>
-            <td><span class="response-condition">Non existing id</span></td>
-          </tr>
-          <tr>
             <td><span class="label label-warning response-code">401</span></td>
             <td><span class="response-condition">Bad credentials</span></td>
           </tr>
@@ -382,12 +306,12 @@ Content-Type: application/json
           <tbody>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference">string
+            <td><span class="datatype-reference"><a href="json_MonitorringMessage.html">MonitorringMessage</a>
  (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference">string
+            <td><span class="datatype-reference"><a href="xml_ns0_monitorringMessage.html">monitorringMessage</a>
  (XML)</span></td>
           </tr>
           </tbody>
@@ -399,109 +323,7 @@ Content-Type: application/json
             <div class="col-md-6">
               <h5>Request</h5>
               <pre>
-DELETE /user/v1.0/benchmark/{id}
-Accept: application/json
-
-              </pre>
-            </div>
-            <div class="col-md-6">
-              <h5>Response</h5>
-              <pre>
-HTTP/1.1 200 Looks Good
-Content-Type: application/json
-
-                <code class="prettyprint language-txt">
-...
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="resource_BenchmarkController_get_GET">
-        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/benchmark/{id} <a href="./user/v1.0/benchmark/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
-
-        <p>Returns a BenchmarkResult</p>
-
-        <dl class="dl-horizontal">
-          <dt>Security Roles Allowed</dt>
-          <dd>ADMIN, USER</dd>
-        </dl>
-
-        <table class="table resource-parameters">
-          <caption>Request Parameters</caption>
-          <thead>
-          <tr>
-            <th>name</th>
-            <th>type</th>
-            <th>description</th>
-            <th>constraints</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="parameter-name">id</span></td>
-            <td>path</td>
-            <td><span class="parameter-description">&nbsp;</span></td>
-            <td><span class="parameter-constraints">required</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-codes">
-          <caption>Response Codes</caption>
-          <thead>
-          <tr>
-            <th>code</th>
-            <th>condition</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><span class="label label-warning response-code">404</span></td>
-            <td><span class="response-condition">BenchmarkResult not found</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label-success response-code">200</span></td>
-            <td><span class="response-condition">BenchmarkResult exists</span></td>
-          </tr>
-          <tr>
-            <td><span class="label label-warning response-code">401</span></td>
-            <td><span class="response-condition">Bad credentials</span></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <table class="table resource-response-body">
-          <caption>Response Body</caption>
-          <thead>
-          <tr>
-            <th>media type</th>
-            <th>data type</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
-            <td><span class="datatype-reference"><a href="json_BenchmarkResult.html">BenchmarkResult</a>
- (JSON)</span></td>
-          </tr>
-          <tr>
-            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
-            <td><span class="datatype-reference"><a href="xml_ns0_benchmarkResult.html">benchmarkResult</a>
- (XML)</span></td>
-          </tr>
-          </tbody>
-        </table>
-        <h4>Example</h4>
-
-        <div class="container-fluid example panel">
-          <div class="row panel-body">
-            <div class="col-md-6">
-              <h5>Request</h5>
-              <pre>
-GET /user/v1.0/benchmark/{id}
+GET /user/v1.0/monitoring_message/{id}
 Accept: application/json
 
               </pre>
@@ -514,12 +336,12 @@ Content-Type: application/json
 
                 <code class="prettyprint language-js">
 {
-  &quot;cloudDeploymentDomain&quot; : &quot;us-east-1&quot;,
-  &quot;vmType&quot; : &quot;...&quot;,
-  &quot;start&quot; : 12345,
-  &quot;end&quot; : 12345,
-  &quot;delta&quot; : 12345,
-  &quot;host&quot; : &quot;147.228.242.58&quot;,
+  &quot;metricMame&quot; : &quot;cpuTotal&quot;,
+  &quot;subid&quot; : &quot;1ccba0cc92174ce788695cfc0a027b57&quot;,
+  &quot;value&quot; : 91.0500021021063,
+  &quot;messageType&quot; : &quot;critical&quot;,
+  &quot;date&quot; : &quot;2017-08-25&quot;,
+  &quot;time&quot; : &quot;11:30:00&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 1499793079011
