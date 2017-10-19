@@ -20,8 +20,8 @@ RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
-RUN pip install ansible
-RUN pip install ansible-vault
+RUN pip install ansible==2.2.2.0
+
 
 
 
