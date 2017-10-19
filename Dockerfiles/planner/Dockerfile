@@ -27,7 +27,7 @@ RUN pip install paramiko
 # Install planner
 WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip_planner2.tar.gz
-RUN tar -xzvf drip_planner2
+RUN tar -xzvf drip_planner2.tar.gz
 
 ENTRYPOINT sleep 10 && python /root/drip_planner2/rpc_server.py $RABBITMQ_HOST
 
