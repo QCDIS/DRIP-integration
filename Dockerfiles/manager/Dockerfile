@@ -10,11 +10,12 @@ ARG CERTS=/etc/grid-security/certificates
 
 
 ##install java
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
+RUN apt-get upgrade -y 
 RUN apt-get install -y openjdk-8-jdk
-# ENV DEBIAN_FRONTEND=noninteractive 
-# RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
-# RUN apt-get upgrade -y 
-# RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client
+RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client
+
 # RUN add-apt-repository -y ppa:webupd8team/java
 # RUN apt-get update
 # RUN "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
