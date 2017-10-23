@@ -13,8 +13,15 @@ ARG CERTS=/etc/grid-security/certificates
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
-RUN apt-get install -y openjdk-8-jdk
+# RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client
+
+RUN mkdir /opt/jdk
+WORKDIR /opt/
+RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/0.2.1/jdk-8u151-linux-x64.tar.gz
+RUN tar -zxf  jdk-8u151-linux-x64.tar.gz -C /opt/jdk
+RUN update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_151/bin/java 100
+RUN update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_151/bin/javac 100
 
 # RUN add-apt-repository -y ppa:webupd8team/java
 # RUN apt-get update
@@ -35,6 +42,7 @@ RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
 ARG keystorePass
+
 
 WORKDIR /root
 EXPOSE 8443
