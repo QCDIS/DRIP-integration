@@ -48,7 +48,7 @@ RUN echo trusted.certificates.folder=$CERTS >> provisioner.properties
 RUN echo domain.info.path=/root/drip-provisioner >> provisioner.properties
 RUN cat provisioner.properties
 
-ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.properties && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties &> provisioner.log
+ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.properties && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties
 
 #Build: docker build -t drip-pro .
 #Run: docker run -e RABBITMQ_HOST=172.17.0.2 drip-pro
