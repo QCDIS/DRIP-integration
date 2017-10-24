@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  # Platform - SWITCH
+  switch_monitoring_server:
+    image: salmant/ul_monitoring_server_container_image
+    ports:
+      - 8080:8080 # Optional, for debugging - WEB Interface
+      - 4242:4242 
+      - 4245:4245
+      - 7199:7199
+      - 7000:7000
+      - 7001:7001
+      - 9160:9160
+      - 9042:9042
+      - 8012:8012
+      - 61621:61621
+  switch_monitoring_agent:
+    image: beia/monitoring_agent
+    environment:
+      - MONITORING_SERVER=switch_monitoring_server
+      - MONITORING_PREFIX=eu.switch.beia # USER CONFIGURABLE!!!
+    depends_on:
+      - switch_monitoring_server
+  switch_alarm_trigger:
+    image: salmant/ul_alarm_trigger_container_image
+    environment:
+      - AlarmTriggerYMLURL=http://194.249.1.72:5000/AlarmTrigger.yml # SIDE GENERATED VALUE!!!
+      - MONITORING_SERVER=switch_monitoring_server
+      - JSONAlertURL=https://gurujsonrpc.appspot.com/guru # SIDE GENERATED VALUE!!! - POINTS to another component of ASAP
+      - JSONAlertURLSIDEGUI=https://gurujsonrpc.appspot.com/guru # SIDE GENERATED VALUE!!!
+    ports:
+      - 18080:8080 # Optional, for debugging - Web interface to alarm trigger
+    depends_on:
+      - switch_monitoring_server
+  # APPLICATION - BEIA, MOG, WT ...
