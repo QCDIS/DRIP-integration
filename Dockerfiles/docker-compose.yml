@@ -3,10 +3,13 @@ version: '2'
 services:
     mongo:
         image: mongo:3
+        volumes:
+            - db-data:/data/db
         ports:
             - "127.0.0.1:27017:27017"
         command: "mongod --port 27017"
         restart: always
+        
     
     rabbit:
         image: rabbitmq:3-management
@@ -64,6 +67,9 @@ services:
             - ./env_file
         ports:
             - "8443:8443"
+volumes:
+  db-data:  
+  
 #docker-compose build
 #docker-compose up -d
 
