@@ -45,7 +45,7 @@ RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$REL
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/0.2.1/etc.tar.gz
 RUN tar -xzvf etc.tar.gz
 RUN echo trusted.certificates.folder=$CERTS >> provisioner.properties
-RUN echo domain.info.path=/root/drip-provisioner >> provisioner.properties
+RUN echo domain.info.path=/root/drip-provisioner/etc >> provisioner.properties
 RUN cat provisioner.properties
 
 ENTRYPOINT echo rabbitmq.host=$RABBITMQ_HOST >> /root/drip-provisioner/provisioner.properties && sleep 10 & java -jar /root/drip-provisioner/drip-provisioner-1.0-SNAPSHOT-jar-with-dependencies.jar /root/drip-provisioner/provisioner.properties
