@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    server:
+        image: salmant/ul_monitoring_server_container_image2
+        ports:
+            - "8080:8080/tcp"
+    agent:
+        image: salmant/monitoring_agent
+        deploy:
+          replicas: 10
+        depends_on:
+          - server
+        command: --monitoringServerIP=server
