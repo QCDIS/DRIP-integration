@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-ARG RELESE_VERSION=0.2.1
+ARG RELESE_VERSION=0.2.2
 
 
 ENV DEBIAN_FRONTEND=noninteractive 
