@@ -21,6 +21,7 @@ RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
 RUN pip install ansible==2.2.2.0
+RUN pip install python_logging_rabbitmq
 
 
 
