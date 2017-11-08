@@ -33,6 +33,7 @@ RUN tar -zxf  jdk-8u151-linux-x64.tar.gz -C /opt/jdk
 RUN update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_151/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_151/bin/javac 100
 
+RUN echo $RELESE_VERSION
 
 #Install provisioner
 WORKDIR /root/
