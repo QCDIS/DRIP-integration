@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 
 # ARG RABBITMQ_HOST=127.0.0.1
 # ARG RELESE_VERSION=0.2.3
-
+ARG RELESE_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
