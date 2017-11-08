@@ -3,8 +3,8 @@ FROM ubuntu:16.04
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-# ARG RELESE_VERSION=0.2.2
-ARG RELESE_VERSION
+ARG RELESE_VERSION=0.2.3
+# ARG RELESE_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 

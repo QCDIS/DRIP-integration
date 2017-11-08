@@ -5,9 +5,9 @@ MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
 # ARG RABBITMQ_HOST=127.0.0.1
 # ARG MONOG_HOST=127.0.0.1
-# ARG RELESE_VERSION=0.2.3
+ARG RELESE_VERSION=0.2.3
 ARG CERTS=/etc/grid-security/certificates
-ARG RELESE_VERSION
+# ARG RELESE_VERSION
 
 ##install java
 ENV DEBIAN_FRONTEND=noninteractive 
