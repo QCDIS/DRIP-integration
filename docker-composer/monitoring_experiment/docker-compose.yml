@@ -15,7 +15,7 @@
     - '61621:61621'
     'environment':
     - 'MONITORING_SERVER=server'
-    - 'HOST_IP=agent'
+    - 'HOST_IP=server'
   'agent':
     'image': 'salmant/monitoring_agent'
     'depends_on':
