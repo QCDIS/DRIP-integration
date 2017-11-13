@@ -18,3 +18,10 @@ services:
       SPARK_WORKER_MEMORY: 2g
     links:
       - master
+  logspout:
+    image: bekt/logspout-logstash
+    restart: on-failure
+    environment:
+      ROUTE_URIS: logstash://147.228.242.33:5000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock      
