@@ -18,6 +18,9 @@ services:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
       - elk
+    deploy:
+      placement:
+        constraints: [node.role == worker]      
 
   logstash:
     #build: logstash/
@@ -33,6 +36,9 @@ services:
       - elk
     depends_on:
       - elasticsearch
+    deploy:
+      placement:
+        constraints: [node.role == worker]            
 
   kibana:
     #build: kibana/
@@ -45,6 +51,9 @@ services:
       - elk
     depends_on:
       - elasticsearch
+    deploy:
+      placement:
+        constraints: [node.role == manager]      
 
 networks:
 
