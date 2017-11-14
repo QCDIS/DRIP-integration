@@ -17,6 +17,9 @@ services:
       - "61621:61621"
     environment:
       - MONITORING_SERVER=server
+    deploy:
+      placement:
+        constraints: [node.role == manager]      
 
   agent:
     image: salmant/monitoring_agent
@@ -25,3 +28,6 @@ services:
       - HOST_IP=server
     depends_on:
       - server
+    deploy:
+      placement:
+        constraints: [node.role == worker]        
