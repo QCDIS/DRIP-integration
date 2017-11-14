@@ -10,8 +10,8 @@ services:
       - "7070:7070"
       - "8080:8080"
       - "50070:50070"
-      placement:
-        constraints: [node.role == manager]
+    placement:
+      constraints: [node.role == manager]
   worker:
     image: singularities/spark
     command: start-spark worker master
