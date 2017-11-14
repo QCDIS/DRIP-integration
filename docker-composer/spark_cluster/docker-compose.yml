@@ -25,10 +25,3 @@ services:
       ROUTE_URIS: logstash://elk:5000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      
-  elk:
-    image: sebp/elk
-    ports:
-      - "5601:5601"
-      - "9200:9200"
-      - "5044:5044"  
