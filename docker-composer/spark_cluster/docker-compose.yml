@@ -10,8 +10,10 @@ services:
       - "7070:7070"
       - "8080:8080"
       - "50070:50070"
-    placement:
-      constraints: [node.role == manager]
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+        
   worker:
     image: singularities/spark
     command: start-spark worker master
@@ -20,8 +22,9 @@ services:
       SPARK_WORKER_MEMORY: 2g
     links:
       - master
-    placement:
-      constraints: [node.role == worker]  
+    deploy:
+      placement:
+        constraints: [node.role == worker]  
         
   logspout:
     image: bekt/logspout-logstash
