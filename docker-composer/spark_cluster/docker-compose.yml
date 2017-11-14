@@ -10,6 +10,10 @@ services:
       - "7070:7070"
       - "8080:8080"
       - "50070:50070"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+        
   worker:
     image: singularities/spark
     command: start-spark worker master
@@ -18,3 +22,14 @@ services:
       SPARK_WORKER_MEMORY: 2g
     links:
       - master
+    deploy:
+      placement:
+        constraints: [node.role == worker]  
+        
+  logspout:
+    image: bekt/logspout-logstash
+    restart: on-failure
+    environment:
+      ROUTE_URIS: logstash://elk:5000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

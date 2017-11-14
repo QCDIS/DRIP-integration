@@ -1,5 +1,7 @@
-version: '3'
+version: "3"
+
 services:
+
   server:
     image: salmant/ul_monitoring_server_container_image2
     ports:
@@ -15,7 +17,17 @@ services:
       - "61621:61621"
     environment:
       - MONITORING_SERVER=server
+    deploy:
+      placement:
+        constraints: [node.role == manager]      
 
   agent:
     image: salmant/monitoring_agent
-    depends_on: [server]
+    environment:
+      - MONITORING_SERVER=server
+      - HOST_IP=server
+    depends_on:
+      - server
+    deploy:
+      placement:
+        constraints: [node.role == worker]        
