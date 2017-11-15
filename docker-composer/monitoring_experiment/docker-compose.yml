@@ -34,15 +34,8 @@ services:
       placement:
         constraints: [node.role == worker]   
     networks:
-      - monitoring   
-    
-  start_dependencies:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - server
-    command: server:8080
-    networks:
-      - monitoring    
+      - monitoring
+    command: ["curl", "-f", "http://server:8080"]
     
       
 networks:
