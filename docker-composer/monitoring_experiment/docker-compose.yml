@@ -21,8 +21,7 @@ services:
       placement:
         constraints: [node.role == manager]      
     networks:
-      - monitoring        
-    restart: always      
+      - monitoring          
 
   agent:
     image: salmant/monitoring_agent
@@ -35,8 +34,7 @@ services:
       placement:
         constraints: [node.role == worker]   
     networks:
-      - monitoring
-    restart: always    
+      - monitoring   
     
   start_dependencies:
     image: dadarek/wait-for-dependencies
