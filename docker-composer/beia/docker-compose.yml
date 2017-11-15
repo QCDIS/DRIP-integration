@@ -97,7 +97,7 @@ services:
          - MONITORING_SERVER=server
         deploy:
             placement:
-            constraints: [node.role == manager]
+                constraints: [node.role == manager]
         networks:
          - monitoring           
          
