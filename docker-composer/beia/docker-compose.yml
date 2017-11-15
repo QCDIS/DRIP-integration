@@ -99,7 +99,21 @@ services:
             placement:
                 constraints: [node.role == manager]      
         networks:
-         - external                
+         - monitoring
+         
+    agent:
+        image: salmant/monitoring_agent
+        environment:
+         - MONITORING_SERVER=server
+         - HOST_IP=server
+        depends_on:
+         - server
+        deploy:
+            placement:
+                constraints: [node.role == worker]   
+        networks:
+         - monitoring
+               
                 
          
 networks:
