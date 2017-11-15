@@ -43,6 +43,8 @@ services:
     depends_on:
       - server
     command: server:8080
+    networks:
+      - monitoring    
     
       
 networks:
