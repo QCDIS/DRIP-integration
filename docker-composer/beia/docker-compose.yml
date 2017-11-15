@@ -79,41 +79,6 @@ services:
         networks:
          - monitoring
          - external
-      
-    server:
-        image: salmant/ul_monitoring_server_container_image2
-        ports:
-          - "8080:8080"
-          - "4242:4242"
-          - "4245:4245"
-          - "7199:7199"
-          - "7000:7000"
-          - "7001:7001"
-          - "9160:9160"
-          - "9042:9042"
-          - "8012:8012"
-          - "61621:61621"
-        environment:
-          - MONITORING_SERVER=server
-        deploy:
-          placement:
-            constraints: [node.role == manager]      
-        networks:
-          - monitoring
-          
-    agent:
-        image: salmant/monitoring_agent
-        environment:
-          - MONITORING_SERVER=server
-          - HOST_IP=server
-        depends_on:
-          - server
-        deploy:
-          placement:
-            constraints: [node.role == worker]   
-        networks:
-            - monitoring         
-
 networks:
     db:
     external:
