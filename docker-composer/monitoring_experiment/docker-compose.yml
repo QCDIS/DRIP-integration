@@ -36,7 +36,14 @@ services:
         constraints: [node.role == worker]   
     networks:
       - monitoring
-    restart: always            
+    restart: always    
+    
+  start_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - server
+    command: server:8080
+    
       
 networks:
   monitoring:      
