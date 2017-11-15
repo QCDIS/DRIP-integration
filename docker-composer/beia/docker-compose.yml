@@ -83,7 +83,7 @@ services:
     server:
         image: salmant/ul_monitoring_server_container_image2
         ports:
-         - "8080:8080"
+         - "8081:8080"
          - "4242:4242"
          - "4245:4245"
          - "7199:7199"
@@ -97,9 +97,10 @@ services:
          - MONITORING_SERVER=server
         deploy:
             placement:
-                constraints: [node.role == manager]
+                constraints: [node.role == manager]      
         networks:
-         - monitoring           
+         - external                
+                
          
 networks:
     db:
