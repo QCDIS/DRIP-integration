@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  logspout:
+    image: gliderlabs/logspout:latest
+    networks:
+        - logging
+    volumes:
+        - /etc/hostname:/etc/host_hostname:ro
+        - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+        - publish:'127.0.0.1:8000:80'
+    ports:
+        - "8000:80"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 128M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+      
+      
+networks:
+  logging:    
