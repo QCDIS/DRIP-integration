@@ -38,8 +38,7 @@ services:
         - /etc/hostname:/etc/host_hostname:ro
         - /var/run/docker.sock:/var/run/docker.sock
     environment:
-        - publish:127.0.0.1:8000:80
-        #- RAW_FORMAT:toJSON
+        - publish:'127.0.0.1:8000:80'
     ports:
         - "8000:80"
     deploy:
