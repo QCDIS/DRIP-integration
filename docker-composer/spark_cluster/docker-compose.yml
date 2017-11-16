@@ -27,9 +27,23 @@ services:
         constraints: [node.role == worker]  
         
   logspout:
-    image: bekt/logspout-logstash
-    restart: on-failure
-    environment:
-      ROUTE_URIS: logstash://elk:5000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+  image: gliderlabs/logspout:latest
+  networks:
+    - logging
+  volumes:
+    - /etc/hostname:/etc/host_hostname:ro
+    - /var/run/docker.sock:/var/run/docker.sock
+  command:
+    syslog://svt2-logger.am2.cloudra.local:514
+  deploy:
+    mode: global
+    resources:
+      limits:
+        cpus: '0.20'
+        memory: 256M
+      reservations:
+        cpus: '0.10'
+      memory: 128M        
+        
+networks:
+  logging:
