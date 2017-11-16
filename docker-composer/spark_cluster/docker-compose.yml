@@ -33,8 +33,8 @@ services:
   volumes:
     - /etc/hostname:/etc/host_hostname:ro
     - /var/run/docker.sock:/var/run/docker.sock
-  command:
-    syslog://svt2-logger.am2.cloudra.local:514
+  environment:
+    publish:127.0.0.1:8000:80    
   deploy:
     mode: global
     resources:
