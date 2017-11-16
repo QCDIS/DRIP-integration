@@ -13,6 +13,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    networks:
+        - app           
         
   worker:
     image: singularities/spark
@@ -25,6 +27,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == worker]  
+    networks:
+        - app        
         
   logspout:
     image: gliderlabs/logspout:latest
@@ -38,15 +42,16 @@ services:
     ports:
         - "8000:80"
     deploy:
-        mode: global
-        resources:
+      mode: global
+      resources:
         limits:
-            cpus: '0.20'
-            memory: 256M
+          cpus: '0.20'
+          memory: 256M
         reservations:
-            cpus: '0.10'
-        memory: 128M
+          cpus: '0.10'
+          memory: 128M
       
       
 networks:
   logging:    
+  app:
