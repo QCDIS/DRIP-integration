@@ -39,6 +39,7 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
     environment:
         - publish:127.0.0.1:8000:80
+        - RAW_FORMAT:toJSON
     ports:
         - "8000:80"
     deploy:
