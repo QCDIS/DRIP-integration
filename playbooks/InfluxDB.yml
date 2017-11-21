@@ -1,4 +1,24 @@
 ---
 - hosts: all
   tasks:
-   - {name: createDB, command: "docker exec `docker ps | grep -i influx | awk '{print $1}'` influx -execute 'CREATE DATABASE cadvisor'", become: true}
+    - name: gather list of containers
+      shell: docker ps | awk '/{{ item }}/{print $1}'
+      register: list_of_containers
+      with_items:
+      - influx
+      become: true
+
+    #- name: debug
+      #debug: msg="{{ list_of_containers }}"
+        
+    - name: run action
+      docker_container:
+        name: temp-container
+        image: influxdb
+        command: CREATE DATABASE cadvisor
+        cleanup: yes
+        detach: yes
+      register: result_of_action
+      with_items:
+      - list_of_containers.results.stdout_lines  
+      become: true
