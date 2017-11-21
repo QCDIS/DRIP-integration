@@ -1,5 +1,5 @@
 ---
 - hosts: all
   tasks:
-   - {name: createDB, command:docker exec `docker ps | grep -i influx | awk '{print $1}'` influx -execute 'CREATE DATABASE cadvisor', become: true}
+   - {name: createDB, command: docker exec `docker ps | grep -i influx | awk '{print $1}'` influx -execute 'CREATE DATABASE cadvisor', become: true}
    
