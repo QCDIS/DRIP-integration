@@ -97,13 +97,51 @@ services:
             - publish:"127.0.0.1:8000:80"
         ports:
             - "8000:80"
+            
+            
+    influx:
+        image: influxdb
+        volumes:
+        - influx:/var/lib/influxdb
+        networks:
+        - monitoring          
+
+    grafana:
+        image: grafana/grafana
+        ports:
+        - 0.0.0.0:80:3000
+        volumes:
+        - grafana:/var/lib/grafana
+        depends_on:
+        - influx
+        networks:
+        - monitoring               
+
+    cadvisor:
+        image: google/cadvisor
+        hostname: '{{.Node.ID}}'
+        command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
+        volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:rw
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+        depends_on:
+        - influx
+        networks:
+        - monitoring          
 
 volumes:
   db-data:  
+  influx:
+    driver: local
+  grafana:
+    driver: local  
   
 networks:
     logging:   
     drip:
+    monitoring:
   
 #docker-compose build
 #docker-compose up -d
