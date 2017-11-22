@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: gather list of containers
+      shell: docker exec `docker ps | awk '/{{ item }}/{print $1}'` influx -execute 'CREATE DATABASE cadvisor'
+      register: list_of_containers
+      with_items:
+      - influx
+      become: true

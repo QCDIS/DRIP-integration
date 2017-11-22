@@ -13,6 +13,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    networks:
+        - app           
         
   worker:
     image: singularities/spark
@@ -25,11 +27,9 @@ services:
     deploy:
       placement:
         constraints: [node.role == worker]  
-        
-  logspout:
-    image: bekt/logspout-logstash
-    restart: on-failure
-    environment:
-      ROUTE_URIS: logstash://elk:5000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        - app
+      
+      
+networks:  
+  app:

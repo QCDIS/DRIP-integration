@@ -20,6 +20,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]      
+    networks:
+      - monitoring          
 
   agent:
     image: salmant/monitoring_agent
@@ -30,4 +32,11 @@ services:
       - server
     deploy:
       placement:
-        constraints: [node.role == worker]        
+        constraints: [node.role == worker]   
+    networks:
+      - monitoring
+    #command: ["curl", "-f", "http://server:8080"]
+    
+      
+networks:
+  monitoring:      
