@@ -35,7 +35,7 @@ services:
         constraints: [node.role == worker]   
     networks:
       - monitoring
-    command: ["curl", "-f", "http://server:8080"]
+    #command: ["curl", "-f", "http://server:8080"]
     
       
 networks:
