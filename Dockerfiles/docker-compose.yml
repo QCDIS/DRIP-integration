@@ -139,9 +139,9 @@ volumes:
     driver: local  
   
 networks:
-    logging:   
+    #logging:   
     drip:
-    monitoring:
+    #monitoring:
   
 #docker-compose build
 #docker-compose up -d
