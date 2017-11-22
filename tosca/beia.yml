@@ -29,7 +29,7 @@ topology_template:
           port_mapping_2: 
             host_port: SET_ITS_VALUE
             container_port: SET_ITS_VALUE
-        scaling_mode: multiple
+        scaling_mode: single
     "4ce1fa01-c390-4635-8714-eacfcf24cac8": 
       type: "Switch.nodes.Application.Container.Docker.VLAD_SIPNotifier"
       properties: 
@@ -187,7 +187,7 @@ topology_template:
           "": 
             type: in
             port: "  "
-        scaling_mode: single
+        scaling_mode: multiple
         out_ports: 
           "": 
             type: out
