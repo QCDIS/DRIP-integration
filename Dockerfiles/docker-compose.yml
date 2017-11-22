@@ -9,6 +9,8 @@ services:
             - "127.0.0.1:27017:27017"
         command: "mongod --port 27017"
         restart: always
+        networks:
+            - drip        
         
     rabbit:
         image: rabbitmq:3-management
@@ -16,6 +18,8 @@ services:
             - "127.0.0.1:5671-5672:5671-5672"
             - "127.0.0.1:15671:15671"
         restart: always
+        networks:
+            - drip            
     
     drip-planner:
         depends_on:
@@ -28,7 +32,9 @@ services:
         environment:
             RABBITMQ_HOST: rabbit
         env_file:
-            - ./version_env                
+            - ./version_env            
+        networks:
+            - drip                
             
     drip-provisioner:
         depends_on:
@@ -42,6 +48,8 @@ services:
             RABBITMQ_HOST: rabbit   
         env_file:
             - ./version_env      
+        networks:
+            - drip                
             
     drip-deployer:
         depends_on:
@@ -55,6 +63,8 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env    
+        networks:
+            - drip                
             
     drip-manager:
         depends_on:
@@ -73,8 +83,27 @@ services:
             - ./version_env
         ports:
             - "8443:8443"
+        networks:
+            - drip                
+            
+    logspout:
+        image: gliderlabs/logspout:latest
+        networks:
+            - logging
+        volumes:
+            - /etc/hostname:/etc/host_hostname:ro
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - publish:"127.0.0.1:8000:80"
+        ports:
+            - "8000:80"
+
 volumes:
   db-data:  
+  
+networks:
+    logging:   
+    drip:
   
 #docker-compose build
 #docker-compose up -d
