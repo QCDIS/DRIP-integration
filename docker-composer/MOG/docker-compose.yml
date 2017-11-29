@@ -1,0 +1,280 @@
+# File to run on a remote machine with access to mog's registry (mogswitch)
+
+version: '2'
+
+services:
+
+  streamer:
+    environment:
+      - inPort=2000
+      - inPort2=2002
+      - inPort3=2004
+      - inPort4=2006
+      - ipID1=input
+      - ipID2=input2
+      - ipID3=input3
+      - ipID4=input4
+      - camnumber=2
+    image: mogpsantos/streamer
+
+
+
+  input:
+    ports:
+      - "2000:2000/udp"
+    environment:
+      - inPort=2000
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3000
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input
+      - identification=InputDistributor1
+      - metrics=true
+    image: mogpsantos/inputpipe
+    #tmpfs:
+     #- /ram/
+
+
+
+  input2:
+    ports:
+      - "2002:2002/udp"
+    environment:
+      - inPort=2002
+      - multicastAddrIP
+      - multicastAddrPort=3002
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input2
+      - identification=InputDistributor2
+      - metrics=true
+    image: mogpsantos/inputpipe
+    #tmpfs:
+     #- /ram/   
+
+
+
+  #input3:
+    #ports:
+      #- "2004:2004/udp"
+    #environment:
+      #- inPort=2004
+      #- multicastAddrIP
+      #- multicastAddrPort=3004
+      #- waitingTime=5
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=input3
+      #- identification=InputDistributor3
+      #- metrics=true
+    #image: mogpsantos/inputpipe
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
+
+
+  #input4:
+    #ports:
+      #- "2006:2006/udp"
+    #environment:
+      #- inPort=2006
+      #- multicastAddrIP
+      #- multicastAddrPort=3006
+      #- waitingTime=5
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=input4
+      #- identification=InputDistributor4
+      #- metrics=true
+    #image: mogpsantos/inputpipe
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
+
+
+
+################################################
+
+
+
+  proxy:
+    ports:
+      - "8081:80"
+    environment:
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3000
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=proxy
+      - identification=ProxyTranscoder1
+      - metrics=true
+    image: mogpsantos/proxytranscoder
+    #tmpfs:
+     #- /ram/      
+
+
+  proxy2:
+    ports:
+      - "8082:80"
+    environment:
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3002
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=proxy2
+      - identification=ProxyTranscoder2
+      - metrics
+    image: mogpsantos/proxytranscoder
+    #tmpfs:
+     #- /ram/  
+
+
+  #proxy3:
+    #ports:
+      #- "8083:80"
+    #environment:
+      #- multicastAddrIP=225.2.2.0
+      #- multicastAddrPort=3004
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=proxy3
+      #- identification=ProxyTranscoder3
+      #- metrics
+    #image: mogpsantos/proxytranscoder
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
+
+
+
+  #proxy4:
+    #ports:
+      #- "8084:80"
+    #environment:
+      #- multicastAddrIP=225.2.2.0
+      #- multicastAddrPort=3006
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=proxy4
+      #- identification=ProxyTranscoder4
+      #- metrics
+    #image: mogpsantos/proxytranscoder
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
+
+
+  #proxyOut:    
+    #ports:
+      #- "8085:80"
+    #environment:
+      #- multicastAddrIP=226.2.2.2
+      #- multicastAddrPort=6000
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=proxyOut
+      #- identification=ProxyTranscoderOut
+      #- metrics
+    #image: mogpsantos/proxytranscoder
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
+
+#####################################################
+
+  switcher:
+    ports:
+      - "8008:8008"
+    environment:
+      # MulticastGroups
+      - multicastAddrIP=225.2.2.0
+      # Multicast Port
+      - multicastAddrPort=3000
+      - multicastAddrPort2=3002
+      - multicastAddrPort3=3004
+      - multicastAddrPort4=3006
+      # SWITCHER SETTINGS
+      - switcherOutAddrIP=226.2.2.2
+      - switcherOutAddrPort=6000
+      - switcherREST=8008
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=switcher
+      - identification=VideoSwitcher
+      - metrics=true
+      - buffer=false
+      - camnumber=2
+    image: mogpsantos/videoswitcher
+
+
+####################################################
+
+
+
+  output:
+    ports:
+      - "4000:4000"
+    environment:
+      - multicastAddrIP=226.2.2.2
+      - multicastAddrPort=6000
+      - videoWidth=720
+      - videoHeight=406
+      - OutIP=10.20.155.5
+      - OutPort=4000
+      - statsdPort=8125
+      - machineip=output
+      - identification=OutputTranscoder
+      - metrics=true
+    image: mogpsantos/outputtranscoder
+    #tmpfs:
+     #- /ram/      
+
+####################################################
+
+  output:
+    ports:
+      - "4000:4000"
+    environment:
+      - multicastAddrIP=226.2.2.2
+      - multicastAddrPort=6000
+      - videoWidth=720
+      - videoHeight=406
+      - OutIP=10.20.155.5
+      - OutPort=4000
+      - statsdPort=8125
+      - machineip=output
+      - identification=OutputTranscoder
+      - metrics=true
+    image: mogpsantos/outputtranscoder
+    #tmpfs:
+     #- /ram/    
+
+
+####################################################
+
+  frontend:
+    ports:
+      - "5050:80"
+    image: mogpsantos/switchgui
+    environment:
+      - ipPT1=proxy
+      - ipPT2=proxy2
+      - ipPT3=proxy3
+      - ipPT4=proxy4
+      - ipPTout=proxyOut
+      - ipVS=switcher
+      

@@ -1,0 +1,276 @@
+# File to run on a remote machine with access to mog's registry (mogswitch)
+
+version: '2'
+
+services:
+
+  streamer:
+    environment:
+      - inPort=${inPort}
+      - inPort2=${inPort2}
+      - inPort3=${inPort3}
+      - inPort4=${inPort4}
+      - ipID1=${ipID1}
+      - ipID2=${ipID2}
+      - ipID3=${ipID3}
+      - ipID4=${ipID4}
+      - camnumber=${camnumber}
+    image: ${registry}/streamer
+
+
+
+  input:
+    ports:
+      - "${inPort}:${inPort}/udp"
+    environment:
+      - inPort=2000
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=${multicastAddrPort}
+      - waitingTime=${waitingTime}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - statsdPort=${statsdPort}
+      - machineip=${ipID1}
+      - identification=${idID1}
+      - metrics=${metrics}
+    image: ${registry}/inputpipe
+    #tmpfs:
+     #- /ram/ 
+
+
+
+  input2:
+    ports:
+      - "${inPort2}:${inPort2}/udp"
+    environment:
+      - inPort=${inPort2}
+      - multicastAddrIP
+      - multicastAddrPort=${multicastAddrPort2}
+      - waitingTime=${waitingTime}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - statsdPort=${statsdPort}
+      - machineip=${ipID2}
+      - identification=${idID2}
+      - metrics=${metrics}
+    image: ${registry}/inputpipe
+    #tmpfs:
+     #- /ram/     
+
+
+
+  #input3:
+    #ports:
+      #- "${inPort3}:${inPort3}/udp"
+    #environment:
+      #- inPort=${inPort3}
+      #- multicastAddrIP
+      #- multicastAddrPort=${multicastAddrPort3}
+      #- waitingTime=${waitingTime}
+      #- videoWidth=${videoWidth}
+      #- videoHeight=${videoHeight}
+      #- statsdPort=${statsdPort}
+      #- machineip=${ipID3}
+      #- identification=${idID3}
+      #- metrics=${metrics}
+    #image: ${registry}/inputpipe
+    #tmpfs:
+     #- /ram/
+
+
+  #input4:
+    #ports:
+      #- "${inPort4}:${inPort4}/udp"
+    #environment:
+      #- inPort=${inPort4}
+      #- multicastAddrIP
+      #- multicastAddrPort=${multicastAddrPort4}
+      #- waitingTime=${waitingTime}
+      #- videoWidth=${videoWidth}
+      #- videoHeight=${videoHeight}
+      #- statsdPort=${statsdPort}
+      #- machineip=${ipID4}
+      #- identification=${idID4}
+      #- metrics=${metrics}
+    #image: ${registry}/inputpipe
+    #tmpfs:
+     #- /ram/
+
+
+
+################################################
+
+
+
+  proxy:
+    ports:
+      - "8081:80"
+    environment:
+      - multicastAddrIP=${multicastAddrIP}
+      - multicastAddrPort=${multicastAddrPort}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - statsdPort=${statsdPort}
+      - machineip=${ipPT1}
+      - identification=${idPT1}
+      - metrics=${metrics}
+    image: ${registry}/proxytranscoder
+    #tmpfs:
+     #- /ram/    
+
+
+  proxy2:
+    ports:
+      - "8082:80"
+    environment:
+      - multicastAddrIP=${multicastAddrIP}
+      - multicastAddrPort=${multicastAddrPort2}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - statsdPort=${statsdPort}
+      - machineip=${ipPT2}
+      - identification=${idPT2}
+      - metrics
+    image: ${registry}/proxytranscoder
+    #tmpfs:
+     #- /ram/      
+
+
+  #proxy3:
+    #ports:
+      #- "8083:80"
+    #environment:
+      #- multicastAddrIP=${multicastAddrIP}
+      #- multicastAddrPort=${multicastAddrPort3}
+      #- videoWidth=${videoWidth}
+      #- videoHeight=${videoHeight}
+      #- statsdPort=${statsdPort}
+      #- machineip=${ipPT3}
+      #- identification=${idPT3}
+      #- metrics
+    #image: ${registry}/proxytranscoder
+    #tmpfs:
+     #- /ram/
+
+
+
+  #proxy4:
+    #ports:
+      #- "8084:80"
+    #environment:
+      #- multicastAddrIP=${multicastAddrIP}
+      #- multicastAddrPort=${multicastAddrPort4}
+      #- videoWidth=${videoWidth}
+      #- videoHeight=${videoHeight}
+      #- statsdPort=${statsdPort}
+      #- machineip=${ipPT4}
+      #- identification=${idPT4}
+      #- metrics
+    #image: ${registry}/proxytranscoder
+    #tmpfs:
+     #- /ram/
+
+
+  #proxyOut:    
+    #ports:
+      #- "8085:80"
+    #environment:
+      #- multicastAddrIP=${switcherOutAddrIP}
+      #- multicastAddrPort=${switcherOutAddrPort}
+      #- videoWidth=${videoWidth}
+      #- videoHeight=${videoHeight}
+      #- statsdPort=${statsdPort}
+      #- machineip=${ipPTout}
+      #- identification=${idPTout}
+      #- metrics
+    #image: ${registry}/proxytranscoder
+    #tmpfs:
+     #- /ram/
+
+#####################################################
+
+  switcher:
+    ports:
+      - "${switcherREST}:${switcherREST}"
+    environment:
+      # MulticastGroups
+      - multicastAddrIP=${multicastAddrIP}
+      # Multicast Port
+      - multicastAddrPort=${multicastAddrPort}
+      - multicastAddrPort2=${multicastAddrPort2}
+      - multicastAddrPort3=${multicastAddrPort3}
+      - multicastAddrPort4=${multicastAddrPort4}
+      # SWITCHER SETTINGS
+      - switcherOutAddrIP=${switcherOutAddrIP}
+      - switcherOutAddrPort=${switcherOutAddrPort}
+      - switcherREST=${switcherREST}
+      - waitingTime=${waitingTime}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - statsdPort=${statsdPort}
+      - machineip=${ipVS}
+      - identification=${idVS}
+      - metrics=${metrics}
+      - buffer=${buffer}
+      - camnumber=${camnumber}
+    image: ${registry}/videoswitcher
+
+
+####################################################
+
+
+
+  output:
+    ports:
+      - "${OutPort}:${OutPort}"
+    environment:
+      - multicastAddrIP=${switcherOutAddrIP}
+      - multicastAddrPort=${switcherOutAddrPort}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - OutIP=${OutIP}
+      - OutPort=${OutPort}
+      - statsdPort=${statsdPort}
+      - machineip=${ipOUT}
+      - identification=${idOUT}
+      - metrics=${metrics}
+    image: ${registry}/outputtranscoder
+    #tmpfs:
+     #- /ram/     
+
+####################################################
+
+  output:
+    ports:
+      - "${OutPort}:${OutPort}"
+    environment:
+      - multicastAddrIP=${switcherOutAddrIP}
+      - multicastAddrPort=${switcherOutAddrPort}
+      - videoWidth=${videoWidth}
+      - videoHeight=${videoHeight}
+      - OutIP=${OutIP}
+      - OutPort=${OutPort}
+      - statsdPort=${statsdPort}
+      - machineip=${ipOUT}
+      - identification=${idOUT}
+      - metrics=${metrics}
+    image: ${registry}/outputtranscoder
+    #tmpfs:
+     #- /ram/  
+
+
+####################################################
+
+  frontend:
+    ports:
+      - "5050:80"
+    image: ${registry}/switchgui
+    environment:
+      - ipPT1=${ipPT1}
+      - ipPT2=${ipPT2}
+      - ipPT3=${ipPT3}
+      - ipPT4=${ipPT4}
+      - ipPTout=${ipPTout}
+      - ipVS=${ipVS}
+      
+      
