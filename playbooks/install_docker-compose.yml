@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+  - name: install pre-req
+    apt: name="{{ item }}" update_cache=yes state=latest upgrade=yes
+    with_items: [python, tcsh, curl, python-pip]
+    become: true
+       
+  - pip:
+    name: docker-compose
+    
+  - {name: download compose, command: curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.15.0/docker-compose-$(uname -s)-$(uname -m)", become: true}
+  - {name: set x , command:   chmod +x /usr/local/bin/docker-compose, become: true}
