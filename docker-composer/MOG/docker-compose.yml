@@ -34,8 +34,8 @@ services:
       - identification=InputDistributor1
       - metrics=true
     image: mogpsantos/inputpipe
-    #tmpfs:
-     #- /ram/
+    tmpfs:
+    - /ram/
 
 
 
@@ -54,8 +54,8 @@ services:
       - identification=InputDistributor2
       - metrics=true
     image: mogpsantos/inputpipe
-    #tmpfs:
-     #- /ram/   
+    tmpfs:
+     - /ram/   
 
 
 
@@ -117,8 +117,8 @@ services:
       - identification=ProxyTranscoder1
       - metrics=true
     image: mogpsantos/proxytranscoder
-    #tmpfs:
-     #- /ram/      
+    tmpfs:
+     - /ram/      
 
 
   proxy2:
@@ -240,8 +240,8 @@ services:
       - identification=OutputTranscoder
       - metrics=true
     image: mogpsantos/outputtranscoder
-    #tmpfs:
-     #- /ram/      
+    tmpfs:
+     - /ram/      
 
 ####################################################
 
@@ -260,8 +260,8 @@ services:
       - identification=OutputTranscoder
       - metrics=true
     image: mogpsantos/outputtranscoder
-    #tmpfs:
-     #- /ram/    
+    tmpfs:
+     - /ram/    
 
 
 ####################################################
