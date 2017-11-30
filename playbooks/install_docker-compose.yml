@@ -27,3 +27,7 @@
   , become: true}
   
     - {name: set x , command:   chmod +x /usr/local/bin/docker-compose, become: true}
+    
+    - {name: download compose file, command: curl -o docker-compose.yml https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml, become: true}
+    
+    - {name: run compose file, command: curl -o docker-compose.yml https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml, become: true}
