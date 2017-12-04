@@ -38,7 +38,10 @@ services:
      #- /ram/ 
     volumes:
       - type: tmpfs
-        target: /ram         
+        target: /ram        
+
+
+
 
   input2:
     ports:
@@ -60,6 +63,27 @@ services:
     volumes:
       - type: tmpfs
         target: /ram        
+
+
+
+  #input3:
+    #ports:
+      #- "2004:2004/udp"
+    #environment:
+      #- inPort=2004
+      #- multicastAddrIP
+      #- multicastAddrPort=3004
+      #- waitingTime=5
+      #- videoWidth=720
+      #- videoHeight=406
+      #- statsdPort=8125
+      #- machineip=input3
+      #- identification=InputDistributor3
+      #- metrics=true
+    #image: mogpsantos/inputpipe
+    ##privileged: true
+    #tmpfs:
+     #- /ram/
 
 
 
@@ -263,6 +287,27 @@ services:
       - videoWidth=720
       - videoHeight=406
       - OutIP=127.0.0.1
+      - OutIP=10.20.155.5
+      - OutPort=4000
+      - statsdPort=8125
+      - machineip=output
+      - identification=OutputTranscoder
+      - metrics=true
+    image: mogpsantos/outputtranscoder
+    tmpfs:
+     - /ram/      
+
+####################################################
+
+  output:
+    ports:
+      - "4000:4000"
+    environment:
+      - multicastAddrIP=226.2.2.2
+      - multicastAddrPort=6000
+      - videoWidth=720
+      - videoHeight=406
+      - OutIP=10.20.155.5
       - OutPort=4000
       - statsdPort=8125
       - machineip=output
@@ -275,6 +320,8 @@ services:
       - type: tmpfs
         target: /ram        
 
+
+####################################################
   frontend:
     ports:
       - "5050:80"
@@ -286,5 +333,3 @@ services:
       - ipPT4=proxy4
       - ipPTout=proxyOut
       - ipVS=switcher
-      
-      

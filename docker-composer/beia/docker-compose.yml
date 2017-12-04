@@ -1,122 +1,68 @@
 version: '3'
 
 services:
-    telegreen:
-        build:
-            context: ../software/telegreen
-        image: beia/telegreen
-        ports:
-         - "8080:80"
+    data_collector:
+        image: beia/data_collector
         environment:
-         - MYSQL_ROOT_PASSWORD=doesntmatter
-         - MYSQL_DATABASE=telegreen
-         - MYSQL_USER=telegreen
-         - MYSQL_PASSWORD=password
-         - MYSQL_HOST=telegreen_db
+          CONFIG: config
         depends_on:
-         - telegreen_db
+         - config
+         - web
+         - graphite
         networks:
-         - db
-         - monitoring
-         - external
-    telegreen_db:
-        build:
-            context: ../software/database
-        image: beia/telegreen_db
-        environment:
-         - MYSQL_ROOT_PASSWORD=doesntmatter
-         - MYSQL_DATABASE=telegreen
-         - MYSQL_USER=telegreen
-         - MYSQL_PASSWORD=password
-         - MYSQL_HOST=telegreen_db
+         - config
+         - web
+         - data
+    graphite:
+        image: vladwing/graphite
+        volumes:
+         - graphite_data:/var/spool/graphite
         networks:
-         - db
-         - monitoring
+         - config
+         - web
+         - data
     alerter:
-        build:
-            context: ../software/samplegen
-        image: beia/alerter
-        command:
-         - "/srv/beia/scripts/run-node.sh /srv/beia/samplegen app/AlerterApp.class.js"
         image: beia/alerter
         environment:
-         - MYSQL_ROOT_PASSWORD=doesntmatter
-         - MYSQL_DATABASE=telegreen
-         - MYSQL_USER=telegreen
-         - MYSQL_PASSWORD=password
-         - MYSQL_HOST=telegreen_db
+          CONFIG: config
         depends_on:
-         - telegreen_db
+         - sip_notifier
+         - config
+         - web
         networks:
-         - db
-         - external
-    samplegen:
-        build:
-            context: ../software/samplegen
-        image: beia/samplegen
-        command:
-         - "/srv/beia/scripts/run-node.sh /srv/beia/samplegen app/SampleGeneratorApp.class.js"
+         - config
+         - web
+         - data
+    config:
+        image: beia/config_manager
+        environment:
+         TOSCA_URL: http://www.google.com
+        networks:
+         - config
+    web:
+        image: beia/nginx_proxy
+        environment:
+          CONFIG: config
         ports:
-         - "8128:8000"
-        environment:
-         - MYSQL_ROOT_PASSWORD=doesntmatter
-         - MYSQL_DATABASE=telegreen
-         - MYSQL_USER=telegreen
-         - MYSQL_PASSWORD=password
-         - MYSQL_HOST=telegreen_db
+         - "8880:80/tcp"
         depends_on:
-         - telegreen_db
+         - graphite
+         - alerter
+         - data_collector
         networks:
-         - db
-         - external
-    beia_mon:
-        build:
-            context: ../software/monitoring
-        image: beia/monitoring
-        depends_on:
-         - telegreen
-         - telegreen_db
-        networks:
-         - monitoring
-         - external
-         
-    server:
-        image: salmant/ul_monitoring_server_container_image2
-        ports:
-         - "8081:8080"
-         - "4242:4242"
-         - "4245:4245"
-         - "7199:7199"
-         - "7000:7000"
-         - "7001:7001"
-         - "9160:9160"
-         - "9042:9042"
-         - "8012:8012"
-         - "61621:61621"
+         - config
+         - web
+    sip_notifier:
+        image: beia/sip_notifier
         environment:
-         - MONITORING_SERVER=server
-        deploy:
-            placement:
-                constraints: [node.role == manager]      
+          CONFIG: config
         networks:
-         - monitoring
-         
-    agent:
-        image: salmant/monitoring_agent
-        environment:
-         - MONITORING_SERVER=server
-         - HOST_IP=server
-        depends_on:
-         - server
-        deploy:
-            placement:
-                constraints: [node.role == worker]   
-        networks:
-         - monitoring
-               
-                
-         
+         - config
+         - data
+volumes:
+ graphite_data:
 networks:
-    db:
-    external:
-    monitoring:
+ sip_internal:
+ config:
+ data:
+ web:
