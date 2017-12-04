@@ -36,7 +36,7 @@ services:
     config:
         image: beia/config_manager
         environment:
-         TOSCA_URL: ${TOSCA_URL:-http://www.google.com}
+         TOSCA_URL: http://www.google.com
         networks:
          - config
     web:
