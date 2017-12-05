@@ -2,7 +2,7 @@ version: "3"
 
 services:
 
-  server:
+  monitoring_server:
     image: salmant/ul_monitoring_server_container_image2
     ports:
       - "8080:8080"
@@ -16,26 +16,35 @@ services:
       - "8012:8012"
       - "61621:61621"
     environment:
-      - MONITORING_SERVER=server
-    deploy:
-      placement:
-        constraints: [node.role == manager]      
+      - MONITORING_SERVER=monitoring_server
     networks:
       - monitoring          
 
   agent:
     image: salmant/monitoring_agent
     environment:
-      - MONITORING_SERVER=server
+      - MONITORING_SERVER=monitoring_server
       - HOST_IP=server
     depends_on:
       - server
-    deploy:
-      placement:
-        constraints: [node.role == worker]   
     networks:
       - monitoring
     #command: ["curl", "-f", "http://server:8080"]
+    
+    
+  adapter:
+    container_name: adapter
+    ports:
+      - "8125:8125/udp"
+    image: beia/monitoring_adapter
+    environment:
+      - MONITORING_SERVER=monitoring_server   #ip of jcatascopia server
+      - MONITORING_PREFIX=eu.switch.mog
+      - LOGGING_LEVEL=trace #optional    
+    depends_on:
+      - server      
+    networks:
+      - monitoring      
     
       
 networks:
