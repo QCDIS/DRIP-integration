@@ -38,10 +38,7 @@ services:
      #- /ram/ 
     volumes:
       - type: tmpfs
-        target: /ram        
-
-
-
+        target: /ram         
 
   input2:
     ports:
@@ -63,27 +60,6 @@ services:
     volumes:
       - type: tmpfs
         target: /ram        
-
-
-
-  #input3:
-    #ports:
-      #- "2004:2004/udp"
-    #environment:
-      #- inPort=2004
-      #- multicastAddrIP
-      #- multicastAddrPort=3004
-      #- waitingTime=5
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=input3
-      #- identification=InputDistributor3
-      #- metrics=true
-    #image: mogpsantos/inputpipe
-    ##privileged: true
-    #tmpfs:
-     #- /ram/
 
 
 
@@ -287,27 +263,6 @@ services:
       - videoWidth=720
       - videoHeight=406
       - OutIP=127.0.0.1
-      - OutIP=10.20.155.5
-      - OutPort=4000
-      - statsdPort=8125
-      - machineip=output
-      - identification=OutputTranscoder
-      - metrics=true
-    image: mogpsantos/outputtranscoder
-    tmpfs:
-     - /ram/      
-
-####################################################
-
-  output:
-    ports:
-      - "4000:4000"
-    environment:
-      - multicastAddrIP=226.2.2.2
-      - multicastAddrPort=6000
-      - videoWidth=720
-      - videoHeight=406
-      - OutIP=10.20.155.5
       - OutPort=4000
       - statsdPort=8125
       - machineip=output
@@ -320,8 +275,6 @@ services:
       - type: tmpfs
         target: /ram        
 
-
-####################################################
   frontend:
     ports:
       - "5050:80"
@@ -333,3 +286,31 @@ services:
       - ipPT4=proxy4
       - ipPTout=proxyOut
       - ipVS=switcher
+      
+#######################Monitoring########################################      
+  adapter:
+    ports:
+      - "8125:8125/udp"
+    image: beia/monitoring_adapter
+    environment:
+      - MONITORING_SERVER=monitoring_server
+      - MONITORING_PREFIX=eu.switch.mog
+      - LOGGING_LEVEL=debug 
+      
+      
+  monitoring_server:
+    image: salmant/ul_monitoring_server_container_image2 # salmant/salman_monitoring_server_container_image
+    ports:
+      - "8080:8080"
+      - "4242:4242"
+      - "4245:4245"
+      - "7199:7199"
+      - "7000:7000"
+      - "7001:7001"
+      - "9160:9160"
+      - "9042:9042"
+      - "8012:8012"
+      - "61621:61621"
+    environment:
+      - MONITORING_SERVER=monitoring_server     
+      
