@@ -1,6 +1,6 @@
 # File to run on a remote machine with access to mog's registry (mogswitch)
 
-version: '3.2'
+version: "3.2"
 
 services:
 
