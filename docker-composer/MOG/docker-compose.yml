@@ -16,6 +16,8 @@ services:
       - ipID4=input4
       - camnumber=4
     image: mogpsantos/streamer
+    networks:
+      - app            
 
 
 
@@ -39,6 +41,8 @@ services:
     volumes:
       - type: tmpfs
         target: /ram         
+    networks:
+      - app                    
 
   input2:
     ports:
@@ -60,6 +64,8 @@ services:
     volumes:
       - type: tmpfs
         target: /ram        
+    networks:
+      - app                    
 
 
 
@@ -83,6 +89,8 @@ services:
     volumes:
       - type: tmpfs
         target: /ram   
+    networks:
+      - app                    
         
   input4:
     ports:
@@ -103,7 +111,9 @@ services:
      #- /ram/
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram       
+    networks:
+      - app                    
 
 
 
@@ -130,8 +140,9 @@ services:
      #- /ram/    
     volumes:
       - type: tmpfs
-        target: /ram        
-
+        target: /ram     
+    networks:
+      - app                    
 
   proxy2:
     ports:
@@ -152,7 +163,9 @@ services:
      #- /ram/      
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram     
+    networks:
+      - app                    
 
 
   proxy3:
@@ -174,7 +187,9 @@ services:
      #- /ram/
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram      
+    networks:
+      - app                    
 
 
 
@@ -197,7 +212,9 @@ services:
      #- /ram/
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram       
+    networks:
+      - app                    
 
 
   proxyOut:    
@@ -219,7 +236,9 @@ services:
      #- /ram/
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram       
+    networks:
+      - app                    
 
 #####################################################
 
@@ -248,6 +267,8 @@ services:
       - buffer=false
       - camnumber=4
     image: mogpsantos/videoswitcher
+    networks:
+      - app                
 
 
 ####################################################
@@ -286,6 +307,8 @@ services:
       - ipPT4=proxy4
       - ipPTout=proxyOut
       - ipVS=switcher
+    networks:
+      - app                  
       
 #######################Monitoring########################################      
   adapter:
@@ -296,6 +319,8 @@ services:
       - MONITORING_SERVER=monitoring_server
       - MONITORING_PREFIX=eu.switch.mog
       - LOGGING_LEVEL=debug 
+    networks:
+      - app                  
       
       
   monitoring_server:
@@ -313,4 +338,6 @@ services:
       - "61621:61621"
     environment:
       - MONITORING_SERVER=monitoring_server     
+    networks:
+      - app                  
       
