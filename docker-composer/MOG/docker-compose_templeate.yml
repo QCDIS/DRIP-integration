@@ -326,6 +326,6 @@ services:
     networks:
       - mon      
       
-  networks:
-    :app_mog
-    :mon      
+networks:
+    app_mog:
+    mon:
