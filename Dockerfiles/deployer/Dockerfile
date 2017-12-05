@@ -19,7 +19,7 @@ RUN pip install flask
 RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
-RUN pip install paramiko
+# RUN pip install paramiko==2.0.2
 RUN pip install ansible==2.2.2.0
 RUN pip install python_logging_rabbitmq
 
