@@ -296,6 +296,8 @@ services:
       - MONITORING_SERVER=${monitoring_server}
       - MONITORING_PREFIX=${monitoring_prefix}
       - LOGGING_LEVEL=debug 
+    depends_on:
+      - ${monitoring_server}      
       
       
   monitoring_server:
