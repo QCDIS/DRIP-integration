@@ -287,4 +287,30 @@ services:
       - ipPTout=${ipPTout}
       - ipVS=${ipVS}
       
+#######################Monitoring########################################      
+  adapter:
+    ports:
+      - "8125:8125/udp"
+    image: beia/monitoring_adapter
+    environment:
+      - MONITORING_SERVER=${monitoring_server}
+      - MONITORING_PREFIX=${monitoring_prefix}
+      - LOGGING_LEVEL=debug 
+      
+      
+  monitoring_server:
+    image: salmant/ul_monitoring_server_container_image2 # salmant/salman_monitoring_server_container_image
+    ports:
+      - "8080:8080"
+      - "4242:4242"
+      - "4245:4245"
+      - "7199:7199"
+      - "7000:7000"
+      - "7001:7001"
+      - "9160:9160"
+      - "9042:9042"
+      - "8012:8012"
+      - "61621:61621"
+    environment:
+      - MONITORING_SERVER=${monitoring_server}     
       
