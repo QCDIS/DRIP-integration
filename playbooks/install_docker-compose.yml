@@ -1,33 +1,64 @@
 ---
 - hosts: all
-  tasks:
+  tasks:    
   
-  - name: install pre-req
-    apt: name="{{ item }}" update_cache=yes state=latest upgrade=yes
-    with_items: [python, tcsh, curl, python-pip,apt-transport-https]
+  - name: Update aptitude
+    apt:
+        name: aptitude 
     become: true
     
-  - name: Add an Apt signing key, uses whichever key is at the URL
+  - name: update and upgrade
+    apt:
+        update_cache: yes
+        upgrade: yes
+        autoremove: yes
+        force: yes
+    become: true
+    
+  - name: install pre-req
+    apt: name="{{ item }}" state=latest
+    with_items: [python, curl, python-pip, apt-transport-https,linux-image-extra-virtual,linux-image-extra-4.4.0-97-generic, ca-certificates, software-properties-common]
+    become: true
+    
+  - name: Add key
     apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
-  - apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu xenial stable
-      state: present
-
-  - name: install pre-req
-    apt: name="{{ item }}" update_cache=yes state=latest upgrade=yes
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    become: true        
+     
+  - name: add repo  
+    apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+    become: true        
+     
+  - name: update and upgrade
+    apt:
+        update_cache: yes
+        upgrade: yes
+        autoremove: yes
+        force: yes
+    become: true        
+          
+  - name: install docker-ce
+    apt: name="{{ item }}" state=latest
     with_items: [docker-ce]
+    become: true    
+    
+  - name: download compose
+    get_url:
+        url: https://github.com/docker/compose/releases/download/1.17.0/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 0750
     become: true
-    
-    - pip:
-      name: docker-compose
-      
-    - {name: download compose, command: curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.17.1/docker-compose-$(uname -s)-$(uname -m)"
-  , become: true}
   
-    - {name: set x , command:   chmod +x /usr/local/bin/docker-compose, become: true}
-    
-    - {name: download compose file, command: curl -o docker-compose.yml https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml, become: true}
-    
-    - {name: run compose file, command: curl -o docker-compose.yml https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml, become: true}
+  ################Run mog############################   
+  - name: download compose file
+    get_url:
+        url: https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml
+        dest: /tmp/docker-compose.yml
+        
+  - {name: run, command: 'docker-compose -f /tmp/docker-compose.yml up -d', become: true} 
+  
+  
+#ansible-playbook -i "147.228.242.205," install_docker-compose.yml --private-key id_rsa --user vm_user  
