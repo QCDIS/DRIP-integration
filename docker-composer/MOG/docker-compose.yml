@@ -14,8 +14,10 @@ services:
       - ipID2=input2
       - ipID3=input3
       - ipID4=input4
-      - camnumber=1
+      - camnumber=4
     image: mogpsantos/streamer
+    networks:
+      - app            
 
 
 
@@ -39,71 +41,79 @@ services:
     volumes:
       - type: tmpfs
         target: /ram         
+    networks:
+      - app                    
 
-  #input2:
-    #ports:
-      #- "2002:2002/udp"
-    #environment:
-      #- inPort=2002
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3002
-      #- waitingTime=5
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=input2
-      #- identification=InputDistributor2
-      #- metrics=true
-    #image: mogpsantos/inputpipe
-    ##tmpfs:
-     ##- /ram/     
-    #volumes:
-      #- type: tmpfs
-        #target: /ram        
+  input2:
+    ports:
+      - "2002:2002/udp"
+    environment:
+      - inPort=2002
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3002
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input2
+      - identification=InputDistributor2
+      - metrics=true
+    image: mogpsantos/inputpipe
+    #tmpfs:
+     #- /ram/     
+    volumes:
+      - type: tmpfs
+        target: /ram        
+    networks:
+      - app                    
 
 
 
-  #input3:
-    #ports:
-      #- "2004:2004/udp"
-    #environment:
-      #- inPort=2004
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3004
-      #- waitingTime=5
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=input3
-      #- identification=InputDistributor3
-      #- metrics=true
-    #image: mogpsantos/inputpipe
-    ##tmpfs:
-     ##- /ram/
-    #volumes:
-      #- type: tmpfs
-        #target: /ram   
+  input3:
+    ports:
+      - "2004:2004/udp"
+    environment:
+      - inPort=2004
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3004
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input3
+      - identification=InputDistributor3
+      - metrics=true
+    image: mogpsantos/inputpipe
+    #tmpfs:
+     #- /ram/
+    volumes:
+      - type: tmpfs
+        target: /ram   
+    networks:
+      - app                    
         
-  #input4:
-    #ports:
-      #- "2006:2006/udp"
-    #environment:
-      #- inPort=2006
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3006
-      #- waitingTime=5
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=input4
-      #- identification=InputDistributor4
-      #- metrics=true
-    #image: mogpsantos/inputpipe
-    ##tmpfs:
-     ##- /ram/
-    #volumes:
-      #- type: tmpfs
-        #target: /ram        
+  input4:
+    ports:
+      - "2006:2006/udp"
+    environment:
+      - inPort=2006
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3006
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input4
+      - identification=InputDistributor4
+      - metrics=true
+    image: mogpsantos/inputpipe
+    #tmpfs:
+     #- /ram/
+    volumes:
+      - type: tmpfs
+        target: /ram       
+    networks:
+      - app                    
 
 
 
@@ -130,74 +140,81 @@ services:
      #- /ram/    
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram     
+    networks:
+      - app                    
+
+  proxy2:
+    ports:
+      - "8082:80"
+    environment:
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3002
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=proxy2
+      - identification=ProxyTranscoder2
+      - metrics=true
+    image: mogpsantos/proxytranscoder
+    depends_on:
+      - input2
+    #tmpfs:
+     #- /ram/      
+    volumes:
+      - type: tmpfs
+        target: /ram     
+    networks:
+      - app                    
 
 
-  #proxy2:
-    #ports:
-      #- "8082:80"
-    #environment:
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3002
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=proxy2
-      #- identification=ProxyTranscoder2
-      #- metrics=true
-    #image: mogpsantos/proxytranscoder
-    #depends_on:
-      #- input2
-    ##tmpfs:
-     ##- /ram/      
-    #volumes:
-      #- type: tmpfs
-        #target: /ram        
-
-
-  #proxy3:
-    #ports:
-      #- "8083:80"
-    #environment:
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3004
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=proxy3
-      #- identification=ProxyTranscoder3
-      #- metrics=true
-    #image: mogpsantos/proxytranscoder
-    #depends_on:
-      #- input3    
-    ##tmpfs:
-     ##- /ram/
-    #volumes:
-      #- type: tmpfs
-        #target: /ram        
+  proxy3:
+    ports:
+      - "8083:80"
+    environment:
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3004
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=proxy3
+      - identification=ProxyTranscoder3
+      - metrics=true
+    image: mogpsantos/proxytranscoder
+    depends_on:
+      - input3    
+    #tmpfs:
+     #- /ram/
+    volumes:
+      - type: tmpfs
+        target: /ram      
+    networks:
+      - app                    
 
 
 
-  #proxy4:
-    #ports:
-      #- "8084:80"
-    #environment:
-      #- multicastAddrIP=225.2.2.0
-      #- multicastAddrPort=3006
-      #- videoWidth=720
-      #- videoHeight=406
-      #- statsdPort=8125
-      #- machineip=proxy4
-      #- identification=ProxyTranscoder4
-      #- metrics=true
-    #image: mogpsantos/proxytranscoder
-    #depends_on:
-      #- input4    
-    ##tmpfs:
-     ##- /ram/
-    #volumes:
-      #- type: tmpfs
-        #target: /ram        
+  proxy4:
+    ports:
+      - "8084:80"
+    environment:
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3006
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=proxy4
+      - identification=ProxyTranscoder4
+      - metrics=true
+    image: mogpsantos/proxytranscoder
+    depends_on:
+      - input4    
+    #tmpfs:
+     #- /ram/
+    volumes:
+      - type: tmpfs
+        target: /ram       
+    networks:
+      - app                    
 
 
   proxyOut:    
@@ -219,7 +236,9 @@ services:
      #- /ram/
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram       
+    networks:
+      - app                    
 
 #####################################################
 
@@ -246,8 +265,10 @@ services:
       - identification=VideoSwitcher
       - metrics=true
       - buffer=false
-      - camnumber=1
+      - camnumber=4
     image: mogpsantos/videoswitcher
+    networks:
+      - app                
 
 
 ####################################################
@@ -286,6 +307,8 @@ services:
       - ipPT4=proxy4
       - ipPTout=proxyOut
       - ipVS=switcher
+    networks:
+      - app                  
       
 #######################Monitoring########################################      
   adapter:
@@ -296,6 +319,8 @@ services:
       - MONITORING_SERVER=monitoring_server
       - MONITORING_PREFIX=eu.switch.mog
       - LOGGING_LEVEL=debug 
+    networks:
+      - app                  
       
       
   monitoring_server:
@@ -313,4 +338,8 @@ services:
       - "61621:61621"
     environment:
       - MONITORING_SERVER=monitoring_server     
+    networks:
+      - app                  
       
+networks:  
+    app:
