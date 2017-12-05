@@ -341,3 +341,5 @@ services:
     networks:
       - app                  
       
+networks:  
+  app:
