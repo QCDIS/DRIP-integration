@@ -1,64 +1,62 @@
 ---
 - hosts: all
-  tasks:    
-  
+  tasks:
   - name: Update aptitude
-    apt:
-        name: aptitude 
+    apt: {name: aptitude}
     become: true
+    retries: 10
+    delay: 0.5     
     
   - name: update and upgrade
-    apt:
-        update_cache: yes
-        upgrade: yes
-        autoremove: yes
-        force: yes
+    apt: {update_cache: true, upgrade: true, autoremove: true, force: true}
     become: true
+    retries: 10
+    delay: 0.5     
     
   - name: install pre-req
     apt: name="{{ item }}" state=latest
-    with_items: [python, curl, python-pip, apt-transport-https,linux-image-extra-virtual,linux-image-extra-4.4.0-97-generic, ca-certificates, software-properties-common]
+    with_items: [python, curl, python-pip, apt-transport-https, linux-image-extra-virtual,
+      linux-image-extra-4.4.0-97-generic, ca-certificates, software-properties-common]
     become: true
+    retries: 10
+    delay: 0.5   
     
   - name: Add key
-    apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-    become: true        
-     
-  - name: add repo  
-    apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu xenial stable
-        state: present
-    become: true        
-     
+    apt_key: {url: 'https://download.docker.com/linux/ubuntu/gpg', state: present}
+    become: true
+    retries: 10
+    delay: 0.5    
+    
+  - name: add repo
+    apt_repository: {repo: 'deb https://download.docker.com/linux/ubuntu xenial stable',
+      state: present}
+    become: true
+    retries: 10
+    delay: 0.5       
+    
   - name: update and upgrade
-    apt:
-        update_cache: yes
-        upgrade: yes
-        autoremove: yes
-        force: yes
-    become: true        
-          
+    apt: {update_cache: true, upgrade: true, autoremove: true, force: true}
+    become: true
+    retries: 10
+    delay: 0.5   
+    
   - name: install docker-ce
     apt: name="{{ item }}" state=latest
     with_items: [docker-ce]
-    become: true    
+    become: true
+    retries: 10
+    delay: 0.5   
     
   - name: download compose
-    get_url:
-        url: https://github.com/docker/compose/releases/download/1.17.0/docker-compose-Linux-x86_64
-        dest: /usr/local/bin/docker-compose
-        mode: 0750
+    get_url: {url: 'https://github.com/docker/compose/releases/download/1.17.0/docker-compose-Linux-x86_64',
+      dest: /usr/local/bin/docker-compose, mode: 488}
     become: true
-  
-  ################Run mog############################   
+    retries: 10
+    delay: 0.5   
+    
   - name: download compose file
-    get_url:
-        url: https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml
-        dest: /tmp/docker-compose.yml
-        
-  - {name: run, command: 'docker-compose -f /tmp/docker-compose.yml up -d', become: true} 
-  
-  
-#ansible-playbook -i "147.228.242.205," install_docker-compose.yml --private-key id_rsa --user vm_user  
+    get_url: {url: 'https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml', dest: /tmp/docker-compose.yml}
+    retries: 10
+    delay: 0.5   
+    
+  - {name: run, command: docker-compose -f /tmp/docker-compose.yml up -d, become: true}
