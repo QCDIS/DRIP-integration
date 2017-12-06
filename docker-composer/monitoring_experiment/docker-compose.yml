@@ -19,7 +19,8 @@ services:
       - MONITORING_SERVER=monitoring_server
     networks:
       - monitoring
-#Send CPU and RAM monitoring data. It will be included in the applications 
+
+#Send CPU and RAM monitoring data. It will be included in the applications .Make sure that server is up
   agent:
     image: salmant/monitoring_agent
     environment:
@@ -33,7 +34,6 @@ services:
     
     
   adapter:
-    container_name: adapter
     ports:
       - "8125:8125/udp"
     image: beia/monitoring_agent # will change to adapter 
