@@ -18,8 +18,8 @@ services:
     environment:
       - MONITORING_SERVER=monitoring_server
     networks:
-      - monitoring          
-
+      - monitoring          ni
+#Send CPU and RAM monitoring data. It will be included in the applications 
   agent:
     image: salmant/monitoring_agent
     environment:
@@ -32,11 +32,11 @@ services:
     #command: ["curl", "-f", "http://server:8080"]
     
     
-  adapter:
+#  adapter:
     container_name: adapter
     ports:
       - "8125:8125/udp"
-    image: beia/monitoring_adapter
+    image: beia/monitoring_agent # will change to adapter 
     environment:
       - MONITORING_SERVER=monitoring_server   #ip of jcatascopia server
       - MONITORING_PREFIX=eu.switch.mog
