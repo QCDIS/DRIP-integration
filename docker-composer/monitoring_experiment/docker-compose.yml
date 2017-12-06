@@ -18,15 +18,15 @@ services:
     environment:
       - MONITORING_SERVER=monitoring_server
     networks:
-      - monitoring          ni
+      - monitoring
 #Send CPU and RAM monitoring data. It will be included in the applications 
   agent:
     image: salmant/monitoring_agent
     environment:
       - MONITORING_SERVER=monitoring_server
-      - HOST_IP=server
+      - HOST_IP=agent
     depends_on:
-      - server
+      - monitoring_server
     networks:
       - monitoring
     #command: ["curl", "-f", "http://server:8080"]
@@ -42,7 +42,7 @@ services:
       - MONITORING_PREFIX=eu.switch.mog
       - LOGGING_LEVEL=trace #optional    
     depends_on:
-      - server      
+      - monitoring_server      
     networks:
       - monitoring      
     
