@@ -3,7 +3,7 @@ version: "3"
 services:
 
   monitoring_server:
-    image: salmant/ul_monitoring_server_container_image2
+    image: salmant/ul_monitoring_server_container_image
     ports:
       - "8080:8080"
       - "4242:4242"
