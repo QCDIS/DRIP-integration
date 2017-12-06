@@ -32,7 +32,7 @@ services:
       - monitoring
     #command: ["curl", "-f", "http://server:8080"]
     
-    
+  # Get data from application and sends them to monitoring server  
   adapter:
     ports:
       - "8125:8125/udp"
