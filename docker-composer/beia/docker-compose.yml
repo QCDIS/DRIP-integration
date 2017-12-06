@@ -52,6 +52,7 @@ services:
         networks:
          - config
          - web
+    # Should scale to reduce latancy 
     sip_notifier:
         image: beia/sip_notifier
         environment:
