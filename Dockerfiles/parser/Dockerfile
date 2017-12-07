@@ -10,15 +10,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
 RUN apt-get update -y 
-RUN apt-get install -y wget software-properties-common python python-pip
+RUN apt-get install -y wget software-properties-common python-pip 
 
-# Install python stuff
 RUN pip install --upgrade pip
+RUN pip install pydot
+RUN pip install numpy
+RUN pip install networkx==1.10
+RUN pip install flask
 RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
-RUN pip install paramiko
+RUN pip install paramiko==2.0.2
 RUN pip install python_logging_rabbitmq
+
 
 
 
