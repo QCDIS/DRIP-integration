@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
 # RUN apt-get install -y openjdk-8-jdk
-RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client
+RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client inetutils-ping
 
 RUN mkdir /opt/jdk
 WORKDIR /opt/
@@ -49,7 +49,6 @@ EXPOSE 8443
 
 ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \ 
 sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \
-mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && \
 wget $KEYSTORE_URL -O keystore.tar.gz && \
 tar -xzf keystore.tar.gz && \
 wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml && \
@@ -60,7 +59,18 @@ sleep 10 && \
 sleep 10 && \
 tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
-# ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && /root/apache-tomcat-7.0.75/bin/shutdown.sh && sleep 20 && mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && /root/apache-tomcat-7.0.75/bin/startup.sh && sleep 20 && tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
+# ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \ 
+# sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \
+# mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && \
+# wget $KEYSTORE_URL -O keystore.tar.gz && \
+# tar -xzf keystore.tar.gz && \
+# wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml && \
+# mv /root/server.xml /root/apache-tomcat-7.0.75/conf/server.xml && \
+# sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" /root/apache-tomcat-7.0.75/conf/server.xml &&\
+# sleep 10 && \
+# /root/apache-tomcat-7.0.75/bin/startup.sh && \
+# sleep 10 && \
+# tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 
 # To build: docker build -t drip-manager --build-arg keystorePass=<password> .

@@ -6,7 +6,8 @@ services:
         volumes:
             - db-data:/data/db
         ports:
-            - "127.0.0.1:27017:27017"
+            #- "127.0.0.1:27017:27017"
+            - "27017:27017"
         command: "mongod --port 27017"
         restart: always
         #networks:
@@ -33,8 +34,23 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env            
-        #networks:
-            #- drip                
+        networks:
+            - drip     
+    
+    drip-parser:
+        depends_on:
+            - rabbit
+        build:
+            context: ./parser
+            dockerfile: Dockerfile
+        image: drip-parser:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit
+        env_file:
+            - ./version_env            
+        networks:
+            - drip              
             
     drip-provisioner:
         depends_on:
@@ -48,8 +64,8 @@ services:
             RABBITMQ_HOST: rabbit   
         env_file:
             - ./version_env      
-        #networks:
-            #- drip                
+        networks:
+            - drip                
             
     drip-deployer:
         depends_on:
@@ -63,8 +79,8 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env    
-        #networks:
-            #- drip                
+        networks:
+            - drip                
             
     drip-manager:
         depends_on:
@@ -83,8 +99,8 @@ services:
             - ./version_env
         ports:
             - "8443:8443"
-        #networks:
-            #- drip                
+        networks:
+            - drip                
             
     #logspout:
         #image: gliderlabs/logspout:latest
