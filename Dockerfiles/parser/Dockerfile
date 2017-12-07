@@ -13,10 +13,6 @@ RUN apt-get update -y
 RUN apt-get install -y wget software-properties-common python-pip 
 
 RUN pip install --upgrade pip
-RUN pip install pydot
-RUN pip install numpy
-RUN pip install networkx==1.10
-RUN pip install flask
 RUN pip install tosca-parser
 RUN pip install pika
 RUN export LC_ALL="en_US.UTF-8"
@@ -31,7 +27,7 @@ WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip_parser.tar.gz
 RUN tar -xzvf drip_parser.tar.gz
 
-ENTRYPOINT sleep 10 && python /root/drip_parser/src/rpc_server.py localhost tosca_2_docker_compose_queue $RABBITMQ_HOST tosca_2_docker_compose_queue
+ENTRYPOINT sleep 10 && python /root/drip_parser/src/rpc_server.py $RABBITMQ_HOST tosca_2_docker_compose_queue
 
 # docker build -t drip-parserr .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-parser
