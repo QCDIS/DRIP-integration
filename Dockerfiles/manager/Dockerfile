@@ -47,7 +47,7 @@ ARG keystorePass
 WORKDIR /root
 EXPOSE 8443
 
-
+RUN ls
 
 ENTRYPOINT tail -f /dev/null
 
