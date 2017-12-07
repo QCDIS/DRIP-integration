@@ -6,8 +6,7 @@ services:
         volumes:
             - db-data:/data/db
         ports:
-            #- "127.0.0.1:27017:27017"
-            - "27017:27017"
+            - "127.0.0.1:27017:27017"
         command: "mongod --port 27017"
         restart: always
         #networks:
