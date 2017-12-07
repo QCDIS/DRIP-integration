@@ -34,7 +34,22 @@ services:
         env_file:
             - ./version_env            
         networks:
-            - drip                
+            - drip     
+    
+    drip-parser:
+        depends_on:
+            - rabbit
+        build:
+            context: ./parser
+            dockerfile: Dockerfile
+        image: drip-parser:latest
+        restart: always
+        environment:
+            RABBITMQ_HOST: rabbit
+        env_file:
+            - ./version_env            
+        networks:
+            - drip              
             
     drip-provisioner:
         depends_on:
