@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
 # RUN apt-get install -y openjdk-8-jdk
-RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client
+RUN apt-get install -y wget software-properties-common mongodb-clients openssh-client inetutils-ping
 
 RUN mkdir /opt/jdk
 WORKDIR /opt/
