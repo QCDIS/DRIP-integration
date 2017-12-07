@@ -22,18 +22,22 @@ services:
 
 #Send CPU and RAM monitoring data. It will be included in the applications .Make sure that server is up
   agent:
-    image: salmant/monitoring_agent
+    image: salmant/ul_tomcatplusmonitoringagent
     ports:
       - "8081:8080"
     environment:
       - MONITORING_SERVER=monitoring_server
-      - HOST_IP=agent
+      - MONITORING_ADAPTER=adapter
+      - MONITORING_PREFIX=eu.switch.beia
+      - DockerHost_IP=agent
+      - MonitoringInterval_ms="10000"
     depends_on:
       - monitoring_server
+      - adapter
     networks:
       - monitoring
-    #command: ["curl", "-f", "http://server:8080"]
-    
+
+
   # Get data from application and sends them to monitoring server  
   adapter:
     ports:
@@ -41,13 +45,14 @@ services:
     image: beia/monitoring_agent # will change to adapter 
     environment:
       - MONITORING_SERVER=monitoring_server   #ip of jcatascopia server
-      - MONITORING_PREFIX=eu.switch.mog
-      - LOGGING_LEVEL=trace #optional    
+      - MONITORING_PREFIX=eu.switch.beia
+      - LOGGING_LEVEL=debug #optional    
     depends_on:
       - monitoring_server      
     networks:
-      - monitoring      
-    
+      - monitoring   
+      
+      
       
 networks:
-  monitoring:      
+  monitoring:       
