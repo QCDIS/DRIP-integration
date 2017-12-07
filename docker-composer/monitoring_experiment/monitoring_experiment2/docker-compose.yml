@@ -51,3 +51,8 @@ services:
       - monitoring_server      
     networks:
       - monitoring   
+      
+      
+      
+networks:
+  monitoring:       
