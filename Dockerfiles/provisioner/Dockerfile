@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
 RUN apt-get update -y  
-RUN apt-get install -y openssh-server wget inetutils-ping software-properties-common curl inetutils-ping
+RUN apt-get install -y openssh-server wget inetutils-ping software-properties-common curl
 
 ##install java
 # RUN apt-get install -y openjdk-8-jdk
