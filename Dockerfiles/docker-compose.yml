@@ -19,8 +19,8 @@ services:
             - "127.0.0.1:5671-5672:5671-5672"
             - "127.0.0.1:15671:15671"
         restart: always
-        networks:
-            - drip            
+        #networks:
+            #- drip            
     
     drip-planner:
         depends_on:
@@ -34,8 +34,8 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env            
-        networks:
-            - drip     
+        #networks:
+            #- drip     
     
     drip-parser:
         depends_on:
@@ -49,8 +49,8 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env            
-        networks:
-            - drip              
+        #networks:
+            #- drip              
             
     drip-provisioner:
         depends_on:
@@ -64,8 +64,8 @@ services:
             RABBITMQ_HOST: rabbit   
         env_file:
             - ./version_env      
-        networks:
-            - drip                
+        #networks:
+            #- drip                
             
     drip-deployer:
         depends_on:
@@ -79,8 +79,8 @@ services:
             RABBITMQ_HOST: rabbit
         env_file:
             - ./version_env    
-        networks:
-            - drip                
+        #networks:
+            #- drip                
             
     drip-manager:
         depends_on:
@@ -99,8 +99,8 @@ services:
             - ./version_env
         ports:
             - "8443:8443"
-        networks:
-            - drip                
+        #networks:
+            #- drip                
             
     #logspout:
         #image: gliderlabs/logspout:latest
