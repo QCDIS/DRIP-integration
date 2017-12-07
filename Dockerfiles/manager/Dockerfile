@@ -47,9 +47,17 @@ ARG keystorePass
 WORKDIR /root
 EXPOSE 8443
 
-RUN ls
-
-ENTRYPOINT tail -f /dev/null
+ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \ 
+sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \
+wget $KEYSTORE_URL -O keystore.tar.gz && \
+tar -xzf keystore.tar.gz && \
+wget https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integradation/master/conf/server.xml && \
+mv /root/server.xml /root/apache-tomcat-7.0.75/conf/server.xml && \
+sed -i "s#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"changeit\"#keystoreFile=\"\${user.home\}/.keystore\" keystorePass=\"$keystorePass\"#" /root/apache-tomcat-7.0.75/conf/server.xml &&\
+sleep 10 && \
+/root/apache-tomcat-7.0.75/bin/startup.sh && \
+sleep 10 && \
+tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 # ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \ 
 # sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && \
@@ -63,8 +71,6 @@ ENTRYPOINT tail -f /dev/null
 # /root/apache-tomcat-7.0.75/bin/startup.sh && \
 # sleep 10 && \
 # tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
-
-# ENTRYPOINT sed -ie "s/^message.broker.host=.*/message.broker.host=$RABBITMQ_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && sed -ie "s/^db.host=.*/db.host=$MONOG_HOST/" /root/apache-tomcat-7.0.75/webapps/drip-api/WEB-INF/classes/drip.properties && /root/apache-tomcat-7.0.75/bin/shutdown.sh && sleep 20 && mongo -eval 'db.user.insert({"password":"$2a$10$QdysFgsH0sl6Y4BD84UhGO7yyNfoDPXjjEHkDJ3pX6cRfHDj2Q0BO","roles":["ADMIN"],"username":"admin","accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"enabled":true})' $MONOG_HOST/drip && /root/apache-tomcat-7.0.75/bin/startup.sh && sleep 20 && tail -f /root/apache-tomcat-7.0.75/logs/catalina.out
 
 
 # To build: docker build -t drip-manager --build-arg keystorePass=<password> .
