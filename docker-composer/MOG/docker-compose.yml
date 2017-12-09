@@ -23,7 +23,11 @@ services:
 
   input:
     ports:
-      - "2000:2000/udp"
+      - target: "2000
+        published: "2000
+        protocol: udp
+        mode: host #host for publishing a host port on each node, or ingress for a swarm mode port which will be load balanced.
+    
     environment:
       - inPort=2000
       - multicastAddrIP=225.2.2.0
@@ -44,7 +48,10 @@ services:
 
   input2:
     ports:
-      - "2002:2002/udp"
+      - target: "2002
+        published: "2002
+        protocol: udp
+        mode: host       
     environment:
       - inPort=2002
       - multicastAddrIP=225.2.2.0
@@ -66,7 +73,10 @@ services:
 
   input3:
     ports:
-      - "2004:2004/udp"
+      - target: "2004
+        published: "2004
+        protocol: udp
+        mode: host            
     environment:
       - inPort=2004
       - multicastAddrIP=225.2.2.0
@@ -87,7 +97,10 @@ services:
         
   input4:
     ports:
-      - "2006:2006/udp"
+      - target: "2006
+        published: "2006
+        protocol: udp
+        mode: host         
     environment:
       - inPort=2006
       - multicastAddrIP=225.2.2.0
@@ -326,7 +339,6 @@ services:
     networks:
       - mon      
       
-  
 networks:
     app_mog:
     mon:
