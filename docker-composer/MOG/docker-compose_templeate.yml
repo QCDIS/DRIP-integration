@@ -23,8 +23,8 @@ services:
 
   input:
     ports:
-      - target: "${inPort}
-        published: "${inPort}
+      - target: ${inPort}
+        published: ${inPort}
         protocol: udp
         mode: host #host for publishing a host port on each node, or ingress for a swarm mode port which will be load balanced.
     
@@ -48,8 +48,8 @@ services:
 
   input2:
     ports:
-      - target: "${inPort2}
-        published: "${inPort2}
+      - target: ${inPort2}
+        published: ${inPort2}
         protocol: udp
         mode: host       
     environment:
@@ -73,8 +73,8 @@ services:
 
   input3:
     ports:
-      - target: "${inPort3}
-        published: "${inPort3}
+      - target: ${inPort3}
+        published: ${inPort3}
         protocol: udp
         mode: host            
     environment:
@@ -97,8 +97,8 @@ services:
         
   input4:
     ports:
-      - target: "${inPort4}
-        published: "${inPort4}
+      - target: ${inPort4}
+        published: ${inPort4}
         protocol: udp
         mode: host         
     environment:
@@ -308,7 +308,10 @@ services:
 #######################Monitoring########################################      
   adapter:
     ports:
-      - "8125:8125/udp"
+      - target: 8125
+        published: 8125
+        protocol: udp
+        mode: host      
     image: beia/monitoring_adapter
     environment:
       - MONITORING_SERVER=${monitoring_server}
