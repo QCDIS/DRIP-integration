@@ -23,7 +23,11 @@ services:
 
   input:
     ports:
-      - "${inPort}:${inPort}/udp"
+      - target: "${inPort}
+        published: "${inPort}
+        protocol: udp
+        mode: host #host for publishing a host port on each node, or ingress for a swarm mode port which will be load balanced.
+    
     environment:
       - inPort=2000
       - multicastAddrIP=${multicastAddrIP}
@@ -44,7 +48,10 @@ services:
 
   input2:
     ports:
-      - "${inPort2}:${inPort2}/udp"
+      - target: "${inPort2}
+        published: "${inPort2}
+        protocol: udp
+        mode: host       
     environment:
       - inPort=${inPort2}
       - multicastAddrIP=${multicastAddrIP}
@@ -66,7 +73,10 @@ services:
 
   input3:
     ports:
-      - "${inPort3}:${inPort3}/udp"
+      - target: "${inPort3}
+        published: "${inPort3}
+        protocol: udp
+        mode: host            
     environment:
       - inPort=${inPort3}
       - multicastAddrIP=${multicastAddrIP}
@@ -87,7 +97,10 @@ services:
         
   input4:
     ports:
-      - "${inPort4}:${inPort4}/udp"
+      - target: "${inPort4}
+        published: "${inPort4}
+        protocol: udp
+        mode: host         
     environment:
       - inPort=${inPort4}
       - multicastAddrIP=${multicastAddrIP}
