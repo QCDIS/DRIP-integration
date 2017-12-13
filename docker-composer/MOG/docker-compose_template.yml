@@ -341,7 +341,10 @@ services:
       - MONITORING_SERVER=${monitoring_server}     
     networks:
       - mon      
-      
+    
 networks:
     app_mog:
-    mon:
+        driver: weaveworks/net-plugin:latest_release
+        driver_opts:
+            works.weave.multicast: "1"
+    mon:    
