@@ -23,11 +23,7 @@ services:
 
   input:
     ports:
-      - target: ${inPort}
-        published: ${inPort}
-        protocol: udp
-        mode: host #host for publishing a host port on each node, or ingress for a swarm mode port which will be load balanced.
-    
+      - "${inPort}:${inPort}/udp"
     environment:
       - inPort=2000
       - multicastAddrIP=${multicastAddrIP}
@@ -39,6 +35,7 @@ services:
       - machineip=${ipID1}
       - identification=${idID1}
       - metrics=${metrics}
+      - adapterip=${adapterip}
     image: ${registry}/inputpipe
     volumes:
       - type: tmpfs
@@ -48,10 +45,7 @@ services:
 
   input2:
     ports:
-      - target: ${inPort2}
-        published: ${inPort2}
-        protocol: udp
-        mode: host       
+      - "${inPort2}:${inPort2}/udp"
     environment:
       - inPort=${inPort2}
       - multicastAddrIP=${multicastAddrIP}
@@ -63,6 +57,7 @@ services:
       - machineip=${ipID2}
       - identification=${idID2}
       - metrics=${metrics}
+      - adapterip=${adapterip}
     image: ${registry}/inputpipe
     volumes:
       - type: tmpfs
@@ -73,10 +68,7 @@ services:
 
   input3:
     ports:
-      - target: ${inPort3}
-        published: ${inPort3}
-        protocol: udp
-        mode: host            
+      - "${inPort3}:${inPort3}/udp"
     environment:
       - inPort=${inPort3}
       - multicastAddrIP=${multicastAddrIP}
@@ -88,6 +80,7 @@ services:
       - machineip=${ipID3}
       - identification=${idID3}
       - metrics=${metrics}
+      - adapterip=${adapterip}
     image: ${registry}/inputpipe
     volumes:
       - type: tmpfs
@@ -97,10 +90,7 @@ services:
         
   input4:
     ports:
-      - target: ${inPort4}
-        published: ${inPort4}
-        protocol: udp
-        mode: host         
+      - "${inPort4}:${inPort4}/udp"
     environment:
       - inPort=${inPort4}
       - multicastAddrIP=${multicastAddrIP}
@@ -112,6 +102,7 @@ services:
       - machineip=${ipID4}
       - identification=${idID4}
       - metrics=${metrics}
+      - adapterip=${adapterip}
     image: ${registry}/inputpipe
     volumes:
       - type: tmpfs
@@ -137,6 +128,8 @@ services:
       - machineip=${ipPT1}
       - identification=${idPT1}
       - metrics=${metrics}
+      - videoswitcherip=${ipVS}
+      - adapterip=${adapterip}
     image: ${registry}/proxytranscoder
     depends_on:
       - input
@@ -159,6 +152,8 @@ services:
       - machineip=${ipPT2}
       - identification=${idPT2}
       - metrics=${metrics}
+      - videoswitcherip=${ipVS}
+      - adapterip=${adapterip}
     image: ${registry}/proxytranscoder
     depends_on:
       - input2 
@@ -181,6 +176,8 @@ services:
       - machineip=${ipPT3}
       - identification=${idPT3}
       - metrics=${metrics}
+      - videoswitcherip=${ipVS}
+      - adapterip=${adapterip}
     image: ${registry}/proxytranscoder
     depends_on:
       - input3    
@@ -204,6 +201,8 @@ services:
       - machineip=${ipPT4}
       - identification=${idPT4}
       - metrics=${metrics}
+      - videoswitcherip=${ipVS}
+      - adapterip=${adapterip}
     image: ${registry}/proxytranscoder
     depends_on:
       - input4    
@@ -226,6 +225,8 @@ services:
       - machineip=${ipPTout}
       - identification=${idPTout}
       - metrics=${metrics}
+      - videoswitcherip=${ipVS}
+      - adapterip=${adapterip}
     image: ${registry}/proxytranscoder
     depends_on:
       - switcher    
@@ -261,6 +262,7 @@ services:
       - metrics=${metrics}
       - buffer=${buffer}
       - camnumber=${camnumber}
+      - adapterip=${adapterip}
     image: ${registry}/videoswitcher
     networks:
       - app_mog    
@@ -284,6 +286,7 @@ services:
       - machineip=${ipOUT}
       - identification=${idOUT}
       - metrics=${metrics}
+      - adapterip=${adapterip}
     image: ${registry}/outputtranscoder  
     volumes:
       - type: tmpfs
@@ -305,13 +308,10 @@ services:
     networks:
       - app_mog      
       
-#######################Monitoring########################################      
+######################Monitoring########################################      
   adapter:
     ports:
-      - target: 8125
-        published: 8125
-        protocol: udp
-        mode: host      
+      - "8125:8125/udp"
     image: beia/monitoring_adapter
     environment:
       - MONITORING_SERVER=${monitoring_server}

@@ -1,0 +1,28 @@
+version: "3"
+ 
+services:
+ 
+  udp_server:
+    image: ubuntu:16.04
+    command: bash -c "apt-get update && apt-get install iperf && iperf -s -u -B 192.168.2.255 -i 1"
+    networks:
+      - app  
+    
+  client:
+    image: ubuntu:16.04
+    depends_on:
+      - udp_server
+    command: bash -c "apt-get update -y && apt-get install socat -y && sleep 5 && while true; do echo "Sending" ; date | socat - udp-datagram:192.168.2.255:5001,broadcast; sleep 0.5; done;"
+    networks:
+      - app  
+      
+      
+networks:
+  app:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.0/24
+          #ip_range: 192.168.2.0/24
+          #gateway: 192.168.2.1      

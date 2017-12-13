@@ -1,0 +1,23 @@
+version: "3.2"
+ 
+services:
+ 
+  udp_server:
+    image: danielyinanc/udp-server-docker
+    ports:
+      - "4445:4445/udp"
+    #deploy:
+      ## service restart policy
+      #restart_policy:
+        #condition: on-failure
+    
+  client:
+    image: ubuntu:16.04
+    depends_on:
+      - udp_server
+    environment:
+      - UDP_SERVER=udp_server
+    #deploy:
+      #restart_policy:
+        #condition: on-failure
+    command: bash -c "sleep 5 && while true; do echo Sending && date > /dev/udp/udp_server/4445 ; sleep 0.5; done;"
