@@ -19,8 +19,6 @@ services:
     networks:
       - app_mog
 
-
-
   input:
     ports:
       - "2000:2000/udp"
@@ -309,38 +307,38 @@ services:
       - app_mog      
       
 ######################Monitoring########################################      
-  adapter:
-    ports:
-      - "8125:8125/udp"
-    image: beia/monitoring_adapter
-    environment:
-      - MONITORING_SERVER=monitoring_server
-      - MONITORING_PREFIX=eu.switch.mog
-      - LOGGING_LEVEL=debug 
-    depends_on:
-      - monitoring_server      
-    networks:
-      - app_mog
-      - mon
+  #adapter:
+    #ports:
+      #- "8125:8125/udp"
+    #image: beia/monitoring_adapter
+    #environment:
+      #- MONITORING_SERVER=monitoring_server
+      #- MONITORING_PREFIX=eu.switch.mog
+      #- LOGGING_LEVEL=debug 
+    #depends_on:
+      #- monitoring_server      
+    #networks:
+      #- app_mog
+      #- mon
       
       
-  monitoring_server:
-    image: salmant/ul_monitoring_server_container_image2 # salmant/salman_monitoring_server_container_image
-    ports:
-      - "8080:8080"
-      - "4242:4242"
-      - "4245:4245"
-      - "7199:7199"
-      - "7000:7000"
-      - "7001:7001"
-      - "9160:9160"
-      - "9042:9042"
-      - "8012:8012"
-      - "61621:61621"
-    environment:
-      - MONITORING_SERVER=monitoring_server     
-    networks:
-      - mon      
+  #monitoring_server:
+    #image: salmant/ul_monitoring_server_container_image2 # salmant/salman_monitoring_server_container_image
+    #ports:
+      #- "8080:8080"
+      #- "4242:4242"
+      #- "4245:4245"
+      #- "7199:7199"
+      #- "7000:7000"
+      #- "7001:7001"
+      #- "9160:9160"
+      #- "9042:9042"
+      #- "8012:8012"
+      #- "61621:61621"
+    #environment:
+      #- MONITORING_SERVER=monitoring_server     
+    #networks:
+      #- mon      
       
 networks:
     app_mog:
