@@ -1,0 +1,13 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "egi_2-level-1"
+  cloudProvider: "EC2"
+  domain: "Virginia"
+  status: "fresh"
+  tag: "fixed"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
+connections: null
