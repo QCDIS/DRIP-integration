@@ -10,7 +10,6 @@ components:
   dockers: null
   publicAddress: null
   ethernetPort: null
-  VMResourceID: null
 - name: "nodeB"
   type: "switch/compute"
   nodeType: "medium"
