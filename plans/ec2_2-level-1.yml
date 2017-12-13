@@ -19,4 +19,3 @@ components:
   dockers: null
   publicAddress: null
   ethernetPort: null
-  VMResourceID: null
