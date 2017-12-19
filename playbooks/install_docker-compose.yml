@@ -53,9 +53,29 @@
         name: docker-py    
     become: true   
     
-  - {name: run, command: 'docker plugin install --grant-all-permissions weaveworks/net-plugin:latest_release', become: true}   
-  - {name: run, command: 'docker plugin disable weaveworks/net-plugin:latest_release', become: true}  
-  - {name: run, command: 'docker plugin set weaveworks/net-plugin:latest_release WEAVE_MULTICAST=1', become: true} 
-  - {name: run, command: 'docker plugin enable weaveworks/net-plugin:latest_release', become: true}   
-  - {name: run, command: 'docker swarm init', become: true}       
-  - {name: run, command: docker-compose -f /tmp/docker-compose.yml up -d, become: true}
+  - name: docker plugin install
+    command: 'docker plugin install --grant-all-permissions weaveworks/net-plugin:latest_release'
+    become: true
+    ignore_errors: yes
+    
+  - name: docker plugin disable
+    command: 'docker plugin disable weaveworks/net-plugin:latest_release'
+    become: true
+    ignore_errors: yes
+    
+  - name: docker plugin set
+    command: 'docker plugin set weaveworks/net-plugin:latest_release WEAVE_MULTICAST=1'
+    become: true
+    ignore_errors: yes
+    
+  - name: docker plugin enable
+    command: 'docker plugin enable weaveworks/net-plugin:latest_release'
+    become: true
+    ignore_errors: yes
+    
+  - name: docker swarm init
+    command: 'docker swarm init'
+    become: true
+    ignore_errors: yes
+    
+  - {name: docker-compose, command: docker-compose -f /tmp/docker-compose.yml up -d, become: true}
