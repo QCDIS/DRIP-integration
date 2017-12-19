@@ -48,12 +48,14 @@
   - name: download compose file
     get_url: {url: 'https://raw.githubusercontent.com/QCAPI-DRIP/DRIP-integration/master/docker-composer/MOG/docker-compose.yml', dest: /tmp/docker-compose.yml}
     register: result
-    
-    
+        
   - pip:
         name: docker-py    
-    become: true    
+    become: true   
     
-  - {name: run, command:"docker plugin install --grant-all-permissions weaveworks/net-plugin:latest_release ; docker plugin disable weaveworks/net-plugin:latest_release ; docker plugin set weaveworks/net-plugin:latest_release WEAVE_MULTICAST=1 ; docker plugin enable weaveworks/net-plugin:latest_release", become: true}
+  - {name: run, command: 'docker plugin install --grant-all-permissions weaveworks/net-plugin:latest_release', become: true}   
+  - {name: run, command: 'docker plugin disable weaveworks/net-plugin:latest_release', become: true}  
+  - {name: run, command: 'docker plugin set weaveworks/net-plugin:latest_release WEAVE_MULTICAST=1', become: true} 
+  - {name: run, command: 'docker plugin enable weaveworks/net-plugin:latest_release', become: true}   
     
   - {name: run, command: docker-compose -f /tmp/docker-compose.yml up -d, become: true}
