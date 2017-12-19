@@ -57,5 +57,5 @@
   - {name: run, command: 'docker plugin disable weaveworks/net-plugin:latest_release', become: true}  
   - {name: run, command: 'docker plugin set weaveworks/net-plugin:latest_release WEAVE_MULTICAST=1', become: true} 
   - {name: run, command: 'docker plugin enable weaveworks/net-plugin:latest_release', become: true}   
-    
+  - {name: run, command: 'docker swarm init', become: true}       
   - {name: run, command: docker-compose -f /tmp/docker-compose.yml up -d, become: true}
