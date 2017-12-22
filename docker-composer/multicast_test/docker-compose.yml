@@ -1,27 +1,50 @@
-version: "3"
- 
+# File to run on a remote machine with access to mog's registry (mogswitch)
+
+version: "3.2"
+
 services:
- 
-  udp_server:
-    image: ubuntu:16.04
-    #command: bash -c "apt-get update && apt-get install -y iperf net-tools iputils-ping&& iperf -s -u -B 192.168.2.255 -i 1"
-    command: bash -c "apt-get update && apt-get install -y iperf net-tools iputils-ping&& tail -f /dev/null"    
+
+  packetsender:
+    environment:
+      - inPort=2000
+      - inPort2=2002
+      - inPort3=2004
+      - inPort4=2006
+      - ipID1=input
+      - ipID2=input2
+      - ipID3=input3
+      - ipID4=input4
+      - camnumber=2
+    image: mogpsantos/packetsender
     networks:
-      - app  
-    
-  client:
-    image: ubuntu:16.04
-    depends_on:
-      - udp_server
-    #command: bash -c "apt-get update -y && apt-get install socat -y && sleep 5 && while true; do echo "Sending" ; date | socat - udp-datagram:192.168.2.255:5001,broadcast; sleep 0.5; done;"
-    command: bash -c "apt-get update && apt-get install -y iperf net-tools iputils-ping&& tail -f /dev/null"    
+      - app_mog
+
+  packetreceiver:
+    ports:
+      - "2000:2000/udp"
+    environment:
+      - inPort=2000
+      - multicastAddrIP=225.2.2.0
+      - multicastAddrPort=3000
+      - waitingTime=5
+      - videoWidth=720
+      - videoHeight=406
+      - statsdPort=8125
+      - machineip=input
+      - identification=InputDistributor1
+      - metrics=true
+      - adapterip=adapter
+    image: mogpsantos/inputpipe
+    volumes:
+      - type: tmpfs
+        target: /ram         
     networks:
-      - app         
-        
-        
-        
+      - app_mog        
+      
 networks:
-    app:
+    app_mog:
         driver: weaveworks/net-plugin:latest_release
         driver_opts:
             works.weave.multicast: "1"
+    mon:
+            
