@@ -8,6 +8,7 @@ ARG RELESE_VERSION=0.2.3
 
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
+RUN apt-get update -y
 RUN apt-get upgrade -y 
 RUN apt-get install -y wget software-properties-common libssl-dev libffi-dev python-dev python-pip
 
