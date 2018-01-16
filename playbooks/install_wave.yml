@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+  - name: Update aptitude
+    apt: {name: aptitude}
+    become: true
+    register: result
+    
+  - name: update and upgrade
+    apt: {update_cache: true, upgrade: true, autoremove: true, force: true}
+    become: true
+    register: result    
+    
+  - name: install pre-req
+    apt: name="{{ item }}" state=latest
+    with_items: [python, curl, python-pip, apt-transport-https, linux-image-extra-virtual,
+      linux-image-extra-4.4.0-97-generic, ca-certificates, software-properties-common]
+    become: true
+    register: result
