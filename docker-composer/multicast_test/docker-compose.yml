@@ -1,50 +1,20 @@
-# File to run on a remote machine with access to mog's registry (mogswitch)
-
 version: "3.2"
-
+ 
 services:
-
-  packetsender:
-    environment:
-      - inPort=2000
-      - inPort2=2002
-      - inPort3=2004
-      - inPort4=2006
-      - ipID1=input
-      - ipID2=input2
-      - ipID3=input3
-      - ipID4=input4
-      - camnumber=2
-    image: mogpsantos/packetsender
-    networks:
-      - app_mog
-
-  packetreceiver:
+ 
+  server:
+    image: ubuntu:16.04
     ports:
-      - "2000:2000/udp"
+      - "5001:5001/udp"
+    command: bash -c "apt-get update && apt-get install iperf && iperf -s -u -B 224.0.55.55 -i 1 -y C"
+    
+  client:
+    image: ubuntu:16.04
+    depends_on:
+      - udp_server
     environment:
-      - inPort=2000
-      - multicastAddrIP=225.2.2.0
-      - multicastAddrPort=3000
-      - waitingTime=5
-      - videoWidth=720
-      - videoHeight=406
-      - statsdPort=8125
-      - machineip=input
-      - identification=InputDistributor1
-      - metrics=true
-      - adapterip=adapter
-    image: mogpsantos/inputpipe
-    volumes:
-      - type: tmpfs
-        target: /ram         
-    networks:
-      - app_mog        
-      
-networks:
-    app_mog:
-        driver: weaveworks/net-plugin:latest_release
-        driver_opts:
-            works.weave.multicast: "1"
-    mon:
-            
+      - UDP_SERVER=udp_server
+    deploy:
+      restart_policy:
+        condition: on-failure
+    command: bash -c "sleep 30 && apt-get update && apt-get install iperf && iperf -c 224.0.55.55 -u -T 32 -t 3 -i 1 -y C"
