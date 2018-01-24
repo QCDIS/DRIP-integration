@@ -13,14 +13,9 @@ topology_template:
       properties: 
         ports_mapping: 
           port_mapping_1: 
-            host_port: SET_ITS_VALUE
-            container_port: SET_ITS_VALUE
-          port_mapping_0: 
-            host_port: SET_ITS_VALUE
-            container_port: SET_ITS_VALUE
-          port_mapping_2: 
-            host_port: SET_ITS_VALUE
-            container_port: SET_ITS_VALUE
+            host_port: 8125
+            container_port: 8125
+            protocol: udp
         scaling_mode: single
     MOG_ProxyTranscoder: 
       artifacts: null
