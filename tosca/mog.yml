@@ -1,240 +1,1120 @@
-tosca_definitions_version: tosca_simple_yaml_1_0
-description: example file for infrastructure planner
-repositories:
-    MOG_docker_hub: 
-      description: MOG project’s code repository in GitHub
-      url: https://github.com/switch-project/mog
-      credential:
-        protocol: xauth
-        token_type: X-Auth-Token
-        # token encoded in Base64
-        token: 604bbe45ac7143a79e14f3158df67091
-artifact_types:
-  tosca.artifacts.Deployment.Image.Container.Docker:
-    derived_from: tosca.artifacts.Deployment.Image
-data_types:
-  Switch.datatypes.QoS.AppComponent:
-    derived_from: tosca.datatypes.Root
-    properties:
-      response_time:
+topology_template: 
+  node_templates: 
+    Monitoring_Adapter_v2: 
+      artifacts: 
+        inputdistributor_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "beia/monitoring_adapter"
+      requirements: 
+        dependency: 
+          - monitoring_server
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_Monitoring_Adapter"
+      properties: 
+        ports_mapping: 
+          port_mapping_1: 
+            host_port: SET_ITS_VALUE
+            container_port: SET_ITS_VALUE
+          port_mapping_0: 
+            host_port: SET_ITS_VALUE
+            container_port: SET_ITS_VALUE
+          port_mapping_2: 
+            host_port: SET_ITS_VALUE
+            container_port: SET_ITS_VALUE
+        scaling_mode: single
+    MOG_ProxyTranscoder: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+          - MOG_Frontend
+          - MOG_VideoSwitcher
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_ProxyTranscoder_4: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+          - MOG_Frontend
+          - MOG_VideoSwitcher
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_ProxyTranscoder_3: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+          - MOG_Frontend
+          - MOG_VideoSwitcher
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_ProxyTranscoder_2: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+          - MOG_Frontend
+          - MOG_VideoSwitcher
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_ProxyTranscoder_1: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+          - MOG_OutputTranscoder
+          - MOG_Frontend
+          - MOG_Frontend
+          - MOG_VideoSwitcher
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_VideoSwitcher: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_VideoSwitcher"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_InputDistributor_2: 
+      artifacts: 
+        uva_inputdistributor_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "mogpsantos/inputpipe"
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_UvA_InputDistributor"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_InputDistributor_3: 
+      artifacts: 
+        uva_inputdistributor_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "mogpsantos/inputpipe"
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_UvA_InputDistributor"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_InputDistributor_1: 
+      artifacts: 
+        uva_inputdistributor_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "mogpsantos/inputpipe"
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_UvA_InputDistributor"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_InputDistributor_4: 
+      artifacts: 
+        uva_inputdistributor_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "mogpsantos/inputpipe"
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_UvA_InputDistributor"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    MOG_OutputTranscoder: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - Monitoring_Adapter_v2
+        networks: 
+          - monitoring_v2
+          - network
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_OutputTranscoder"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+    monitoring_server: 
+      artifacts: 
+        monitoring_server_image: 
+          type: "tosca.artifacts.Deployment.Image.Container.Docker"
+          repository: SWITCH_docker_hub
+          file: "salmant/salman_monitoring_server_container_image"
+      requirements: 
+      type: "Switch.nodes.Application.Container.Docker.MonitoringServer"
+      properties: 
+        scaling_mode: single
+        ports_mapping: 
+          port_mapping_1: 
+            host_port: 4242
+            container_port: 4242
+          port_mapping_0: 
+            host_port: 8080
+            container_port: 8080
+          port_mapping_3: 
+            host_port: 7199
+            container_port: 7199
+          port_mapping_2: 
+            host_port: 4245
+            container_port: 4245
+          port_mapping_5: 
+            host_port: 7001
+            container_port: 7001
+          port_mapping_4: 
+            host_port: 7000
+            container_port: 7000
+          port_mapping_7: 
+            host_port: 9042
+            container_port: 9042
+          port_mapping_6: 
+            host_port: 9160
+            container_port: 9160
+          port_mapping_9: 
+            host_port: 61621
+            container_port: 61621
+          port_mapping_8: 
+            host_port: 8012
+            container_port: 8012
+        Infrastructure_requirements: 
+          host: 
+            cpu_frequency: 1.2
+            mem_size: 4
+            num_cpus: 1
+            disk_size: 20
+          os: 
+            os_version: 16.04
+            distribution: ubuntu
+            type: linux
+            architecture: x86_64
+        Constraints: 
+          QoS: 
+            response_time: 50
+    MOG_Frontend: 
+      artifacts: null
+      requirements: 
+        dependency: 
+          - MOG_VideoSwitcher
+      type: "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_Frontend"
+      properties: 
+        ports_mapping: 
+          ports_mapping: 
+            port_mapping_0: 
+              host_port: 8080
+              container_port: 8080
+        scaling_mode: single
+  network_templates: 
+    network: 
+      subnet: "192.168.10.0"
+      netmask: "255.255.255.0"
+      multicast: true
+      name: SET_ITS_VALUE
+  volume_templates: 
+artifact_types: 
+  "tosca.artifacts.Deployment.Image.Container.Docker": 
+    derived_from: "tosca.artifacts.Deployment.Image"
+description: "MOG application"
+node_types: 
+  "Switch.nodes.Application.Container.Docker.VLAD_THE_IMPALER_RTUSensorDataAcquisition": 
+    properties: 
+      name: 
+        required: false
         type: string
-  Switch.datatypes.Application.Connection.EndPoint:
-    derived_from: tosca.datatypes.Root
-    properties:
-      address:
-        type: string
-      component_name:
-        type: string
-      netmask:
-        type: string
-      port_name:
-        type: string
-  Switch.datatypes.Application.Connection.Multicast:
-    derived_from: tosca.datatypes.Root
-    properties:
-      multicastAddrIP:
-        type: string
-      multicastAddrPort:
-        type: integer
-  Switch.datatypes.Network.EndPoint:
-    derived_from: tosca.datatypes.Root
-    properties:
-      address:
-        type: string
-      host_name:
-        type: string
-      netmask:
-        type: string
-      port_name:
-        type: string
-  Switch.datatypes.Network.Multicast:
-    derived_from: tosca.datatypes.Root
-    properties:
-      multicastAddrIP:
-        type: string
-      multicastAddrPort:
-        type: integer
-node_types:
-  Switch.nodes.Application.Container.Docker:
-    derived_from: tosca.nodes.Container.Application
-    properties:
-      QoS:
-        type: Switch.datatypes.QoS.AppComponent
-    artifacts:
-      docker_image:
-        type: tosca.artifacts.Deployment.Image.Container.Docker
-    interfaces:
-      Standard:
-        create:
-          inputs:
-            command:
-              type: string
-            exported_ports:
-              type: list
-              entry_schema:
-                type: string
-            port_bindings:
-              type: list
-              entry_schema:
-                type: string
-  Switch.nodes.Application.Container.Docker.MOG.InputDistributor:
-    derived_from: Switch.nodes.Application.Container.Docker
-    artifacts:
-      docker_image:
-        type: tosca.artifacts.Deployment.Image.Container.Docker
-        file: "mogswitch/InputDistributor:1.0"
-        repository: MOG_docker_hub
-    properties:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor": 
+    properties: 
+      multicastAddrIP: 
+        type: "Switch.datatypes.Network.Multicast"
       inPort: 
         type: integer
-      waitingTime:
-        type: integer
-      multicastAddrIP:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "tosca.groups.Root": 
+  "Switch.nodes.Application.Container.Docker.BEIA_RTUSensorDataManagement": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS.MOG_MOG_OutputTranscoder": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Webportalbackend": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_Gateway": 
+    properties: 
+      Name: 
+        default: BEIA_Gateway
         type: string
-      multicastAddrPort:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.POLONA_Polonatest": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker": 
+    properties: 
+      in_ports: 
+        entry_schema: 
+          type: "Switch.datatypes.port"
+        required: false
+        type: map
+      dockers: 
+        required: false
+        type: string
+      QoS: 
+        required: false
+        type: "Switch.datatypes.QoS.AppComponent"
+      docker_id: 
+        default: id
+        type: string
+      out_ports: 
+        entry_schema: 
+          type: "Switch.datatypes.port"
+        required: false
+        type: map
+      scaling_mode: 
+        required: false
+        type: string
+      ethernet_port: 
+        entry_schema: 
+          type: "Switch.datatypes.ethernet_port"
+        required: false
+        type: list
+      name: 
+        required: false
+        type: string
+    derived_from: "tosca.nodes.Container.Application"
+  "switch.Component.Component.Docker": 
+    properties: 
+      Teste: 
+        default: 200
+        type: string
+      dadasdasd: 
+        default: asdasd
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Rtpengine": 
+    properties: 
+      PORT_MIN: 
+        default: 10000
+        type: string
+      SUBNET_OVERLAY: 
+        default: "192.168.2.0"
+        type: string
+      PORT_MAX: 
+        default: 10050
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Compute": 
+    artifacts: 
+      gateway_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "/???"
+    derived_from: "tosca.nodes.Compute"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_NotificationServer": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Kamailio": 
+    properties: 
+      SUBNET_OVERLAY: 
+        default: "192.168.2.0"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Network": 
+    derived_from: "tosca.nodes.network.Network"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_notify_redi": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Dasdass": 
+    artifacts: 
+      dasdass_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: adasads
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_DatabaseServer": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.MonitoringAgent": 
+    properties: 
+      agent_id: 
+        default: null
+        type: string
+      probes: 
+        entry_schema: 
+          type: "Switch.datatypes.monitoring.probe"
+        type: map
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_web": 
+    properties: 
+      CONFIG: 
+        default: config
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_OutputTranscoder": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_Input": 
+    properties: 
+      port2: 
+        default: 24
         type: integer
-      videoWidth:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_Monitoring": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_ProxyTranscoder": 
+    properties: 
+      multicastAddrPort: 
+        default: 3000
+        type: "Switch.datatypes.port"
+      multicastAddrIP: 
+        default: "225.2.2.0"
+        type: "Switch.datatypes.Network.Multicast"
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Component": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Constraint": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS.MOG_Switcher": 
+    properties: 
+      Input_A_Uncompressed_Video_Multicast_Address: 
+        default: "225.2.2.0"
+        type: string
+      Input_Video_Width: 
+        default: 176
+        type: string
+      Input_B_Uncompressed_Video_Multicast_Port: 
+        default: 3002
+        type: string
+      Input_B_Uncompressed_Video_Multicast_Address: 
+        default: "225.2.2.1"
+        type: string
+      port: 
+        default: 23
         type: integer
-      videoHeight:
+      Output_Uncompressed_Video_Multicast_Address: 
+        default: "226.2.2.2"
+        type: string
+      Output_REST_PORT: 
+        default: 8008
+        type: string
+      Output_Uncompressed_Video_Multicast_Port: 
+        default: 6000
+        type: string
+      Input_Video_Height: 
+        default: 100
+        type: string
+      Input_A_Uncompressed_Video_Multicast_Port: 
+        default: 3000
+        type: string
+      Waiting_Time: 
+        default: 5
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.POLONA_CU_EmberJs": 
+    artifacts: 
+      cu_emberjs_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: EmberJS
+    properties: 
+      varemberjs: 
+        default: varemberjs
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_sip_notifier": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Db": 
+    properties: 
+      MYSQL_ROOT_PASSWORD: 
+        default: supersecret
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_RTUSensorData": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.MOG_InputDistributor": 
+    artifacts: 
+      inputdistributor2_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "mogpsantos/inputpipe"
+    properties: 
+      metrics: 
+        default: true
+        type: boolean
+      waitingTime: 
+        default: 5
         type: integer
-  Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder:
-    derived_from: Switch.nodes.Application.Container.Docker 
-    artifacts:
-      docker_image:
-        type: tosca.artifacts.Deployment.Image.Container.Docker
-        file: "mogswitch/ProxyTranscoder:1.0"
-        repository: MOG_docker_hub
-    properties:
+      machineip: 
+        default: InputDistributor
+        type: string
       multicastAddrIP: 
         type: string
-      multicastAddrPort:
+      statsdPort: 
+        default: 8125
+        type: "Switch.datatypes.port"
+      multicastAddrPort: 
+        default: 3000
+        type: "Switch.datatypes.port"
+      videoWidth: 
+        default: 720
         type: integer
-      videoWidth:
+      inPort: 
+        default: 2000
+        type: "Switch.datatypes.port"
+      videoHeight: 
+        default: 406
         type: integer
-      videoHeight:
-        type: integer
-  Switch.nodes.Application.Connection:
-    derived_from: tosca.nodes.Root 
-    properties:
-      source:
-        type: Switch.datatypes.Application.Connection.EndPoint
-      target:
-        type: Switch.datatypes.Application.Connection.EndPoint
-      bandwidth:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Doubango": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Requirement": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.POLONA_Polona_test": 
+    artifacts: 
+      polona_test_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: Docker_repository
+    properties: 
+      varpolonatest: 
+        default: varpolonatest
         type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.ExternalComponent": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.BEIA_NotificationServer": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_RTUSensorDataAcquisition": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.UL_JitsiMeet_docker": 
+    properties: 
+      ips: 
+        type: string
+      deploy: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.MOG_USER_Input_distributor": 
+    artifacts: 
+      input_distributor_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: ""
+    properties: 
+      adapterip: 
+        default: sagres
+        type: string
+      statsdPort: 
+        default: 8125
+        type: "Switch.datatypes.port"
+      multicastAddrPort: 
+        default: 3000
+        type: integer
+      inPort: 
+        default: 2000
+        type: integer
+      videoWidth: 
+        default: 720
+        type: integer
+      metrics: 
+        default: true
+        type: boolean
+      waitingTime: 
+        default: 5
+        type: integer
+      multicastAddrIP: 
+        default: "225.2.2.0"
+        type: "Switch.datatypes.Network.Multicast"
+      identification: 
+        default: InputDistributor1
+        type: string
+      machineip: 
+        default: sagres
+        type: string
+      videoHeight: 
+        default: 406
+        type: integer
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_SomethingStupid": 
+    artifacts: 
+      somethingstupid_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "something/stupid"
+    properties: 
+      stupidvalue: 
+        default: "You are stupid"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_TOSCAMagic": 
+    artifacts: 
+      toscamagic_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "something/different"
+    properties: 
+      qq: 
+        default: qq
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_MOGFrontend": 
+    properties: 
+      ipPT1: 
+        type: string
+      ipPT2: 
+        type: string
+      ipPT3: 
+        type: string
+      ipPT4: 
+        type: string
+      ipVS: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_TelemetryGateway": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.POLONA_FileUploadService": 
+    properties: 
+      "container image": 
+        default: "container image"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_Frontend": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.variable": 
+    properties: 
+      multicastAddrPort: 
+        default: 3000
+        type: integer
+      multicastAddrIP: 
+        default: "255.2.2.0"
+        type: string
+      videoWidth: 
+        default: 170
+        type: integer
+      videoHeight: 
+        default: 100
+        type: integer
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.BEIA_DB": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS.MOG_Input_Distributor": 
+    properties: 
+      Input_RTP_TS_Port: 
+        default: 2000
+        type: string
+      Waiting_Time: 
+        default: 5
+        type: string
+      Output_Uncompressed_Video_Multicast_Address: 
+        default: "225.2.2.0"
+        type: string
+      Output_Uncompressed_Video_Multicast_Port: 
+        default: "3000 waiting time Waiting time (in seconds) for Input Distributor to receive TS stream 5 switcherOutAddrIP Multicast IP address where Video Switcher"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.POLONA_EmberJs_frontend": 
+    properties: 
+      "container image": 
+        default: "container image"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_InputDistributor.Cardiff": 
+    properties: 
+      multicastAddrPort: 
+        default: 3000
+        type: "Switch.datatypes.port"
+      multicastAddrIP: 
+        default: "225.2.2.0"
+        type: "Switch.datatypes.Network.Multicast"
+      inPort: 
+        default: 2000
+        type: "Switch.datatypes.port"
+      waitingTime: 
+        default: 5
+        type: integer
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_Graphana": 
+    properties: 
+      GF_SECURITY_ADMIN_PASSWORD: 
+        default: "${GRAFANA_PASSWORD:-secret}"
+        type: string
+      VIRTUAL_HOST: 
+        default: "grafana.beia.switch"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_RTUSensorDataAcquisition": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_alerter": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_Acquisition": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_Switcher.Cardiff": 
+    properties: 
+      waitingTime: 
+        default: 5
+        type: integer
+      multicastAddrIP: 
+        default: "225.2.2.0"
+        type: "Switch.datatypes.Network.Multicast"
+      switcherREST: 
+        default: switcherREST
+        type: "Switch.datatypes.port"
+      switcherOutAddrPort: 
+        default: 6000
+        type: "Switch.datatypes.port"
+      multicastAddrIP2: 
+        default: "225.2.2.2"
+        type: "Switch.datatypes.Network.Multicast"
+      switcherOutAddrIP: 
+        default: "226.2.2.2"
+        type: "Switch.datatypes.Network.Multicast"
+      multicastAddrPort: 
+        default: 3000
+        type: "Switch.datatypes.port"
+      videoWidth: 
+        default: 176
+        type: integer
+      multicastAddrPort2: 
+        default: 3002
+        type: "Switch.datatypes.port"
+      videoHeight: 
+        default: 100
+        type: integer
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.PEDRO.SANTOS_OutputTranscoder.Cardiff": 
+    properties: 
+      OutIP: 
+        default: "192.168.1.194"
+        type: "Switch.datatypes.Network.Multicast"
+      videoWidth: 
+        default: 176
+        type: integer
+      OutPort: 
+        default: 4000
+        type: "Switch.datatypes.port"
+      videoHeight: 
+        default: 100
+        type: integer
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_SIDE_django_backend": 
+    artifacts: 
+      side_django_backend_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "side/django_backend"
+    properties: 
+      value: 
+        default: value
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_OutputTranscoder": 
+    properties: 
+      metrics: 
+        default: true
+        type: string
+      OutIP: 
+        type: string
+      multicastAddrIP: 
+        type: string
+      multicastAddrPortmulticastAddrIP: 
+        type: string
+      statsdPort: 
+        type: string
+      OutPort: 
+        type: string
+      videoWidth: 
+        type: string
+      videoHeight: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_ProxyTranscoder2": 
+    artifacts: 
+      monitoring_adapter_v2_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "beia/monitoring_adapter"
+    properties: 
+      metrics: 
+        type: string
+      machineip: 
+        type: string
+      multicastAddrIP: 
+        type: string
+      statsdPort: 
+        type: string
+      multicastAddrPort: 
+        type: string
+      videoWidth: 
+        type: string
+      videoHeight: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_Graphite": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_VideoSwitcher": 
+    properties: 
+      waitingTime: 
+        type: string
+      switcherREST: 
+        type: string
+      switcherOutAddrPort: 
+        type: string
+      buffer: 
+        type: string
+      switcherOutAddrIP: 
+        type: string
+      camnumber: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.VirtualNetwork": 
+    artifacts: 
+      "switcher.cardiff_image": 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: null
+    properties: 
+      subnet: 
+        default: "192.168.10.0"
+        type: string
+      netmask: 
+        default: "255.255.255.0"
+        type: string
+      name: 
+        type: string
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_VideoSwitcher": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_SIDE_Database": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.EventListener": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.POLONA_Polona_test1": 
+    properties: 
+      varpolonatest: 
+        default: varpolonatest
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.AdaptationPolicy": 
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_MOG_ProxyTranscoder": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.MonitoringServer": 
+    properties: 
+      ports_mapping: 
+        entry_schema: 
+          type: "Switch.datatypes.port_mapping"
+        type: map
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_WT_asterisk": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.POLONA_Test_component": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_notify_asterisk": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Monitoring_Adapter": 
+    properties: 
+      monitoring_server: 
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.BEIA_V1_RTUSensorDataAcquisitions": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_SIDE_ember": 
+    artifacts: 
+      side_database_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "SIDE/MySql"
+    properties: 
+      v: 
+        default: v
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_notify": 
+    artifacts: 
+      beia_notify_redi_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "redis:alpine"
+    properties: 
+      ARI_URL: 
+        default: "http://notify_asterisk:8088"
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_data_collector": 
+    artifacts: 
+      beia_alerter_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "beia/alerter"
+    properties: 
+      CONFIG: 
+        default: config
+        type: string
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Connection": 
+    properties: 
+      source: 
+        type: "Switch.datatypes.Application.Connection.EndPoint"
+      bandwidth: 
+        type: integer
+      multicast: 
+        type: "Switch.datatypes.Network.Multicast"
+      jitter: 
+        required: false
+        type: integer
+      target: 
+        type: "Switch.datatypes.Application.Connection.EndPoint"
       latency: 
+        required: false
+        type: integer
+      QoS: 
+        type: "Switch.datatypes.QoS.AppComponent"
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_WT_webportal": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.DST": 
+    properties: 
+      dave: 
         type: string
-      jitter:  
+    derived_from: "tosca.nodes.Root"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_Bb": 
+    properties: 
+      bb: 
         type: string
-      multicast:
-        type: Switch.datatypes.Application.Connection.Multicast
-  Switch.nodes.Compute:
-    derived_from: tosca.nodes.Compute
-    properties:
-      OStype:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_WT_Mongo": 
+    properties: 
+      var: 
+        default: var
         type: string
-      nodetype:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_BEIA_config": 
+    artifacts: 
+      beia_graphana_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "grafana/grafana"
+    properties: 
+      TOSCA_URL: 
+        default: "http://www.google.com"
         type: string
-      domain:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_WT_redis": 
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.Application.Container.Docker.LOKSORR_UvA_InputDistributor": 
+    artifacts: 
+      wt_webportal_image: 
+        type: "tosca.artifacts.Deployment.Image.Container.Docker"
+        repository: SWITCH_docker_hub
+        file: "wtelecom/webportal:switch"
+    properties: 
+      machineip: 
+        default: InputDistributor
         type: string
-      public_address:
+    derived_from: "Switch.nodes.Application.Container.Docker"
+  "Switch.nodes.MessagePasser": 
+    derived_from: "tosca.nodes.Root"
+repositories: 
+  SWITCH_docker_hub: 
+    url: "https://github.com/switch-project"
+    credential: 
+      token_type: "X-Auth-Token"
+      token: 604bbe45ac7143a79e14f3158df67091
+      protocol: xauth
+    description: "switch repository in GitHub"
+data_types: 
+  "Switch.datatypes.monitoring.metric.threshold": 
+    properties: 
+      operator: 
         type: string
-      ethernet_port:
-        type: list
-        entry_schema:
-          type: tosca.datatypes.network.NetworkInfo
-      script:
+      value: 
+        type: integer
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.port": 
+    properties: 
+      type: 
         type: string
-      installation:
+      port: 
         type: string
-      ssh_credential:
-        type: tosca.datatypes.Credential
-  Switch.nodes.Network:
-    derived_from: tosca.nodes.network.Network
-    properties:
-      bandwidth:
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.Application.Connection.EndPoint": 
+    properties: 
+      netmask: 
         type: string
-      latency:
+      component_name: 
         type: string
-      jitter:
+      port_name: 
         type: string
-      source:
-        type: Switch.datatypes.Network.EndPoint
-      target:
-        type: Switch.datatypes.Network.EndPoint
-      multicast:
-        type: Switch.datatypes.Network.Multicast
-topology_template:
-  node_templates:
-    2d13d708e3a9441ab8336ce874e08dd1:
-      type: Switch.nodes.Application.Container.Docker.MOG.InputDistributor
-      artifacts:
-        docker_image:
-          file: "mogswitch/InputDistributor:1.0"
-          type: tosca.artifacts.Deployment.Image.Container.Docker
-          repository: MOG_docker_hub
-      properties:
-        QoS:
-          response_time: 30ms
-        inPort: 2000
-        waitingTime: 5
-        multicastAddrIP: 255.2.2.0
-        multicastAddrPort: 3000
-        videoWidth: 176
-        videoHeight: 100
-      interfaces:
-        Standard:
-          create:
-            implementation: docker_image
-            inputs:
-              command: InputDistributor
-              exported_ports:
-                - 2000
-              port_bindings:
-                - "2000:2000"
-                - "3000:3000"
-
-    8fcc1788d9ee462c826572c79fdb2a6a:
-      type: Switch.nodes.Application.Container.Docker.MOG.ProxyTranscoder
-      artifacts:
-        docker_image:
-          file: "mogswitch/ProxyTranscoder:1.0"
-          type: tosca.artifacts.Deployment.Image.Container.Docker
-          repository: MOG_docker_hub
-      properties:
-        QoS:
-          response_time: 30ms
-        multicastAddrIP: 255.2.2.0
-        multicastAddrPort: 3000
-        videoWidth: 176
-        videoHeight: 100
-      interfaces:
-        Standard:
-          create:
-            implementation: docker_image
-            inputs:
-              command: ProxyTranscoder
-              exported_ports:
-                - 80
-              port_bindings:
-                - "8080:80"
-
-    5e0add703c8a43938a39301f572e46c0:
-      type: Switch.nodes.Application.Connection
-      properties:
-        source:
-          address: 192.168.21.11
-          component_name: 2d13d708e3a9441ab8336ce874e08dd1
-          netmask: 255.255.255.0
-          port_name: "inputDistributor_out"
-        target:
-          address: 192.168.21.12
-          component_name: 8fcc1788d9ee462c826572c79fdb2a6a
-          netmask: 255.255.255.0
-          port_name: "proxyTranscoder_in"
-        latency: 30ms
-        bandwidth: 130MB/s
-        jitter: 500ms
-        multicast:
-          multicastAddrIP: 255.2.2.0
-          multicastAddrPort: 3000
+      address: 
+        type: string
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.monitoring.probe": 
+    properties: 
+      active: 
+        type: boolean
+      path: 
+        required: false
+        type: string
+      static: 
+        type: boolean
+      name: 
+        type: string
+      metrics: 
+        entry_schema: 
+          type: "Switch.datatypes.monitoring.metric"
+        type: map
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.hw.host": 
+    properties: 
+      cpu_frequency: 
+        type: float
+      mem_size: 
+        type: integer
+      num_cpus: 
+        type: integer
+      disk_size: 
+        type: integer
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.ethernet_port": 
+    properties: 
+      subnet_name: 
+        type: string
+      name: 
+        type: string
+      address: 
+        type: string
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.hw.os": 
+    properties: 
+      os_version: 
+        type: string
+      distribution: 
+        type: string
+      type: 
+        type: string
+      architecture: 
+        type: string
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.QoS.AppComponent": 
+    properties: 
+      response_time: 
+        type: integer
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.Application.Connection.Multicast": 
+    properties: 
+      multicastAddrPort: 
+        type: string
+      multicastAddrIP: 
+        type: string
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.Network.Multicast": 
+    properties: 
+      multicastAddrPort: 
+        type: string
+      multicastAddrIP: 
+        type: string
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.port_mapping": 
+    properties: 
+      host_port: 
+        type: integer
+      container_port: 
+        type: integer
+    derived_from: "tosca.datatypes.Root"
+  "Switch.datatypes.monitoring.metric": 
+    properties: 
+      thresholds: 
+        entry_schema: 
+          type: "Switch.datatypes.monitoring.metric.threshold"
+        required: false
+        type: map
+      type: 
+        type: string
+      name: 
+        type: string
+      unit: 
+        required: false
+        type: string
+    derived_from: "tosca.datatypes.Root"
+tosca_definitions_version: tosca_simple_yaml_1_0
