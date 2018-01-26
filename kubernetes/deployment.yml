@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: multicast-test
+  namespace: switch
+spec:
+  selector:
+    matchLabels:
+      demo: deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        demo: deployment
+        version: v1
+    spec:
+      containers:
+      - name: server
+        image: ubuntu:16.04
+        command: [ bash -c "apt-get update && apt-get install iperf && iperf -s -u -B 225.2.2.0 -i 1 -y C" ]
+      - name: client
+        image: ubuntu:16.04
+        command: [ bash -c "sleep 40 && apt-get update && apt-get install iperf && iperf -c 225.2.2.0 -u -T 32 -t 10 -i 1 -y C" ]
+- name: content

@@ -279,6 +279,35 @@ to request for resources.]]>
   </xs:complexContent>
 </xs:complexType>
 
+<xs:complexType name="DRIPLogRecord">
+  <xs:annotation>
+    <xs:documentation>
+      <![CDATA[This is the base class for users to own resources. Many classes extend this
+class]]>
+    </xs:documentation>
+  </xs:annotation>
+   <xs:complexContent>
+    <xs:extension base="ownedObject">
+      <xs:sequence>
+              <xs:element name="level" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="loggerName" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="message" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="millis" type="xs:long" minOccurs="1">
+              </xs:element>
+              <xs:element name="sequenceNumber" type="xs:long" minOccurs="1">
+              </xs:element>
+              <xs:element name="sourceClassName" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="sourceMethodName" type="xs:string" minOccurs="0">
+              </xs:element>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+
 <xs:complexType name="deployParameter">
   <xs:annotation>
     <xs:documentation>
@@ -534,7 +563,8 @@ class]]>
               <xs:annotation>
                 <xs:documentation>
                   <![CDATA[The owner (username) for the particular object. This value is set when
-the DAO saves the object based on the principal how made the call]]>
+the DAO saves the object based on the principal who made the call.
+It is created automatically. No need to set during a POST]]>
                 </xs:documentation>
               </xs:annotation>
               </xs:element>
@@ -791,17 +821,17 @@ class]]>
    <xs:complexContent>
     <xs:extension base="ownedObject">
       <xs:sequence>
-              <xs:element name="vmType" type="xs:string" minOccurs="0">
-              </xs:element>
-              <xs:element name="end" type="xs:dateTime" minOccurs="0">
-              </xs:element>
-              <xs:element name="host" type="xs:string" minOccurs="0">
+              <xs:element name="start" type="xs:dateTime" minOccurs="0">
               </xs:element>
               <xs:element name="cloudDeploymentDomain" type="xs:string" minOccurs="0">
               </xs:element>
-              <xs:element name="start" type="xs:dateTime" minOccurs="0">
-              </xs:element>
               <xs:element name="delta" type="xs:dateTime" minOccurs="0">
+              </xs:element>
+              <xs:element name="host" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="vmType" type="xs:string" minOccurs="0">
+              </xs:element>
+              <xs:element name="end" type="xs:dateTime" minOccurs="0">
               </xs:element>
       </xs:sequence>
     </xs:extension>

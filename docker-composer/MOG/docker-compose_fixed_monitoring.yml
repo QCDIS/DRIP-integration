@@ -1,27 +1,30 @@
-# File to run on a remote machine with access to mog's registry (mogswitch)
-
 version: "3.2"
 
 services:
 
-  streamer:
+
+  adapter:
+    ports:
+      - target: 8125
+        published: 8125
+        protocol: udp
+        mode: ingress
+    image: beia/monitoring_adapter
     environment:
-      - inPort=2000
-      - inPort2=2002
-      - inPort3=2004
-      - inPort4=2006
-      - ipID1=input
-      - ipID2=input2
-      - ipID3=input3
-      - ipID4=input4
-      - camnumber=4
-    image: mogpsantos/streamer
+      - MONITORING_SERVER=194.249.1.175
+      - MONITORING_PREFIX=eu.switch.mog
+      - LOGGING_LEVEL=trace
+      - GRAPHITE_SERVER=pc-vfilipe
     networks:
       - app_mog
 
-  input:
+
+  input1:
     ports:
-      - "2000:2000/udp"
+      - target: 2000
+        published: 2000
+        protocol: udp
+        mode: ingress
     environment:
       - inPort=2000
       - multicastAddrIP=225.2.2.0
@@ -30,20 +33,23 @@ services:
       - videoWidth=720
       - videoHeight=406
       - statsdPort=8125
-      - machineip=input
+      - machineip=input1
       - identification=InputDistributor1
       - metrics=true
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/inputpipe
     volumes:
       - type: tmpfs
-        target: /ram         
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
   input2:
     ports:
-      - "2002:2002/udp"
+      - target: 2002
+        published: 2002
+        protocol: udp
+        mode: ingress
     environment:
       - inPort=2002
       - multicastAddrIP=225.2.2.0
@@ -55,18 +61,21 @@ services:
       - machineip=input2
       - identification=InputDistributor2
       - metrics=true
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/inputpipe
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram
     networks:
       - app_mog
 
 
   input3:
     ports:
-      - "2004:2004/udp"
+      - target: 2004
+        published: 2004
+        protocol: udp
+        mode: ingress
     environment:
       - inPort=2004
       - multicastAddrIP=225.2.2.0
@@ -78,17 +87,20 @@ services:
       - machineip=input3
       - identification=InputDistributor3
       - metrics=true
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/inputpipe
     volumes:
       - type: tmpfs
-        target: /ram   
+        target: /ram
     networks:
-      - app_mog        
-        
+      - app_mog
+
   input4:
     ports:
-      - "2006:2006/udp"
+      - target: 2006
+        published: 2006
+        protocol: udp
+        mode: ingress
     environment:
       - inPort=2006
       - multicastAddrIP=225.2.2.0
@@ -100,13 +112,13 @@ services:
       - machineip=input4
       - identification=InputDistributor4
       - metrics=true
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/inputpipe
     volumes:
       - type: tmpfs
-        target: /ram      
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 
 
@@ -114,33 +126,37 @@ services:
 
 
 
-  proxy:
+  proxy1:
     ports:
-      - "8081:80"
+      - target: 80
+        published: 8081
+        protocol: tcp
+        mode: ingress
     environment:
       - multicastAddrIP=225.2.2.0
       - multicastAddrPort=3000
       - videoWidth=720
       - videoHeight=406
       - statsdPort=8125
-      - machineip=proxy
+      - machineip=proxy1
       - identification=ProxyTranscoder1
       - metrics=true
       - videoswitcherip=switcher
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/proxytranscoder
-    depends_on:
-      - input
     volumes:
       - type: tmpfs
-        target: /ram       
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 
   proxy2:
     ports:
-      - "8082:80"
+      - target: 80
+        published: 8082
+        protocol: tcp
+        mode: ingress
     environment:
       - multicastAddrIP=225.2.2.0
       - multicastAddrPort=3002
@@ -151,20 +167,21 @@ services:
       - identification=ProxyTranscoder2
       - metrics=true
       - videoswitcherip=switcher
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/proxytranscoder
-    depends_on:
-      - input2 
     volumes:
       - type: tmpfs
-        target: /ram    
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 
   proxy3:
     ports:
-      - "8083:80"
+      - target: 80
+        published: 8083
+        protocol: tcp
+        mode: ingress
     environment:
       - multicastAddrIP=225.2.2.0
       - multicastAddrPort=3004
@@ -175,21 +192,22 @@ services:
       - identification=ProxyTranscoder3
       - metrics=true
       - videoswitcherip=switcher
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/proxytranscoder
-    depends_on:
-      - input3    
     volumes:
       - type: tmpfs
-        target: /ram      
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 
 
   proxy4:
     ports:
-      - "8084:80"
+      - target: 80
+        published: 8084
+        protocol: tcp
+        mode: ingress
     environment:
       - multicastAddrIP=225.2.2.0
       - multicastAddrPort=3006
@@ -200,45 +218,53 @@ services:
       - identification=ProxyTranscoder4
       - metrics=true
       - videoswitcherip=switcher
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/proxytranscoder
     depends_on:
-      - input4    
+      - input4
     volumes:
       - type: tmpfs
-        target: /ram       
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 
-  proxyOut:    
+  proxyOut:
     ports:
-      - "8085:80"
+      - target: 80
+        published: 8085
+        protocol: tcp
+        mode: ingress
     environment:
       - multicastAddrIP=226.2.2.2
       - multicastAddrPort=6000
       - videoWidth=720
       - videoHeight=406
       - statsdPort=8125
-      - machineip=proxyOut
+      - machineip=corona
       - identification=ProxyTranscoderOut
       - metrics=true
       - videoswitcherip=switcher
-      - adapterip=10.20.130.3
+      - adapterip=adapter
     image: mogpsantos/proxytranscoder
-    depends_on:
-      - switcher    
     volumes:
       - type: tmpfs
-        target: /ram      
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
 #####################################################
 
   switcher:
     ports:
-      - "8008:8008"
+      - target: 6000
+        published: 6000
+        protocol: udp
+        mode: ingress
+      - target: 8008
+        published: 8008
+        protocol: tcp
+        mode: ingress
     environment:
       # MulticastGroups
       - multicastAddrIP=225.2.2.0
@@ -255,15 +281,16 @@ services:
       - videoWidth=720
       - videoHeight=406
       - statsdPort=8125
-      - machineip=switcher
+      - machineip=switvher
       - identification=VideoSwitcher
       - metrics=true
-      - buffer=false
+      - buffer=true
       - camnumber=4
-      - adapterip=10.20.130.3
+      - adapterip=adapter
+      - synctime=120
     image: mogpsantos/videoswitcher
     networks:
-      - app_mog    
+      - app_mog
 
 
 ####################################################
@@ -272,59 +299,49 @@ services:
 
   output:
     ports:
-      - "4000:4000"
+      - target: 4000
+        published: 4000
+        protocol: udp
+        mode: ingress
     environment:
       - multicastAddrIP=226.2.2.2
       - multicastAddrPort=6000
       - videoWidth=720
       - videoHeight=406
-      - OutIP=127.0.0.1
+      - OutIP=10.20.130.1
       - OutPort=4000
       - statsdPort=8125
       - machineip=output
       - identification=OutputTranscoder
       - metrics=true
-      - adapterip=10.20.130.3
-    image: mogpsantos/outputtranscoder  
+      - adapterip=adapter
+    image: mogpsantos/outputtranscoder
     volumes:
       - type: tmpfs
-        target: /ram        
+        target: /ram
     networks:
-      - app_mog        
+      - app_mog
 
   frontend:
     ports:
-      - "5050:80"
+      - target: 80
+        published: 5050
+        protocol: tcp
+        mode: ingress
     image: mogpsantos/switchgui
     environment:
-      - ipPT1=proxy
+      - ipPT1=proxy1
       - ipPT2=proxy2
       - ipPT3=proxy3
       - ipPT4=proxy4
       - ipPTout=proxyOut
       - ipVS=switcher
     networks:
-      - app_mog      
-      
-######################Monitoring########################################      
-  adapter:
-    ports:
-      - "8125:8125/udp"
-    image: beia/monitoring_adapter
-    environment:
-      - MONITORING_SERVER=147.228.242.94
-      - MONITORING_PREFIX=eu.switch.mog
-      - LOGGING_LEVEL=debug 
-    networks:
       - app_mog
-      - mon
-      
-      
 
 networks:
     app_mog:
         driver: weaveworks/net-plugin:latest_release
         driver_opts:
             works.weave.multicast: "1"
-    mon:
-    
+

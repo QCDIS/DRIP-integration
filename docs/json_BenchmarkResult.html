@@ -81,42 +81,6 @@ class</p>
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">cloudDeploymentDomain</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">vmType</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">start</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
-          <td>  <span class="property-name">end</span>
-</td>
-          <td>  <span class="datatype-reference">number
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">delta</span>
 </td>
           <td>  <span class="datatype-reference">number
@@ -134,6 +98,42 @@ class</p>
           <td>  <span class="property-description"></span>
 </td>
         </tr>
+        <tr>
+          <td>  <span class="property-name">cloudDeploymentDomain</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">end</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">start</span>
+</td>
+          <td>  <span class="datatype-reference">number
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">vmType</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
         </tbody>
         <tr>
           <td colspan="3"><h5 class="text-muted">Properties inherited from <a href="json_OwnedObject.html">OwnedObject</a></h5></td>
@@ -144,7 +144,8 @@ class</p>
           <td><span class="datatype-reference">string
 </span></td>
           <td><span class="property-description">The owner (username) for the particular object. This value is set when
-the DAO saves the object based on the principal how made the call</span></td>
+the DAO saves the object based on the principal who made the call.
+It is created automatically. No need to set during a POST</span></td>
         </tr>
         <tr>
           <td><span class="property-name">id</span></td>
@@ -157,7 +158,8 @@ object is saved.</span></td>
           <td><span class="property-name">timestamp</span></td>
           <td><span class="datatype-reference">number
 </span></td>
-          <td><span class="property-description">The object's creation date in unix time stamp</span></td>
+          <td><span class="property-description">The object's creation date in unix time stamp. It is created automatically.
+No need to set during a POST</span></td>
         </tr>
         </tbody>
       </table>
@@ -165,12 +167,12 @@ object is saved.</span></td>
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;cloudDeploymentDomain&quot; : &quot;us-east-1&quot;,
-  &quot;vmType&quot; : &quot;...&quot;,
-  &quot;start&quot; : 12345,
-  &quot;end&quot; : 12345,
   &quot;delta&quot; : 12345,
   &quot;host&quot; : &quot;147.228.242.58&quot;,
+  &quot;cloudDeploymentDomain&quot; : &quot;us-east-1&quot;,
+  &quot;end&quot; : 12345,
+  &quot;start&quot; : 12345,
+  &quot;vmType&quot; : &quot;...&quot;,
   &quot;owner&quot; : &quot;user1&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
   &quot;timestamp&quot; : 1499793079011

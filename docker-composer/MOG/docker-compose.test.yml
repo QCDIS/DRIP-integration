@@ -1,0 +1,25 @@
+# File to build images from dev
+version: '3.2'
+services:
+  sender:
+    image: mogpsantos/packetsender
+    ports:
+      - target: 2006
+        published: 2006
+        protocol: udp
+        mode: host
+    networks:
+      - weave
+  receiver:
+    image: mogpsantos/packetreceiver
+    networks:
+      - weave
+
+networks:
+    weave:
+        driver: weaveworks/net-plugin:latest_release
+        driver_opts:
+            works.weave.multicast: "1"
+
+
+#SWITCH MOG Use Case module

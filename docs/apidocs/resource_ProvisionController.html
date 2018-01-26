@@ -53,6 +53,7 @@
         <ul class="nav nav-sidebar">
           <li><a href="#resource_ProvisionController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/provisioner/all">DELETE /user/v1.0/provisioner/...</abbr></a></li>
           <li><a href="#resource_ProvisionController_getIds_GET">GET /user/v1.0/provisioner/ids</a></li>
+          <li><a href="#resource_ProvisionController_getSuportedProviders_GET"><abbr title="GET /user/v1.0/provisioner/providers">GET /user/v1.0/provisioner/pro...</abbr></a></li>
           <li><a href="#resource_ProvisionController_provision_POST"><abbr title="POST /user/v1.0/provisioner/provision">POST /user/v1.0/provisioner/pr...</abbr></a></li>
           <li><a href="#resource_ProvisionController_sample_GET"><abbr title="GET /user/v1.0/provisioner/sample">GET /user/v1.0/provisioner/sam...</abbr></a></li>
           <li><a href="#resource_ProvisionController_scaleDeployment_POST"><abbr title="POST /user/v1.0/provisioner/scale">POST /user/v1.0/provisioner/sc...</abbr></a></li>
@@ -215,6 +216,90 @@ Content-Type: application/json
               <h5>Request</h5>
               <pre>
 GET /user/v1.0/provisioner/ids
+Accept: application/json
+
+              </pre>
+            </div>
+            <div class="col-md-6">
+              <h5>Response</h5>
+              <pre>
+HTTP/1.1 200 Looks Good
+Content-Type: application/json
+
+                <code class="prettyprint language-txt">
+...
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="resource_ProvisionController_getSuportedProviders_GET">
+        <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/provisioner/providers <a href="../user/v1.0/provisioner/providers" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
+
+        <p>Gets the supported providers</p>
+
+        <dl class="dl-horizontal">
+          <dt>Security Roles Allowed</dt>
+          <dd>ADMIN, USER</dd>
+        </dl>
+
+        <table class="table resource-response-codes">
+          <caption>Response Codes</caption>
+          <thead>
+          <tr>
+            <th>code</th>
+            <th>condition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span class="label label-warning response-code">404</span></td>
+            <td><span class="response-condition">object not found</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-success response-code">200</span></td>
+            <td><span class="response-condition">object exists</span></td>
+          </tr>
+          <tr>
+            <td><span class="label label-warning response-code">401</span></td>
+            <td><span class="response-condition">Bad credentials</span></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table resource-response-body">
+          <caption>Response Body</caption>
+          <thead>
+          <tr>
+            <th>media type</th>
+            <th>data type</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">array of string
+ (JSON)</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">the supported providers</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
+            <td><span class="datatype-reference">list of string
+ (XML)</span></td>
+          </tr>
+          </tbody>
+        </table>
+        <h4>Example</h4>
+
+        <div class="container-fluid example panel">
+          <div class="row panel-body">
+            <div class="col-md-6">
+              <h5>Request</h5>
+              <pre>
+GET /user/v1.0/provisioner/providers
 Accept: application/json
 
               </pre>

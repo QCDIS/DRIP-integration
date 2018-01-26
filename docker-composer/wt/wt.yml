@@ -1,0 +1,462 @@
+#####################################################
+### PLEASE, CONFIGURE MONITOR-ADAPTER ENVIRONMENT ###
+#####################################################
+
+version: "3.3"
+services:
+  monitor-adapter:
+    image: beia/monitoring_agent
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    environment:
+      - MONITORING_SERVER=147.228.242.95
+      - MONITORING_PREFIX=eu.switch.wt
+    hostname: monitor-adapter
+    networks:
+      uc-ol:
+        aliases:
+          - monitor-adapter
+
+  mongo:
+    image: wtelecom/mongo:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    depends_on:
+      - monitor-adapter
+    volumes:
+      - mongo-volume:/data/db
+    hostname: mongo
+    networks:
+      uc-ol:
+        aliases:
+          - mongo
+
+  redis:
+    image: redis:4.0-alpine
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    depends_on:
+      - monitor-adapter
+    volumes:
+      - redis-volume:/data
+    hostname: redis
+    networks:
+      uc-ol:
+        aliases:
+          - redis
+
+  db:
+    image: wtelecom/mysql:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    depends_on:
+      - monitor-adapter
+    environment:
+      - MYSQL_ROOT_PASSWORD=supersecret
+    volumes:
+      - db-volume:/var/lib/mysql
+    hostname: db
+    networks:
+      uc-ol:
+        aliases:
+          - db
+
+  asterisk:
+    image: wtelecom/asterisk:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    depends_on:
+      - monitor-adapter
+      - db
+    hostname: asterisk
+    networks:
+      uc-ol:
+        aliases:
+          - asterisk
+
+  doubango:
+    image: wtelecom/doubango:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    depends_on:
+      - monitor-adapter
+      - db
+    hostname: doubango
+    networks:
+      uc-ol:
+        aliases:
+          - doubango
+
+  kamailio:
+    image: wtelecom/kamailio:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    depends_on:
+      - monitor-adapter
+      - db
+      - asterisk
+      - doubango
+    environment:
+      - SUBNET_OVERLAY=192.168.2.0
+    volumes:
+      - /etc/hostname:/docker-entrypoint/hostname:ro
+    ports:
+      - target: 5060
+        published: 5060
+        protocol: udp
+        mode: host
+      - target: 5061
+        published: 5061
+        protocol: udp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+    hostname: kamailio
+    networks:
+      uc-ol:
+        aliases:
+          - kamailio
+
+  rtpengine:
+    image: wtelecom/rtpengine:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    depends_on:
+      - monitor-adapter
+      - db
+      - kamailio
+    environment:
+      - PORT_MAX=10050
+      - PORT_MIN=10000
+      - SUBNET_OVERLAY=192.168.2.0
+      - BRIDGE_MODE=YES
+    volumes:
+      - /etc/hostname:/docker-entrypoint/hostname:ro
+    ports:
+      - target: 10000
+        published: 10000
+        protocol: udp
+        mode: host
+      - target: 10001
+        published: 10001
+        protocol: udp
+        mode: host
+      - target: 10002
+        published: 10002
+        protocol: udp
+        mode: host
+      - target: 10003
+        published: 10003
+        protocol: udp
+        mode: host
+      - target: 10004
+        published: 10004
+        protocol: udp
+        mode: host
+      - target: 10005
+        published: 10005
+        protocol: udp
+        mode: host
+      - target: 10006
+        published: 10006
+        protocol: udp
+        mode: host
+      - target: 10007
+        published: 10007
+        protocol: udp
+        mode: host
+      - target: 10008
+        published: 10008
+        protocol: udp
+        mode: host
+      - target: 10009
+        published: 10009
+        protocol: udp
+        mode: host
+      - target: 10010
+        published: 10010
+        protocol: udp
+        mode: host
+      - target: 10011
+        published: 10011
+        protocol: udp
+        mode: host
+      - target: 10012
+        published: 10012
+        protocol: udp
+        mode: host
+      - target: 10013
+        published: 10013
+        protocol: udp
+        mode: host
+      - target: 10014
+        published: 10014
+        protocol: udp
+        mode: host
+      - target: 10015
+        published: 10015
+        protocol: udp
+        mode: host
+      - target: 10016
+        published: 10016
+        protocol: udp
+        mode: host
+      - target: 10017
+        published: 10017
+        protocol: udp
+        mode: host
+      - target: 10018
+        published: 10018
+        protocol: udp
+        mode: host
+      - target: 10019
+        published: 10019
+        protocol: udp
+        mode: host
+      - target: 10020
+        published: 10020
+        protocol: udp
+        mode: host
+      - target: 10021
+        published: 10021
+        protocol: udp
+        mode: host
+      - target: 10022
+        published: 10022
+        protocol: udp
+        mode: host
+      - target: 10023
+        published: 10023
+        protocol: udp
+        mode: host
+      - target: 10024
+        published: 10024
+        protocol: udp
+        mode: host
+      - target: 10025
+        published: 10025
+        protocol: udp
+        mode: host
+      - target: 10026
+        published: 10026
+        protocol: udp
+        mode: host
+      - target: 10027
+        published: 10027
+        protocol: udp
+        mode: host
+      - target: 10028
+        published: 10028
+        protocol: udp
+        mode: host
+      - target: 10029
+        published: 10029
+        protocol: udp
+        mode: host
+      - target: 10030
+        published: 10030
+        protocol: udp
+        mode: host
+      - target: 10031
+        published: 10031
+        protocol: udp
+        mode: host
+      - target: 10032
+        published: 10032
+        protocol: udp
+        mode: host
+      - target: 10033
+        published: 10033
+        protocol: udp
+        mode: host
+      - target: 10034
+        published: 10034
+        protocol: udp
+        mode: host
+      - target: 10035
+        published: 10035
+        protocol: udp
+        mode: host
+      - target: 10036
+        published: 10036
+        protocol: udp
+        mode: host
+      - target: 10037
+        published: 10037
+        protocol: udp
+        mode: host
+      - target: 10038
+        published: 10038
+        protocol: udp
+        mode: host
+      - target: 10039
+        published: 10039
+        protocol: udp
+        mode: host
+      - target: 10040
+        published: 10040
+        protocol: udp
+        mode: host
+      - target: 10041
+        published: 10041
+        protocol: udp
+        mode: host
+      - target: 10042
+        published: 10042
+        protocol: udp
+        mode: host
+      - target: 10043
+        published: 10043
+        protocol: udp
+        mode: host
+      - target: 10044
+        published: 10044
+        protocol: udp
+        mode: host
+      - target: 10045
+        published: 10045
+        protocol: udp
+        mode: host
+      - target: 10046
+        published: 10046
+        protocol: udp
+        mode: host
+      - target: 10047
+        published: 10047
+        protocol: udp
+        mode: host
+      - target: 10048
+        published: 10048
+        protocol: udp
+        mode: host
+      - target: 10049
+        published: 10049
+        protocol: udp
+        mode: host
+      - target: 10050
+        published: 10050
+        protocol: udp
+        mode: host
+    networks:
+      uc-ol:
+        aliases:
+          - rtpengine
+
+  webportalbackend:
+    image: wtelecom/webportalbackend:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    depends_on:
+      - monitor-adapter
+      - redis
+      - mongo
+      - kamailio
+      - rtpengine
+    ports:
+      - "3000:3000"
+    volumes:
+      - /etc/hostname:/docker-entrypoint/hostname:ro
+    hostname: webportalbackend
+    networks:
+      uc-ol:
+        aliases:
+          - webportalbackend
+
+  webportal:
+    image: wtelecom/webportal:switch
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    depends_on:
+      - monitor-adapter
+      - kamailio
+      - rtpengine
+      - webportalbackend
+    ports:
+      - "4200:4200"
+    volumes:
+      - /etc/hostname:/docker-entrypoint/hostname:ro
+    hostname: webportal
+    networks:
+      uc-ol:
+        aliases:
+          - webportal
+
+volumes:
+  db-volume:
+  redis-volume:
+  mongo-volume:
+
+networks:
+  uc-ol:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.0/24
+

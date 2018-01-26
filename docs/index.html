@@ -170,8 +170,8 @@ provisoner to request for resources (VMs)</span>
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
-      <td>  <span class="resource-description">This controller is responsible for storing PlayBook descriptions that can be
-used by the planner.</span>
+      <td>  <span class="resource-description">This controller is responsible for managing deployment configurations used
+by the deployer. Currently docker-compose.yml and ansible playbooks are supported.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_DeployController.html">
@@ -183,6 +183,8 @@ used by the planner.</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/scale</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/{id}</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/{id}/container_status</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/deployer/{id}/service_names</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
@@ -190,6 +192,8 @@ used by the planner.</span>
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">DELETE</span> <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li></ul></td>
       <td>  <span class="resource-description">This controller is responsible for deploying a cluster on provisoned
 resources.</span>
@@ -226,6 +230,17 @@ resources.</span>
       <td>  <span class="resource-description">This controller is responsible for handling user public keys. These keys can
 be used by the provisoner to allow the user to login to the VMs from the
 machine the keys correspond to.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="resource_LogController.html">
+      <td>  <span class="resource-name">LogController</span>
+</td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/logs/</span>
+</samp></li></ul></td>
+      <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">GET</span> 
+</samp></li></ul></td>
+      <td>  <span class="resource-description">This controller is responsible for storing TOSCA descriptions that can be
+used by the planner.</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="resource_MonitorringMessageController.html">
@@ -283,6 +298,7 @@ provisopned based on a TOSCA description.</span>
 </td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="resource-path">/user/v1.0/provisioner/all</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/ids</span>
+</samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/providers</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/provision</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/sample</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/scale</span>
@@ -290,6 +306,7 @@ provisopned based on a TOSCA description.</span>
 </samp></li><li><samp>  <span class="resource-path">/user/v1.0/provisioner/post/provision</span>
 </samp></li></ul></td>
       <td class="text-nowrap"><ul class="list-unstyled"><li><samp>  <span class="label label-default resource-method">DELETE</span> 
+</samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">POST</span> 
 </samp></li><li><samp>  <span class="label label-default resource-method">GET</span> 
@@ -449,6 +466,13 @@ class</span>
 </td>
       <td>  <span class="datatype-description">This class represents the cloud credentials. They are used by the provisoner
 to request for resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="json_DRIPLogRecord.html">
+      <td>  <span class="datatype-name">DRIPLogRecord</span>
+</td>
+      <td>  <span class="datatype-description">This is the base class for users to own resources. Many classes extend this
+class</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="json_DeployParameter.html">
@@ -633,6 +657,13 @@ support swarm.</span>
 </td>
       <td>  <span class="datatype-description">This class represents the cloud credentials. They are used by the provisoner
 to request for resources.</span>
+</td>
+    </tr>
+    <tr class="clickable-row" data-href="xml_ns0_DRIPLogRecord.html">
+      <td>  <span class="datatype-name">DRIPLogRecord</span>
+</td>
+      <td>  <span class="datatype-description">This is the base class for users to own resources. Many classes extend this
+class</span>
 </td>
     </tr>
     <tr class="clickable-row" data-href="xml_ns0_deployParameter.html">

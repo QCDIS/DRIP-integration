@@ -54,7 +54,7 @@
           <li><a href="#resource_ConfigurationController_deleteAll_DELETE"><abbr title="DELETE /user/v1.0/deployer/configuration/all">DELETE /user/v1.0/deployer/con...</abbr></a></li>
           <li><a href="#resource_ConfigurationController_getIds_GET"><abbr title="GET /user/v1.0/deployer/configuration/ids">GET /user/v1.0/deployer/config...</abbr></a></li>
           <li><a href="#resource_ConfigurationController_post_POST"><abbr title="POST /user/v1.0/deployer/configuration/post">POST /user/v1.0/deployer/confi...</abbr></a></li>
-          <li><a href="#resource_ConfigurationController_toscaUpload_POST"><abbr title="POST /user/v1.0/deployer/configuration/upload">POST /user/v1.0/deployer/confi...</abbr></a></li>
+          <li><a href="#resource_ConfigurationController_configurationUpload_POST"><abbr title="POST /user/v1.0/deployer/configuration/upload">POST /user/v1.0/deployer/confi...</abbr></a></li>
           <li><a href="#resource_ConfigurationController_delete_DELETE"><abbr title="DELETE /user/v1.0/deployer/configuration/{id}">DELETE /user/v1.0/deployer/con...</abbr></a></li>
           <li><a href="#resource_ConfigurationController_get_GET"><abbr title="GET /user/v1.0/deployer/configuration/{id}">GET /user/v1.0/deployer/config...</abbr></a></li>
           <li class="divider"></li>
@@ -71,8 +71,8 @@
 
       <h1 class="page-header">ConfigurationController <small>Resource</small></h1>
 
-      <p>This controller is responsible for storing PlayBook descriptions that can be
-used by the planner.</p>
+      <p>This controller is responsible for managing deployment configurations used
+by the deployer. Currently docker-compose.yml and ansible playbooks are supported.</p>
 
       <div id="resource_ConfigurationController_deleteAll_DELETE">
         <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/all <a href="../user/v1.0/deployer/configuration/all" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
@@ -155,7 +155,7 @@ Content-Type: application/json
       <div id="resource_ConfigurationController_getIds_GET">
         <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/ids <a href="../user/v1.0/deployer/configuration/ids" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the IDs of all the stored PlayBook descriptions.</p>
+        <p>Gets the IDs of all the stored configuration</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -340,10 +340,10 @@ Content-Type: application/json
         </div>
       </div>
 
-      <div id="resource_ConfigurationController_toscaUpload_POST">
+      <div id="resource_ConfigurationController_configurationUpload_POST">
         <h3><span class="label label-default resource-method">POST</span> <span class="resource-path">/user/v1.0/deployer/configuration/upload <a href="../user/v1.0/deployer/configuration/upload" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Uploads and stores a PlayBook description file</p>
+        <p>Uploads and stores a configuration file</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -408,7 +408,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the ID of the PlayBook description</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">the ID of the configuration description</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -447,7 +447,7 @@ Content-Type: application/json
       <div id="resource_ConfigurationController_delete_DELETE">
         <h3><span class="label label-default resource-method">DELETE</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Deletes the PlayBook description.</p>
+        <p>Deletes the configuration</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -512,7 +512,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">The ID of the deleted PlayBook description.</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">The ID of the deleted configuration</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -551,7 +551,7 @@ Content-Type: application/json
       <div id="resource_ConfigurationController_get_GET">
         <h3><span class="label label-default resource-method">GET</span> <span class="resource-path">/user/v1.0/deployer/configuration/{id} <a href="../user/v1.0/deployer/configuration/{id}" class="glyphicon glyphicon-new-window" target="_blank"></a></span></h3>
 
-        <p>Gets the PlayBook description.</p>
+        <p>Gets the configuration contents.</p>
 
         <dl class="dl-horizontal">
           <dt>Security Roles Allowed</dt>
@@ -572,7 +572,7 @@ Content-Type: application/json
           <tr>
             <td><span class="parameter-name">id</span></td>
             <td>path</td>
-            <td><span class="parameter-description">the ID PlayBook description.</span></td>
+            <td><span class="parameter-description">the ID configuration contents.</span></td>
             <td><span class="parameter-constraints">required</span></td>
           </tr>
           <tr>
@@ -626,7 +626,7 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the PlayBook description.</span></td>
+            <td rowspan="2" class="multi-row-description"><span class="response-description">the configuration contents.</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
