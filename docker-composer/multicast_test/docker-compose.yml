@@ -1,20 +1,13 @@
-version: "3.2"
- 
+version: '3.2'
 services:
- 
   server:
-    image: ubuntu:16.04
-    ports:
-      - "5001:5001/udp"
-    command: bash -c "apt-get update && apt-get install iperf && iperf -s -u -B 224.0.55.55 -i 1 -y C"
-    
+    image: wlwwu/ubuntu_iperf:latest
+    ports: ['5001:5001/udp']
+    command: bash -c "iperf -s -u -B 224.0.55.55 -i 1 -y C"
   client:
-    image: ubuntu:16.04
-    depends_on:
-      - udp_server
-    environment:
-      - UDP_SERVER=udp_server
+    image: wlwwu/ubuntu_iperf:latest
+    depends_on: [udp_server]
+    environment: [UDP_SERVER=udp_server]
     deploy:
-      restart_policy:
-        condition: on-failure
-    command: bash -c "sleep 30 && apt-get update && apt-get install iperf && iperf -c 224.0.55.55 -u -T 32 -t 3 -i 1 -y C"
+      restart_policy: {condition: on-failure}
+    command: bash -c "sleep 10 && iperf -c 224.0.55.55 -u -T 32 -t 3 -i 1 -y C"
