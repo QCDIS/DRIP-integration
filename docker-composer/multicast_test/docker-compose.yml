@@ -1,8 +1,7 @@
-version: "3.2"
- 
+version: '3.2'
 services:
- 
   server:
+<<<<<<< HEAD
     image: ubuntu:16.04
     ports:
       - target: 5001
@@ -13,13 +12,17 @@ services:
     networks:
       - weave    
     
+=======
+    image: wlwwu/ubuntu_iperf:latest
+    ports: ['5001:5001/udp']
+    command: bash -c "iperf -s -u -B 224.0.55.55 -i 1 -y C"
+>>>>>>> 6723fe50f0d4a6d3603521f673dbc15aa59a36ea
   client:
-    image: ubuntu:16.04
-    depends_on:
-      - udp_server
-    environment:
-      - UDP_SERVER=udp_server
+    image: wlwwu/ubuntu_iperf:latest
+    depends_on: [udp_server]
+    environment: [UDP_SERVER=udp_server]
     deploy:
+<<<<<<< HEAD
       restart_policy:
         condition: on-failure
     command: bash -c "sleep 40 && apt-get update && apt-get install iperf && iperf -c 225.2.2.0 -u -T 32 -t 10 -i 1 -y C"
@@ -33,3 +36,7 @@ networks:
         driver: weaveworks/net-plugin:latest_release
         driver_opts:
             works.weave.multicast: "1"
+=======
+      restart_policy: {condition: on-failure}
+    command: bash -c "sleep 10 && iperf -c 224.0.55.55 -u -T 32 -t 3 -i 1 -y C"
+>>>>>>> 6723fe50f0d4a6d3603521f673dbc15aa59a36ea
