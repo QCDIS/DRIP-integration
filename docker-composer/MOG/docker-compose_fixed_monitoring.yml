@@ -337,6 +337,21 @@ services:
       - ipPTout=proxyOut
       - ipVS=switcher
     networks:
+<<<<<<< HEAD
+=======
+      - app_mog      
+      
+######################Monitoring########################################      
+  adapter:
+    ports:
+      - "8125:8125/udp"
+    image: beia/monitoring_adapter
+    environment:
+      - MONITORING_SERVER=194.249.1.175
+      - MONITORING_PREFIX=eu.switch.mog
+      - LOGGING_LEVEL=debug 
+    networks:
+>>>>>>> a1296fb5dab8669679a7e1aa70505b1af4dc3c24
       - app_mog
 
 networks:
