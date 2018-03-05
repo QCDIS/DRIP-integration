@@ -1,0 +1,21 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "ec2_3A-level-1"
+  cloudProvider: "ec2"
+  domain: "Ohio"
+  status: "fresh"
+  tag: "fixed"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
+  
+- topology: "ec2_3B-level-1"
+  cloudProvider: "ec2"
+  domain: "Ohio"
+  status: "fresh"
+  tag: "scaling"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
