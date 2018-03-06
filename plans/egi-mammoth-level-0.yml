@@ -1,0 +1,13 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "egi-mammoth-level-1.yml"
+  cloudProvider: "EGI"
+  domain: "CESNET"
+  status: "fresh"
+  tag: "fixed"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
+connections: null
