@@ -1,0 +1,21 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "egi_scaling-A-level-1"
+  cloudProvider: "EGI"
+  domain: "CESNET"
+  status: "fresh"
+  tag: "fixed"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
+  
+- topology: "egi_scaling-B-level-1"
+  cloudProvider: "EGI"
+  domain: "CESNET"
+  status: "fresh"
+  tag: "scaling"
+  statusInfo: null
+  copyOf: null
+  sshKeyPairId: null
