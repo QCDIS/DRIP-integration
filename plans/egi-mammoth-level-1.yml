@@ -1,5 +1,4 @@
 ---
-subnets: null
 components:
 - name: "nodeA"
   type: "switch/compute"
@@ -10,4 +9,4 @@ components:
   dockers: null
   publicAddress: null
   ethernetPort: null
-VMResourceID: null
+  VMResourceID: null
