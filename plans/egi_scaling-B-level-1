@@ -1,0 +1,10 @@
+---
+components:
+- name: "nodeB"
+  type: "switch/compute"
+  nodeType: "medium"
+  OStype: "Ubuntu 16.04"
+  script: null
+  role: slave
+  dockers: null
+  publicAddress: null
