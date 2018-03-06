@@ -1,0 +1,13 @@
+---
+subnets: null
+components:
+- name: "nodeA"
+  type: "switch/compute"
+  nodeType: "medium"
+  OStype: "Ubuntu 16.04"
+  script: null
+  role: master
+  dockers: null
+  publicAddress: null
+  ethernetPort: null
+VMResourceID: null
