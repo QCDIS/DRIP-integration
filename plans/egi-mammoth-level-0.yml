@@ -2,7 +2,7 @@
 publicKeyPath: "name@id_rsa.pub"
 userName: "vm_user"
 topologies:
-- topology: "egi-mammoth-level-1.yml"
+- topology: "egi-mammoth-level-1"
   cloudProvider: "EGI"
   domain: "CESNET"
   status: "fresh"
