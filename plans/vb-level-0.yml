@@ -1,0 +1,8 @@
+---
+publicKeyPath: "name@id_rsa.pub"
+userName: "vm_user"
+topologies:
+- topology: "vb-level-1"
+  cloudProvider: "VB"
+  status: "fresh"
+  tag: "fixed"

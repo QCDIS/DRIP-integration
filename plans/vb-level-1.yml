@@ -1,0 +1,11 @@
+---
+components:
+- name: "nodeA"
+  type: "switch/compute"
+  nodeType: "small"
+  OStype: "Ubuntu 16.04"
+  defaultSSHAccount: "default_user"
+  role: master
+  StartCMD: "vboxmanage startvm drip_vm --type headless"
+  IP: "192.168.56.101"
+  KeyPath: "/tmp/id_rsa"
