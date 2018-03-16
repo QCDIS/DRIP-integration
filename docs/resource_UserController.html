@@ -114,6 +114,11 @@
  (JSON)</span></td>
           </tr>
           <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">array of <a href="json_User.html">User</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
             <td><span class="datatype-reference">list of <a href="xml_ns0_user.html">user</a>
  (XML)</span></td>
@@ -196,7 +201,12 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">array of string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">a list of all the IDs</span></td>
+            <td rowspan="3" class="multi-row-description"><span class="response-description">a list of all the IDs</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">array of string
+ (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -257,6 +267,11 @@ Content-Type: application/json
  (JSON)</span></td>
           </tr>
           <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_User.html">User</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">application/xml</span></abbr></td>
             <td><span class="datatype-reference"><a href="xml_ns0_user.html">user</a>
  (XML)</span></td>
@@ -289,6 +304,11 @@ Content-Type: application/json
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
+          </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
@@ -367,6 +387,11 @@ with the 'ADMIN' role can do that.</p>
  (JSON)</span></td>
           </tr>
           <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/json&quot; HTTP header to specify this media type to the server."><span class="request-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_User.html">User</a>
+ (JSON)</span></td>
+          </tr>
+          <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Content-Type: application/xml&quot; HTTP header to specify this media type to the server."><span class="request-type">application/xml</span></abbr></td>
             <td><span class="datatype-reference"><a href="xml_ns0_user.html">user</a>
  (XML)</span></td>
@@ -404,9 +429,14 @@ with the 'ADMIN' role can do that.</p>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">Response on success: The ID of the newly register user. Response
+            <td rowspan="3" class="multi-row-description"><span class="response-description">Response on success: The ID of the newly register user. Response
 on fail: If the user name already exists, or the user name is 'null' or
 the password is 'null' there will be a 'BadRequestException'</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -515,7 +545,12 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference">string
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">The ID of the deleted user</span></td>
+            <td rowspan="3" class="multi-row-description"><span class="response-description">The ID of the deleted user</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference">string
+ (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>
@@ -611,7 +646,12 @@ Content-Type: application/json
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
             <td><span class="datatype-reference"><a href="json_User.html">User</a>
  (JSON)</span></td>
-            <td rowspan="2" class="multi-row-description"><span class="response-description">the requested user.</span></td>
+            <td rowspan="3" class="multi-row-description"><span class="response-description">the requested user.</span></td>
+          </tr>
+          <tr>
+            <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/json&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/json</span></abbr></td>
+            <td><span class="datatype-reference"><a href="json_User.html">User</a>
+ (JSON)</span></td>
           </tr>
           <tr>
             <td><abbr data-toggle="tooltip" data-placement="top" title="Use the &quot;Accept: application/xml&quot; HTTP header to request that this media type be provided by the server."><span class="response-type">application/xml</span></abbr></td>

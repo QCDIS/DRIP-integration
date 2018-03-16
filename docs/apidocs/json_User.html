@@ -80,15 +80,6 @@
         </thead>
         <tbody>
         <tr>
-          <td>  <span class="property-name">password</span>
-</td>
-          <td>  <span class="datatype-reference">string
-</span>
-</td>
-          <td>  <span class="property-description"></span>
-</td>
-        </tr>
-        <tr>
           <td>  <span class="property-name">id</span>
 </td>
           <td>  <span class="datatype-reference">string
@@ -96,6 +87,24 @@
 </td>
           <td>  <span class="property-description">The unique id of this object. This value is auto-generated when the DAO
 saves this object</span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">authorities</span>
+</td>
+          <td>  <span class="datatype-reference">array of object
+</span>
+</td>
+          <td>  <span class="property-description"></span>
+</td>
+        </tr>
+        <tr>
+          <td>  <span class="property-name">password</span>
+</td>
+          <td>  <span class="datatype-reference">string
+</span>
+</td>
+          <td>  <span class="property-description"></span>
 </td>
         </tr>
         <tr>
@@ -158,8 +167,9 @@ saves this object</span>
       <p class="lead">Example</p>
       
       <pre class="prettyprint language-js example">{
-  &quot;password&quot; : &quot;...&quot;,
   &quot;id&quot; : &quot;58e3946e0fb4f562d84ba1ad&quot;,
+  &quot;authorities&quot; : [ { }, { } ],
+  &quot;password&quot; : &quot;...&quot;,
   &quot;username&quot; : &quot;user&quot;,
   &quot;accountNonExpired&quot; : true,
   &quot;accountNonLocked&quot; : true,
