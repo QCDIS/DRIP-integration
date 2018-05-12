@@ -4,7 +4,7 @@ services:
   influx:
     image: influxdb
     environment:
-        INFLUXDB_DB: cadvisor    
+        INFLUXDB_DB: cadvisor
     volumes:
       - influx:/var/lib/influxdb
     deploy:
@@ -23,7 +23,13 @@ services:
       - monitoring          
 
   grafana:
-    image: grafana/grafana
+    image: qapps/grafana-docker
+    environment:
+        DS_NAME: InfluxDB
+        DS_TYPE: InfluxDB
+        DS_ACCESS: proxy
+        DS_URL: http://influx:8086
+        DS_DB: cadvisor
     ports:
       - 0.0.0.0:80:3000
     volumes:
@@ -43,7 +49,7 @@ services:
           cpus: "0.05"
           memory: "64M"
     networks:
-      - monitoring               
+      - monitoring
 
   cadvisor:
     image: google/cadvisor
