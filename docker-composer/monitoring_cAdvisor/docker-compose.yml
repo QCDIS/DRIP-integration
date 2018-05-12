@@ -23,7 +23,7 @@ services:
       - monitoring          
 
   grafana:
-    image: grafana/grafana
+    image: alogo53/grafana-docker
     ports:
       - 0.0.0.0:80:3000
     volumes:
