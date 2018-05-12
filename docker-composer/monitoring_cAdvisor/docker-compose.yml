@@ -24,12 +24,6 @@ services:
 
   grafana:
     image: grafana/grafana
-    environment:
-        DS_NAME: InfluxDB
-        DS_TYPE: InfluxDB
-        DS_ACCESS: proxy
-        DS_URL: http://influx:8086
-        DS_DB: cadvisor
     ports:
       - 0.0.0.0:80:3000
     volumes:
