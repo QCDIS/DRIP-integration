@@ -3,6 +3,8 @@ version: '3'
 services:
   influx:
     image: influxdb
+    environment:
+        INFLUXDB_DB: cadvisor    
     volumes:
       - influx:/var/lib/influxdb
     deploy:
