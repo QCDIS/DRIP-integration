@@ -23,7 +23,7 @@ services:
       - monitoring          
 
   grafana:
-    image: qapps/grafana-docker
+    image: alogo53/grafana-docker
     environment:
         DS_NAME: InfluxDB
         DS_TYPE: InfluxDB
