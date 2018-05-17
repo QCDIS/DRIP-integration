@@ -25,7 +25,13 @@ services:
   grafana:
     image: alogo53/grafana-docker
     ports:
-      - 0.0.0.0:80:3000
+      - 0.0.0.0:3000:3000
+    environment:
+        DS_NAME: influx
+        DS_TYPE: influxdb
+        DS_ACCESS: proxy
+        DS_DATABASE: cadvisor
+        DS_URL: http://influx:8086
     volumes:
       - grafana:/var/lib/grafana
     depends_on:
