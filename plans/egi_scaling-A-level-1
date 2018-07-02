@@ -2,7 +2,7 @@
 components:
 - name: "nodeA"
   type: "switch/compute"
-  nodeType: "mem_large"
+  nodeType: "large"
   OStype: "Ubuntu 16.04"
   script: null
   role: master
