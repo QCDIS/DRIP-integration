@@ -2,7 +2,7 @@
 components:
 - name: "nodeB"
   type: "switch/compute"
-  nodeType: "smal"
+  nodeType: "medium"
   OStype: "Ubuntu 16.04"
   script: null
   role: slave
