@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "dd2f1d5c-89ac-48e4-8119-609a52c9036b",
+		"name": "storm_usecase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post egi proxy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9e56df9-d21b-41b5-a077-e56219d5becb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"postman.setEnvironmentVariable(\"cloud_credentials_id\", responseBody);"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "204e928d-2050-40ec-9ffb-15224c06de45",
+						"type": "text/javascript",
+						"exec": [
+							"base_url = postman.getEnvironmentVariable(\"base_url\");",
+							"cloud_credentials_id = postman.getEnvironmentVariable(\"cloud_credentials_id\");",
+							"var cred_id_url = base_url+\"drip-api/user/v1.0/credentials/cloud/\"+cloud_credentials_id",
+							"var cred_post_url = base_url+\"drip-api/user/v1.0/credentials/cloud/\"",
+							"",
+							"const req1 = {",
+							"  url: cred_id_url,",
+							"  method: 'GET'",
+							"};",
+							"",
+							"",
+							"const req2 = {",
+							"  url: cred_post_url,",
+							"  method: 'POST',",
+							"      header: {",
+							"        \"content-type\": \"application/json\",",
+							"        \"accept\": \"application/json\"",
+							"    },",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: JSON.stringify({ secretKey: 'proxy', accessKeyId:'user',cloudProviderName:'egi'})",
+							"  }",
+							"};",
+							"",
+							"",
+							"pm.sendRequest(req1, function (err, res) {",
+							"    if(res.code == 404){",
+							"        pm.sendRequest(req2, function (err, res) {",
+							"            //console.log(res)",
+							"            //console.log(Object.keys(res))",
+							"            //console.log(res._details)",
+							"            //console.log(res.id)",
+							"            var result = \"\";",
+							"        \tfor(var i = 0; i < res.stream.length; ++i){",
+							"        \t\tresult+= (String.fromCharCode(res.stream[i]));",
+							"        \t}",
+							"        \tpostman.setEnvironmentVariable(\"cloud_credentials_id\", result);",
+							"        \tcloud_credentials_id = postman.getEnvironmentVariable(\"cloud_credentials_id\");",
+							"            console.log(cloud_credentials_id)",
+							"        })",
+							"    }",
+							"});",
+							"",
+							"cloud_credentials_id = postman.getEnvironmentVariable(\"cloud_credentials_id\");",
+							"console.log(cloud_credentials_id)",
+							"console.log(\"--------------------------\")",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user_name}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}drip-api/user/v1.0/credentials/cloud/upload/{{cloud_credentials_id}}",
+					"host": [
+						"{{base_url}}drip-api"
+					],
+					"path": [
+						"user",
+						"v1.0",
+						"credentials",
+						"cloud",
+						"upload",
+						"{{cloud_credentials_id}}"
+					]
+				},
+				"description": "provision VMs acoarding to plan"
+			},
+			"response": []
+		},
+		{
+			"name": "Show plan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "849fb7b9-9f24-473d-a6da-ee50c01f46ce",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user_name}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/planner/{{plan_id}}/?format=yml",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"planner",
+						"{{plan_id}}",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "yml"
+						}
+					]
+				},
+				"description": "Shows the plan to be provisioned. This includes the cloud provider, type and size of vm, users, etc"
+			},
+			"response": []
+		},
+		{
+			"name": "Provision",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57bf48ed-ac7c-409b-bdb1-2605183b5fa8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"postman.setEnvironmentVariable(\"provision_id\", responseBody);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"cloudCredentialsIDs\":[\"{{cloud_credentials_id}}\"],\"planID\": \"{{plan_id}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}drip-api/user/v1.0/provisioner/provision",
+					"host": [
+						"{{base_url}}drip-api"
+					],
+					"path": [
+						"user",
+						"v1.0",
+						"provisioner",
+						"provision"
+					]
+				},
+				"description": "provision VMs acoarding to plan"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Provision Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ece29a49-422b-41d0-b428-e0c124416267",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"tests[\"Body matches string\"] =responseBody.has(\"deployParameters\");",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"master_ip = jsonData.deployParameters[0].ip",
+							"postman.setEnvironmentVariable(\"master_ip\", master_ip);",
+							"",
+							"",
+							"var scaling_topologies = jsonData.keyValue.topology_main.topologies;",
+							"var scaling_topology;",
+							"for (i = 0; i < scaling_topologies.length; i++) {",
+							"    console.log(scaling_topologies[i])",
+							"    if(scaling_topologies[i].tag === \"scaling\"){",
+							"        scaling_topology =    scaling_topologies[i].topology;",
+							"        break;",
+							"    }",
+							"}",
+							"",
+							"postman.setEnvironmentVariable(\"scaling_topology\", scaling_topology);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/{{provision_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"{{provision_id}}"
+					]
+				},
+				"description": "Get the provision details shuch as ip addresses access keys etc."
+			},
+			"response": []
+		},
+		{
+			"name": "upload configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2403719b-4528-4c50-904a-93ea65da7285",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"postman.setEnvironmentVariable(\"storm_conf_id\", responseBody);"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3f98cc47-2226-48a5-a4bc-73f14327dc0b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user_name}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}drip-api/user/v1.0/deployer/configuration/upload",
+					"host": [
+						"{{base_url}}drip-api"
+					],
+					"path": [
+						"user",
+						"v1.0",
+						"deployer",
+						"configuration",
+						"upload"
+					]
+				},
+				"description": "provision VMs acoarding to plan"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2343b8a7-ee8d-488a-9c5e-61dceea43733",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/configuration/{{storm_conf_id}}/?format=yml",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"configuration",
+						"{{storm_conf_id}}",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "yml"
+						}
+					]
+				},
+				"description": "This is the acctual application to be deployed"
+			},
+			"response": []
+		},
+		{
+			"name": "Deploy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f339413e-41f1-4081-9a02-02e6dc62d0b2",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"",
+							"postman.setEnvironmentVariable(\"deploy_id\", responseBody);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"provisionID\":\"{{provision_id}}\",\"managerType\":\"swarm\",\"configurationID\":\"{{storm_conf_id}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/deploy",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"deploy"
+					]
+				},
+				"description": "Deplotys the application on the provisioed resoucers"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deploy output",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "401ce420-baa8-4fd0-b003-29a79442426b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/{{deploy_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"{{deploy_id}}"
+					]
+				},
+				"description": "Shows the details of the deplyment"
+			},
+			"response": []
+		},
+		{
+			"name": "Check running services",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "292579ff-eb7c-4cc9-b891-c148bbbf1328",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"",
+							"let ip = postman.getEnvironmentVariable(\"master_ip\");",
+							"let frontend_url = \"http://\"+ip+\":8081\"",
+							"",
+							"postman.setEnvironmentVariable(\"count\",\"0\");",
+							"postman.setEnvironmentVariable(\"frontend_url\",frontend_url);",
+							"console.log(frontend_url)",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"var managerInfo = jsonData.managerInfo.stack_info;",
+							"var num_of_servcies = managerInfo.length;",
+							"var num_of_running_servcies = 0;",
+							"",
+							"for (i = 0; i < managerInfo.length; i++) {",
+							"    replicas = managerInfo[i].replicas;",
+							"    if(!replicas.includes(\"0\")){",
+							"        num_of_running_servcies++;",
+							"    }",
+							"} ",
+							"",
+							"tests[\"All services are up\"] = num_of_running_servcies === num_of_servcies;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/{{deploy_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"{{deploy_id}}"
+					]
+				},
+				"description": "Check the state of the deployed services and the underlying resources"
+			},
+			"response": []
+		},
+		{
+			"name": "Check frontend url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39ae8555-3507-440f-b64e-bacf0e9cabe6",
+						"type": "text/javascript",
+						"exec": [
+							"function pausecomp(millis)",
+							" {",
+							"  var date = new Date();",
+							"  var curDate = null;",
+							"  do { curDate = new Date(); }",
+							"  while(curDate-date < millis);",
+							"}",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{frontend_url}}",
+					"host": [
+						"{{frontend_url}}"
+					]
+				},
+				"description": "Check if frontend url is working"
+			},
+			"response": []
+		},
+		{
+			"name": "scaleout  service",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9dbd0a9-ffe5-4fc6-8c57-15adc63055cb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"scaleTargetID\": \"{{deploy_id}}\",\"scaleTargetName\": \"{{scale_service_name}}\",\"numOfInstances\":\"{{num_of_service_scale_out}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/scale",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"scale"
+					]
+				},
+				"description": "Deplotys the application on the provisioed resoucers"
+			},
+			"response": []
+		},
+		{
+			"name": "Check scale services",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bfb7822a-eab8-448f-a4ab-283286a741db",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"",
+							"let ip = postman.getEnvironmentVariable(\"master_ip\");",
+							"let frontend_url = \"http://\"+ip+\":8080\"",
+							"",
+							"postman.setEnvironmentVariable(\"frontend_url\",frontend_url);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"var managerInfo = jsonData.managerInfo.stack_info;",
+							"var num_of_servcies = managerInfo.length;",
+							"var num_of_running_servcies = 0;",
+							"",
+							"for (i = 0; i < managerInfo.length; i++) {",
+							"    replicas = managerInfo[i].replicas;",
+							"    if(!replicas.includes(\"0\")){",
+							"        num_of_running_servcies++;",
+							"    }",
+							"} ",
+							"",
+							"tests[\"All services are up\"] = num_of_running_servcies === num_of_servcies;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/{{deploy_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"{{deploy_id}}"
+					]
+				},
+				"description": "Check the state of the deployed services and the underlying resources"
+			},
+			"response": []
+		},
+		{
+			"name": "scalein service",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "edb17153-a3a2-42b5-a52b-7d84d0d6c6cb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"scaleTargetID\": \"{{deploy_id}}\",\"scaleTargetName\": \"{{scale_service_name}}\",\"numOfInstances\":\"{{num_of_service_scale_in}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/scale",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"scale"
+					]
+				},
+				"description": "Deplotys the application on the provisioed resoucers"
+			},
+			"response": []
+		},
+		{
+			"name": "Check scale down services",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2d27494-1f39-4872-92a6-b0ce7abaadec",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"",
+							"let ip = postman.getEnvironmentVariable(\"master_ip\");",
+							"let frontend_url = \"http://\"+ip+\":8080\"",
+							"",
+							"postman.setEnvironmentVariable(\"count\",\"0\");",
+							"postman.setEnvironmentVariable(\"frontend_url\",frontend_url);",
+							"console.log(frontend_url);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"var managerInfo = jsonData.managerInfo.stack_info;",
+							"var num_of_servcies = managerInfo.length;",
+							"var num_of_running_servcies = 0;",
+							"",
+							"for (i = 0; i < managerInfo.length; i++) {",
+							"    replicas = managerInfo[i].replicas;",
+							"    if(!replicas.includes(\"0\")){",
+							"        num_of_running_servcies++;",
+							"    }",
+							"} ",
+							"",
+							"tests[\"All services are up\"] = num_of_running_servcies === num_of_servcies;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/deployer/{{deploy_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"deployer",
+						"{{deploy_id}}"
+					]
+				},
+				"description": "Check the state of the deployed services and the underlying resources"
+			},
+			"response": []
+		},
+		{
+			"name": "Scale out VM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61a53b58-a615-446b-b375-0191cc156e84",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"scaleTargetID\": \"{{provision_id}}\",\"scaleTargetName\": \"{{scaling_topology}}\",\"numOfInstances\":\"{{num_of_vm_scale_out}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/scale",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"scale"
+					]
+				},
+				"description": "Get the provision details shuch as ip addresses access keys etc."
+			},
+			"response": []
+		},
+		{
+			"name": "Get scale vm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "66754b30-8d53-4575-a956-2f04013075d0",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							"tests[\"Body matches string\"] =responseBody.has(\"deployParameters\");",
+							"var jsonData = JSON.parse(responseBody);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/{{provision_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"{{provision_id}}"
+					]
+				},
+				"description": "Get the provision details shuch as ip addresses access keys etc."
+			},
+			"response": []
+		},
+		{
+			"name": "Scalein VM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d271936-6c4a-4721-ba63-c02b5fb7827c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"scaleTargetID\": \"{{provision_id}}\",\"scaleTargetName\": \"{{scaling_topology}}\",\"numOfInstances\":\"{{num_of_vm_scale_in}}\"}"
+				},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/scale",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"scale"
+					]
+				},
+				"description": "Get the provision details shuch as ip addresses access keys etc."
+			},
+			"response": []
+		},
+		{
+			"name": "Get scalein vm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39825bf9-7070-46fd-b1a9-544c14d76ada",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/{{provision_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"{{provision_id}}"
+					]
+				},
+				"description": "Get the provision details shuch as ip addresses access keys etc."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Resources",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f5abc33c-603e-4180-9688-ffe31f97689a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Response Body is not empty\"] = responseBody !== 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/{{provision_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"{{provision_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  Provision ids",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3e5344f3-94c8-4856-b162-8bb8677a47ee",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/drip-api/user/v1.0/provisioner/ids",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"drip-api",
+						"user",
+						"v1.0",
+						"provisioner",
+						"ids"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0c3fc5b6-d9c9-45b5-bbcc-aa30dd1484db",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "467f33c1-b89d-4c21-86d4-cc4f4e507bfc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

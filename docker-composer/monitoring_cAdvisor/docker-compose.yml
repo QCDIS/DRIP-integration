@@ -3,6 +3,8 @@ version: '3'
 services:
   influx:
     image: influxdb
+    environment:
+        INFLUXDB_DB: cadvisor
     volumes:
       - influx:/var/lib/influxdb
     deploy:
@@ -21,9 +23,15 @@ services:
       - monitoring          
 
   grafana:
-    image: grafana/grafana
+    image: alogo53/grafana-docker
     ports:
-      - 0.0.0.0:80:3000
+      - 0.0.0.0:3000:3000
+    environment:
+        DS_NAME: influx
+        DS_TYPE: influxdb
+        DS_ACCESS: proxy
+        DS_DATABASE: cadvisor
+        DS_URL: http://influx:8086
     volumes:
       - grafana:/var/lib/grafana
     depends_on:
@@ -41,7 +49,7 @@ services:
           cpus: "0.05"
           memory: "64M"
     networks:
-      - monitoring               
+      - monitoring
 
   cadvisor:
     image: google/cadvisor
