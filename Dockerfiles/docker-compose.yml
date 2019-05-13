@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 
 services:
     mongo:
@@ -7,19 +7,12 @@ services:
             - db-data:/data/db
         ports:
             - "127.0.0.1:27017:27017"
-        #command: "mongod --port 27017"
-        restart: always
-        #networks:
-            #- drip        
-        
+            
     rabbit:
         image: rabbitmq:3-management
-        ports:
-            - "127.0.0.1:5671-5672:5671-5672"
-            - "127.0.0.1:15671:15671"
-        restart: always
-        #networks:
-            #- drip            
+        ports:      
+                - "127.0.0.1:5671-5672:5671-5672"
+                - "15672:15672"
     
     drip-planner:
         depends_on:
@@ -27,14 +20,12 @@ services:
         build:
             context: ./planner
             dockerfile: Dockerfile
-        image: drip-planner:latest
+        image: alogo53/drip-planner:0.2.3
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
         env_file:
-            - ./version_env            
-        #networks:
-            #- drip     
+            - ./version_env  
     
     drip-parser:
         depends_on:
@@ -42,14 +33,12 @@ services:
         build:
             context: ./parser
             dockerfile: Dockerfile
-        image: drip-parser:latest
+        image: alogo53/drip-parser:0.2.3
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
         env_file:
-            - ./version_env            
-        #networks:
-            #- drip              
+            - ./version_env           
             
     drip-provisioner:
         depends_on:
@@ -57,14 +46,12 @@ services:
         build:
             context: ./provisioner
             dockerfile: Dockerfile
-        image: drip-provisioner:latest
+        image: alogo53/drip-provisioner:0.2.3
         restart: always
         environment:
             RABBITMQ_HOST: rabbit   
         env_file:
-            - ./version_env      
-        #networks:
-            #- drip                
+            - ./version_env                    
             
     drip-deployer:
         depends_on:
@@ -72,14 +59,12 @@ services:
         build:
             context: ./deployer
             dockerfile: Dockerfile
-        image: drip-deployer:latest
+        image: alogo53/drip-deployer:0.2.3
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
         env_file:
-            - ./version_env    
-        #networks:
-            #- drip                
+            - ./version_env                 
             
     drip-manager:
         depends_on:
@@ -88,18 +73,18 @@ services:
         build:
             context: ./manager
             dockerfile: Dockerfile
-        image: drip-manager:latest
+        image: alogo53/drip-manager:0.2.3
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
             MONOG_HOST: mongo
+            KEYSTORE_URL: https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/0.2.3/keystore2.tar.gz
+            keystorePass: password2
         env_file:
             - ./env_file
             - ./version_env
         ports:
-            - "8443:8443"
-        #networks:
-            #- drip                
+            - "8080:8080"            
             
     #logspout:
         #image: gliderlabs/logspout:latest

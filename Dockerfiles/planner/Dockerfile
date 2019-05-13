@@ -19,7 +19,7 @@ RUN pip install numpy
 RUN pip install networkx==1.10
 RUN pip install flask
 RUN pip install tosca-parser
-RUN pip install pika
+RUN pip install pika==0.11.2
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko
 RUN pip install python_logging_rabbitmq

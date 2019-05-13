@@ -14,7 +14,7 @@ RUN apt-get install -y wget software-properties-common python-pip inetutils-ping
 
 RUN pip install --upgrade pip
 RUN pip install tosca-parser
-RUN pip install pika
+RUN pip install pika==0.11.2
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip install paramiko==2.0.2
 RUN pip install python_logging_rabbitmq
@@ -29,5 +29,5 @@ RUN tar -xzvf drip_parser.tar.gz
 
 ENTRYPOINT sleep 10 && python /root/drip_parser/src/rpc_server.py $RABBITMQ_HOST tosca_2_docker_compose_queue
 
-# docker build -t drip-parserr .
+# docker build -t drip-parser .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-parser
