@@ -312,7 +312,6 @@ node_types:
     properties: 
       multicastAddrIP: 
         type: "Switch.datatypes.Network.Multicast"
-<<<<<<< HEAD
       inPort: 
         type: integer
     derived_from: "Switch.nodes.Application.Container.Docker"
