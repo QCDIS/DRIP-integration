@@ -535,8 +535,6 @@ node_types:
       videoWidth: 
         default: 720
         type: integer
-=======
->>>>>>> a1296fb5dab8669679a7e1aa70505b1af4dc3c24
       inPort: 
         default: 2000
         type: "Switch.datatypes.port"
@@ -544,7 +542,6 @@ node_types:
         default: 406
         type: integer
     derived_from: "Switch.nodes.Application.Container.Docker"
-<<<<<<< HEAD
   "Switch.nodes.Application.Container.Docker.LOKSORR_Doubango": 
     derived_from: "Switch.nodes.Application.Container.Docker"
   "Switch.nodes.Requirement": 
@@ -717,7 +714,6 @@ node_types:
       GF_SECURITY_ADMIN_PASSWORD: 
         default: "${GRAFANA_PASSWORD:-secret}"
         type: string
-=======
   "tosca.groups.Root": 
   "Switch.nodes.Application.Container.Docker.BEIA_RTUSensorDataManagement": 
     derived_from: "Switch.nodes.Application.Container.Docker"
@@ -1117,7 +1113,6 @@ node_types:
       GF_SECURITY_ADMIN_PASSWORD: 
         default: "${GRAFANA_PASSWORD:-secret}"
         type: string
->>>>>>> a1296fb5dab8669679a7e1aa70505b1af4dc3c24
       VIRTUAL_HOST: 
         default: "grafana.beia.switch"
         type: string
@@ -1223,15 +1218,9 @@ node_types:
       statsdPort: 
         type: string
       multicastAddrPort: 
-<<<<<<< HEAD
         type: string
       videoWidth: 
         type: string
-=======
-        type: string
-      videoWidth: 
-        type: string
->>>>>>> a1296fb5dab8669679a7e1aa70505b1af4dc3c24
       videoHeight: 
         type: string
     derived_from: "Switch.nodes.Application.Container.Docker"
@@ -1522,8 +1511,4 @@ data_types:
         required: false
         type: string
     derived_from: "tosca.datatypes.Root"
-<<<<<<< HEAD
 tosca_definitions_version: tosca_simple_yaml_1_0
-=======
-tosca_definitions_version: tosca_simple_yaml_1_0
->>>>>>> a1296fb5dab8669679a7e1aa70505b1af4dc3c24
