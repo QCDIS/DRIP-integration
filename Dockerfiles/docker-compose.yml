@@ -5,14 +5,14 @@ services:
         image: mongo:3
         volumes:
             - db-data:/data/db
-        ports:
-            - "127.0.0.1:27017:27017"
+        #ports:
+            #- "127.0.0.1:27017:27017"
             
     rabbit:
         image: rabbitmq:3-management
-        ports:      
-                - "127.0.0.1:5671-5672:5671-5672"
-                - "15672:15672"
+        #ports:      
+                #- "127.0.0.1:5671-5672:5671-5672"
+                #- "15672:15672"
     
     drip-planner:
         depends_on:
@@ -46,7 +46,7 @@ services:
         build:
             context: ./provisioner
             dockerfile: Dockerfile
-        image: alogo53/drip-provisioner:0.2.3
+        image: alogo53/drip-provisioner:0.2.4
         restart: always
         environment:
             RABBITMQ_HOST: rabbit   
@@ -73,7 +73,7 @@ services:
         build:
             context: ./manager
             dockerfile: Dockerfile
-        image: alogo53/drip-manager:0.2.3
+        image: alogo53/drip-manager:0.2.4
         restart: always
         environment:
             RABBITMQ_HOST: rabbit

@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 
 # ARG RABBITMQ_HOST=127.0.0.1
-ARG RELESE_VERSION=0.2.3
+ARG RELESE_VERSION=0.2.5
 # ARG RELESE_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive 
@@ -30,7 +30,7 @@ RUN pip install python_logging_rabbitmq
 
 WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-deployer.tar.gz
-RUN tar -xzvf drip-deployer.tar.gz
+RUN tar -xzvf drip-deployer.
 
 ENTRYPOINT sleep 10 && \
  python /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
