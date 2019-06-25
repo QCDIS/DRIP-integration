@@ -20,7 +20,7 @@ services:
         build:
             context: ./planner
             dockerfile: Dockerfile
-        image: alogo53/drip-planner:0.2.3
+        image: alogo53/drip-planner:0.2.4
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
@@ -33,7 +33,7 @@ services:
         build:
             context: ./parser
             dockerfile: Dockerfile
-        image: alogo53/drip-parser:0.2.3
+        image: alogo53/drip-parser:0.2.4
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
@@ -59,7 +59,7 @@ services:
         build:
             context: ./deployer
             dockerfile: Dockerfile
-        image: alogo53/drip-deployer:0.2.3
+        image: alogo53/drip-deployer:0.2.4
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
