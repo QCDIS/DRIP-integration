@@ -38,12 +38,7 @@ RUN tar -xzf apache-tomcat-7.0.75.tar.gz
 WORKDIR apache-tomcat-7.0.75
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-api-1.0-SNAPSHOT.tar.gz 
 RUN tar -xzvf drip-api-1.0-SNAPSHOT.tar.gz
-RUN mkdir tmp
-RUN ls .
-RUN mv drip-api-1.0-SNAPSHOT/target/drip-api-1.0-SNAPSHOT/ tmp/
-RUN rm -rf drip-api-1.0-SNAPSHOT
-RUN mv tmp/drip-api-1.0-SNAPSHOT/ .
-RUN rm -r tmp/
+RUN ls
 RUN cat drip-api-1.0-SNAPSHOT/WEB-INF/classes/drip.properties
 RUN mv drip-api-1.0-SNAPSHOT webapps/drip-api
 
