@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 MAINTAINER S. Koulouzis "S.Koulouzis@uva.nl"
 
-ARG RELESE_VERSION=0.2.3
+ARG RELESE_VERSION=3.0-pre-alpha
 # ARG RELESE_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive 
@@ -28,8 +28,8 @@ RUN pip install python_logging_rabbitmq
 
 # Install planner
 WORKDIR /root/
-RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip_planner2.tar.gz
-RUN tar -xzvf drip_planner2.tar.gz
+RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
+RUN tar -xzvf drip-planner.tar.gz
 
 ENTRYPOINT sleep 10 && python /root/drip_planner2/src/rpc_server.py $RABBITMQ_HOST planner_queue
 

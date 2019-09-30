@@ -6,7 +6,7 @@ MAINTAINER Huan "h.zhou@uva.nl"
 
 # ARG RABBITMQ_HOST=127.0.0.1
 # ARG MONOG_HOST=127.0.0.1
-ARG RELESE_VERSION=0.2.3
+ARG RELESE_VERSION=3.0-pre-alpha
 # ARG RELESE_VERSION
 ARG CERTS=/etc/grid-security/certificates
 
