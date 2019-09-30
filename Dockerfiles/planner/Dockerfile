@@ -12,7 +12,7 @@ RUN apt-get install -y --no-install-recommends apt-transport-https ca-certificat
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update -y
 RUN apt-get upgrade -y 
-RUN apt-get install -y wget software-properties-common libssl-dev libffi-dev python3.6 python3.6-dev python3.6-pip
+RUN apt-get install -y wget software-properties-common libssl-dev libffi-dev python3.6 python3.6-dev python3-pip
 
 # Install python stuff
 RUN pip3 install --upgrade pip
