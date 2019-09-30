@@ -12,7 +12,7 @@ RUN apt-get upgrade -y
 RUN apt-get update -y 
 RUN apt-get install -y wget software-properties-common python2.7 python-pip inetutils-ping
 
-RUN pip install --upgrade pip
+RUN pip2 install --upgrade pip
 RUN pip install pydot
 RUN pip install numpy
 RUN pip install networkx==1.10
