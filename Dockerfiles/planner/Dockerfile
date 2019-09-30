@@ -8,6 +8,7 @@ ARG RELESE_VERSION=3.0-pre-alpha
 
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
+RUN apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update -y
 RUN apt-get upgrade -y 
