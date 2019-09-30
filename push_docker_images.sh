@@ -18,7 +18,7 @@ docker push alogo53/drip-parser:$1
 cd ../planner
 docker build -t drip-planner .
 docker tag drip-planner alogo53/drip-planner:$1
-docker push logo53/drip-planner:$1
+docker push alogo53/drip-planner:$1
 
 cd ../provisioner
 docker build -t drip-provisioner .
