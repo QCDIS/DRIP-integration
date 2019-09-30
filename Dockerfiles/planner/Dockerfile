@@ -23,6 +23,7 @@ RUN pip3 install pika==0.11.2
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip3 install paramiko
 RUN pip3 install python_logging_rabbitmq
+RUN pip3 install names
 
 
 
