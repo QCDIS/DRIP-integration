@@ -13,16 +13,16 @@ RUN apt-get update -y
 RUN apt-get install -y wget software-properties-common python2.7 python-pip inetutils-ping
 
 RUN pip2 install --upgrade pip
-RUN pip install pydot
-RUN pip install numpy
-RUN pip install networkx==1.10
-RUN pip install flask
-RUN pip install tosca-parser
-RUN pip install pika==0.10.0
+RUN pip2 install pydot
+RUN pip2 install numpy
+RUN pip2 install networkx==1.10
+RUN pip2 install flask
+RUN pip2 install tosca-parser
+RUN pip2 install pika==0.10.0
 RUN export LC_ALL="en_US.UTF-8"
-RUN pip install paramiko==2.0.2
-RUN pip install ansible==2.2.2.0
-RUN pip install python_logging_rabbitmq
+RUN pip2 install paramiko==2.0.2
+RUN pip2 install ansible==2.2.2.0
+RUN pip2 install python_logging_rabbitmq
 
 
 
