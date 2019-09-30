@@ -59,7 +59,7 @@ services:
         build:
             context: ./deployer
             dockerfile: Dockerfile
-        image: alogo53/drip-deployer:3.0-pre-alpha
+        image: drip-deployer
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
