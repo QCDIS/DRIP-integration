@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get update -y
 RUN apt-get upgrade -y 
-RUN apt-get install -y wget software-properties-common libssl-dev libffi-dev python-dev python-pip
+RUN apt-get install -y wget software-properties-common libssl-dev libffi-dev python3 python3-dev python3-pip
 
 # Install python stuff
 RUN pip install --upgrade pip
