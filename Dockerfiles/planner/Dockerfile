@@ -18,7 +18,7 @@ RUN pip3 install pydot
 RUN pip3 install numpy
 RUN pip3 install networkx==1.10
 RUN pip3 install flask
-RUN pip3 install tosca-parser
+RUN pip3 install tosca-parser==1.5.0
 RUN pip3 install pika==0.11.2
 RUN export LC_ALL="en_US.UTF-8"
 RUN pip3 install paramiko
