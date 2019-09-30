@@ -23,6 +23,7 @@ RUN export LC_ALL="en_US.UTF-8"
 RUN pip2 install paramiko==2.0.2
 RUN pip2 install ansible==2.2.2.0
 RUN pip2 install python_logging_rabbitmq
+RUN pip2 install virtualenv
 
 
 
@@ -33,8 +34,9 @@ RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$REL
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/$RELESE_VERSION/drip-deployer.tar.gz
 RUN tar -xzvf drip-deployer.tar.gz
 
-ENTRYPOINT sleep 10 && \
- python2.7 /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
+ENTRYPOINT sleep 10 && \ 
+    source /root/drip-deployer/venv/bin/activate && \
+    python2.7 /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-deployer .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-deployer 
