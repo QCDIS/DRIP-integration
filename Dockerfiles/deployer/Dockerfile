@@ -35,7 +35,7 @@ RUN wget https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/$RELES
 RUN tar -xzvf drip-deployer.tar.gz
 
 ENTRYPOINT sleep 10 && \ 
-    source /root/drip-deployer/venv/bin/activate && \
+    . /root/drip-deployer/venv/bin/activate && \
     python2.7 /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-deployer .
