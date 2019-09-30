@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends 
 RUN apt-get upgrade -y 
 RUN apt-get update -y 
-RUN apt-get install -y wget software-properties-common python-pip inetutils-ping
+RUN apt-get install -y wget software-properties-common python2.7 python2.7-pip inetutils-ping
 
 RUN pip install --upgrade pip
 RUN pip install pydot
@@ -34,7 +34,7 @@ RUN wget https://github.com/QCAPI-DRIP/DRIP-integration/releases/download/$RELES
 RUN tar -xzvf drip-deployer.tar.gz
 
 ENTRYPOINT sleep 10 && \
- python /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
+ python2.7 /root/drip-deployer/rpc_server.py $RABBITMQ_HOST
 
 # docker build -t drip-deployer .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-deployer 
