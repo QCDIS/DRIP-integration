@@ -20,7 +20,7 @@ services:
         build:
             context: ./planner
             dockerfile: Dockerfile
-        image: alogo53/drip-planner:0.2.4
+        image: alogo53/drip-planner:3.0-pre-alpha
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
@@ -33,7 +33,7 @@ services:
         build:
             context: ./parser
             dockerfile: Dockerfile
-        image: alogo53/drip-parser:0.2.4
+        image: alogo53/drip-parser:3.0-pre-alpha
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
@@ -46,7 +46,7 @@ services:
         build:
             context: ./provisioner
             dockerfile: Dockerfile
-        image: alogo53/drip-provisioner:0.2.4
+        image: alogo53/drip-provisioner:3.0-pre-alpha
         restart: always
         environment:
             RABBITMQ_HOST: rabbit   
@@ -59,7 +59,7 @@ services:
         build:
             context: ./deployer
             dockerfile: Dockerfile
-        image: alogo53/drip-deployer:0.2.4
+        image: alogo53/drip-deployer:3.0-pre-alpha
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
@@ -73,7 +73,7 @@ services:
         build:
             context: ./manager
             dockerfile: Dockerfile
-        image: alogo53/drip-manager:0.2.4
+        image: alogo53/drip-manager:3.0-pre-alpha
         restart: always
         environment:
             RABBITMQ_HOST: rabbit
