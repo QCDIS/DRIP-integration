@@ -19,9 +19,8 @@ RUN pip2 install networkx==1.10
 RUN pip2 install flask
 RUN pip2 install tosca-parser
 RUN pip2 install pika==0.10.0
-RUN pip2 install pika==0.10.0
 RUN export LC_ALL="en_US.UTF-8"
-RUN pip2 install paramiko==2.0.2
+RUN pip2 install paramiko==2.6.0
 RUN pip2 install ansible==2.2.2.0
 RUN pip2 install python_logging_rabbitmq
 RUN pip2 install virtualenv
