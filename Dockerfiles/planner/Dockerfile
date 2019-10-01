@@ -34,8 +34,7 @@ WORKDIR /root/
 RUN wget https://github.com/QCAPI-DRIP/DRIP-integradation/releases/download/$RELESE_VERSION/drip-planner.tar.gz
 RUN tar -xzvf drip-planner.tar.gz
 
-ENTRYPOINT tail -f /dev/null 
-# ENTRYPOINT sleep 5 && python3.5 /root/drip_planner2/src/rpc_server.py $RABBITMQ_HOST planner_queue
+ENTRYPOINT sleep 5 && python3.5 /root/drip_planner2/src/rpc_server.py $RABBITMQ_HOST planner_queue
 
 # docker build -t drip-planner .
 # docker run -e RABBITMQ_HOST=172.17.0.2 drip-planner
